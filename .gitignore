@@ -1,0 +1,8 @@
+.idea/
+.allure/
+*.iml
+*.DS_Store
+target/
+failed_screenshot/
+*browser.properties
+*build/

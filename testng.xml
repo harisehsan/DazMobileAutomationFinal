@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="1">
+
+    <test name="Device1">
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="Galaxy J7"/>
+        <parameter name="platformVersion" value="7.0"/>
+        <parameter name="udid" value="0117114457c32201"/>
+        <parameter name="port" value="4723"/>
+        <parameter name="systemPort" value="8210"/>
+        <classes>
+            <class name="global.APP.starter.Runner"/>
+        </classes>
+    </test>
+
+    <!--<test name="Device2">-->
+        <!--<parameter name="platformName" value="Android"/>-->
+        <!--<parameter name="deviceName" value="Huwai ALE-W21"/>-->
+        <!--<parameter name="platformVersion" value="5.0.1"/>-->
+        <!--<parameter name="udid" value="W3D7N17512011487"/>-->
+        <!--<parameter name="port" value="4722"/>-->
+        <!--<parameter name="systemPort" value="8200"/>-->
+        <!--<classes>-->
+            <!--<class name="global.APP.starter.Runner2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+
+</suite>
