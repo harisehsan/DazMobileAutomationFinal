@@ -149,11 +149,12 @@ public class Base {
     {
         try{
             new WebDriverWait(driver, 40)
-                    .until(ExpectedConditions.presenceOfElementLocated(by));
+                    .until(ExpectedConditions.elementToBeClickable(by));
             return true;
         }
         catch (Exception ex)
         {
+           System.out.println("This is the exception:" +ex.getMessage());
            return false;
         }
     }

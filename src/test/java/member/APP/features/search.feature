@@ -1,8 +1,9 @@
 @Test1
-Feature: first feature
+Feature: Search Product
 
-  @SearchTest1
+  @SearchProduct
   Scenario: Search a product
+    Given I select the venture
     And I Search for "DSLR" Product
     Then I should see search results
 

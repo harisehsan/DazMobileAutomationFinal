@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 @CucumberOptions(
         features="src/test/java/member/APP/features",
-        tags = "@SearchTest1",
+        tags = "@null2222",
         glue= "global.APP.stepsDefinitions",
 //        format = "pretty",
         plugin = {
