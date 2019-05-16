@@ -1,6 +1,5 @@
 package global.APP.stepsDefinitions;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import global.Drivers;
 import member.APP.pages.SearchProduct;
@@ -19,7 +18,7 @@ public class SearchProductSteps {
 
     @Then("^I should see search results$")
     public void iShouldSearchResult() {
-        Assert.assertTrue(searchProduct.verifySearchProduct(),"Search product not found!");
+        Assert.assertTrue(searchProduct.verifySearchResult(),"Search product not found!");
     }
 
 }

@@ -20,13 +20,16 @@ public class Drivers {
     public DesiredCapabilities cap;
 
 
-    public void androidLaunchApp(String port, String platform, String platformVersion, String deviceName, String udid, String systemPort) throws Exception {
+    public void darazAndroidLaunchApp(String port, String platform, String platformVersion, String deviceName, String udid, String systemPort) throws Exception {
         cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, udid);
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
         cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
 //        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator");
-        cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android");
+        if(System.getProperty("env").equalsIgnoreCase("mm.live"))
+            cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
+        else
+            cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android");
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
         cap.setCapability(MobileCapabilityType.NO_RESET, false);
         driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);

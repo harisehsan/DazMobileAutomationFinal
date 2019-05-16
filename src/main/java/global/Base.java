@@ -145,16 +145,16 @@ public class Base {
         return id.size() > 0;
     }
 
-    public boolean waitWithoutException(By by)
+    public boolean waitWithoutException(WebElement id)
     {
         try{
-            new WebDriverWait(driver, 40)
-                    .until(ExpectedConditions.elementToBeClickable(by));
+            new WebDriverWait(driver, 30)
+                    .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         }
         catch (Exception ex)
         {
-           System.out.println("This is the exception:" +ex.getMessage());
+           System.out.println("Venture selection screen is not displayed!");
            return false;
         }
     }
