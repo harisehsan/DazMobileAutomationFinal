@@ -26,7 +26,7 @@ public class Base {
 
     public AppiumDriver driver;
 
-    public Base(AppiumDriver<MobileElement> driver) {
+    public Base(AppiumDriver<WebElement> driver) {
         this.driver = driver;
     }
 
@@ -34,28 +34,19 @@ public class Base {
         return driver instanceof AndroidDriver;
     }
 
-    public boolean isIOS() {
-        return driver instanceof IOSDriver;
-    }
+//    public boolean isIOS() {
+//        return driver instanceof IOSDriver;
+//    }
 
     public void hideKeyboard() {
 
         if (isAndroid()) {
             driver.hideKeyboard();
-        } else if (isIOS()){
-            IOSDriver iosDriver = (IOSDriver) driver;
-            iosDriver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY, "Done");
+//        } else if (isIOS()){
+//            IOSDriver iosDriver = (IOSDriver) driver;
+//            iosDriver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY, "Done");
         }
-
     }
-
-
-
-
-
-
-
-
 
     public void waitForPageToLoad(WebElement id) {
         WebDriverWait wait = new WebDriverWait(driver, 15);
@@ -77,14 +68,11 @@ public class Base {
         wait.until(ExpectedConditions.visibilityOfAllElements(id));
     }
 
-
-
     public WebElement waitForElement(WebElement arg) {
         waitForPageToLoad(arg);
         WebElement el = arg;
         return el;
     }
-
 
     public boolean isElementPresent(By by) {
         try {
@@ -144,13 +132,30 @@ public class Base {
 
     public void clickBackButton() {
         driver.navigate().back(); //Closes keyboard
-        //driver.navigate().back(); //Comes out of edit mode
+//        driver.navigate().back(); //Comes out of edit mode
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 50)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    public boolean isExist(List <WebElement> id)
+    {
+        return id.size() > 0;
+    }
 
+    public boolean waitWithoutException(WebElement id)
+    {
+        try{
+            new WebDriverWait(driver, 30)
+                    .until(ExpectedConditions.elementToBeClickable(id));
+            return true;
+        }
+        catch (Exception ex)
+        {
+           System.out.println("Venture selection screen is not displayed!");
+           return false;
+        }
+    }
 }

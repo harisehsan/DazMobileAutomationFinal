@@ -1,26 +1,26 @@
-package member.APP.pageObjects;
-
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.iOSFindBy;
-
-public class LoginPageObjects {
-
-    @AndroidFindBy(id = "com.lazada.android:id/btn_login_fresh_welcome_login")
-    public MobileElement loginOption;
-
-    @AndroidFindBy(id = "com.lazada.android:id/et_laz_form_input_field_edit")
-    @iOSFindBy(xpath = "//*[@class='UIATextField']")
-    public MobileElement emailImp;
-
-    @AndroidFindBy(id = "com.lazada.android:id/et_laz_form_password_field_edit")
-    @iOSFindBy(xpath = "((//*[@class='UIAView' and ./parent::*[@class='UIAScrollView']]/*[@class='UIAView'])[2]/*[@class='UIAView'])[2]")
-    public MobileElement passwordImp;
-
-    @AndroidFindBy(id = "com.lazada.android:id/btn_login_form_account_login")
-    @iOSFindBy(xpath = "//*[@text='Login']")
-    public MobileElement loginBtn;
-}
+//package member.APP.pageObjects;
+//
+//import io.appium.java_client.MobileElement;
+//import io.appium.java_client.pagefactory.AndroidFindBy;
+//import io.appium.java_client.pagefactory.iOSFindBy;
+//
+//public class LoginPageObjects {
+//
+//    @AndroidFindBy(id = "com.lazada.android:id/btn_login_fresh_welcome_login")
+//    public MobileElement loginOption;
+//
+//    @AndroidFindBy(id = "com.lazada.android:id/et_laz_form_input_field_edit")
+////    @iOSFindBy(xpath = "//*[@class='UIATextField']")
+//    public MobileElement emailImp;
+//
+//    @AndroidFindBy(id = "com.lazada.android:id/et_laz_form_password_field_edit")
+////    @iOSFindBy(xpath = "((//*[@class='UIAView' and ./parent::*[@class='UIAScrollView']]/*[@class='UIAView'])[2]/*[@class='UIAView'])[2]")
+//    public MobileElement passwordImp;
+//
+//    @AndroidFindBy(id = "com.lazada.android:id/btn_login_form_account_login")
+////    @iOSFindBy(xpath = "//*[@text='Login']")
+//    public MobileElement loginBtn;
+//}
 //*[@class='UIAView']
 //*[@class='UIATextField']
 //*[@XCElementType='XCUIElementTypeTextField']

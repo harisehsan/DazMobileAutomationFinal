@@ -9,10 +9,18 @@ import org.testng.annotations.Test;
 
 @CucumberOptions(
         features="src/test/java/member/APP/features",
-        tags = "@Test",
+        tags = "@null2222",
         glue= "global.APP.stepsDefinitions",
-        format = "pretty"
-)
+//        format = "pretty",
+        plugin = {
+                "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm",
+                "pretty",
+                "html:target/cucumber-reports/cucumber-pretty",
+                "json:target/cucumber-reports/json-reports/CucumberTestReport.json",
+                "rerun:target/cucumber-reports/rerun-reports/rerun.txt"
+        }
+        )
+
 
 public class Runner extends BaseRunner {
 
