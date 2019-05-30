@@ -8,14 +8,14 @@ import java.util.List;
 
 public class SignUpObjects {
     @AndroidFindBy(id="com.daraz.android:id/title") public List<WebElement> account_lbl;
-    @AndroidFindBy(id = "com.daraz.android:id/txt_login_signup") public WebElement signup_And_Login_btn;
+    @AndroidFindBy(id = "com.daraz.android:id/txt_login_signup") public List <WebElement> signup_And_Login_btn;
     @AndroidFindBy(id="com.daraz.android:id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn;
     @AndroidFindBy (id="com.daraz.android:id/img_settings") public WebElement settings_icon;
     @AndroidFindBy (xpath="//*[@text='Logout']") public WebElement logout_btn;
     @AndroidFindBy (id="android:id/button1") public WebElement final_Logout_btn;
 
     @AndroidFindBy(id="com.shop.android:id/title") public List<WebElement> account_lbl_MM;
-    @AndroidFindBy(id = "com.shop.android:id/txt_login_signup") public WebElement signup_And_Login_btn_MM;
+    @AndroidFindBy(id = "com.shop.android:id/txt_login_signup") public List <WebElement> signup_And_Login_btn_MM;
     @AndroidFindBy(id="com.shop.android:id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn_MM;
     @AndroidFindBy (id="com.shop.android:id/img_settings") public WebElement settings_icon_MM;
 

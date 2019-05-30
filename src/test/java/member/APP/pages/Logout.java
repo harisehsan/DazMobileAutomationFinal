@@ -19,13 +19,13 @@ public class Logout extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), signUpObjects);
     }
 
-    public void logout()
+    public void logout() //This Method is used to logout the current user from Daraz or Shop application after signup/siginin operation
     {
-     if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+     if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
          waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
          signUpObjects.settings_icon.click();
         }
-     else
+     else // Code for Shop (MM) app only
         {
         waitUntilPresentOfElementBy(signUpObjects.settings_icon_By_MM);
         signUpObjects.settings_icon_MM.click();

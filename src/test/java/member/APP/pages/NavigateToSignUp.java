@@ -19,23 +19,21 @@ public class NavigateToSignUp extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), signUpObjects);
     }
 
-    public void navigateToSignUpScreen() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+    public void navigateToSignUpScreen() { //This method is used to navigate the control to the sigup screen to make it able to choose Facebook or gmail signup option
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             signUpObjects.account_lbl.get(3).click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            do signUpObjects.signup_And_Login_btn.click();
-            while (isElementPresent(signUpObjects.signup_And_Login_btn_By));
+            clickMultipleTries(signUpObjects.signup_And_Login_btn,4);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By);
             signUpObjects.signup_btn.click();
         }
-        else
+        else  // code for Shop (MM) app only
         {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
             signUpObjects.account_lbl_MM.get(3).click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
-            do signUpObjects.signup_And_Login_btn_MM.click();
-            while (isElementPresent(signUpObjects.signup_And_Login_btn_By_MM));
+            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,4);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By_MM);
             signUpObjects.signup_btn_MM.click();
         }

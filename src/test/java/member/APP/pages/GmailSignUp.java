@@ -28,7 +28,7 @@ public class GmailSignUp extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), gmailsignUpObjects);
     }
 
-    public void signupUsingGmail() {
+    public void signupUsingGmail() {  // This Method is used to open the google signup option and fill the general authentication if needed by gmail
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(gmailsignUpObjects.gmail_btn_By);
             gmailsignUpObjects.gmail_btn.click();
@@ -48,8 +48,8 @@ public class GmailSignUp extends Base {
         clickMultipleTries(gmailsignUpObjects.create_Account_btn,5);
     }
 
-    public String gmailName() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+    public String gmailName() { // This Method is used Fill the First and Last Name for gmail signup
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(gmailsignUpObjects.name_txt_By);
             gmailsignUpObjects.first_name_txt.sendKeys(FIRST_NAME);
             gmailsignUpObjects.last_name_txt.click();
@@ -57,7 +57,7 @@ public class GmailSignUp extends Base {
             hideKeyboard();
             clickMultipleTries(gmailsignUpObjects.next_Second_btn, 5);
             return (FIRST_NAME + " " + LAST_NAME);
-        } else {
+        } else { // code for Shop (MM) app only
             waitUntilPresentOfElementBy(gmailsignUpObjects.name_txt_By);
             gmailsignUpObjects.first_name_txt.sendKeys(FIRST_NAME_MM);
             gmailsignUpObjects.last_name_txt.click();
@@ -68,7 +68,7 @@ public class GmailSignUp extends Base {
         }
     }
 
-    public void gmailDOBAndGender() {
+    public void gmailDOBAndGender() { // This Method is used to choose the random Date of Birth and gender for gmail signup
         waitUntilPresentOfElementBy(gmailsignUpObjects.dob_txt_By);
         gmailsignUpObjects.dob_txt.get(8).sendKeys(Integer.toString(randomNumberGenerator(27)+1));
         gmailsignUpObjects.dob_txt.get(15).click();
@@ -79,7 +79,7 @@ public class GmailSignUp extends Base {
         gmailsignUpObjects.next_Third_btn.click();
     }
 
-    public void gmailAddress() {
+    public void gmailAddress() { // This Method is used to choose an email address with random 5 digits for gmail signup
         waitUntilPresentOfElementBy(gmailsignUpObjects.gmail_Address_lbl_By);
         gmailsignUpObjects.gmail_Address_lbl.click();
         waitUntilPresentOfElementBy(gmailsignUpObjects.gmail_Address_txt_By);
@@ -91,7 +91,7 @@ public class GmailSignUp extends Base {
         gmailsignUpObjects.next_Fourth_btn.click();
     }
 
-    public void gmailPassword()  {
+    public void gmailPassword()  { // This Method is used to set the strong password for gmail signup
         waitUntilPresentOfElementBy(gmailsignUpObjects.create_Password_txt_By);
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             gmailsignUpObjects.create_Password_txt.sendKeys(PASSWORD);
@@ -107,7 +107,7 @@ public class GmailSignUp extends Base {
         gmailsignUpObjects.Element_btn.get(1).click();
     }
 
-    public void gmailPhoneAndPrivacy()  {
+    public void gmailPhoneAndPrivacy()  { // This Method is used skip the phone number options and accept the privacy policy for gmail signup
        waitUntilPresentOfElementBy(gmailsignUpObjects.skip_btn_By);
        scrollDownMultipleTries(2);
        clickMultipleTries(gmailsignUpObjects.skip_btn,8);
@@ -118,7 +118,7 @@ public class GmailSignUp extends Base {
        clickMultipleTries(gmailsignUpObjects.gmail_Final_Next_btn,3);
           }
 
-     public String gmailSignupVerification()
+     public String gmailSignupVerification() // This Method is used to verify either you have been signed up successfully with the name as provided above or not
      {
          if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
              if (waitWithoutException(gmailsignUpObjects.gmail_btn))
