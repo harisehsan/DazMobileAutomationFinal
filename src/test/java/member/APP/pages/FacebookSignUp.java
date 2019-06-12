@@ -49,7 +49,6 @@ public class FacebookSignUp extends Base {
                 return NAME;
            else
                return NAME_MM;
-
     }
 
     public String facebookSignupVerififcation() // This Method is used to verify either you have been signed up successfully with the name as provided above or not

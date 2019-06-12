@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class SignUpObjects {
-    @AndroidFindBy(id="com.daraz.android:id/title") public List<WebElement> account_lbl;
+    @AndroidFindBy(xpath ="//*[@text='Account' and @resource-id='com.daraz.android:id/title']") public WebElement account_lbl;
     @AndroidFindBy(id = "com.daraz.android:id/txt_login_signup") public List <WebElement> signup_And_Login_btn;
     @AndroidFindBy(id="com.daraz.android:id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn;
     @AndroidFindBy (id="com.daraz.android:id/img_settings") public WebElement settings_icon;

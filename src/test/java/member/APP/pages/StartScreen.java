@@ -48,13 +48,17 @@ public class StartScreen extends Base {
                 default:
                     throw new RuntimeException("Venture not found!");
             }
-           if(waitWithoutException(startScreenPageObjects.skip_Intro_btn))
-               startScreenPageObjects.skip_Intro_btn.click();
         }
-       else {
-           if(waitWithoutException(startScreenPageObjects.skip_Intro_btn_MM))
-               startScreenPageObjects.skip_Intro_btn_MM.click();
+        if(!(env.equalsIgnoreCase("mm.live"))) {
+           if (waitWithoutException(startScreenPageObjects.skip_Intro_btn))
+           startScreenPageObjects.skip_Intro_btn.click();
+        }
+      else
+        {
+            if (waitWithoutException(startScreenPageObjects.skip_Intro_btn_MM))
+                startScreenPageObjects.skip_Intro_btn_MM.click();
+        }
        }
 
     }
-}
+

@@ -22,7 +22,7 @@ public class NavigateToSignUp extends Base {
     public void navigateToSignUpScreen() { //This method is used to navigate the control to the sigup screen to make it able to choose Facebook or gmail signup option
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            signUpObjects.account_lbl.get(3).click();
+            signUpObjects.account_lbl.click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
             clickMultipleTries(signUpObjects.signup_And_Login_btn,4);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By);
