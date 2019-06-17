@@ -1,4 +1,4 @@
-@smoke
+@smoke @Signup
 Feature: Search Product
 
  @20580001 @Signup_gmail

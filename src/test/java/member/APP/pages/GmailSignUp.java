@@ -40,12 +40,17 @@ public class GmailSignUp extends Base {
         gmailsignUpObjects.policy_Agree_btn.click();
         if (waitWithoutException(gmailsignUpObjects.new_User_link))
             gmailsignUpObjects.new_User_link.click();
-        if (waitWithoutException(gmailsignUpObjects.pin_txt))
+        if (waitWithoutException(gmailsignUpObjects.pin_txt)) {
             gmailsignUpObjects.pin_txt.sendKeys(DEVICE_CODE);
-        if (waitWithoutException(gmailsignUpObjects.next_btn))
-            gmailsignUpObjects.next_btn.click();
+            if (gmailsignUpObjects.next_btn.size() > 0)
+                gmailsignUpObjects.next_btn.get(0).click();
+            else {
+                gmailsignUpObjects.pin_txt.click();
+                gmailsignUpObjects.enter_btn.get(1).click();
+              }
+        }
         waitUntilPresentOfElementBy(gmailsignUpObjects.create_Account_btn_By);
-        clickMultipleTries(gmailsignUpObjects.create_Account_btn,5);
+        gmailsignUpObjects.create_Account_btn.get(0).click();
     }
 
     public String gmailName() { // This Method is used Fill the First and Last Name for gmail signup
@@ -55,7 +60,7 @@ public class GmailSignUp extends Base {
             gmailsignUpObjects.last_name_txt.click();
             gmailsignUpObjects.last_name_txt.sendKeys(LAST_NAME);
             hideKeyboard();
-            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 5);
+            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 3);
             return (FIRST_NAME + " " + LAST_NAME);
         } else { // code for Shop (MM) app only
             waitUntilPresentOfElementBy(gmailsignUpObjects.name_txt_By);
@@ -63,18 +68,18 @@ public class GmailSignUp extends Base {
             gmailsignUpObjects.last_name_txt.click();
             gmailsignUpObjects.last_name_txt.sendKeys(LAST_NAME);
             hideKeyboard();
-            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 5);
+            gmailsignUpObjects.next_Second_btn.get(0).click();
             return (FIRST_NAME_MM+" "+LAST_NAME);
         }
     }
 
     public void gmailDOBAndGender() { // This Method is used to choose the random Date of Birth and gender for gmail signup
         waitUntilPresentOfElementBy(gmailsignUpObjects.dob_txt_By);
-        gmailsignUpObjects.dob_txt.get(8).sendKeys(Integer.toString(randomNumberGenerator(27)+1));
-        gmailsignUpObjects.dob_txt.get(15).click();
+        gmailsignUpObjects.month_lbl.click();
         gmailsignUpObjects.month_Selector_rdobtn.get(randomNumberGenerator(gmailsignUpObjects.month_Selector_rdobtn.size())).click();
-        gmailsignUpObjects.dob_txt.get(22).sendKeys("19" + Integer.toString(50 + randomNumberGenerator(50)));
-        gmailsignUpObjects.dob_txt.get(29).click();
+        gmailsignUpObjects.dob_txt.get(0).sendKeys(Integer.toString(randomNumberGenerator(27)+1));
+        gmailsignUpObjects.dob_txt.get(1).sendKeys("19" + Integer.toString(50 + randomNumberGenerator(50)));
+        gmailsignUpObjects.gender_lbl.click();
         gmailsignUpObjects.month_Selector_rdobtn.get(randomNumberGenerator(gmailsignUpObjects.month_Selector_rdobtn.size())).click();
         gmailsignUpObjects.next_Third_btn.click();
     }
@@ -94,26 +99,31 @@ public class GmailSignUp extends Base {
     public void gmailPassword()  { // This Method is used to set the strong password for gmail signup
         waitUntilPresentOfElementBy(gmailsignUpObjects.create_Password_txt_By);
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            gmailsignUpObjects.create_Password_txt.sendKeys(PASSWORD);
-            gmailsignUpObjects.dob_txt.get(20).sendKeys(PASSWORD);
+            gmailsignUpObjects.create_Password_txt.get(0).click();
+            gmailsignUpObjects.create_Password_txt.get(0).sendKeys(PASSWORD);
+            gmailsignUpObjects.create_Password_txt.get(1).click();
+            gmailsignUpObjects.create_Password_txt.get(1).sendKeys(PASSWORD);
         }
         else
         {
-         gmailsignUpObjects.create_Password_txt.sendKeys(PASSWORD_MM);
-         gmailsignUpObjects.dob_txt.get(20).sendKeys(PASSWORD_MM);
+            gmailsignUpObjects.create_Password_txt.get(0).click();
+            gmailsignUpObjects.create_Password_txt.get(0).sendKeys(PASSWORD_MM);
+            gmailsignUpObjects.create_Password_txt.get(1).click();
+            gmailsignUpObjects.create_Password_txt.get(1).sendKeys(PASSWORD_MM);
         }
         hideKeyboard();
-        gmailsignUpObjects.Element_btn.get(0).click();
-        gmailsignUpObjects.Element_btn.get(1).click();
+        gmailsignUpObjects.password_btn.click();
     }
 
     public void gmailPhoneAndPrivacy()  { // This Method is used skip the phone number options and accept the privacy policy for gmail signup
-       waitUntilPresentOfElementBy(gmailsignUpObjects.skip_btn_By);
-       scrollDownMultipleTries(2);
-       clickMultipleTries(gmailsignUpObjects.skip_btn,8);
+       if (gmailsignUpObjects.skip_btn.size() >0) {
+           waitWithoutException(gmailsignUpObjects.skip_btn.get(0));
+           scrollDownMultipleTries(3);
+           clickMultipleTries(gmailsignUpObjects.skip_btn, 3);
+       }
+        scrollDownMultipleTries(3);
        waitUntilPresentOfElementBy(gmailsignUpObjects.i_Agree_btn_By);
-       scrollDownMultipleTries(3);
-       clickMultipleTries(gmailsignUpObjects.i_Agree_btn,8);
+       clickMultipleTries(gmailsignUpObjects.i_Agree_btn,3);
        waitUntilPresentOfElementBy(gmailsignUpObjects.gmail_Final_Next_btn_By);
        clickMultipleTries(gmailsignUpObjects.gmail_Final_Next_btn,3);
           }

@@ -42,7 +42,7 @@ public class FacebookSignUp extends Base {
            facebookSignUpObjects.facebook_Email_txt.sendKeys(EMAIL);
            facebookSignUpObjects.facebook_Password_txt.click();
            facebookSignUpObjects.facebook_Password_txt.sendKeys(PASSWORD);
-           clickMultipleTries(facebookSignUpObjects.facebook_login_btn,5);
+           clickMultipleTries(facebookSignUpObjects.facebook_login_btn,4);
           if (waitWithoutException(facebookSignUpObjects.continue_Facebook_Accout))
               facebookSignUpObjects.continue_Facebook_Accout.click();
            if (!System.getProperty("env").equalsIgnoreCase("mm.live"))

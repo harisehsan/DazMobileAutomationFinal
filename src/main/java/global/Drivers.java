@@ -31,15 +31,17 @@ public class Drivers {
         else
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android");
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
-        cap.setCapability(MobileCapabilityType.NO_RESET, false);
+        cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "5");
+        cap.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
+        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.setLogLevel(Level.INFO);
         WebDriverRunner.setWebDriver(driver);
-
         Assert.assertNotNull(driver);
     //    driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         setDriver(driver);
+        driver.resetApp();
 //         envPicker.envPicker(System.getProperty("env"));
 
     }

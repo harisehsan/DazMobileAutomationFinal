@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -112,16 +113,25 @@ public class Base {
     }
 
     public void swiptToBottom() {
-        PointOption pointOption = new PointOption();
-        Dimension dim = driver.manage().window().getSize();
-        int height = dim.getHeight();
-        int width = dim.getWidth();
-        int x = width / 2;
-        int top_y = (int) (height * 0.80);
-        int bottom_y = (int) (height * 0.20);
-        System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
-        TouchAction ts = new TouchAction(driver);
-        ts.press(pointOption.withCoordinates(x, top_y)).moveTo(pointOption.withCoordinates(x, bottom_y)).release().perform();
+        try {
+            PointOption pointOption = new PointOption();
+            Dimension dim = driver.manage().window().getSize();
+            int height = dim.getHeight();
+            int width = dim.getWidth();
+            int x = width / 2;
+            int top_y = (int) (height * 0.80);
+            int bottom_y = (int) (height * 0.20);
+            System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
+            TouchAction ts = new TouchAction(driver);
+            ts.press(pointOption.withCoordinates(x, top_y)).moveTo(pointOption.withCoordinates(x, bottom_y)).release().perform();
+            TouchActions action = new TouchActions(driver);
+            action.scroll(744, 1968);
+            action.perform();
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -160,7 +170,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 15)
+            new WebDriverWait(driver, 10)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {
@@ -198,4 +208,19 @@ public class Base {
             }
         }
     }
+
+    protected WebElement findElementByString (String Name)
+    {
+        if(Name.length() > 20)
+            Name = Name.substring(0,20);
+       return driver.findElement(By.xpath("//*[contains(@contentDescription,'"+Name+"')]"));
+    }
+
+    protected void waitUntilPresentOfElementByString(String Name) {
+        if(Name.length() > 20)
+            Name = Name.substring(0,20);
+        new WebDriverWait(driver, 50)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')]")));
+    }
+
 }
