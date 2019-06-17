@@ -1,25 +1,26 @@
 package global;
 
-import com.codeborne.selenide.Configuration;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.HideKeyboardStrategy;
-import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
+import static java.time.Duration.ofSeconds;
 
 
 public class Base {
@@ -33,6 +34,7 @@ public class Base {
     public boolean isAndroid() {
         return driver instanceof AndroidDriver;
     }
+
 
 //    public boolean isIOS() {
 //        return driver instanceof IOSDriver;
@@ -95,9 +97,9 @@ public class Base {
         int startx = (int) (size.width * 0.9);
         int endx = (int) (size.width * 0.20);
         int starty = size.height / 2;
-        new TouchAction(driver).press(PointOption.point(startx, starty))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)))
-                .moveTo(PointOption.point(endx,starty)).release().perform();
+        new TouchAction(driver).press(point(startx, starty))
+                .waitAction(waitOptions(ofSeconds(2)))
+                .moveTo(point(endx, starty)).release().perform();
     }
 
     public void swipeLeft() {
@@ -105,9 +107,31 @@ public class Base {
         int startx = (int) (size.width * 0.8);
         int endx = (int) (size.width * 0.20);
         int starty = size.height / 2;
-        new TouchAction(driver).press(PointOption.point(startx, starty))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)))
-                .moveTo(PointOption.point(endx,starty)).release();
+        new TouchAction(driver).press(point(startx, starty))
+                .waitAction(waitOptions(ofSeconds(2)))
+                .moveTo(point(endx, starty)).release();
+    }
+
+    public void swiptToBottom() {
+        try {
+            PointOption pointOption = new PointOption();
+            Dimension dim = driver.manage().window().getSize();
+            int height = dim.getHeight();
+            int width = dim.getWidth();
+            int x = width / 2;
+            int top_y = (int) (height * 0.80);
+            int bottom_y = (int) (height * 0.20);
+            System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
+            TouchAction ts = new TouchAction(driver);
+            ts.press(pointOption.withCoordinates(x, top_y)).moveTo(pointOption.withCoordinates(x, bottom_y)).release().perform();
+            TouchActions action = new TouchActions(driver);
+            action.scroll(744, 1968);
+            action.perform();
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -136,26 +160,67 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 50)
+        new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public boolean isExist(List <WebElement> id)
-    {
+    public boolean isExist(List<WebElement> id) {
         return id.size() > 0;
     }
 
-    public boolean waitWithoutException(WebElement id)
-    {
-        try{
-            new WebDriverWait(driver, 30)
+    public boolean waitWithoutException(WebElement id) {
+        try {
+            new WebDriverWait(driver, 10)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
-        }
-        catch (Exception ex)
-        {
-           System.out.println("Venture selection screen is not displayed!");
-           return false;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return false;
         }
     }
+
+    protected int randomNumberGenerator(int bound) {
+        Random rand = new Random();
+        return rand.nextInt(bound-1);
+    }
+
+    protected void clickMultipleTries(List<WebElement> ele, int tries) {
+        int i = 0;
+        while (isExist(ele) && i < tries) {
+            try {
+                ele.get(0).click();
+                i++;
+            } catch (Exception ex) {
+                System.out.println("Exception: "+ex.getMessage());
+            }
+        }
+    }
+
+    protected void scrollDownMultipleTries(int tries) {
+        int i = 0;
+        while (i < tries) {
+            try {
+                swiptToBottom();
+                i++;
+            } catch (Exception ex) {
+                System.out.println("Exception: "+ex.getMessage());
+                break;
+            }
+        }
+    }
+
+    protected WebElement findElementByString (String Name)
+    {
+        if(Name.length() > 20)
+            Name = Name.substring(0,20);
+       return driver.findElement(By.xpath("//*[contains(@contentDescription,'"+Name+"')]"));
+    }
+
+    protected void waitUntilPresentOfElementByString(String Name) {
+        if(Name.length() > 20)
+            Name = Name.substring(0,20);
+        new WebDriverWait(driver, 50)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')]")));
+    }
+
 }

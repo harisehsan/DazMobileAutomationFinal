@@ -22,21 +22,21 @@ public class StartScreen extends Base {
                 case "bd.live": {
                     waitForElementToClickable(startScreenPageObjects.bd_Env_lbl);
                     startScreenPageObjects.bd_Env_lbl.click();
-                    waitForElementToClickable(startScreenPageObjects.eng_Language_btn);
+                    waitUntilPresentOfElementBy(startScreenPageObjects.eng_Language_btn_By);
                     startScreenPageObjects.eng_Language_btn.click();
                 }
                 break;
                 case "lk.live": {
                     waitForElementToClickable(startScreenPageObjects.lk_Env_lbl);
                     startScreenPageObjects.lk_Env_lbl.click();
-                    waitForElementToClickable(startScreenPageObjects.eng_Language_btn);
+                    waitUntilPresentOfElementBy(startScreenPageObjects.eng_Language_btn_By);
                     startScreenPageObjects.eng_Language_btn.click();
                 }
                 break;
                 case "np.live": {
                     waitForElementToClickable(startScreenPageObjects.np_Env_lbl);
                     startScreenPageObjects.np_Env_lbl.click();
-                    waitForElementToClickable(startScreenPageObjects.eng_Language_btn);
+                    waitUntilPresentOfElementBy(startScreenPageObjects.eng_Language_btn_By);
                     startScreenPageObjects.eng_Language_btn.click();
                 }
                 break;
@@ -49,5 +49,16 @@ public class StartScreen extends Base {
                     throw new RuntimeException("Venture not found!");
             }
         }
+        if(!(env.equalsIgnoreCase("mm.live"))) {
+           if (waitWithoutException(startScreenPageObjects.skip_Intro_btn))
+           startScreenPageObjects.skip_Intro_btn.click();
+        }
+      else
+        {
+            if (waitWithoutException(startScreenPageObjects.skip_Intro_btn_MM))
+                startScreenPageObjects.skip_Intro_btn_MM.click();
+        }
+       }
+
     }
-}
+
