@@ -11,8 +11,8 @@ public class CartSteps {
     Drivers driver = new Drivers();
     Cart cart = new Cart(driver.getDriver());
     Wishlist wishlist = new Wishlist(driver.getDriver());
-    String PRODUCT_NAME;
-    String PRODUCT_TITLE;
+    String productName;
+    String productTitle;
 
     @And("I add a product to cart")
     public void iAddAProductToCart() {
@@ -26,7 +26,7 @@ public class CartSteps {
 
     @And("I select the product for cart")
     public void iSelectTheTestProductForCart() {
-      PRODUCT_NAME =  cart.selectProductForCart();
+      productName =  cart.selectProductForCart();
     }
 
     @And("I goto cart menu from PDP screen")
@@ -36,7 +36,7 @@ public class CartSteps {
 
     @Then("I verify item has been added item in cart")
     public void iVerifyItemHasBeenAddedItemInCart() {
-     Assert.assertEquals(cart.verifyAddedProductInCart(),PRODUCT_NAME,"Item is not added to cart!");
+     Assert.assertEquals(cart.verifyAddedProductInCart(), productName,"Item is not added to cart!");
     }
 
     @And("I select cart")
@@ -46,12 +46,12 @@ public class CartSteps {
 
     @And("I remove a single item from cart")
     public void iRemoveASingleItemFromCart() {
-    PRODUCT_NAME = cart.removeSingleItemFromCart();
+    productName = cart.removeSingleItemFromCart();
     }
 
     @Then("I verify that removed item should not present in cart")
     public void iVerifyThatRemovedItemShouldNotPresentInCart() {
-        Assert.assertNotEquals(PRODUCT_NAME,cart.verifyForRemovedItemInCart(),"Item Deletion is unsuccessful");
+        Assert.assertNotEquals(productName,cart.verifyForRemovedItemInCart(),"Item Deletion is unsuccessful");
     }
 
     @And("I remove all items from cart")
@@ -76,6 +76,6 @@ public class CartSteps {
 
     @And("I goto the wishlist to select the added product")
     public void iGotoTheWishlistToSelectTheAddedProduct() throws InterruptedException {
-        PRODUCT_TITLE = wishlist.verifyAddedItemInWishlist(PRODUCT_NAME);
+        productTitle = wishlist.verifyAddedItemInWishlist(productName);
     }
 }

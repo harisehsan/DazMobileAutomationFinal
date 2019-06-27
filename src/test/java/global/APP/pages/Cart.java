@@ -16,7 +16,7 @@ public class Cart extends Base {
 
     CartPageObjects cartPageObjects = new CartPageObjects();
 
-    String PRODUCT_NAME;
+    String productName;
 
     public Cart(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -121,7 +121,7 @@ public class Cart extends Base {
                cartPageObjects.delete_first_btn.click();
                cartPageObjects.delete_second_btn.click();
                cartPageObjects.delete_third_btn.click();
-               return PRODUCT_NAME;
+               return productName;
            }
         else {
             waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
@@ -129,13 +129,13 @@ public class Cart extends Base {
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to remove!");
             else {
-                PRODUCT_NAME = cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
+                productName = cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
                 if(cartPageObjects.product_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false"))
                 cartPageObjects.product_chkbox_MM.get(0).click();
                 cartPageObjects.delete_first_btn_MM.click();
                 cartPageObjects.delete_second_btn_MM.click();
                 cartPageObjects.delete_third_btn.click();
-                return PRODUCT_NAME;
+                return productName;
                 }
             }
         }

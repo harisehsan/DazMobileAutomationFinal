@@ -9,11 +9,11 @@ import org.testng.Assert;
 public class WishlistSteps {
     Drivers driver = new Drivers();
     Wishlist wishlist = new Wishlist(driver.getDriver());
-    String PRODUCT_NAME;
+    String productName;
 
     @And("I select the test product")
     public void iSelectForTheTestProduct() {
-      PRODUCT_NAME =  wishlist.selectProduct();
+      productName =  wishlist.selectProduct();
     }
 
     @And("I add a product to wishlist")
@@ -43,7 +43,7 @@ public class WishlistSteps {
 
     @Then("I goto the wishlist to verify the added item")
     public void iGotoTheWishlistToVerifyTheAddedItem() throws InterruptedException {
-       Assert.assertEquals(wishlist.verifyAddedItemInWishlist(PRODUCT_NAME),PRODUCT_NAME,"Add item to wishlist is not Successful!");
+       Assert.assertEquals(wishlist.verifyAddedItemInWishlist(productName), productName,"Add item to wishlist is not Successful!");
     }
 
     @And("I should login")
@@ -80,6 +80,6 @@ public class WishlistSteps {
 
     @Then("I verify that deleted item should not present in wishlist")
     public void iVerifyThatDeletedItemShouldNotPresentInWishlist() {
-        Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(PRODUCT_NAME));
+        Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(productName));
     }
 }

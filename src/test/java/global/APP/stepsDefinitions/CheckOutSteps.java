@@ -10,13 +10,13 @@ public class CheckOutSteps {
     Drivers driver = new Drivers();
     CheckOut checkout = new CheckOut(driver.getDriver());
 
-    String PRODUCT_NAME;
-    int INDEX;
-    int QUANTITY;
+    String productName;
+    int index;
+    int quantity;
 
     @And("I select the product for checkout")
     public void iSelectTheProductForCheckout() {
-       PRODUCT_NAME =  checkout.selectProductForCheckout();
+       productName =  checkout.selectProductForCheckout();
     }
 
     @And("I select Buy Now")
@@ -36,17 +36,17 @@ public class CheckOutSteps {
 
     @Then("I verify that order has been placed")
     public void iVerifyThatOrderHasBeenPlaced() {
-        Assert.assertTrue(checkout.verifyCheckOutItem(PRODUCT_NAME),"Checkout is not successful!");
+        Assert.assertTrue(checkout.verifyCheckOutItem(productName),"Checkout is not successful!");
     }
 
     @And("I select that product from cart for checkout")
     public void iSelectThatProductFromCartForCheckout() {
-     INDEX =  checkout.selectProductFromCart(PRODUCT_NAME);
+     index =  checkout.selectProductFromCart(productName);
     }
 
     @And("I change the quantity to {int}")
     public void iSelectThatProductFromCartAndChangeTheQuantityTo(int quantity) {
-        QUANTITY = checkout.changeProductQuantity(quantity,INDEX);
+        this.quantity = checkout.changeProductQuantity(quantity, index);
     }
 
     @And("I select checkout in cart menu")
@@ -56,8 +56,8 @@ public class CheckOutSteps {
 
     @Then("I verify that order has been placed with that quantity")
     public void iVerifyThatOrderHasBeenPlacedWithThatQuantity() {
-        Assert.assertTrue(checkout.verifyCheckOutItem(PRODUCT_NAME),"Checkout is not successful!");
-        Assert.assertEquals(checkout.verifyTheQuantity(QUANTITY),Integer.toString(QUANTITY),"Specified Quantity is not matched!");
+        Assert.assertTrue(checkout.verifyCheckOutItem(productName),"Checkout is not successful!");
+        Assert.assertEquals(checkout.verifyTheQuantity(quantity),Integer.toString(quantity),"Specified Quantity is not matched!");
 
     }
 }

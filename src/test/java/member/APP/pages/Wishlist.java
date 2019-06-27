@@ -21,17 +21,17 @@ public class Wishlist extends Base {
     }
 
     public String selectProduct() {
-        String PRODUCT_NAME;
+        String productName;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(wishlistPageObjects.searchProduct_lbl_By);
-            PRODUCT_NAME = wishlistPageObjects.searchProduct_lbl.get(0).getText();
+            productName = wishlistPageObjects.searchProduct_lbl.get(0).getText();
             wishlistPageObjects.searchProduct_lbl.get(0).click();
-            return PRODUCT_NAME;
+            return productName;
         } else {
             waitUntilPresentOfElementBy(wishlistPageObjects.searchProduct_lbl_MM_By);
-            PRODUCT_NAME = wishlistPageObjects.searchProduct_lbl_MM.get(0).getText();
+            productName = wishlistPageObjects.searchProduct_lbl_MM.get(0).getText();
             wishlistPageObjects.searchProduct_lbl_MM.get(0).click();
-            return PRODUCT_NAME;
+            return productName;
         }
     }
 
@@ -94,14 +94,14 @@ public class Wishlist extends Base {
     }
 
     public String verifyAddedItemInWishlist(String PRODUCT_NAME) throws InterruptedException {
-        String PRODUCT_TITLE;
+        String productTitle;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             wishlistPageObjects.go_To_Wishlist_btn.click();
             waitUntilPresentOfElementByString(PRODUCT_NAME);
             findElementByString(PRODUCT_NAME).click();
             if (wishlistPageObjects.product_Name_lbl.getText().startsWith("0")) {
-                PRODUCT_TITLE = wishlistPageObjects.product_Name_lbl.getText().replaceFirst("0 ", "");
-                return PRODUCT_TITLE;
+                productTitle = wishlistPageObjects.product_Name_lbl.getText().replaceFirst("0 ", "");
+                return productTitle;
             } else
                 return wishlistPageObjects.product_Name_lbl.getText();
         } else {
@@ -109,8 +109,8 @@ public class Wishlist extends Base {
             waitUntilPresentOfElementByString(PRODUCT_NAME);
             findElementByString(PRODUCT_NAME).click();
             if (wishlistPageObjects.product_Name_lbl_MM.getText().startsWith("0")) {
-                PRODUCT_TITLE = wishlistPageObjects.product_Name_lbl_MM.getText().replaceFirst("0 ", "");
-                return PRODUCT_TITLE;
+                productTitle = wishlistPageObjects.product_Name_lbl_MM.getText().replaceFirst("0 ", "");
+                return productTitle;
             } else
                 return wishlistPageObjects.product_Name_lbl_MM.getText();
         }
@@ -201,10 +201,10 @@ public class Wishlist extends Base {
             wishlistPageObjects.go_To_Wishlist_btn_MM.click();
     }
 
-    public boolean verifyThePresenceOfDeletedItem(String PRODUCT_NAME)
+    public boolean verifyThePresenceOfDeletedItem(String productName)
     {
         waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
-        return (isExistByString(PRODUCT_NAME));
+        return (isExistByString(productName));
     }
 
 

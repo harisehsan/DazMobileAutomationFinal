@@ -18,8 +18,7 @@ public class CheckOut extends Base {
     CheckOutPageObjects checkOutPageObjects = new CheckOutPageObjects();
     CartPageObjects cartPageObjects = new CartPageObjects();
 
-
-    int PRICE;
+    int price;
 
     public CheckOut(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -36,8 +35,8 @@ public class CheckOut extends Base {
                 for (int j = 0; j < cartPageObjects.searchProduct_lbl.size(); j++) {
                     waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
                     if ((System.getProperty("env").equalsIgnoreCase("pk.live"))) {
-                        PRICE = Integer.parseInt(checkOutPageObjects.product_Price.get(j).getText().replace("Rs. ", ""));
-                        if (PRICE < 150)
+                        price = Integer.parseInt(checkOutPageObjects.product_Price.get(j).getText().replace("Rs. ", ""));
+                        if (price < 150)
                             continue;
                     }
                     cartPageObjects.searchProduct_lbl.get(j).click();
@@ -140,24 +139,24 @@ public class CheckOut extends Base {
     public int changeProductQuantity(int quantity, int index) {
         if (quantity < 1 || quantity > 5)
             throw new RuntimeException("Specified quantity is not applicable!");
-        int CURRENT_ITEM_QUANTITY;
-        int AVAILABLE_QUANTITY;
+        int currentItemQuantity;
+        int availableQuantity;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             if(isExist(checkOutPageObjects.cart_item_container.get(index).findElements(checkOutPageObjects.available_quantity_By))) {
-                AVAILABLE_QUANTITY = Integer.parseInt(checkOutPageObjects.cart_item_container.get(index).findElements(checkOutPageObjects.available_quantity_By).get(0).getText().replaceAll("\\D+",""));
-                if (AVAILABLE_QUANTITY < quantity){
-                    System.out.println("The available quantity for this item is not enough as the specified quantity. So that the specified quantity is changed to "+AVAILABLE_QUANTITY);
-                    quantity = AVAILABLE_QUANTITY;
+                availableQuantity = Integer.parseInt(checkOutPageObjects.cart_item_container.get(index).findElements(checkOutPageObjects.available_quantity_By).get(0).getText().replaceAll("\\D+",""));
+                if (availableQuantity < quantity){
+                    System.out.println("The available quantity for this item is not enough as the specified quantity. So that the specified quantity is changed to "+availableQuantity);
+                    quantity = availableQuantity;
                 }
             }
-             CURRENT_ITEM_QUANTITY = Integer.parseInt(checkOutPageObjects.quantity_lbl.getText());
-            if (CURRENT_ITEM_QUANTITY < quantity) {
-                for (int i = CURRENT_ITEM_QUANTITY; i < quantity; i++) {
+             currentItemQuantity = Integer.parseInt(checkOutPageObjects.quantity_lbl.getText());
+            if (currentItemQuantity < quantity) {
+                for (int i = currentItemQuantity; i < quantity; i++) {
                     waitForElementToClickable(checkOutPageObjects.quantity_increase_btn);
                     checkOutPageObjects.quantity_increase_btn.click();
                 }
-            } else if (CURRENT_ITEM_QUANTITY > quantity) {
-                for (int i = CURRENT_ITEM_QUANTITY; i > quantity; i--) {
+            } else if (currentItemQuantity > quantity) {
+                for (int i = currentItemQuantity; i > quantity; i--) {
                     waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn);
                     checkOutPageObjects.quantity_decrese_btn.click();
                 }
@@ -167,20 +166,20 @@ public class CheckOut extends Base {
 
         } else {
             if(isExist(checkOutPageObjects.cart_item_container_MM.get(index).findElements(checkOutPageObjects.available_quantity_MM_By))) {
-                AVAILABLE_QUANTITY = Integer.parseInt(checkOutPageObjects.cart_item_container_MM.get(index).findElements(checkOutPageObjects.available_quantity_MM_By).get(0).getText().replaceAll("\\D+",""));
-                if (AVAILABLE_QUANTITY < quantity){
-                    System.out.println("The available quantity for this item is not enough as the specified quantity. So that the specified quantity is changed to "+AVAILABLE_QUANTITY);
-                    quantity = AVAILABLE_QUANTITY;
+                availableQuantity = Integer.parseInt(checkOutPageObjects.cart_item_container_MM.get(index).findElements(checkOutPageObjects.available_quantity_MM_By).get(0).getText().replaceAll("\\D+",""));
+                if (availableQuantity < quantity){
+                    System.out.println("The available quantity for this item is not enough as the specified quantity. So that the specified quantity is changed to "+availableQuantity);
+                    quantity = availableQuantity;
                 }
             }
-             CURRENT_ITEM_QUANTITY = Integer.parseInt(checkOutPageObjects.quantity_lbl_MM.getText());
-            if (CURRENT_ITEM_QUANTITY < quantity) {
-                for (int i = CURRENT_ITEM_QUANTITY; i < quantity; i++) {
+             currentItemQuantity = Integer.parseInt(checkOutPageObjects.quantity_lbl_MM.getText());
+            if (currentItemQuantity < quantity) {
+                for (int i = currentItemQuantity; i < quantity; i++) {
                     waitForElementToClickable(checkOutPageObjects.quantity_increase_btn_MM);
                     checkOutPageObjects.quantity_increase_btn_MM.click();
                 }
-            } else if (CURRENT_ITEM_QUANTITY > quantity) {
-                for (int i = CURRENT_ITEM_QUANTITY; i > quantity; i--) {
+            } else if (currentItemQuantity > quantity) {
+                for (int i = currentItemQuantity; i > quantity; i--) {
                     waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn_MM);
                     checkOutPageObjects.quantity_decrese_btn_MM.click();
                 }
