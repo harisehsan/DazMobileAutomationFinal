@@ -57,7 +57,7 @@ public class WishlistSteps {
      wishlist.openWishlist();
     }
 
-    @Then("I delete a single item form wishlist")
+    @And("I delete a single item form wishlist")
     public void iDeleteASingleItemFormWishlist() {
     wishlist.deleteSingleItem();
     }
@@ -71,5 +71,15 @@ public class WishlistSteps {
     @Then("I verify that no item left in the wishlist")
     public void iVerifyThatNoItemLeftInTheWishlist() {
         Assert.assertTrue(wishlist.verifyEmptyWishlist(),"Items are not successfully deleted!");
+    }
+
+    @And("I goto wishlist from PDP screen")
+    public void iGotoWishlistFromPDPScreen() {
+        wishlist.goToWishlistFromPDPScreen();
+    }
+
+    @Then("I verify that deleted item should not present in wishlist")
+    public void iVerifyThatDeletedItemShouldNotPresentInWishlist() {
+        Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(PRODUCT_NAME));
     }
 }

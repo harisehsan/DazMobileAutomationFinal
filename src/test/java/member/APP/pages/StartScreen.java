@@ -17,6 +17,7 @@ public class StartScreen extends Base {
     }
 
     public void envPicker(String env) {
+        driver.resetApp();
        if(!(env.equalsIgnoreCase("mm.live")) && waitWithoutException(startScreenPageObjects.bd_Env_lbl)){
             switch (env) {
                 case "bd.live": {

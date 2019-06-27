@@ -146,9 +146,7 @@ public class Wishlist extends Base {
                 throw new RuntimeException("Wishlist has no item!");
             else
                 wishlistPageObjects.wishlist_lbl_MM.get(0).click();
-
         }
-
     }
 
     public void deleteSingleItem()
@@ -192,11 +190,21 @@ public class Wishlist extends Base {
 
     public boolean verifyEmptyWishlist()
     {
-        if (wishlistPageObjects.wishlist_Delete_icon.size() > 0)
-            return false;
-        else
-            return true;
+        return (wishlistPageObjects.wishlist_Delete_icon.size() <= 0);
+    }
 
+    public void goToWishlistFromPDPScreen()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+            wishlistPageObjects.go_To_Wishlist_btn.click();
+        else
+            wishlistPageObjects.go_To_Wishlist_btn_MM.click();
+    }
+
+    public boolean verifyThePresenceOfDeletedItem(String PRODUCT_NAME)
+    {
+        waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
+        return (isExistByString(PRODUCT_NAME));
     }
 
 

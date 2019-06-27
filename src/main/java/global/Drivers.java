@@ -41,7 +41,6 @@ public class Drivers {
     //    driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         setDriver(driver);
-        driver.resetApp();
 //         envPicker.envPicker(System.getProperty("env"));
 
     }
