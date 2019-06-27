@@ -115,7 +115,6 @@ public class Wishlist extends Base {
                 return wishlistPageObjects.product_Name_lbl_MM.getText();
         }
 
-
     }
 
     public void navigate_To_Login_Screen() {

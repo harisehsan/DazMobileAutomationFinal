@@ -49,7 +49,7 @@ public class WishlistSteps {
     @And("I should login")
     public void iShouldLogin() {
        wishlist.navigate_To_Login_Screen();
-        wishlist.signin();
+       wishlist.signin();
     }
 
     @And("I open a wishlist")

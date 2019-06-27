@@ -11,6 +11,7 @@ public class CartSteps {
     Drivers driver = new Drivers();
     Cart cart = new Cart(driver.getDriver());
     Wishlist wishlist = new Wishlist(driver.getDriver());
+
     String productName;
     String productTitle;
 
