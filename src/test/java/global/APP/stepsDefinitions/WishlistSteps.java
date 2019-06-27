@@ -9,11 +9,11 @@ import org.testng.Assert;
 public class WishlistSteps {
     Drivers driver = new Drivers();
     Wishlist wishlist = new Wishlist(driver.getDriver());
-    String PRODUCT_NAME;
+    String productName;
 
     @And("I select the test product")
     public void iSelectForTheTestProduct() {
-      PRODUCT_NAME =  wishlist.selectProduct();
+      productName =  wishlist.selectProduct();
     }
 
     @And("I add a product to wishlist")
@@ -43,13 +43,13 @@ public class WishlistSteps {
 
     @Then("I goto the wishlist to verify the added item")
     public void iGotoTheWishlistToVerifyTheAddedItem() throws InterruptedException {
-       Assert.assertEquals(wishlist.verifyAddedItemInWishlist(PRODUCT_NAME),PRODUCT_NAME,"Add item to wishlist is not Successful!");
+       Assert.assertEquals(wishlist.verifyAddedItemInWishlist(productName), productName,"Add item to wishlist is not Successful!");
     }
 
     @And("I should login")
     public void iShouldLogin() {
        wishlist.navigate_To_Login_Screen();
-        wishlist.signin();
+       wishlist.signin();
     }
 
     @And("I open a wishlist")
@@ -57,7 +57,7 @@ public class WishlistSteps {
      wishlist.openWishlist();
     }
 
-    @Then("I delete a single item form wishlist")
+    @And("I delete a single item form wishlist")
     public void iDeleteASingleItemFormWishlist() {
     wishlist.deleteSingleItem();
     }
@@ -71,5 +71,15 @@ public class WishlistSteps {
     @Then("I verify that no item left in the wishlist")
     public void iVerifyThatNoItemLeftInTheWishlist() {
         Assert.assertTrue(wishlist.verifyEmptyWishlist(),"Items are not successfully deleted!");
+    }
+
+    @And("I goto wishlist from PDP screen")
+    public void iGotoWishlistFromPDPScreen() {
+        wishlist.goToWishlistFromPDPScreen();
+    }
+
+    @Then("I verify that deleted item should not present in wishlist")
+    public void iVerifyThatDeletedItemShouldNotPresentInWishlist() {
+        Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(productName));
     }
 }

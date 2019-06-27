@@ -1,16 +1,16 @@
 package member.APP.pageObjects;
 
-import cucumber.api.java.en.And;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AndroidFindBys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
+
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 14-June-2019
+ */
 
 public class WishlistPageObjects {
     @AndroidFindBy (id="com.daraz.android:id/product_name_text_view") public List<WebElement> searchProduct_lbl;
