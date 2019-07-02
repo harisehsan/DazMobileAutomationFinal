@@ -5,6 +5,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 02-July-2019
+ */
+
 public class AddressGetProperty {
 
     Properties prop = new Properties();

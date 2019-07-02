@@ -8,6 +8,11 @@ import member.APP.pageObjects.SignUpObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 02-July-2019
+ */
+
 public class Address extends Base {
 
     AddressPageObject addressPageObject = new AddressPageObject();
