@@ -39,4 +39,19 @@ public class NavigateToSignUp extends Base {
         }
     }
 
+    public void navigateToSigninScreen() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
+            signUpObjects.account_lbl.get(3).click();
+            waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn,2);
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
+            signUpObjects.account_lbl_MM.get(3).click();
+            waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,2);
+        }
+    }
 }

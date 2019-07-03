@@ -182,7 +182,7 @@ public class Base {
 
     protected int randomNumberGenerator(int bound) {
         Random rand = new Random();
-        return rand.nextInt(bound-1);
+        return rand.nextInt(bound);
     }
 
     protected void clickMultipleTries(List<WebElement> ele, int tries) {
