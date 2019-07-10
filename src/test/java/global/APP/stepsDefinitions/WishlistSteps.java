@@ -11,7 +11,7 @@ public class WishlistSteps {
     Wishlist wishlist = new Wishlist(driver.getDriver());
     String productName;
 
-    @And("I select the test product")
+    @And("I select the product")
     public void iSelectForTheTestProduct() {
       productName =  wishlist.selectProduct();
     }
@@ -21,7 +21,7 @@ public class WishlistSteps {
         wishlist.addToWishlist();
     }
 
-    @And("I should signin if require")
+    @And("I signin with google account")
     public void iShouldSigninIfRequire()  {
         wishlist.signin();
     }
@@ -46,7 +46,7 @@ public class WishlistSteps {
        Assert.assertEquals(wishlist.verifyAddedItemInWishlist(productName), productName,"Add item to wishlist is not Successful!");
     }
 
-    @And("I should login")
+    @And("I login using google account")
     public void iShouldLogin() {
        wishlist.navigate_To_Login_Screen();
        wishlist.signin();

@@ -73,4 +73,6 @@ public class WishlistPageObjects {
     public By wishlist_lbl_By_MM = By.id("com.shop.android:id/uptext");
     public By wishlist_Delete_icon_By = By.xpath("//*[@contentDescription='\uE723']");
     public By remove_btn_By = By.xpath("//*[@contentDescription='REMOVE']");
+    public By product_Name_lbl_By = By.id("com.daraz.android:id/title");
+    public By product_Name_lbl_MM_By = By.id("com.shop.android:id/title");
 }
