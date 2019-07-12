@@ -236,15 +236,17 @@ public class Base {
         return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')]")).size() > 0);
     }
 
-    protected void cartItemSwipeOptions() {
+    protected void cartItemSwipeOptions(WebElement ele1, WebElement ele2) {
         TouchAction touchAction = new TouchAction(driver);
-        touchAction.press(new PointOption().withCoordinates(722, 629)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(-200, 637)).release().perform();
+        touchAction.press(new PointOption().withCoordinates(ele1.getLocation().getX(), ele1.getLocation().getY())).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele2.getLocation().getX(), ele2.getLocation().getY())).release().perform();
     }
 
     protected WebElement findElementByExactString(String Name) {
-        if (Name.length() > 20)
-            Name = Name.substring(0, 20);
         return driver.findElement(By.xpath("//*[@contentDescription='" + Name + "']"));
+    }
+
+    protected WebElement findElementByTextUsingExactString(String Name) {
+        return driver.findElement(By.xpath("//*[@text='"+Name+"']"));
     }
 
     protected void clickElementMultipleTriesUsingString(String Name, int tries) {

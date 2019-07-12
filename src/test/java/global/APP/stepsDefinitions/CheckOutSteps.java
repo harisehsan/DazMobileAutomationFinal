@@ -2,6 +2,7 @@ package global.APP.stepsDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import global.APP.getProperty.OrderSetProperty;
 import global.APP.pages.CheckOut;
 import global.Drivers;
 import org.testng.Assert;
@@ -11,15 +12,16 @@ import java.io.IOException;
 public class CheckOutSteps {
     Drivers driver = new Drivers();
     CheckOut checkout = new CheckOut(driver.getDriver());
-
+    OrderSetProperty orderSetProperty = new OrderSetProperty();
 
     String productName;
     int index;
    public int quantity;
 
     @And("I select the product for checkout")
-    public void iSelectTheProductForCheckout() {
+    public void iSelectTheProductForCheckout() throws IOException {
        productName =  checkout.selectProductForCheckout();
+       orderSetProperty.productName(productName);
     }
 
     @And("I select Buy Now")
@@ -45,6 +47,7 @@ public class CheckOutSteps {
     @And("I change the quantity to {int}")
     public void iSelectThatProductFromCartAndChangeTheQuantityTo(int quantity) throws IOException {
         this.quantity = checkout.changeProductQuantity(quantity, index);
+        orderSetProperty.orderAmount(Integer.toString(this.quantity));
     }
 
     @And("I click on checkout button in cart menu")

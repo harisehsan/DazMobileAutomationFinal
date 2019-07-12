@@ -36,5 +36,6 @@ Feature: Daraz Order Cancellation Management
     And I click on cancel order button
     And I Select the reason for cancellation
     And I provide comments for cancellation
+    And I verify the quantity amount on cancellation page
     And I click on submit button
     Then I verify that order has been cancelled

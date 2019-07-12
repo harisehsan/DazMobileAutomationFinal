@@ -22,8 +22,8 @@ public class CartPageObjects {
     @AndroidFindBy(id = "com.shop.android:id/title") public WebElement product_Title_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android:id/snackbar_text") public WebElement success_Message_lbl;
     @AndroidFindBy(id = "com.shop.android:id/snackbar_text") public WebElement success_Message_lbl_MM;
-    @AndroidFindBy(id = "com.daraz.android:id/snackbar_action") public WebElement go_To_Cart_btn;
-    @AndroidFindBy(id = "com.shop.android:id/snackbar_action") public WebElement go_To_Cart_btn_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/cart") public WebElement go_To_Cart_btn;
+    @AndroidFindBy(id = "com.shop.android:id/cart") public WebElement go_To_Cart_btn_MM;
     @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/tv_laz_trade_item_title"),@AndroidBy(id = "com.shop.android:id/tv_laz_trade_item_title")}) public List <WebElement> product_Title_In_Cart_lbl;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn_MM;
@@ -39,8 +39,7 @@ public class CartPageObjects {
     @AndroidFindBy (id = "com.daraz.android:id/confirm_button") public WebElement overseas_Confirm_btn;
     @AndroidFindBy (id = "com.shop.android:id/confirm_button") public WebElement overseas_Confirm_btn_MM;
     @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/ckb_laz_trade_total_checkbox"),@AndroidBy(id = "com.shop.android:id/ckb_laz_trade_total_checkbox")}) public WebElement select_All_chkbox;
-    @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/iv_laz_trade_item_action_wishlist"),@AndroidBy(id = "com.shop.android:id/iv_laz_trade_item_action_wishlist")}) public WebElement wishlist_In_Cart_btn;
-    @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/iv_laz_trade_item_action_wishlist"),@AndroidBy(id = "com.shop.android:id/iv_laz_trade_item_action_wishlist")}) public WebElement wishlist_Success_Message;
+    @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/iv_laz_trade_item_action_wishlist"),@AndroidBy(id = "com.shop.android:id/iv_laz_trade_item_action_wishlist")}) public List <WebElement> wishlist_In_Cart_btn;
     @AndroidFindBy(id = "com.daraz.android:id/other_action") public List <WebElement> buy_Now_btn;
     @AndroidFindBy(id = "com.shop.android:id/other_action") public List <WebElement> buy_Now_btn_MM;
 

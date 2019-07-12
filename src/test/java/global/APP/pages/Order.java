@@ -48,9 +48,21 @@ public class Order extends Base {
        orderPageObject.cancel_Submit_btn.click();
     }
 
-    public boolean verifyCancellation()
+    public boolean verifyCancellationStatus()
     {
        waitUntilPresentOfElementBy(orderPageObject.cancelled_lbl_by);
        return isExist(orderPageObject.cancelled_lbl);
     }
+
+    public String verifyCancelAmount(String amount)
+    {
+       return findElementByTextUsingExactString(amount).getAttribute("text");
+    }
+
+    public boolean verifyProductNameOnCancellationScreen(String productName)
+    {
+        waitUntilPresentOfElementByString(productName);
+        return productName.contains(findElementByString(productName).getAttribute("contentDescription"));
+    }
+
 }

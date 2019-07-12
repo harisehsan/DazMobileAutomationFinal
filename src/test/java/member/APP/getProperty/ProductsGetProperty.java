@@ -2,6 +2,7 @@ package member.APP.getProperty;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -20,26 +21,57 @@ public class ProductsGetProperty {
 
     public List<String> pkProducts() throws IOException {
         fileInputStream();
-        return Arrays.asList(prop.getProperty("TEST_PRODUCT1_PK"), prop.getProperty("TEST_PRODUCT2_PK"), prop.getProperty("TEST_PRODUCT3_PK"), prop.getProperty("TEST_PRODUCT4_PK"), prop.getProperty("TEST_PRODUCT5_PK"));
+        List<String> pkProducts = new ArrayList<>();
+        pkProducts.add(prop.getProperty("TEST_PRODUCT1_PK"));
+        pkProducts.add(prop.getProperty("TEST_PRODUCT2_PK"));
+        pkProducts.add(prop.getProperty("TEST_PRODUCT3_PK"));
+        pkProducts.add(prop.getProperty("TEST_PRODUCT4_PK"));
+        pkProducts.add(prop.getProperty("TEST_PRODUCT5_PK"));
+        pkProducts.add(prop.getProperty("TEST_PRODUCT6_PK"));
+        return pkProducts;
     }
 
     public List<String> bdProducts() throws IOException {
         fileInputStream();
-        return Arrays.asList(prop.getProperty("TEST_PRODUCT1_BD"), prop.getProperty("TEST_PRODUCT2_BD"), prop.getProperty("TEST_PRODUCT3_BD"), prop.getProperty("TEST_PRODUCT4_BD"), prop.getProperty("TEST_PRODUCT5_BD"));
+        List<String> bdProducts = new ArrayList<>();
+        bdProducts.add(prop.getProperty("TEST_PRODUCT1_BD"));
+        bdProducts.add(prop.getProperty("TEST_PRODUCT2_BD"));
+        bdProducts.add(prop.getProperty("TEST_PRODUCT3_BD"));
+        bdProducts.add(prop.getProperty("TEST_PRODUCT4_BD"));
+        bdProducts.add(prop.getProperty("TEST_PRODUCT5_BD"));
+        return bdProducts;
     }
 
     public List<String> lkProducts() throws IOException {
         fileInputStream();
-        return Arrays.asList(prop.getProperty("TEST_PRODUCT1_LK"), prop.getProperty("TEST_PRODUCT2_LK"), prop.getProperty("TEST_PRODUCT3_LK"), prop.getProperty("TEST_PRODUCT4_LK"), prop.getProperty("TEST_PRODUCT5_LK"));
+        List<String> lkProducts = new ArrayList<>();
+        lkProducts.add(prop.getProperty("TEST_PRODUCT1_LK"));
+        lkProducts.add(prop.getProperty("TEST_PRODUCT2_LK"));
+        lkProducts.add(prop.getProperty("TEST_PRODUCT3_LK"));
+        lkProducts.add(prop.getProperty("TEST_PRODUCT4_LK"));
+        lkProducts.add(prop.getProperty("TEST_PRODUCT5_LK"));
+        return lkProducts;
     }
 
     public List<String> npProducts() throws IOException {
         fileInputStream();
-        return Arrays.asList(prop.getProperty("TEST_PRODUCT1_NP"), prop.getProperty("TEST_PRODUCT2_NP"), prop.getProperty("TEST_PRODUCT3_NP"), prop.getProperty("TEST_PRODUCT4_NP"), prop.getProperty("TEST_PRODUCT5_NP"));
+        List<String> npProducts = new ArrayList<>();
+        npProducts.add(prop.getProperty("TEST_PRODUCT1_NP"));
+        npProducts.add(prop.getProperty("TEST_PRODUCT2_NP"));
+        npProducts.add(prop.getProperty("TEST_PRODUCT3_NP"));
+        npProducts.add(prop.getProperty("TEST_PRODUCT4_NP"));
+        npProducts.add(prop.getProperty("TEST_PRODUCT5_NP"));
+        return npProducts;
     }
 
     public List<String> mmProducts() throws IOException {
         fileInputStream();
-        return Arrays.asList(prop.getProperty("TEST_PRODUCT1_MM"), prop.getProperty("TEST_PRODUCT2_MM"), prop.getProperty("TEST_PRODUCT3_MM"), prop.getProperty("TEST_PRODUCT4_MM"), prop.getProperty("TEST_PRODUCT5_MM"));
+        List<String> mmProducts = new ArrayList<>();
+        mmProducts.add(prop.getProperty("TEST_PRODUCT1_MM"));
+        mmProducts.add(prop.getProperty("TEST_PRODUCT2_MM"));
+        mmProducts.add(prop.getProperty("TEST_PRODUCT3_MM"));
+        mmProducts.add(prop.getProperty("TEST_PRODUCT4_MM"));
+        mmProducts.add(prop.getProperty("TEST_PRODUCT5_MM"));
+        return mmProducts;
     }
 }

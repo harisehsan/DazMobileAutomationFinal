@@ -14,6 +14,7 @@ public class OrderSteps  {
     OrderGetProperty orderGetProperty = new OrderGetProperty();
     Order order = new Order(drivers.getDriver());
 
+
     @And("I click on cancel order button")
     public void iClickOnCancelOrderButton() {
         order.clickOnCancelOrder();
@@ -35,12 +36,15 @@ public class OrderSteps  {
     }
 
     @Then("I verify that order has been cancelled")
-    public void iVerifyThatOrderHasBeenCancelled() {
-        Assert.assertTrue(order.verifyCancellation());
+    public void iVerifyThatOrderHasBeenCancelled() throws IOException {
+        Assert.assertTrue(order.verifyProductNameOnCancellationScreen(orderGetProperty.productName()),"Required Product is not found on cancellation screen!");
+        Assert.assertTrue(order.verifyCancellationStatus(),"Order is not successfully canceled!");
+
     }
 
-    @And("I change the quantity in the cancellation screen")
-    public void iChangeTheQuantityInTheCancellationScreen() {
+    @And("I verify the quantity amount on cancellation page")
+    public void iVerifyTheQuantityAmountOnCancellationPage() throws IOException {
 
+        Assert.assertEquals(orderGetProperty.cancellationOrderAmount(),order.verifyCancelAmount(orderGetProperty.cancellationOrderAmount()),"Order Cancel amount is not same as specified!");
     }
 }

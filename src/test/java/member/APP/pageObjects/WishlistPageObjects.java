@@ -47,7 +47,13 @@ public class WishlistPageObjects {
     @AndroidFindBy (id = "com.shop.android:id/uptext") public List <WebElement> wishlist_lbl_MM;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='\uE723']"),@AndroidBy(className= "//*[@content-desc='\uE723']")}) public List <WebElement> wishlist_Delete_icon;
     @AndroidFindBy (xpath = "//*[@contentDescription='REMOVE']") public WebElement remove_btn;
+    @AndroidFindBy(id = "com.daraz.android:id/dots") public WebElement dots_btn;
+    @AndroidFindBy(id = "com.shop.android:id/dots") public WebElement dots_btn_MM;
+    @AndroidFindBy (xpath = "//*[@text='My Account']") public WebElement my_Account_menuItem;
 
+    public By dots_btn_By = By.id("com.daraz.android:id/dots");
+    public By dots_btn_By_MM = By.id("com.shop.android:id/dots");
+    public By my_Account_menuItem_By = By.xpath("//*[@text='My Account']");
     public By searchProduct_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");
     public By wishlist_icon_By = By.id("com.daraz.android:id/wishlist");
