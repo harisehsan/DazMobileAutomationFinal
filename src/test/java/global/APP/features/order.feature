@@ -6,12 +6,12 @@ Feature: Daraz Order Cancellation Management
     Given I select the venture
     And I Search a Product for "Checkout"
     And I select the product for checkout
-    And I select Buy Now
+    And I select Buy Now button
     And I signin with google account
-    And I click on proceed to pay
+    And I click on proceed to pay button
     And I select Cash on Delivery payment method
     And I should reach to order successful page
-    And I click on Track Order
+    And I click on Track Order button
     And I click on cancel order button
     And I Select the reason for cancellation
     And I provide comments for cancellation
@@ -29,10 +29,10 @@ Feature: Daraz Order Cancellation Management
     And I select that product from cart for checkout
     And I change the quantity to 5
     And I click on checkout button in cart menu
-    And I click on proceed to pay
+    And I click on proceed to pay button
     And I select Cash on Delivery payment method
     And I should reach to order successful page
-    And I click on Track Order
+    And I click on Track Order button
     And I click on cancel order button
     And I Select the reason for cancellation
     And I provide comments for cancellation

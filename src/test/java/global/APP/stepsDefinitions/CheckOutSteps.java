@@ -24,12 +24,12 @@ public class CheckOutSteps {
        orderSetProperty.productName(productName);
     }
 
-    @And("I select Buy Now")
+    @And("I select Buy Now button")
     public void iSelectBuyNow() {
         checkout.selectbuyNow();
     }
 
-    @And("I click on proceed to pay")
+    @And("I click on proceed to pay button")
     public void iProceedToPay() {
         checkout.proceedToPay();
     }
@@ -71,7 +71,7 @@ public class CheckOutSteps {
         checkout.reachToOrderSuccessPage();
     }
 
-    @And("I click on Track Order")
+    @And("I click on Track Order button")
     public void iClickOnTrackOrder() {
         checkout.clickTrackOrder();
     }
