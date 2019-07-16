@@ -159,7 +159,7 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 30)
+        new WebDriverWait(driver, 40)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -169,7 +169,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 10)
+            new WebDriverWait(driver, 13)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {
@@ -211,14 +211,14 @@ public class Base {
     protected WebElement findElementByString(String Name) {
         if (Name.length() > 25)
             Name = Name.substring(0, 25);
-        return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')]"));
+        return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]"));
     }
 
     protected void waitUntilPresentOfElementByString(String Name) {
         if (Name.length() > 25)
             Name = Name.substring(0, 25);
         new WebDriverWait(driver, 50)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')]")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
     }
 
     protected String getTextWithoutException(WebElement ele) {
@@ -233,7 +233,7 @@ public class Base {
     protected boolean isExistByString(String Name) {
         if (Name.length() > 20)
             Name = Name.substring(0, 20);
-        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')]")).size() > 0);
+        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")).size() > 0);
     }
 
     protected void cartItemSwipeOptions(WebElement ele1, WebElement ele2) {
@@ -242,7 +242,7 @@ public class Base {
     }
 
     protected WebElement findElementByExactString(String Name) {
-        return driver.findElement(By.xpath("//*[@contentDescription='" + Name + "']"));
+        return driver.findElement(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']"));
     }
 
     protected WebElement findElementByTextUsingExactString(String Name) {
@@ -264,7 +264,7 @@ public class Base {
             if (Name.length() > 25)
                 Name = Name.substring(0, 25);
             new WebDriverWait(driver, 10)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')]")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
             return false;
