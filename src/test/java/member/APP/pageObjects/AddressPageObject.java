@@ -24,10 +24,17 @@ public class AddressPageObject {
     @AndroidFindBy (id = "com.shop.android:id/tv_address_location_tree_name") public List <WebElement> address_Location_Tree_lbl_MM;
     @AndroidFindBy (id = "com.daraz.android:id/btn_action") public WebElement save_btn;
     @AndroidFindBy (id = "com.shop.android:id/btn_action") public WebElement save_btn_MM;
-    @AndroidFindBy (id = "com.daraz.android:id/tv_recipient") public WebElement buyer_Name_lbl;
-    @AndroidFindBy (id = "com.shop.android:id/tv_recipient") public WebElement buyer_Name_lbl_MM;
-    @AndroidFindBy (id = "com.daraz.android:id/tv_address_detail") public WebElement buyer_address_lbl;
-    @AndroidFindBy (id = "com.shop.android:id/tv_address_detail") public WebElement buyer_address_lbl_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/tv_recipient") public List <WebElement> buyer_Name_lbl;
+    @AndroidFindBy (id = "com.shop.android:id/tv_recipient") public List <WebElement> buyer_Name_lbl_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/tv_address_detail") public List <WebElement> buyer_address_lbl;
+    @AndroidFindBy (id = "com.shop.android:id/tv_address_detail") public List <WebElement> buyer_address_lbl_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/btn_action") public WebElement new_Address_btn;
+    @AndroidFindBy (id = "com.shop.android:id/btn_action") public WebElement new_Address_btn_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/checkbox_makedef") public List <WebElement> make_Default_chkbox;
+    @AndroidFindBy (id = "com.shop.android:id/checkbox_makedef") public List <WebElement> make_Default_chkbox_MM;
+    @AndroidFindBy (id  = "com.daraz.android:id/btn_remove") public List <WebElement> delete_Address_btn;
+    @AndroidFindBy (id  = "com.shop.android:id/btn_remove") public List <WebElement> delete_Address_btn_MM;
+    @AndroidFindBy (id = "android:id/button1") public WebElement delete_Confirm_btn;
 
     public By address_Book_lbl_By = By.xpath("//*[@text='Address Book']");
     public By edit_Address_btn_By = By.id("com.daraz.android:id/btn_edit");
@@ -38,4 +45,7 @@ public class AddressPageObject {
     public By address_Location_Tree_lbl_By_MM = By.id("com.shop.android:id/tv_address_location_tree_name");
     public By buyer_Name_lbl_By = By.id("com.daraz.android:id/tv_recipient");
     public By buyer_Name_lbl_By_MM = By.id("com.shop.android:id/tv_recipient");
+    public By new_Address_btn_By = By.id("com.daraz.android:id/btn_action");
+    public By new_Address_btn_By_MM = By.id("com.shop.android:id/btn_action");
+    public By delete_Confirm_btn_By = By.id("android:id/button1");
 }

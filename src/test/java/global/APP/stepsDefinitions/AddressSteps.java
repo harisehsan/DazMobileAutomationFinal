@@ -15,7 +15,7 @@ public class AddressSteps {
 
     Drivers drivers = new Drivers();
     NavigateToSignUp navigateToSignUp = new NavigateToSignUp(drivers.getDriver());
-    Address editaddress = new Address(drivers.getDriver());
+    Address address = new Address(drivers.getDriver());
     AddressGetProperty addressGetProperty = new AddressGetProperty();
 
     @And("I navigate to the signin screen")
@@ -23,25 +23,50 @@ public class AddressSteps {
         navigateToSignUp.navigateToSigninScreen();
     }
 
-    @And("I navigate to edit address screen")
-    public void iNavigateToEditAddressScreen() {
-        editaddress.navigateToEditAddress();
+    @And("I navigate to address menu")
+    public void iNavigateToAddressMenu() {
+        address.navigateToAddressMenu();
     }
 
     @And("I edit the address details")
-    public void iEditTheAddress() throws IOException {
-        editaddress.changeAddress(addressGetProperty.buyerName(),addressGetProperty.buyerAddress(),addressGetProperty.buyerPhonePK(),addressGetProperty.buyerPhoneBD(),addressGetProperty.buyerPhoneLK(),addressGetProperty.buyerPhoneNP(),addressGetProperty.buyerPhoneMM());
+    public void editTheAddress() throws IOException {
+        address.changeAddress(addressGetProperty.buyerName(),addressGetProperty.buyerAddress(),addressGetProperty.buyerPhonePK(),addressGetProperty.buyerPhoneBD(),addressGetProperty.buyerPhoneLK(),addressGetProperty.buyerPhoneNP(),addressGetProperty.buyerPhoneMM());
     }
 
     @And("I save the changes")
     public void iSaveTheChanges() {
-        editaddress.saveChanges();
+        address.saveChanges();
     }
 
     @Then("I verify the address details")
     public void iVerifyTheChangeInAddress() throws IOException {
-        String [] addressDetails = editaddress.verifyChangeAddress();
-        Assert.assertEquals(addressGetProperty.buyerName(),addressDetails[0],"Buyer Name is not matched!");
-        Assert.assertEquals(addressGetProperty.buyerAddress(),addressDetails[1],"Buyer Address is not matched!");
+        Assert.assertTrue(address.verifyAddressDetails(addressGetProperty.buyerName(),addressGetProperty.buyerAddress()),"Buyer Name/Address not matched!");
+    }
+
+    @And("I click on new address button")
+    public void iClickOnNewAddressButton() {
+       address.newAddress();
+    }
+
+    @And("I add the address details")
+    public void iAddTheAddressDetails() throws IOException {
+        editTheAddress();
+        address.makeDefault();
+
+    }
+
+    @And("I click on edit address button")
+    public void iClickOnEditAddressButton() {
+     address.editAddress();
+    }
+
+    @And("I delete all the deletable addresses")
+    public void iDeleteAllTheDeletableAddresses() {
+       address.deleteAddress();
+    }
+
+    @Then("I verify that all deletable address removed successfully")
+    public void iVerifyThatAllDeletableAddressRemovedSuccessfully() {
+      Assert.assertTrue(address.verifyTheRemovedAddress(),"Deletable addresses are removed successfully!");
     }
 }

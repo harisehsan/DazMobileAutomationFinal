@@ -23,27 +23,21 @@ public class Wishlist extends Base {
     public String selectProduct() {
         String productName;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(wishlistPageObjects.searchProduct_lbl_By);
-            productName = wishlistPageObjects.searchProduct_lbl.get(0).getText();
-            wishlistPageObjects.searchProduct_lbl.get(0).click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.product_Name_lbl_By);
+            productName = wishlistPageObjects.product_Name_lbl.getText();
             return productName;
         } else {
-            waitUntilPresentOfElementBy(wishlistPageObjects.searchProduct_lbl_MM_By);
-            productName = wishlistPageObjects.searchProduct_lbl_MM.get(0).getText();
-            wishlistPageObjects.searchProduct_lbl_MM.get(0).click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.product_Name_lbl_MM_By);
+            productName = wishlistPageObjects.product_Name_lbl_MM.getText();
             return productName;
         }
     }
 
     public void addToWishlist() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            if (wishlistPageObjects.overseas_Confirm_btn.size() > 0)
-                wishlistPageObjects.overseas_Confirm_btn.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_icon_By);
             wishlistPageObjects.wishlist_icon.click();
         } else {
-            if (wishlistPageObjects.overseas_Confirm_btn_MM.size() > 0)
-                wishlistPageObjects.overseas_Confirm_btn_MM.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_icon_By_MM);
             wishlistPageObjects.wishlist_icon_MM.click();
         }
@@ -96,8 +90,13 @@ public class Wishlist extends Base {
     public String verifyAddedItemInWishlist(String PRODUCT_NAME) throws InterruptedException {
         String productTitle;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            wishlistPageObjects.go_To_Wishlist_btn.click();
-            waitUntilPresentOfElementByString(PRODUCT_NAME);
+            waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By);
+            wishlistPageObjects.dots_btn.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
+            wishlistPageObjects.my_Account_menuItem.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By);
+            wishlistPageObjects.wishlist_lbl.get(0).click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
             findElementByString(PRODUCT_NAME).click();
             if (wishlistPageObjects.product_Name_lbl.getText().startsWith("0")) {
                 productTitle = wishlistPageObjects.product_Name_lbl.getText().replaceFirst("0 ", "");
@@ -105,8 +104,13 @@ public class Wishlist extends Base {
             } else
                 return wishlistPageObjects.product_Name_lbl.getText();
         } else {
-            wishlistPageObjects.go_To_Wishlist_btn_MM.click();
-            waitUntilPresentOfElementByString(PRODUCT_NAME);
+            waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By_MM);
+            wishlistPageObjects.dots_btn_MM.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
+            wishlistPageObjects.my_Account_menuItem.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By_MM);
+            wishlistPageObjects.wishlist_lbl_MM.get(0).click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
             findElementByString(PRODUCT_NAME).click();
             if (wishlistPageObjects.product_Name_lbl_MM.getText().startsWith("0")) {
                 productTitle = wishlistPageObjects.product_Name_lbl_MM.getText().replaceFirst("0 ", "");
@@ -195,9 +199,23 @@ public class Wishlist extends Base {
     public void goToWishlistFromPDPScreen()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
-            wishlistPageObjects.go_To_Wishlist_btn.click();
+        {
+            waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By);
+            wishlistPageObjects.dots_btn.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
+            wishlistPageObjects.my_Account_menuItem.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By);
+            wishlistPageObjects.wishlist_lbl.get(0).click();
+        }
         else
-            wishlistPageObjects.go_To_Wishlist_btn_MM.click();
+        {
+            waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By_MM);
+            wishlistPageObjects.dots_btn_MM.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
+            wishlistPageObjects.my_Account_menuItem.click();
+            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By_MM);
+            wishlistPageObjects.wishlist_lbl_MM.get(0).click();
+        }
     }
 
     public boolean verifyThePresenceOfDeletedItem(String productName)

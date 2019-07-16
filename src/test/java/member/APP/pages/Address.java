@@ -24,22 +24,18 @@ public class Address extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), signUpObjects);
     }
 
-    public void navigateToEditAddress() {
+    public void navigateToAddressMenu() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
             signUpObjects.settings_icon.click();
             waitUntilPresentOfElementBy(addressPageObject.address_Book_lbl_By);
             addressPageObject.address_Book_lbl.click();
-            waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
-            addressPageObject.edit_Address_btn.get(0).click();
         } else // Code for Shop (MM) app only
         {
             waitUntilPresentOfElementBy(signUpObjects.settings_icon_By_MM);
             signUpObjects.settings_icon_MM.click();
             waitUntilPresentOfElementBy(addressPageObject.address_Book_lbl_By);
             addressPageObject.address_Book_lbl.click();
-            waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By_MM);
-            addressPageObject.edit_Address_btn_MM.get(0).click();
         }
     }
 
@@ -94,14 +90,99 @@ public class Address extends Base {
             addressPageObject.save_btn_MM.click();
     }
 
-    public String[] verifyChangeAddress() {
+    public boolean verifyAddressDetails(String name, String address) {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(addressPageObject.buyer_Name_lbl_By);
-            return new String[]{addressPageObject.buyer_Name_lbl.getText(), addressPageObject.buyer_address_lbl.getText()};
-        } else {
-            waitUntilPresentOfElementBy(addressPageObject.buyer_Name_lbl_By_MM);
-            return new String[]{addressPageObject.buyer_Name_lbl_MM.getText(), addressPageObject.buyer_address_lbl_MM.getText()};
+            for (int i = 0; i < addressPageObject.buyer_Name_lbl.size(); i++) {
+                if (addressPageObject.buyer_Name_lbl.get(i).getText().equalsIgnoreCase(name) && addressPageObject.buyer_address_lbl.get(i).getText().equalsIgnoreCase(address))
+                    return true;
+            }
+            return false;
+//            return new boolean[]{addressPageObject.buyer_Name_lbl.getText().equalsIgnoreCase(name), addressPageObject.buyer_address_lbl.getText().equalsIgnoreCase(address)};
         }
+     else
+
+    {
+        waitUntilPresentOfElementBy(addressPageObject.buyer_Name_lbl_By_MM);
+        for (int i = 0; i < addressPageObject.buyer_Name_lbl_MM.size(); i++) {
+            if (addressPageObject.buyer_Name_lbl_MM.get(i).getText().equalsIgnoreCase(name) && addressPageObject.buyer_address_lbl_MM.get(i).getText().equalsIgnoreCase(address))
+                return true;
+        }
+        return false;
+    }
+
+}
+    public void newAddress()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By);
+            addressPageObject.new_Address_btn.click();
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By_MM);
+            addressPageObject.new_Address_btn_MM.click();
+        }
+    }
+
+    public void makeDefault()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if(addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
+                addressPageObject.make_Default_chkbox.get(0).click();
+            if(addressPageObject.make_Default_chkbox.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                addressPageObject.make_Default_chkbox.get(1).click();
+        }
+        else
+        {
+            if(addressPageObject.make_Default_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false"))
+                addressPageObject.make_Default_chkbox_MM.get(0).click();
+            if(addressPageObject.make_Default_chkbox_MM.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                addressPageObject.make_Default_chkbox_MM.get(1).click();
+        }
+    }
+
+    public void editAddress()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
+            waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
+            addressPageObject.edit_Address_btn.get(0).click();
+        } else // Code for Shop (MM) app only
+        {
+            waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By_MM);
+            addressPageObject.edit_Address_btn_MM.get(0).click();
+        }
+    }
+
+    public void deleteAddress()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            while(isExist(addressPageObject.delete_Address_btn))
+            {
+                addressPageObject.delete_Address_btn.get(0).click();
+                waitUntilPresentOfElementBy(addressPageObject.delete_Confirm_btn_By);
+                addressPageObject.delete_Confirm_btn.click();
+            }
+
+        }
+        else
+        {
+            while(isExist(addressPageObject.delete_Address_btn_MM))
+            {
+                addressPageObject.delete_Address_btn_MM.get(0).click();
+                waitUntilPresentOfElementBy(addressPageObject.delete_Confirm_btn_By);
+                addressPageObject.delete_Confirm_btn.click();
+            }
+        }
+     }
+
+    public boolean verifyTheRemovedAddress()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+            return (!(isExist(addressPageObject.delete_Address_btn)));
+        else
+           return  (!(isExist(addressPageObject.delete_Address_btn_MM)));
 
     }
+
 }

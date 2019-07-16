@@ -46,8 +46,14 @@ public class WishlistPageObjects {
     @AndroidFindBy (id = "com.daraz.android:id/uptext") public List  <WebElement> wishlist_lbl;
     @AndroidFindBy (id = "com.shop.android:id/uptext") public List <WebElement> wishlist_lbl_MM;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='\uE723']"),@AndroidBy(className= "//*[@content-desc='\uE723']")}) public List <WebElement> wishlist_Delete_icon;
-    @AndroidFindBy (xpath = "//*[@contentDescription='REMOVE']") public WebElement remove_btn;
+    @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='REMOVE']"),@AndroidBy(className= "//*[@content-desc='REMOVE']")}) public WebElement remove_btn;
+    @AndroidFindBy(id = "com.daraz.android:id/dots") public WebElement dots_btn;
+    @AndroidFindBy(id = "com.shop.android:id/dots") public WebElement dots_btn_MM;
+    @AndroidFindBy (xpath = "//*[@text='My Account']") public WebElement my_Account_menuItem;
 
+    public By dots_btn_By = By.id("com.daraz.android:id/dots");
+    public By dots_btn_By_MM = By.id("com.shop.android:id/dots");
+    public By my_Account_menuItem_By = By.xpath("//*[@text='My Account']");
     public By searchProduct_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");
     public By wishlist_icon_By = By.id("com.daraz.android:id/wishlist");
@@ -71,6 +77,8 @@ public class WishlistPageObjects {
     public By login_Signup_btn_By_MM = By.id("com.shop.android:id/txt_login_signup");
     public By wishlist_lbl_By = By.id("com.daraz.android:id/uptext");
     public By wishlist_lbl_By_MM = By.id("com.shop.android:id/uptext");
-    public By wishlist_Delete_icon_By = By.xpath("//*[@contentDescription='\uE723']");
-    public By remove_btn_By = By.xpath("//*[@contentDescription='REMOVE']");
+    public By wishlist_Delete_icon_By = By.xpath("//*[@contentDescription='\uE723'] | //*[@content-desc='\uE723']");
+    public By remove_btn_By = By.xpath("//*[@contentDescription='REMOVE'] | //*[@content-desc='REMOVE']");
+    public By product_Name_lbl_By = By.id("com.daraz.android:id/title");
+    public By product_Name_lbl_MM_By = By.id("com.shop.android:id/title");
 }

@@ -128,9 +128,7 @@ public class Base {
             TouchActions action = new TouchActions(driver);
             action.scroll(744, 1968);
             action.perform();
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -161,7 +159,7 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 30)
+        new WebDriverWait(driver, 40)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -171,7 +169,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 10)
+            new WebDriverWait(driver, 13)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {
@@ -192,7 +190,7 @@ public class Base {
                 ele.get(0).click();
                 i++;
             } catch (Exception ex) {
-                System.out.println("Exception: "+ex.getMessage());
+                System.out.println("Exception: " + ex.getMessage());
             }
         }
     }
@@ -204,61 +202,72 @@ public class Base {
                 swiptToBottom();
                 i++;
             } catch (Exception ex) {
-                System.out.println("Exception: "+ex.getMessage());
+                System.out.println("Exception: " + ex.getMessage());
                 break;
             }
         }
     }
 
-    protected WebElement findElementByString (String Name)
-    {
-        if(Name.length() > 20)
-            Name = Name.substring(0,20);
-       return driver.findElement(By.xpath("//*[contains(@contentDescription,'"+Name+"')]"));
+    protected WebElement findElementByString(String Name) {
+        if (Name.length() > 25)
+            Name = Name.substring(0, 25);
+        return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]"));
     }
 
     protected void waitUntilPresentOfElementByString(String Name) {
-        if(Name.length() > 20)
-            Name = Name.substring(0,20);
+        if (Name.length() > 25)
+            Name = Name.substring(0, 25);
         new WebDriverWait(driver, 50)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')]")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
     }
 
-    protected String getTextWithoutException(WebElement ele)
-    {
-      try {
-         return ele.getText();
-      }
-      catch (Exception ex)
-      {
-          System.out.println(ex.getMessage());
-          return "";
-      }
+    protected String getTextWithoutException(WebElement ele) {
+        try {
+            return ele.getText();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return "";
+        }
     }
 
-    protected boolean isExistByString (String Name)
-    {
-        if(Name.length() > 20)
-            Name = Name.substring(0,20);
-        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')]")).size() > 0);
+    protected boolean isExistByString(String Name) {
+        if (Name.length() > 20)
+            Name = Name.substring(0, 20);
+        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")).size() > 0);
     }
 
-    protected void cartItemSwipeOptions()
-    {
+    protected void cartItemSwipeOptions(WebElement ele1, WebElement ele2) {
         TouchAction touchAction = new TouchAction(driver);
-        touchAction.press(new PointOption().withCoordinates(722, 629)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(-200, 637)).release().perform();
+        touchAction.press(new PointOption().withCoordinates(ele1.getLocation().getX(), ele1.getLocation().getY())).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele2.getLocation().getX(), ele2.getLocation().getY())).release().perform();
     }
 
-    protected void productNameVisibleScroll()
-    {
-        TouchAction touchAction = new TouchAction(driver);
-        touchAction.press(new PointOption().withCoordinates(300, 1568)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(772))).moveTo(new PointOption().withCoordinates(318, 1240)).release().perform();
+    protected WebElement findElementByExactString(String Name) {
+        return driver.findElement(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']"));
     }
 
-    protected WebElement findElementByExactString (String Name)
-    {
-        if(Name.length() > 20)
-            Name = Name.substring(0,20);
-        return driver.findElement(By.xpath("//*[@contentDescription='"+Name+"']"));
+    protected WebElement findElementByTextUsingExactString(String Name) {
+        return driver.findElement(By.xpath("//*[@text='"+Name+"']"));
+    }
+
+    protected void clickElementMultipleTriesUsingString(String Name, int tries) {
+        for (int i = 0; i < tries; i++) {
+            try {
+                driver.findElement(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']")).click();
+            } catch (Exception ex) {
+                continue;
+            }
+        }
+    }
+
+    protected boolean waitWithoutExceptionByString(String Name) {
+        try {
+            if (Name.length() > 25)
+                Name = Name.substring(0, 25);
+            new WebDriverWait(driver, 10)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 }

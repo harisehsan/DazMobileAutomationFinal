@@ -28,43 +28,10 @@ public class Cart extends Base {
     }
 
     public String selectProductForCart() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
-            if (cartPageObjects.searchProduct_lbl_MM.size() < 4)
-                productNameVisibleScroll();
-            for (int i=0; i<=1; ++i) {
-                for (int j = 0; j < cartPageObjects.searchProduct_lbl.size(); j++) {
-                    waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
-                    cartPageObjects.searchProduct_lbl.get(j).click();
-                    if(waitWithoutException(cartPageObjects.overseas_Confirm_btn))
-                        cartPageObjects.overseas_Confirm_btn.click();
-                    if (isExist(cartPageObjects.buy_Now_btn))
-                        return cartPageObjects.product_Title_lbl.getText();
-                    else
-                        driver.navigate().back();
-                }
-                scrollDownMultipleTries(1);
-            }
-
-        } else {
-            waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_MM_By);
-            if (cartPageObjects.searchProduct_lbl_MM.size() < 4)
-                 productNameVisibleScroll();
-            for (int i=0; i<=1; ++i) {
-                for (int j = 0; j < cartPageObjects.searchProduct_lbl_MM.size(); j++) {
-                    waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_MM_By);
-                    cartPageObjects.searchProduct_lbl_MM.get(j).click();
-                    if(waitWithoutException(cartPageObjects.overseas_Confirm_btn_MM))
-                        cartPageObjects.overseas_Confirm_btn_MM.click();
-                    if (isExist(cartPageObjects.buy_Now_btn_MM))
-                        return cartPageObjects.product_Title_lbl_MM.getText();
-                    else
-                        driver.navigate().back();
-                }
-                scrollDownMultipleTries(1);
-            }
-        }
-        throw new RuntimeException("There is no product having add to cart option available!");
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+            return cartPageObjects.product_Title_lbl.getText();
+        else
+            return cartPageObjects.product_Title_lbl_MM.getText();
     }
 
     public String verifyTheAddedProductBySuccessMessage()
@@ -193,10 +160,9 @@ public class Cart extends Base {
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
             else
             {
-                cartItemSwipeOptions();
+                cartItemSwipeOptions(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By);
-                cartPageObjects.wishlist_In_Cart_btn.click();
-
+                cartPageObjects.wishlist_In_Cart_btn.get(0).click();
             }
         }
         else {
@@ -206,9 +172,9 @@ public class Cart extends Base {
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
             else
             {
-                cartItemSwipeOptions();
+                cartItemSwipeOptions(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox_MM.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By_MM);
-                cartPageObjects.wishlist_In_Cart_btn.click();
+                cartPageObjects.wishlist_In_Cart_btn.get(0).click();
             }
         }
     }

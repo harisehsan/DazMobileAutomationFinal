@@ -1,0 +1,10 @@
+#Fri Jul 12 15:12:21 PKT 2019
+CANCEL_REASON_6=Delivery time is too long
+CANCEL_REASON_5=Change/combine order
+ORDER_AMOUNT=5
+CANCEL_REASON_4=Change payment method
+CANCEL_REASON_3=Found cheaper elsewhere
+CANCEL_REASON_2=Decided for alternative product
+CANCEL_REASON_1=Change of mind
+CANCEL_COMMENT=This is for testing purpose only. Please ignore this.
+PRODUCT_NAME=Cute Rubbit Phone Holder
