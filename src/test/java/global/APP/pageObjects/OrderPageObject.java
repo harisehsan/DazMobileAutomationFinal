@@ -20,7 +20,7 @@ public class OrderPageObject {
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Submit']"),@AndroidBy(xpath = "//*[@content-desc='Submit']")}) public WebElement cancel_Submit_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Cancelled >']"),@AndroidBy(xpath = "//*[@content-desc='Cancelled >']")}) public List <WebElement> cancelled_lbl;
 
-    public By order_Cancel_btn_by = By.xpath("//*[@content-desc='CANCEL '] | //*[@content-desc='CANCEL ']");
+    public By order_Cancel_btn_by = By.xpath("//*[@content-desc='CANCEL '] | //*[@contentDescription='CANCEL ']");
     public By select_Reason_btn_by = By.xpath("//*[@contentDescription='Select'] | //*[@content-desc='Select']");
     public By cancelled_lbl_by = By.xpath("//*[@contentDescription='Cancelled >'] | //*[@content-desc='Cancelled >']");
 }
