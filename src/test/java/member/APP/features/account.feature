@@ -21,7 +21,7 @@ Feature: Daraz Account Management
     Then I should see that product in the pay now menu
 
   @21001814 @view_cancelled_orders_in_my_cancellation_menu
-  Scenario: I view the product in pay now menu
+  Scenario: I view the cancelled product in the cancellation menu
     Given I select the venture
     And I Search a Product for "Checkout"
     And I select the product for checkout
