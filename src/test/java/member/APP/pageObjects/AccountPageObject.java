@@ -1,4 +1,4 @@
-package global.APP.pageObjects;
+package member.APP.pageObjects;
 
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
@@ -7,6 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 22-July-2019
+ */
 
 public class AccountPageObject {
 

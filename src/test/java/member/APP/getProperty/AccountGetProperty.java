@@ -4,6 +4,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 22-July-2019
+ */
+
 public class AccountGetProperty {
 
 

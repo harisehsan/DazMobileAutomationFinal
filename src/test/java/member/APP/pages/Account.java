@@ -1,6 +1,6 @@
 package member.APP.pages;
 
-import global.APP.pageObjects.AccountPageObject;
+import member.APP.pageObjects.AccountPageObject;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
@@ -9,6 +9,11 @@ import member.APP.pageObjects.GmailSignUpObjects;
 import member.APP.pageObjects.WishlistPageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 22-July-2019
+ */
 
 public class Account extends Base
 {
