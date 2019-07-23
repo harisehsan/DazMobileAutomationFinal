@@ -91,7 +91,7 @@ public class Wishlist extends Base {
         String productTitle;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By);
-            wishlistPageObjects.dots_btn.click();
+            wishlistPageObjects.dots_btn.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By);
@@ -105,7 +105,7 @@ public class Wishlist extends Base {
                 return wishlistPageObjects.product_Name_lbl.getText();
         } else {
             waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By_MM);
-            wishlistPageObjects.dots_btn_MM.click();
+            wishlistPageObjects.dots_btn_MM.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By_MM);
@@ -201,7 +201,7 @@ public class Wishlist extends Base {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
         {
             waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By);
-            wishlistPageObjects.dots_btn.click();
+            wishlistPageObjects.dots_btn.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By);
@@ -210,7 +210,7 @@ public class Wishlist extends Base {
         else
         {
             waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By_MM);
-            wishlistPageObjects.dots_btn_MM.click();
+            wishlistPageObjects.dots_btn_MM.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By_MM);

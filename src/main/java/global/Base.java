@@ -169,7 +169,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 13)
+            new WebDriverWait(driver, 11)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {
