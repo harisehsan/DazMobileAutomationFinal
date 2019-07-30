@@ -33,9 +33,6 @@ public class Logout extends Base {
        waitUntilPresentOfElementBy(signUpObjects.logout_btn_By);
        signUpObjects.logout_btn.click();
        waitUntilPresentOfElementBy(signUpObjects.final_Logout_btn_By);
-       signUpObjects.final_Logout_btn.click();
-
-
-
+       clickMultipleTries(signUpObjects.final_Logout_btn,1);
     }
 }

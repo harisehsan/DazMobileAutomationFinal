@@ -160,7 +160,7 @@ public class Cart extends Base {
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
             else
             {
-                cartItemSwipeOptions(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox.get(0));
+                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By);
                 cartPageObjects.wishlist_In_Cart_btn.get(0).click();
             }
@@ -172,7 +172,7 @@ public class Cart extends Base {
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
             else
             {
-                cartItemSwipeOptions(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox_MM.get(0));
+                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox_MM.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By_MM);
                 cartPageObjects.wishlist_In_Cart_btn.get(0).click();
             }
