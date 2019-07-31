@@ -33,7 +33,8 @@ public class Drivers {
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
         cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.14.0");
         cap.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
-        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"Appium");
+        cap.setCapability(MobileCapabilityType.NO_RESET,"true");
+        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.setLogLevel(Level.INFO);
         WebDriverRunner.setWebDriver(driver);
@@ -44,7 +45,6 @@ public class Drivers {
 //         envPicker.envPicker(System.getProperty("env"));
 
     }
-
 
         public AppiumDriver<WebElement> getDriver ()
         {
