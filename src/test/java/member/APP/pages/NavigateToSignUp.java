@@ -24,7 +24,7 @@ public class NavigateToSignUp extends Base {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             signUpObjects.account_lbl.get(3).click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn,4);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn,1);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By);
             signUpObjects.signup_btn.click();
         }
@@ -33,7 +33,7 @@ public class NavigateToSignUp extends Base {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
             signUpObjects.account_lbl_MM.get(3).click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,4);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,1);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By_MM);
             signUpObjects.signup_btn_MM.click();
         }

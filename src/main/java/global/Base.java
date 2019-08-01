@@ -5,10 +5,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -57,7 +54,7 @@ public class Base {
     }
 
     public void waitForElementToClickable(WebElement id) {
-        WebDriverWait wait = new WebDriverWait(driver, 15);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.elementToBeClickable(id));
     }
 
@@ -159,7 +156,7 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 40)
+        new WebDriverWait(driver, 80)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -236,7 +233,7 @@ public class Base {
         return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")).size() > 0);
     }
 
-    protected void cartItemSwipeOptions(WebElement ele1, WebElement ele2) {
+    protected void swipeBetweenTwoItems(WebElement ele1, WebElement ele2) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(new PointOption().withCoordinates(ele1.getLocation().getX(), ele1.getLocation().getY())).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele2.getLocation().getX(), ele2.getLocation().getY())).release().perform();
     }
@@ -269,5 +266,10 @@ public class Base {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    protected void pressEnterKey()
+    {
+        ((AndroidDriver)driver).pressKeyCode(66);
     }
 }
