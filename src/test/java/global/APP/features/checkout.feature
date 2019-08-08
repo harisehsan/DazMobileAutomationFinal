@@ -4,7 +4,7 @@ Feature: Daraz Checkout Management
   @21001814 @proceed_to_checkout_without_add_to_cart
   Scenario: Make a checkout without using cart
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
     And I signin with google account
@@ -17,7 +17,7 @@ Feature: Daraz Checkout Management
   @21001814 @proceed_to_checkout_from_cart
   Scenario: Make a checkout from cart product
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I add a product to cart
     And I signin with google account
@@ -33,7 +33,7 @@ Feature: Daraz Checkout Management
   @21001814 @proceed_to_checkout_from_cart_by_changing_quantity
   Scenario: Make a checkout from cart product by changing product quantity
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I add a product to cart
     And I signin with google account
