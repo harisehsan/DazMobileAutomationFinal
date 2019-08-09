@@ -4,7 +4,7 @@ Feature: Daraz Order Cancellation Management
   @21001814 @order_cancellation
   Scenario: Cancel the order
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
     And I signin with google account
@@ -21,7 +21,7 @@ Feature: Daraz Order Cancellation Management
   @21001814 @order_cancellation_by_changing_quantity
   Scenario: Cancel the order by changing quantity
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I add a product to cart
     And I signin with google account

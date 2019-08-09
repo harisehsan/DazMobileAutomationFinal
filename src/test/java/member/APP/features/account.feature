@@ -11,7 +11,7 @@ Feature: Daraz Account Management
   @21598886 @view_product_in_pay_now_menu
   Scenario: I view the product in pay now menu
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
     And I signin with google account
@@ -23,7 +23,7 @@ Feature: Daraz Account Management
   @21001814 @view_cancelled_orders_in_my_cancellation_menu
   Scenario: I view the cancelled products in my cancellation menu
     Given I select the venture
-    And I Search a Product for "Checkout"
+    And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
     And I signin with google account

@@ -31,7 +31,7 @@ public class SearchProduct extends Base {
     public void searchProduct(String searchType, List<String> pkProducts, List<String> bdProducts, List<String> lkProducts, List<String> npProducts, List<String> mmProducts) {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
-            searchPageObj.searchBeforeClick_txtfield.click();
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
             switch (System.getProperty("env")) {
                 case "pk.live": {
@@ -50,7 +50,7 @@ public class SearchProduct extends Base {
                             cartPageObjects.overseas_Confirm_btn.click();
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
-                       else  {
+                        else {
                             if (isExist(cartPageObjects.buy_Now_btn))
                                 break;
                             else {
@@ -79,7 +79,7 @@ public class SearchProduct extends Base {
                             cartPageObjects.overseas_Confirm_btn.click();
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
-                       else  {
+                        else {
                             if (isExist(cartPageObjects.buy_Now_btn))
                                 break;
                             else {
@@ -108,7 +108,7 @@ public class SearchProduct extends Base {
                             cartPageObjects.overseas_Confirm_btn.click();
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
-                        else   {
+                        else {
                             if (isExist(cartPageObjects.buy_Now_btn))
                                 break;
                             else {
@@ -131,10 +131,10 @@ public class SearchProduct extends Base {
                         cartPageObjects.searchProduct_lbl.get(0).click();
                         if (waitWithoutException(cartPageObjects.overseas_Confirm_btn))
                             cartPageObjects.overseas_Confirm_btn.click();
-                        System.out.println("This is the Search Type: "+searchType);
+                        System.out.println("This is the Search Type: " + searchType);
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
-                        else   {
+                        else {
                             if (isExist(cartPageObjects.buy_Now_btn))
                                 break;
                             else {
@@ -150,7 +150,7 @@ public class SearchProduct extends Base {
 
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
-            searchPageObj.searchBeforeClick_txtfield_MM.click();
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
             for (String mmProduct : mmProducts) {
                 searchPageObj.searchAfterClick_txtfield_MM.sendKeys(mmProduct);
@@ -163,7 +163,7 @@ public class SearchProduct extends Base {
                     cartPageObjects.overseas_Confirm_btn_MM.click();
                 if (searchType.equalsIgnoreCase("Wishlist"))
                     break;
-                else  {
+                else {
                     if (isExist(cartPageObjects.buy_Now_btn_MM))
                         break;
                     else {
@@ -179,10 +179,129 @@ public class SearchProduct extends Base {
     public boolean verifySearchResult() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
-            return (searchPageObj.searchResult_lbl.size() == 1);
+            return (searchPageObj.searchResult_lbl.size() >= 1);
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
-            return (searchPageObj.searchResult_lbl_MM.size() == 1);
+            return (searchPageObj.searchResult_lbl_MM.size() >= 1);
         }
+    }
+
+    public String searchProductByName(String searchKeyword) {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+            searchPageObj.searchAfterClick_txtfield.sendKeys(searchKeyword);
+            searchPageObj.search_btn.click();
+        } else {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+            searchPageObj.searchAfterClick_txtfield_MM.sendKeys(searchKeyword);
+            searchPageObj.search_btn_MM.click();
+        }
+        return searchKeyword;
+    }
+
+    public boolean verifyTheSearchProduct(String searchKeyword) {
+        String[] searchWord;
+        searchWord = searchKeyword.split(" ", 2);
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
+            System.out.println("This is the search lbl" + searchPageObj.searchResult_lbl.get(0).getText());
+            return searchPageObj.searchResult_lbl.get(0).getText().contains(searchWord[0]);
+        } else {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
+            return searchPageObj.searchResult_lbl_MM.get(0).getText().contains(searchWord[0]);
+        }
+    }
+
+    public void navigateBackToTheHomeScreen() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
+            do {
+                driver.navigate().back();
+            }
+            while (!isExist(searchPageObj.searchBeforeClick_txtfield));
+
+        } else {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
+            do {
+                driver.navigate().back();
+            }
+            while (!isExist(searchPageObj.searchBeforeClick_txtfield_MM));
+        }
+    }
+
+    public void searchUsingHistory(String searchKeyword) {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            findElementByTextUsingExactString(searchKeyword).click();
+        } else {
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            findElementByTextUsingExactString(searchKeyword).click();
+        }
+    }
+
+    public boolean searchForSuggestionKeyword(String suggestionKeyword) {
+        String[] suggestionKeywordArray = suggestionKeyword.split("");
+        StringBuilder suggestionLetter = new StringBuilder();
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+            for (int i = 0; i < (suggestionKeywordArray.length); i++) {
+                suggestionLetter.append(suggestionKeywordArray[i]);
+                searchPageObj.searchAfterClick_txtfield.sendKeys(suggestionLetter);
+                if (isExist(searchPageObj.search_Suggestion_lstItem)) {
+                    if (!(searchPageObj.search_Suggestion_lstItem.get(0).getText().contains(suggestionLetter.toString())))
+                        return false;
+                }
+            }
+
+        } else {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+            for (int i = 0; i < suggestionKeywordArray.length; i++) {
+                suggestionLetter.append(suggestionKeywordArray[i]);
+                searchPageObj.searchAfterClick_txtfield_MM.sendKeys(suggestionLetter);
+                if (isExist(searchPageObj.search_Suggestion_lstItem_MM)) {
+                    if (!(searchPageObj.search_Suggestion_lstItem_MM.get(0).getText().contains(suggestionLetter.toString())))
+                        return false;
+                }
+
+            }
+        }
+        return true;
+    }
+
+    public void selectSuggestionResult()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+            searchPageObj.search_Suggestion_lstItem.get(0).click();
+        else
+            searchPageObj.search_Suggestion_lstItem_MM.get(0).click();
+    }
+
+    public boolean checkForSuggestionKeywordInProduct(String suggestionKeyword)
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
+            return (searchPageObj.searchResult_lbl.get(0).getText().contains(suggestionKeyword));
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
+            return (searchPageObj.searchResult_lbl_MM.get(0).getText().contains(suggestionKeyword));
+        }
+    }
+
+    public boolean clickOnDidYouMeanOption()  {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+            return (isExist(searchPageObj.did_You_Mean_lbl));
+        else
+            return (isExist(searchPageObj.did_You_Mean_lbl_MM));
     }
 }
