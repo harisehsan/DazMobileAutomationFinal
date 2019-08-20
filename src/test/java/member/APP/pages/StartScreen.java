@@ -24,21 +24,21 @@ public class StartScreen extends Base {
                     waitForElementToClickable(startScreenPageObjects.bd_Env_lbl);
                     startScreenPageObjects.bd_Env_lbl.click();
                     waitUntilPresentOfElementBy(startScreenPageObjects.eng_Language_btn_By);
-                    startScreenPageObjects.eng_Language_btn.click();
+                    startScreenPageObjects.eng_Language_btn.get(0).click();
                 }
                 break;
                 case "lk.live": {
                     waitForElementToClickable(startScreenPageObjects.lk_Env_lbl);
                     startScreenPageObjects.lk_Env_lbl.click();
                     waitUntilPresentOfElementBy(startScreenPageObjects.eng_Language_btn_By);
-                    startScreenPageObjects.eng_Language_btn.click();
+                    startScreenPageObjects.eng_Language_btn.get(0).click();
                 }
                 break;
                 case "np.live": {
                     waitForElementToClickable(startScreenPageObjects.np_Env_lbl);
                     startScreenPageObjects.np_Env_lbl.click();
                     waitUntilPresentOfElementBy(startScreenPageObjects.eng_Language_btn_By);
-                    startScreenPageObjects.eng_Language_btn.click();
+                    startScreenPageObjects.eng_Language_btn.get(0).click();
                 }
                 break;
                 case "pk.live": {
