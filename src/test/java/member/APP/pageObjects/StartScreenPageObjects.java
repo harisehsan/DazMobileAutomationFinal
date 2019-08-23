@@ -4,12 +4,14 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class StartScreenPageObjects {
     @AndroidFindBy(xpath = "//*[@text='Bangladesh']") public WebElement bd_Env_lbl;
     @AndroidFindBy (xpath = "//*[@text='Pakistan']") public WebElement pk_Env_lbl;
     @AndroidFindBy (xpath = "//*[@text='Nepal']") public WebElement np_Env_lbl;
     @AndroidFindBy (xpath = "//*[@text='Sri Lanka']") public WebElement lk_Env_lbl;
-    @AndroidFindBy (id = "android:id/button1") public WebElement eng_Language_btn;
+    @AndroidFindBy (id = "android:id/button1") public List<WebElement> eng_Language_btn;
     @AndroidFindBy (id = "com.daraz.android:id/intro_skip_btn") public WebElement skip_Intro_btn;
 
     @AndroidFindBy (id = "com.shop.android:id/intro_skip_btn") public WebElement skip_Intro_btn_MM;

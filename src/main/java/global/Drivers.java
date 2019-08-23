@@ -59,6 +59,7 @@ public class Drivers {
     }
 
         public void closeDriver () {
+            driver.closeApp();
             driver.quit();
         }
     }
