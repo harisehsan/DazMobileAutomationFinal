@@ -272,4 +272,15 @@ public class Base {
     {
         ((AndroidDriver)driver).pressKeyCode(66);
     }
+
+    protected boolean waitWithoutExceptionWithIndex(List<WebElement> id, int index) {
+        try {
+            new WebDriverWait(driver, 11)
+                    .until(ExpectedConditions.elementToBeClickable(id.get(index)));
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return false;
+        }
+    }
 }
