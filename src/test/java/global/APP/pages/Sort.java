@@ -88,17 +88,18 @@ public class Sort extends Base {
 
     public String applyBrandFilter(String filterKeyword)
     {
-        findElementByTextUsingExactString("Brand").click();
-        findElementByTextUsingExactString(filterKeyword).click();
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(sortPageObject.done_btn_By);
-            sortPageObject.done_btn.click();
-        }
-        else
-        {
+       if (!(isExistByText(filterKeyword)))
+           findElementByTextUsingExactString("Brand").click();
+       findElementByTextUsingExactString(filterKeyword).click();
+       if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+           waitUntilPresentOfElementBy(sortPageObject.done_btn_By);
+           sortPageObject.done_btn.click();
+       }
+       else
+           {
             waitUntilPresentOfElementBy(sortPageObject.done_btn_By_MM);
             sortPageObject.done_btn_MM.click();
-        }
+           }
         return filterKeyword;
     }
 

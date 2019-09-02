@@ -283,4 +283,8 @@ public class Base {
             return false;
         }
     }
+
+    protected boolean isExistByText(String Name) {
+        return (driver.findElements(By.xpath("//*[@text='"+Name+"']")).size() > 0);
+    }
 }
