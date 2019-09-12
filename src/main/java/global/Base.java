@@ -156,7 +156,7 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 80)
+        new WebDriverWait(driver, 70)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -286,5 +286,9 @@ public class Base {
 
     protected boolean isExistByText(String Name) {
         return (driver.findElements(By.xpath("//*[@text='"+Name+"']")).size() > 0);
+    }
+
+    protected boolean findElementsSizeByString(String Name) {
+        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" +Name+ "')] | //*[contains(@content-desc,'" +Name+ "')]")).size() > 0);
     }
 }
