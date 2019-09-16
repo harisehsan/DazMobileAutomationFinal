@@ -123,7 +123,7 @@ public class Base {
             TouchAction ts = new TouchAction(driver);
             ts.press(pointOption.withCoordinates(x, top_y)).moveTo(pointOption.withCoordinates(x, bottom_y)).release().perform();
             TouchActions action = new TouchActions(driver);
-            action.scroll(744, 1968);
+            action.scroll(744, 1000);
             action.perform();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
