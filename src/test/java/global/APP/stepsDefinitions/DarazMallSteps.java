@@ -10,23 +10,28 @@ public class DarazMallSteps {
     Drivers driver = new Drivers();
     DarazMall darazMall = new DarazMall(driver.getDriver());
 
-    @And("I check for the existence of the daraz mall on Homepage")
+    @And("I check the existence of the Daraz Mall on Homepage")
     public void iCheckForTheExistenceOfTheDarazMall() {
-        Assert.assertTrue(darazMall.checkExistenceofDarazMall(),"Daraz mall is not existed on Daraz Home page!");
+        Assert.assertTrue(darazMall.checkExistenceofDarazMall(),"Daraz Mall/Official Store is not existed on Daraz Home page!");
     }
 
-    @And("I select DarazMall")
+    @And("I click on Daraz Mall icon to navigate to Daraz Mall")
     public void iSelectShopMore() {
        darazMall.selectShopMoreForDarazMall();
     }
 
-    @Then("I should be in the daraz mall")
+    @Then("I should be on the Daraz Mall page")
     public void iShouldBeInTheDarazMall() {
-       Assert.assertTrue(darazMall.verifyTheDarazMall(), "Daraz Mall is not working correctly!");
+       Assert.assertTrue(darazMall.verifyTheDarazMall(), "Daraz Mall/Official Store is not working correctly!");
     }
 
-    @And("I navigate back to the main screen from Daraz Mall")
+    @And("I navigate back to the Home Page from Daraz Mall")
     public void iNavigateBackToTheMainScreenFromDarazMall() {
         darazMall.navigatebackToHomePage();
+    }
+
+    @And("I click on shop more button to navigate to Daraz Mall")
+    public void iClickOnShopMoreButtonToNavigateToDarazMall() {
+        darazMall.clickOnShopMoreButtonForDarazMall();
     }
 }

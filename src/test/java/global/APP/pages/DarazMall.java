@@ -26,8 +26,10 @@ public class DarazMall extends Base {
 
     public boolean checkExistenceofDarazMall() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             return (darazMallPageObject.daraz_Mall_lbl.size() > 0);
         } else {
+            waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
             return (darazMallPageObject.official_Store_lbl_MM.size() > 0);
         }
     }
@@ -35,20 +37,43 @@ public class DarazMall extends Base {
     public void selectShopMoreForDarazMall() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
             darazMallPageObject.darazMall_icon.get(0).click();
-         else
+        else
             darazMallPageObject.officialStore_icon.get(0).click();
     }
 
-    public boolean verifyTheDarazMall()
-    {
+    public boolean verifyTheDarazMall() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl));
         else
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_MM));
     }
 
-    public void navigatebackToHomePage()
-    {
+    public void navigatebackToHomePage() {
         driver.navigate().back();
+    }
+
+    public void clickOnShopMoreButtonForDarazMall() {
+        int tries = 5;
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
+            for (int i = 0; i < tries; tries++) {
+                if (isExist(darazMallPageObject.daraz_Mall_container_lbl)) {
+                    darazMallPageObject.shop_More_btn.get(0).click();
+                    break;
+                } else
+                    swiptToBottom();
+            }
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
+            for (int i = 0; i < tries; tries++) {
+                if (isExist(darazMallPageObject.official_Store_container_lbl_MM)) {
+                    darazMallPageObject.shop_More_btn.get(0).click();
+                    break;
+                } else
+                    swiptToBottom();
+            }
+        }
     }
 }
