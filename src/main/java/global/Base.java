@@ -118,12 +118,12 @@ public class Base {
             int width = dim.getWidth();
             int x = width / 2;
             int top_y = (int) (height * 0.80);
-            int bottom_y = (int) (height * 0.20);
+            int bottom_y = (int) (height * 0.77);
             System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
             TouchAction ts = new TouchAction(driver);
-            ts.press(pointOption.withCoordinates(x, top_y)).moveTo(pointOption.withCoordinates(x, bottom_y)).release().perform();
+            ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
             TouchActions action = new TouchActions(driver);
-            action.scroll(744, 1968);
+//            action.scroll(744, 300);
             action.perform();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
