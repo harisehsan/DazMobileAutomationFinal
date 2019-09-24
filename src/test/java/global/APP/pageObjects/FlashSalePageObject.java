@@ -36,8 +36,8 @@ public class FlashSalePageObject {
     @AndroidFindBy (xpath = "//*[@text='BUY NOW']") public WebElement buy_Now_btn_MM;
 
 
-    public By flash_Sale_lbl_By = By.id("com.daraz.android:id/laz_hp_flash_sale_v2_logo_title");
+    public By flash_Sale_lbl_By = By.id("com.daraz.android:id/laz_hp_flash_sale_v2_logo_imageview");
 
-    public By flash_Sale_lbl_By_MM = By.id("com.shop.android:id/laz_hp_flash_sale_v2_logo_title");
+    public By flash_Sale_lbl_By_MM = By.id("com.shop.android:id/laz_hp_flash_sale_v2_logo_imageview");
 
 }
