@@ -118,8 +118,8 @@ public class Base {
             int width = dim.getWidth();
             int x = width / 2;
             int top_y = (int) (height * 0.80);
-            int bottom_y = (int) (height * 0.77);
-            System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
+            int bottom_y = (int) (height * 0.785);
+//            System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
             TouchAction ts = new TouchAction(driver);
             ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
             TouchActions action = new TouchActions(driver);
@@ -290,5 +290,15 @@ public class Base {
 
     protected boolean findElementsSizeByString(String Name) {
         return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" +Name+ "')] | //*[contains(@content-desc,'" +Name+ "')]")).size() > 0);
+    }
+
+    protected boolean waitWithoutExceptionByText(String Name) {
+        try {
+            new WebDriverWait(driver, 10)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='"+Name+"']")));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 }
