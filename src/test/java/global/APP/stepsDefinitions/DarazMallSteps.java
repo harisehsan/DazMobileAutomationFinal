@@ -26,8 +26,8 @@ public class DarazMallSteps {
     }
 
     @And("I navigate back to the Home Page from {string}")
-    public void iNavigateBackToTheMainScreenFromDarazMall(String arg0) {
-        darazMall.navigatebackToHomePage();
+    public void iNavigateBackToTheMainScreenFromDarazMall(String page) {
+        darazMall.navigatebackToHomePage(page);
     }
 
     @And("I click on shop more button to navigate to Daraz Mall")
