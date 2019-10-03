@@ -301,4 +301,15 @@ public class Base {
             return false;
         }
     }
+//
+    protected boolean containsTextIsExist(String Name) {
+        if (Name.length() > 40)
+            Name = Name.substring(0, 40);
+        return (driver.findElements(By.xpath("//*[contains(@text,'" +Name+ "')]")).size() > 0);
+    }
+//
+//    protected void swipeHorizontallyWithInElement(WebElement ele) {
+//        TouchAction touchAction = new TouchAction(driver);
+//        touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), ele.getLocation().getY())).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele2.getLocation().getX(), ele2.getLocation().getY())).release().perform();
+//    }
 }
