@@ -11,15 +11,12 @@ public class BannerAndChannelSteps {
     Drivers driver = new Drivers();
     BannerAndChannel bannerAndChannel = new BannerAndChannel(driver.getDriver());
 
-    @And("I check the existence of banner on homepage")
+    @Then("I check the existence of banner on homepage")
     public void iCheckTheExistenceOfTheBannerOnHomepage() {
         Assert.assertTrue(bannerAndChannel.checkTheExistenceofBanner(),"Banner slider is not existed on Homepage or not shown properly!");
     }
 
-    @Then("I display the total number of available banner of Homepage")
-    public void iDisplayTheTotalNumberOfAvailableBannerOfHomepage() {
-        bannerAndChannel.displayTheTotalNumberofBanners();
-    }
+
 
     @Then("I check the existence of channel on homepage")
     public void iCheckTheExistenceOfChannelOnHomepage() {

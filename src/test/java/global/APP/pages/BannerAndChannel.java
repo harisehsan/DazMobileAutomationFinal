@@ -29,24 +29,23 @@ public class BannerAndChannel extends Base {
             return (isExist(bannerAndChannelPageObject.banner_slider_MM));
     }
 
-    public void displayTheTotalNumberofBanners()
-    {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-            System.out.println("The Total Number banner(s) available for this venture is: "+bannerAndChannelPageObject.banner_slider.get(0).findElements(bannerAndChannelPageObject.banner_picker_by).size());
-        else
-            System.out.println("The Total Number banner(s) available for this venture is: "+bannerAndChannelPageObject.banner_slider_MM.get(0).findElements(bannerAndChannelPageObject.banner_picker_by).size());
-    }
+//    public void displayTheTotalNumberofBanners() This functions displays the total number of banner available on Homepage
+//    {
+//        int totalBanners;
+//        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+//          totalBanners =  bannerAndChannelPageObject.banner_slider.get(0).findElements(bannerAndChannelPageObject.banner_picker_by).size();
+//        else
+//            totalBanners =  bannerAndChannelPageObject.banner_slider_MM.get(0).findElements(bannerAndChannelPageObject.banner_picker_by).size();
+//    }
 
     public boolean checkTheExistenceOfChannel() {
         switch (System.getProperty("env")) {
             case "pk.live":
             case "bd.live":
             case "lk.live": {
-                System.out.println(">>>>>>> I am in the PK,BD,NP venture!" + System.getProperty("env"));
                 return (isExist(bannerAndChannelPageObject.channel_icon));
             }
             case "np.live": {
-                System.out.println(">>>>>>>> I am in the Np venture!");
                 return (isExist(bannerAndChannelPageObject.channel_icon_NP));
             }
             default:
@@ -100,5 +99,3 @@ public class BannerAndChannel extends Base {
             return true;
         }
     }
-
-
