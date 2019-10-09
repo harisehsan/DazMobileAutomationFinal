@@ -32,9 +32,9 @@ public class AddressPageObject {
     @AndroidFindBy (id = "com.shop.android:id/btn_action") public WebElement new_Address_btn_MM;
     @AndroidFindBy (id = "com.daraz.android:id/checkbox_makedef") public List <WebElement> make_Default_chkbox;
     @AndroidFindBy (id = "com.shop.android:id/checkbox_makedef") public List <WebElement> make_Default_chkbox_MM;
-    @AndroidFindBy (id  = "com.daraz.android:id/btn_remove") public List <WebElement> delete_Address_btn;
-    @AndroidFindBy (id  = "com.shop.android:id/btn_remove") public List <WebElement> delete_Address_btn_MM;
-    @AndroidFindBy (id = "android:id/button1") public WebElement delete_Confirm_btn;
+    @AndroidFindBy (xpath = "//*[@text='Delete address']") public List <WebElement> delete_Address_btn;
+    @AndroidFindBy (xpath = "//*[@text='Delete address']") public List <WebElement> delete_Address_btn_MM;
+    @AndroidFindBy (id = "android:id/button1") public List <WebElement> delete_Confirm_btn;
 
     public By address_Book_lbl_By = By.xpath("//*[@text='Address Book']");
     public By edit_Address_btn_By = By.id("com.daraz.android:id/btn_edit");

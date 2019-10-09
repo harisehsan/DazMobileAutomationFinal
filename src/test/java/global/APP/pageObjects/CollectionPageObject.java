@@ -12,11 +12,11 @@ import java.util.List;
 
 public class CollectionPageObject {
 
-    @AndroidFindBy(id = "com.daraz.android:id/laz_homepage_component_v2_title_textview") public List<WebElement> collection_lbl;
+    @AndroidFindBy(id= "com.daraz.android:id/laz_homepage_component_v2_title_textview") public List<WebElement> collection_lbl;
     @AndroidFindBy(id = "com.daraz.android:id/laz_homepage_component_v2_shopmore_textview") public List <WebElement> shop_More_btn;
-    @AndroidFindBy(id = "//*[@text='50% Discount']") public List <WebElement> collection_lbl_MM;
-    @AndroidFindBy (xpath = "//*[@text='၅၀%ႏွင့္အထက္ေလွ်ာ့ေစ်း']") public List <WebElement> collection_lbl_Local_MM;
-    @AndroidFindBy(xpath = "//*[@text='SHOP MORE >' and (./preceding-sibling::* | ./following-sibling::*)[./*[@text='50% Discount']]]") public List <WebElement> shop_More_btn_MM;
+    @AndroidFindBy(id = "com.shop.android:id/laz_homepage_component_v2_title_textview") public List <WebElement> collection_lbl_MM;
+    @AndroidFindBy (id = "com.shop.android:id/laz_homepage_component_v2_title_textview") public List <WebElement> collection_lbl_Local_MM;
+    @AndroidFindBy(id = "com.shop.android:id/laz_homepage_component_v2_shopmore_textview") public List <WebElement> shop_More_btn_MM;
     @AndroidFindBy(xpath = "//*[@text='Collections']") public List <WebElement> collection_header_lbl;
     @AndroidFindBy(id = "com.daraz.android:id/change_language_title") public List <WebElement> change_Language_lbl;
     @AndroidFindBy(id = "com.shop.android:id/change_language_title") public List <WebElement> change_Language_lbl_MM;

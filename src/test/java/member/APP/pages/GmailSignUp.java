@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.getProperty.GmailSignUpGetProperty;
 import member.APP.pageObjects.GmailSignUpObjects;
+import member.APP.pageObjects.WishlistPageObjects;
 import member.APP.setProperty.GmailSignupSetProperty;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -19,9 +20,11 @@ public class GmailSignUp extends Base {
     GmailSignUpGetProperty gmailSignUpGetProperty = new GmailSignUpGetProperty();
     GmailSignUpObjects gmailsignUpObjects = new GmailSignUpObjects();
     GmailSignupSetProperty gmailSignupSetProperty = new GmailSignupSetProperty();
+    WishlistPageObjects wishlistPageObject = new WishlistPageObjects();
     public GmailSignUp(AppiumDriver<WebElement> driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), gmailsignUpObjects);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObject);
     }
 
     public void signupUsingGmail() throws IOException {  // This Method is used to open the google signup option and fill the general authentication if needed by gmail
@@ -34,12 +37,12 @@ public class GmailSignUp extends Base {
         }
         waitUntilPresentOfElementBy(gmailsignUpObjects.policy_Agree_btn_By);
         gmailsignUpObjects.policy_Agree_btn.click();
-        if (isExist(gmailsignUpObjects.choose_Google_Account_lbl)) {
+        if (isExist(gmailsignUpObjects.choose_Google_Account_lbl) && (wishlistPageObject.accout_ID_lbl.size() > 2)) {
             while (!(isExist(gmailsignUpObjects.new_User_link)))
             {
               swipeBetweenTwoItems(gmailsignUpObjects.account_google_lbl.get(gmailsignUpObjects.account_google_lbl.size()-1),gmailsignUpObjects.account_google_lbl.get(0));
             }
-                gmailsignUpObjects.new_User_link.get(0).click();
+               gmailsignUpObjects.new_User_link.get(0).click();
         }
         if (waitWithoutException(gmailsignUpObjects.pin_txt)) {
             if (gmailsignUpObjects.next_btn.size() > 0)
@@ -47,7 +50,11 @@ public class GmailSignUp extends Base {
                 gmailsignUpObjects.pin_txt.sendKeys(gmailSignUpGetProperty.getDeviceCode());
                 gmailsignUpObjects.next_btn.get(0).click();
             }
-            else
+             else if (findElementsSizeByString(gmailSignUpGetProperty.getOppoCodeTextField())) {
+                findElementByString(gmailSignUpGetProperty.getOppoCodeTextField()).sendKeys(gmailSignUpGetProperty.getDeviceCodeOppo());
+                pressEnterKey();
+            }
+                 else
              {
                if (isExist(gmailsignUpObjects.passcode_Entry_imgView))
                {
@@ -75,7 +82,7 @@ public class GmailSignUp extends Base {
             scrollDownMultipleTries(1);
             gmailsignUpObjects.last_name_txt.sendKeys(gmailSignUpGetProperty.getLastName());
             hideKeyboard();
-            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 1);
+            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 2);
             return (gmailSignUpGetProperty.getFirstName() + " " + gmailSignUpGetProperty.getLastName());
         } else { // code for Shop (MM) app only
             waitUntilPresentOfElementBy(gmailsignUpObjects.name_txt_By);
@@ -84,7 +91,7 @@ public class GmailSignUp extends Base {
             scrollDownMultipleTries(1);
             gmailsignUpObjects.last_name_txt.sendKeys(gmailSignUpGetProperty.getLastName());
             hideKeyboard();
-            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 1);
+            clickMultipleTries(gmailsignUpObjects.next_Second_btn, 2);
             return (gmailSignUpGetProperty.getFirstNameMM()+" "+gmailSignUpGetProperty.getLastName());
         }
     }
@@ -216,4 +223,6 @@ public class GmailSignUp extends Base {
              return gmailsignUpObjects.account_Holder_Name_lbl_MM.getText();
          }
      }
+
+
 }

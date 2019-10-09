@@ -51,7 +51,7 @@ public class Wishlist extends Base {
                 wishlistPageObjects.google_btn.click();
                 waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
                 wishlistPageObjects.agree_btn.click();
-                if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
+                if (isExist(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
             }
         } else {
@@ -61,7 +61,7 @@ public class Wishlist extends Base {
                 wishlistPageObjects.google_btn_MM.click();
                 waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
                 wishlistPageObjects.agree_btn.click();
-                if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
+                if (isExist(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
             }
         }
@@ -89,6 +89,7 @@ public class Wishlist extends Base {
 
     public String verifyAddedItemInWishlist(String PRODUCT_NAME) throws InterruptedException {
         String productTitle;
+        int tries = 10;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By);
             wishlistPageObjects.dots_btn.get(0).click();
@@ -97,6 +98,13 @@ public class Wishlist extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By);
             wishlistPageObjects.wishlist_lbl.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
+            for (int i = 0;i<tries;i++)
+            {
+                if(isExistByString(PRODUCT_NAME))
+                    break;
+                else
+                    swiptToBottom();
+            }
             findElementByString(PRODUCT_NAME).click();
             if (wishlistPageObjects.product_Name_lbl.getText().startsWith("0")) {
                 productTitle = wishlistPageObjects.product_Name_lbl.getText().replaceFirst("0 ", "");
@@ -111,6 +119,13 @@ public class Wishlist extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By_MM);
             wishlistPageObjects.wishlist_lbl_MM.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
+            for (int i = 0;i<tries;i++)
+            {
+                if(isExistByString(PRODUCT_NAME))
+                    break;
+                else
+                    swiptToBottom();
+            }
             findElementByString(PRODUCT_NAME).click();
             if (wishlistPageObjects.product_Name_lbl_MM.getText().startsWith("0")) {
                 productTitle = wishlistPageObjects.product_Name_lbl_MM.getText().replaceFirst("0 ", "");
@@ -220,7 +235,6 @@ public class Wishlist extends Base {
 
     public boolean verifyThePresenceOfDeletedItem(String productName)
     {
-        waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
         return (isExistByString(productName));
     }
 

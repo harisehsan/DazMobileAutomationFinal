@@ -46,8 +46,10 @@ public class SearchProduct extends Base {
                             continue;
                         }
                         cartPageObjects.searchProduct_lbl.get(0).click();
-                        if (waitWithoutException(cartPageObjects.overseas_Confirm_btn))
-                            cartPageObjects.overseas_Confirm_btn.click();
+                        if (isExist(cartPageObjects.overseas_Confirm_btn))
+                            cartPageObjects.overseas_Confirm_btn.get(0).click();
+                        if (isExist(searchPageObj.ok_Got_It_btn))
+                            searchPageObj.ok_Got_It_btn.get(0).click();
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
                         else {
@@ -75,8 +77,10 @@ public class SearchProduct extends Base {
                             continue;
                         }
                         cartPageObjects.searchProduct_lbl.get(0).click();
-                        if (waitWithoutException(cartPageObjects.overseas_Confirm_btn))
-                            cartPageObjects.overseas_Confirm_btn.click();
+                        if (isExist(cartPageObjects.overseas_Confirm_btn))
+                            cartPageObjects.overseas_Confirm_btn.get(0).click();
+                        if (isExist(searchPageObj.ok_Got_It_btn))
+                            searchPageObj.ok_Got_It_btn.get(0).click();
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
                         else {
@@ -104,8 +108,10 @@ public class SearchProduct extends Base {
                             continue;
                         }
                         cartPageObjects.searchProduct_lbl.get(0).click();
-                        if (waitWithoutException(cartPageObjects.overseas_Confirm_btn))
-                            cartPageObjects.overseas_Confirm_btn.click();
+                        if (isExist(cartPageObjects.overseas_Confirm_btn))
+                            cartPageObjects.overseas_Confirm_btn.get(0).click();
+                        if (isExist(searchPageObj.ok_Got_It_btn))
+                            searchPageObj.ok_Got_It_btn.get(0).click();
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
                         else {
@@ -129,8 +135,10 @@ public class SearchProduct extends Base {
                             break;
                         waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
                         cartPageObjects.searchProduct_lbl.get(0).click();
-                        if (waitWithoutException(cartPageObjects.overseas_Confirm_btn))
-                            cartPageObjects.overseas_Confirm_btn.click();
+                        if (isExist(cartPageObjects.overseas_Confirm_btn))
+                            cartPageObjects.overseas_Confirm_btn.get(0).click();
+                        if (isExist(searchPageObj.ok_Got_It_btn))
+                            searchPageObj.ok_Got_It_btn.get(0).click();
                         System.out.println("This is the Search Type: " + searchType);
                         if (searchType.equalsIgnoreCase("Wishlist"))
                             break;
@@ -159,8 +167,10 @@ public class SearchProduct extends Base {
                     break;
                 waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_MM_By);
                 cartPageObjects.searchProduct_lbl_MM.get(0).click();
-                if (waitWithoutException(cartPageObjects.overseas_Confirm_btn_MM))
-                    cartPageObjects.overseas_Confirm_btn_MM.click();
+                if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
+                    cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
+                if (isExist(searchPageObj.ok_Got_It_btn_MM))
+                    searchPageObj.ok_Got_It_btn_MM.get(0).click();
                 if (searchType.equalsIgnoreCase("Wishlist"))
                     break;
                 else {
@@ -204,15 +214,13 @@ public class SearchProduct extends Base {
     }
 
     public boolean verifyTheSearchProduct(String searchKeyword) {
-        String[] searchWord;
-        searchWord = searchKeyword.split(" ", 2);
+
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
-            System.out.println("This is the search lbl" + searchPageObj.searchResult_lbl.get(0).getText());
-            return searchPageObj.searchResult_lbl.get(0).getText().contains(searchWord[0]);
+            return (searchPageObj.searchResult_lbl.size() >= 1);
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
-            return searchPageObj.searchResult_lbl_MM.get(0).getText().contains(searchWord[0]);
+            return (searchPageObj.searchResult_lbl_MM.size() >= 1);
         }
     }
 

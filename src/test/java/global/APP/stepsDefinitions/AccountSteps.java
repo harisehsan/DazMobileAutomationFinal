@@ -20,7 +20,7 @@ public class AccountSteps {
 
     @Then("I verify that I have been logged in using google Account")
     public void iVerifyThatIHaveBeenLoggedInUsingGoogleAccount() throws IOException {
-        Assert.assertEquals(accountGetProperty.userName(),account.verifySignin(),"Required User is not Logged In");
+        Assert.assertTrue(account.verifySignin(),"User Login is not successfull!");
     }
 
     @And("I navigate to my account from payment screen")

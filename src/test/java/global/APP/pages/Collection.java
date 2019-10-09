@@ -28,18 +28,19 @@ public class Collection extends Base {
     }
 
     public boolean verifyTheExistenceOfCollectionOnHomePage() {
-        int tries = 5;
+        int tries = 10;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
-            for (int i = 0; i < tries; tries++) {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl))
+
                   return true;
                  else
                     swiptToBottom();
             }
         } else {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
-            for (int i = 0; i < tries; tries++) {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl_MM))
                     return true;
                  else
@@ -49,15 +50,38 @@ public class Collection extends Base {
         return false;
     }
 
-    public void selectShopMoreForCollections()
+    public boolean selectShopMoreForCollections()
     {
-        int tries = 5;
+        int tries = 15;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
-            for (int i = 0; i < tries; tries++) {
-                if (isExist(collectionPageObject.shop_More_btn)) {
-                    collectionPageObject.shop_More_btn.get(0).click();
-                    break;
+            for (int i = 0; i < tries; i++) {
+                if (isExist(collectionPageObject.collection_lbl)) {
+                      switch (System.getProperty("env")){
+                          case "pk.live":
+                          case "bd.live":
+                          case "lk.live": {
+                              if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Collections"))
+                              {
+                               collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
+                               return true;
+                              }
+                              else
+                                  swiptToBottom();
+                          }
+                          break;
+                          case "np.live":
+                          {
+                              if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Dashain Specials!")) {
+                                  collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
+                                  return true;
+                              }
+                              else
+                                  swiptToBottom();
+
+                          }
+                          break;
+                    }
                 }
                 else
                     swiptToBottom();
@@ -66,15 +90,22 @@ public class Collection extends Base {
         else
         {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
-            for (int i = 0; i < tries; tries++) {
-                if (isExist(collectionPageObject.shop_More_btn_MM)) {
-                    collectionPageObject.shop_More_btn_MM.get(0).click();
-                    break;
+            for (int i = 0; i < tries; i++) {
+                if (isExist(collectionPageObject.collection_lbl_MM)) {
+                    if (collectionPageObject.collection_lbl_MM.get(collectionPageObject.collection_lbl_MM.size()-1).getText().contains("Collections")) {
+                        collectionPageObject.shop_More_btn_MM.get(collectionPageObject.shop_More_btn_MM.size()-1).click();
+                        return true;
+                    }
+                    else
+                    {
+                        swiptToBottom();
+                    }
                 }
                 else
                     swiptToBottom();
             }
         }
+        return false;
     }
 
     public boolean verifyTheCollectionPage()
@@ -133,12 +164,35 @@ public class Collection extends Base {
     }
 
     public boolean checkForCollectionOnHomePageInLocalLanguage() {
-        int tries = 5;
+        int tries = 10;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
-            for (int i = 0; i < tries; tries++) {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl)) {
-                  return (!collectionPageObject.collection_lbl.get(0).getText().equalsIgnoreCase("")  && !collectionPageObject.collection_lbl.get(0).getText().chars().allMatch(Character::isAlphabetic));
+                    switch (System.getProperty("env")) {
+                        case "bd.live": {
+                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("সংগ্রহগুলি"))
+                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().matches(".*[a-zA-Z].*"));
+                            else
+                                swiptToBottom();
+                        }
+                        break;
+                        case "lk.live":
+                        {
+                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("කලෙක්ශන්"))
+                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().matches(".*[a-zA-Z].*"));
+                            else
+                                swiptToBottom();
+                        }
+                        break;
+                        case "np.live":
+                        {
+                            if ((collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Dashain Specials!")) || (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("संग्रह")))
+                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().matches(".*[a-zA-Z].*"));
+                            else
+                                swiptToBottom();
+                        }
+                    }
                 }
                 else
                     swiptToBottom();
@@ -147,15 +201,18 @@ public class Collection extends Base {
         else
         {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
-            for (int i = 0; i < tries; tries++) {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl_Local_MM)) {
-                    return (!collectionPageObject.collection_lbl_Local_MM.get(0).getText().equalsIgnoreCase("") && !collectionPageObject.collection_lbl_Local_MM.get(0).getText().chars().allMatch(Character::isAlphabetic));
+                    if ((collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_Local_MM.size()-1).getText().contains("Thadingyut Collections")) || (collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_MM.size()-1).getText().contains("စုစည်းမှုများ"))) {
+                        return (!(collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_Local_MM.size()-1).getText().matches(".*[a-zA-Z].*")));
+                    }
+                    else
+                        swiptToBottom();
                 }
                 else
                     swiptToBottom();
             }
         }
       return false;
-
     }
 }

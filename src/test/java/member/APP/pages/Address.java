@@ -127,18 +127,32 @@ public class Address extends Base {
 
     public void makeDefault()
     {
+        int tries = 5;
+        scrollDownMultipleTries(4);
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            if(addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
-                addressPageObject.make_Default_chkbox.get(0).click();
-            if(addressPageObject.make_Default_chkbox.get(1).getAttribute("checked").equalsIgnoreCase("false"))
-                addressPageObject.make_Default_chkbox.get(1).click();
+            for (int i = 0; i < tries; i++) {
+                if (isExist(addressPageObject.make_Default_chkbox)) {
+                    if (addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
+                        addressPageObject.make_Default_chkbox.get(0).click();
+                    if (addressPageObject.make_Default_chkbox.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                        addressPageObject.make_Default_chkbox.get(1).click();
+                    break;
+                } else
+                    scrollDownMultipleTries(4);
+            }
         }
-        else
-        {
-            if(addressPageObject.make_Default_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false"))
-                addressPageObject.make_Default_chkbox_MM.get(0).click();
-            if(addressPageObject.make_Default_chkbox_MM.get(1).getAttribute("checked").equalsIgnoreCase("false"))
-                addressPageObject.make_Default_chkbox_MM.get(1).click();
+        else {
+            for (int i=0;i<tries;i++) {
+                if (isExist(addressPageObject.make_Default_chkbox_MM)) {
+                    if (addressPageObject.make_Default_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false"))
+                         addressPageObject.make_Default_chkbox_MM.get(0).click();
+                    if (addressPageObject.make_Default_chkbox_MM.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                         addressPageObject.make_Default_chkbox_MM.get(1).click();
+                        break;
+                }
+                 else
+                     scrollDownMultipleTries(4);
+          }
         }
     }
 
@@ -154,34 +168,57 @@ public class Address extends Base {
         }
     }
 
-    public void deleteAddress()
-    {
+    public void deleteAddress() {
+        int tries = 0;
+        int deleteTries = 0;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            while(isExist(addressPageObject.delete_Address_btn))
-            {
+            while (isExist(addressPageObject.edit_Address_btn) && deleteTries < 20) {
+                waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
+                scrollDownMultipleTries(10);
+                addressPageObject.edit_Address_btn.get(addressPageObject.edit_Address_btn.size() - 1).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Text_Input_layout_By);
+                do {
+                    scrollDownMultipleTries(4);
+                    tries++;
+                } while (!isExist(addressPageObject.delete_Address_btn) && tries < 5);
                 addressPageObject.delete_Address_btn.get(0).click();
-                waitUntilPresentOfElementBy(addressPageObject.delete_Confirm_btn_By);
-                addressPageObject.delete_Confirm_btn.click();
+                if (isExist(addressPageObject.delete_Confirm_btn)) {
+                    addressPageObject.delete_Confirm_btn.get(0).click();
+                    deleteTries++;
+                }
+                else {
+                    driver.navigate().back();
+                    return;
+                }
             }
 
-        }
-        else
-        {
-            while(isExist(addressPageObject.delete_Address_btn_MM))
-            {
+        } else {
+            while (isExist(addressPageObject.edit_Address_btn_MM) && deleteTries < 20) {
+                waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By_MM);
+                scrollDownMultipleTries(10);
+                addressPageObject.edit_Address_btn_MM.get(addressPageObject.edit_Address_btn_MM.size() - 1).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Text_Input_layout_By_MM);
+                do {
+                    scrollDownMultipleTries(4);
+                    tries++;
+                } while (!isExist(addressPageObject.delete_Address_btn_MM) && tries < 5);
                 addressPageObject.delete_Address_btn_MM.get(0).click();
-                waitUntilPresentOfElementBy(addressPageObject.delete_Confirm_btn_By);
-                addressPageObject.delete_Confirm_btn.click();
+                if (isExist(addressPageObject.delete_Confirm_btn))
+                    addressPageObject.delete_Confirm_btn.get(0).click();
+                else {
+                    driver.navigate().back();
+                    return;
+                }
             }
         }
-     }
+    }
 
     public boolean verifyTheRemovedAddress()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
-            return (!(isExist(addressPageObject.delete_Address_btn)));
+            return (addressPageObject.edit_Address_btn.size() == 1);
         else
-           return  (!(isExist(addressPageObject.delete_Address_btn_MM)));
+            return (addressPageObject.edit_Address_btn.size() == 1);
 
     }
 

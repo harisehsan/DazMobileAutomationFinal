@@ -34,13 +34,14 @@ public class Order extends Base {
             orderPageObject.select_Reason_btn.click();
             waitUntilPresentOfElementByString(cancellationReason.get(Index));
             clickElementMultipleTriesUsingString(cancellationReason.get(Index), 3);
-            orderPageObject.reason_Confirm_btn.click();
+            clickMultipleTries(orderPageObject.reason_Confirm_btn,2);
         } while (!(waitWithoutExceptionByString(cancellationReason.get(Index))));
     }
 
     public void cancellationComment(String cancelComment)
     {
-      orderPageObject.cancel_Comment_txt.get(orderPageObject.cancel_Comment_txt.size()-1).sendKeys(cancelComment);
+        waitWithoutExceptionForElements(orderPageObject.cancel_Comment_txt);
+        orderPageObject.cancel_Comment_txt.get(orderPageObject.cancel_Comment_txt.size()-1).sendKeys(cancelComment);
     }
 
     public void submitCancellation()

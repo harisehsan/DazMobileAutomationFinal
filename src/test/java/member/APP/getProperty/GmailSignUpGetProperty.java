@@ -64,4 +64,14 @@ public class GmailSignUpGetProperty {
         fileInputStream();
         return prop.getProperty("DEVICE_CODE");
     }
+
+    public String getDeviceCodeOppo() throws IOException {
+        fileInputStream();
+        return prop.getProperty("OPPO_PASSWORD");
+    }
+
+    public String getOppoCodeTextField() throws IOException {
+        fileInputStream();
+        return prop.getProperty("OPPO_PASSWORDFIELD");
+    }
 }

@@ -2,7 +2,7 @@
 Feature: Daraz Search Product Management
 
   @21842974 @search_a_product_by_sku
-  Scenario: Search a product by name
+  Scenario: Search a product by sku
     Given I select the venture
     And I search a Product using SKU for "Result"
     Then I should see search results

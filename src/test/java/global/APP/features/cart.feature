@@ -55,10 +55,10 @@ Feature: Daraz Cart Management
     Then I verify item has been added item in cart
 
 
-  @21001814 @make_cart_empty_without_item_add
-  Scenario: Remove all products from cart without add product
-    Given I select the venture
-    And I select cart
-    And I signin with google account
-    And I remove all items from cart
-    Then I verify that all items in cart are successfully removed
+#  @21001814 @make_cart_empty_without_item_add
+#  Scenario: Remove all products from cart without add product
+#    Given I select the venture
+#    And I select cart
+#    And I signin with google account
+#    And I remove all items from cart
+#    Then I verify that all items in cart are successfully removed

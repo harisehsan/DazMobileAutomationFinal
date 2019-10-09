@@ -37,7 +37,7 @@ public class CartSteps {
 
     @Then("I verify item has been added item in cart")
     public void iVerifyItemHasBeenAddedItemInCart() {
-     Assert.assertEquals(cart.verifyAddedProductInCart(), productName,"Item is not added to cart!");
+     Assert.assertTrue(cart.verifyAddedProductInCart(productName),"Required item is not added to cart!");
     }
 
     @And("I select cart")

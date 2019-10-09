@@ -17,7 +17,7 @@ public class CollectionSteps {
 
     @And("I click on Shop more button to enter to collections page")
     public void iClickOnShopMoreButtonToEnterToCollectionPage() {
-        collection.selectShopMoreForCollections();
+        Assert.assertTrue(collection.selectShopMoreForCollections(), "Shop More for collection is not available yet!");
     }
 
     @Then("I should be on collection page")
@@ -42,6 +42,6 @@ public class CollectionSteps {
 
     @Then("I check for the existence of the Collections on Homepage in the local language of the venture")
     public void iCheckForTheExistenceOfTheCollectionsOnHomepageInTheLocalLanguageOfTheVenture() {
-        Assert.assertTrue(collection.checkForCollectionOnHomePageInLocalLanguage(),"Text is not properly localized or language change is not existed for this venture!");
+        Assert.assertTrue(collection.checkForCollectionOnHomePageInLocalLanguage(),"Text is not properly localized!");
     }
 }

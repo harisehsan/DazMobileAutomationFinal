@@ -27,7 +27,7 @@ public class WishlistPageObjects {
     @AndroidFindAll({@AndroidBy(xpath = "//*[@resource-id='passwordNext']"),@AndroidBy(className= "android.widget.Button")}) public WebElement password_Next_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@resource-id='signinconsentNext']"),@AndroidBy(className= "android.widget.Button")}) public WebElement i_Agree_btn;
     @AndroidFindBy (xpath = "//*[@resource-id='android:id/button1']") public WebElement agree_btn;
-    @AndroidFindBy (id = "com.google.android.gms:id/add_account_chip_title") public WebElement use_Another_Account_btn;
+    @AndroidFindBy (id = "com.google.android.gms:id/add_account_chip_title") public List <WebElement> use_Another_Account_btn;
     @AndroidFindBy (id = "com.google.android.gms:id/account_name") public List <WebElement> accout_ID_lbl;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@text='ACCEPT']"),@AndroidBy(className= "android.widget.Button")}) public WebElement services_Accept_btn;
     @AndroidFindBy (xpath = "//*[@text='MORE']") public WebElement more_btn;

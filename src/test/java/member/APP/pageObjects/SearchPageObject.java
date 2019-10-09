@@ -26,6 +26,9 @@ public class SearchPageObject {
     @AndroidFindBy (id = "com.shop.android:id/item_title_text") public List <WebElement> search_Suggestion_lstItem_MM;
     @AndroidFindBy (id = "com.daraz.android:id/text") public List <WebElement> did_You_Mean_lbl;
     @AndroidFindBy (id = "com.shop.android:id/text") public List <WebElement> did_You_Mean_lbl_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/got_it") public List <WebElement> ok_Got_It_btn;
+    @AndroidFindBy(id = "com.shop.android:id/got_it") public List <WebElement> ok_Got_It_btn_MM;
+
 
     public By searchResult_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
     public By searchResult_lbl_By_MM = By.id("com.shop.android:id/product_name_text_view");
