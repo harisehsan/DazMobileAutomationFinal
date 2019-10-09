@@ -172,7 +172,7 @@ public class Address extends Base {
         int tries = 0;
         int deleteTries = 0;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            while (isExist(addressPageObject.edit_Address_btn) && deleteTries < 20) {
+            while (isExist(addressPageObject.edit_Address_btn) && deleteTries < 15) {
                 waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
                 scrollDownMultipleTries(10);
                 addressPageObject.edit_Address_btn.get(addressPageObject.edit_Address_btn.size() - 1).click();
@@ -193,7 +193,7 @@ public class Address extends Base {
             }
 
         } else {
-            while (isExist(addressPageObject.edit_Address_btn_MM) && deleteTries < 20) {
+            while (isExist(addressPageObject.edit_Address_btn_MM) && deleteTries < 15) {
                 waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By_MM);
                 scrollDownMultipleTries(10);
                 addressPageObject.edit_Address_btn_MM.get(addressPageObject.edit_Address_btn_MM.size() - 1).click();
@@ -203,8 +203,10 @@ public class Address extends Base {
                     tries++;
                 } while (!isExist(addressPageObject.delete_Address_btn_MM) && tries < 5);
                 addressPageObject.delete_Address_btn_MM.get(0).click();
-                if (isExist(addressPageObject.delete_Confirm_btn))
+                if (isExist(addressPageObject.delete_Confirm_btn)) {
                     addressPageObject.delete_Confirm_btn.get(0).click();
+                    deleteTries++;
+                }
                 else {
                     driver.navigate().back();
                     return;
@@ -216,9 +218,9 @@ public class Address extends Base {
     public boolean verifyTheRemovedAddress()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
-            return (addressPageObject.edit_Address_btn.size() == 1);
+            return (addressPageObject.edit_Address_btn.size() > 0 && addressPageObject.edit_Address_btn.size() < 3);
         else
-            return (addressPageObject.edit_Address_btn.size() == 1);
+            return (addressPageObject.edit_Address_btn_MM.size() > 0 && addressPageObject.edit_Address_btn_MM.size() < 3);
 
     }
 
