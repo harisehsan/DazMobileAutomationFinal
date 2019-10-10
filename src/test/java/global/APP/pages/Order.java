@@ -28,13 +28,17 @@ public class Order extends Base {
     }
 
     public void selectReasonForCancellation(List<String> cancellationReason)  {
+        int tries = 0;
         int Index = randomNumberGenerator(cancellationReason.size());
         waitUntilPresentOfElementBy(orderPageObject.select_Reason_btn_by);
         do {
             orderPageObject.select_Reason_btn.click();
             waitUntilPresentOfElementByString(cancellationReason.get(Index));
             clickElementMultipleTriesUsingString(cancellationReason.get(Index), 3);
-            clickMultipleTries(orderPageObject.reason_Confirm_btn,8);
+            do {
+                clickMultipleTries(orderPageObject.reason_Confirm_btn,6);
+                tries++;
+            }while (isExist(orderPageObject.reason_Confirm_btn) && tries < 4);
         } while (!(waitWithoutExceptionByString(cancellationReason.get(Index))));
     }
 
