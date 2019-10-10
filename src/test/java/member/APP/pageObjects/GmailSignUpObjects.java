@@ -17,7 +17,7 @@ public class GmailSignUpObjects {
     @AndroidFindBy(xpath="//*[@text='Create account']") public List <WebElement>  create_Account_btn;
     @AndroidFindAll({@AndroidBy(id = "firstName"), @AndroidBy(xpath = "//*[@resource-id='firstName']")}) public WebElement first_name_txt;
 //    @AndroidFindBy(xpath="//*[@class='android.view.View']") public WebElement First_name_txt;
-    @AndroidFindAll({@AndroidBy(id = "collectNameNext"), @AndroidBy(xpath = "//*[@text='Next']")}) public List <WebElement> next_Second_btn;
+    @AndroidFindAll({@AndroidBy(xpath = "//*[@id='collectNameNext']"), @AndroidBy(xpath = "//*[@text='Next']")}) public List <WebElement> next_Second_btn;
     @AndroidFindAll({@AndroidBy(id = "lastName"), @AndroidBy(xpath = "//*[@resource-id='lastName']")}) public WebElement last_name_txt;
     @AndroidFindBy(className = "android.widget.EditText") public List <WebElement> dob_txt;
     @AndroidFindBy(xpath = "//*[@text='Create a different Gmail address']") public WebElement gmail_Address_lbl;

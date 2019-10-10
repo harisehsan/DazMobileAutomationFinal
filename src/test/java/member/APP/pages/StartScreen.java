@@ -61,5 +61,18 @@ public class StartScreen extends Base {
         }
        }
 
+       public void skipShakeShake(String env)
+       {
+           if(!(env.equalsIgnoreCase("mm.live"))) {
+               if (waitWithoutException(startScreenPageObjects.shake_lbl))
+                   startScreenPageObjects.shake_lbl.click();
+           }
+           else
+           {
+               if (waitWithoutException(startScreenPageObjects.shake_lbl_MM))
+                   startScreenPageObjects.shake_lbl_MM.click();
+           }
+       }
+
     }
 

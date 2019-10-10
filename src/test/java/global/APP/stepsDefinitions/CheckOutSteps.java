@@ -75,6 +75,4 @@ public class CheckOutSteps {
     public void iClickOnTrackOrder() {
         checkout.clickTrackOrder();
     }
-
-
 }

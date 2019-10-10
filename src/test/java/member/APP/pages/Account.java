@@ -31,16 +31,16 @@ public class Account extends Base
         PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
     }
 
-    public String verifySignin()
+    public boolean verifySignin()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(gmailSignUpObjects.account_Holder_Name_lbl_By);
-            return gmailSignUpObjects.account_Holder_Name_lbl.getText();
+            return (!(gmailSignUpObjects.account_Holder_Name_lbl.getText().equalsIgnoreCase("")));
         }
         else
         {
             waitUntilPresentOfElementBy(gmailSignUpObjects.account_Holder_Name_lbl_By_MM);
-            return gmailSignUpObjects.account_Holder_Name_lbl_MM.getText();
+            return (!(gmailSignUpObjects.account_Holder_Name_lbl_MM.getText().equalsIgnoreCase("")));
         }
     }
 

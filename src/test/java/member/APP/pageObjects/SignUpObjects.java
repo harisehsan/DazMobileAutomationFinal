@@ -18,7 +18,7 @@ public class SignUpObjects {
     @AndroidFindBy(id="com.shop.android:id/tab_layout") public List<WebElement> account_lbl_MM;
     @AndroidFindAll({@AndroidBy(id = "com.shop.android:id/txt_login_signup"), @AndroidBy(xpath = "//*[@text='Login / Sign up']")}) public List <WebElement> signup_And_Login_btn_MM;
     @AndroidFindBy(id="com.shop.android:id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn_MM;
-    @AndroidFindBy (id="com.shop.android:id/img_settings") public WebElement settings_icon_MM;
+    @AndroidFindBy (id="com.shop.android:id/tv_settings") public WebElement settings_icon_MM;
 
 
     public By account_lbl_By = By.id("com.daraz.android:id/tab_layout");
@@ -31,5 +31,5 @@ public class SignUpObjects {
     public By account_lbl_By_MM = By.id("com.shop.android:id/tab_layout");
     public By signup_And_Login_btn_By_MM = By.id("com.shop.android:id/txt_login_signup");
     public By signup_btn_By_MM = By.id("com.shop.android:id/btn_login_fresh_welcome_sign_up");
-    public By settings_icon_By_MM = By.id("com.shop.android:id/img_settings");
+    public By settings_icon_By_MM = By.id("com.shop.android:id/tv_settings");
 }

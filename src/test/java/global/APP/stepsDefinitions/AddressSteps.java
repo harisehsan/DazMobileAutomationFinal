@@ -51,8 +51,6 @@ public class AddressSteps {
     @And("I add the address details")
     public void iAddTheAddressDetails() throws IOException {
         editTheAddress();
-        address.makeDefault();
-
     }
 
     @And("I click on edit address button")
@@ -67,6 +65,11 @@ public class AddressSteps {
 
     @Then("I verify that all deletable address removed successfully")
     public void iVerifyThatAllDeletableAddressRemovedSuccessfully() {
-      Assert.assertTrue(address.verifyTheRemovedAddress(),"Deletable addresses are removed successfully!");
+      Assert.assertTrue(address.verifyTheRemovedAddress(),"Deletable addresses are not removed successfully!");
+    }
+
+    @And("I make the address default billing and shipping address")
+    public void iMakeTheAddressDefaultBillingAndShippingAddress() {
+        address.makeDefault();
     }
 }

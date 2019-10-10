@@ -6,7 +6,6 @@ import global.APP.pageObjects.SearchBarPageObject;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.SignUpObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -49,10 +48,14 @@ public class DarazMall extends Base {
     }
 
     public boolean verifyTheDarazMall() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl);
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl));
-        else
+        }
+        else {
+            waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl_MM);
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_MM));
+        }
     }
 
     public void navigatebackToHomePage(String page) {
@@ -79,14 +82,14 @@ public class DarazMall extends Base {
             driver.navigate().back();
         }
 
-    public void clickOnShopMoreButtonForDarazMall() {
-        int tries = 5;
+    public boolean clickOnShopMoreButtonForDarazMall() {
+        int tries = 12;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
-            for (int i = 0; i < tries; tries++) {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(darazMallPageObject.daraz_Mall_container_lbl)) {
-                    darazMallPageObject.shop_More_btn.get(0).click();
-                    break;
+                       darazMallPageObject.shop_More_btn.get(0).click();
+                    return true;
                 } else
                     swiptToBottom();
             }
@@ -94,13 +97,14 @@ public class DarazMall extends Base {
         else
         {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
-            for (int i = 0; i < tries; tries++) {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(darazMallPageObject.official_Store_container_lbl_MM)) {
-                    darazMallPageObject.shop_More_btn.get(0).click();
-                    break;
+                    darazMallPageObject.official_Store_Shop_More_btn.get(0).click();
+                    return true;
                 } else
                     swiptToBottom();
             }
         }
+        return false;
     }
 }

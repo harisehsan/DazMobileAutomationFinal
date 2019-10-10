@@ -32,6 +32,6 @@ public class DarazMallSteps {
 
     @And("I click on shop more button to navigate to Daraz Mall")
     public void iClickOnShopMoreButtonToNavigateToDarazMall() {
-        darazMall.clickOnShopMoreButtonForDarazMall();
+        Assert.assertTrue(darazMall.clickOnShopMoreButtonForDarazMall(), "Shop More option for Daraz Mall/Official Store is not available yet!");
     }
 }

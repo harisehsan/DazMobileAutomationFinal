@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class FlashSalePageObject {
-    @AndroidFindBy (id = "com.daraz.android:id/laz_hp_flash_sale_v2_logo_title") public List <WebElement> flash_Sale_lbl;
+    @AndroidFindBy (id = "com.daraz.android:id/laz_hp_flash_sale_v2_logo_imageview") public List <WebElement> flash_Sale_lbl;
     @AndroidFindBy (id = "com.daraz.android:id/timer_hours") public List <WebElement> flash_Sale_Hour_lbl;
     @AndroidFindBy (id = "com.daraz.android:id/timer_minutes") public List <WebElement> flash_Sale_minutes_lbl;
     @AndroidFindBy (id = "com.daraz.android:id/timer_seconds") public List <WebElement> flash_Sale_seconds_lbl;
@@ -24,7 +24,7 @@ public class FlashSalePageObject {
     @AndroidFindBy (id = "com.daraz.android:id/tv_price") public WebElement discount_Price_lbl;
     @AndroidFindBy (id = "com.daraz.android:id/got_it") public List <WebElement> chat_Ok_btn;
 
-    @AndroidFindBy (id = "com.shop.android:id/laz_hp_flash_sale_v2_logo_title") public List <WebElement> flash_Sale_lbl_MM;
+    @AndroidFindBy (id = "com.shop.android:id/laz_hp_flash_sale_v2_logo_imageview") public List <WebElement> flash_Sale_lbl_MM;
     @AndroidFindBy (id = "com.shop.android:id/timer_hours") public List <WebElement> flash_Sale_Hour_lbl_MM;
     @AndroidFindBy (id = "com.shop.android:id/timer_minutes") public List <WebElement> flash_Sale_minutes_lbl_MM;
     @AndroidFindBy (id = "com.shop.android:id/timer_seconds") public List <WebElement> flash_Sale_seconds_lbl_MM;

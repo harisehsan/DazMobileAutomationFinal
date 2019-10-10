@@ -80,6 +80,6 @@ public class WishlistSteps {
 
     @Then("I verify that deleted item should not present in wishlist")
     public void iVerifyThatDeletedItemShouldNotPresentInWishlist() {
-        Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(productName));
+        Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(productName),"Item is not deleted from wishlist!");
     }
 }

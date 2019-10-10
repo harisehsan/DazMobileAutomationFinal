@@ -36,8 +36,8 @@ public class CartPageObjects {
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_action_manage_btn") public WebElement delete_first_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_management_delete") public WebElement delete_second_btn_MM;
     @AndroidFindBy (id= "android:id/button1") public WebElement delete_third_btn;
-    @AndroidFindBy (id = "com.daraz.android:id/confirm_button") public WebElement overseas_Confirm_btn;
-    @AndroidFindBy (id = "com.shop.android:id/confirm_button") public WebElement overseas_Confirm_btn_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/confirm_button") public List <WebElement> overseas_Confirm_btn;
+    @AndroidFindBy (id = "com.shop.android:id/confirm_button") public List <WebElement> overseas_Confirm_btn_MM;
     @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/ckb_laz_trade_total_checkbox"),@AndroidBy(id = "com.shop.android:id/ckb_laz_trade_total_checkbox")}) public WebElement select_All_chkbox;
     @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/iv_laz_trade_item_action_wishlist"),@AndroidBy(id = "com.shop.android:id/iv_laz_trade_item_action_wishlist")}) public List <WebElement> wishlist_In_Cart_btn;
     @AndroidFindBy(id = "com.daraz.android:id/other_action") public List <WebElement> buy_Now_btn;

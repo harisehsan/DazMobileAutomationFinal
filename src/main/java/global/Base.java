@@ -118,7 +118,7 @@ public class Base {
             int width = dim.getWidth();
             int x = width / 2;
             int top_y = (int) (height * 0.80);
-            int bottom_y = (int) (height * 0.785);
+            int bottom_y = (int) (height * 0.787);
 //            System.out.println("coordinates :" + x + "  " + top_y + " " + bottom_y);
             TouchAction ts = new TouchAction(driver);
             ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
@@ -156,7 +156,7 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 70)
+        new WebDriverWait(driver, 120)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -166,7 +166,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 11)
+            new WebDriverWait(driver, 25)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {
@@ -206,15 +206,15 @@ public class Base {
     }
 
     protected WebElement findElementByString(String Name) {
-        if (Name.length() > 25)
-            Name = Name.substring(0, 25);
+        if (Name.length() > 20)
+            Name = Name.substring(0, 20);
         return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]"));
     }
 
     protected void waitUntilPresentOfElementByString(String Name) {
-        if (Name.length() > 25)
-            Name = Name.substring(0, 25);
-        new WebDriverWait(driver, 50)
+        if (Name.length() > 20)
+            Name = Name.substring(0, 20);
+        new WebDriverWait(driver, 120)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
     }
 
@@ -294,7 +294,7 @@ public class Base {
 
     protected boolean waitWithoutExceptionByText(String Name) {
         try {
-            new WebDriverWait(driver, 10)
+            new WebDriverWait(driver, 15)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='"+Name+"']")));
             return true;
         } catch (Exception ex) {
@@ -312,4 +312,14 @@ public class Base {
 //        TouchAction touchAction = new TouchAction(driver);
 //        touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), ele.getLocation().getY())).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele2.getLocation().getX(), ele2.getLocation().getY())).release().perform();
 //    }
+public boolean waitWithoutExceptionForElements(List <WebElement> id) {
+    try {
+        new WebDriverWait(driver, 25)
+                .until(ExpectedConditions.elementToBeClickable(id.get(0)));
+        return true;
+    } catch (Exception ex) {
+        System.out.println("Required element is not available yet!");
+        return true;
+    }
+}
 }

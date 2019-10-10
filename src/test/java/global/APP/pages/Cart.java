@@ -22,9 +22,9 @@ public class Cart extends Base {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), cartPageObjects);
     }
-    public void addToCart()
-    {
-       cartPageObjects.add_To_Cart_btn.get(0).click();
+
+    public void addToCart() {
+        cartPageObjects.add_To_Cart_btn.get(0).click();
     }
 
     public String selectProductForCart() {
@@ -34,35 +34,46 @@ public class Cart extends Base {
             return cartPageObjects.product_Title_lbl_MM.getText();
     }
 
-    public String verifyTheAddedProductBySuccessMessage()
-    {
+    public String verifyTheAddedProductBySuccessMessage() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
             return cartPageObjects.success_Message_lbl.getText();
         else
             return cartPageObjects.success_Message_lbl_MM.getText();
     }
 
-   public void goToCartFromPDP()
-    {
+    public void goToCartFromPDP() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-         cartPageObjects.go_To_Cart_btn.click();
+            cartPageObjects.go_To_Cart_btn.click();
         else
-          cartPageObjects.go_To_Cart_btn_MM.click();
+            cartPageObjects.go_To_Cart_btn_MM.click();
     }
 
-    public String verifyAddedProductInCart()
-    {
+    public boolean verifyAddedProductInCart(String productName) {
+        int tries = 5;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
-            cartPageObjects.ok_Got_It_btn.get(0).click();
-            return cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
-        }
-        else {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
+            if(isExist(cartPageObjects.ok_Got_It_btn))
+                cartPageObjects.ok_Got_It_btn.get(0).click();
+            for (int i = 0; i < tries; i++) {
+                for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl.size(); j++) {
+                    if (cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName))
+                        return cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName);
+                }
+                scrollDownMultipleTries(2);
+            }
+        } else {
+            if(isExist(cartPageObjects.ok_Got_It_btn_MM))
             cartPageObjects.ok_Got_It_btn_MM.get(0).click();
-            return cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
+            for (int i = 0; i < tries; i++) {
+                for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl.size(); j++) {
+                    if (cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName))
+                        return cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName);
+                }
+                scrollDownMultipleTries(2);
+            }
         }
+        return false;
     }
+
 
     public void selectCart()
     {
@@ -79,8 +90,8 @@ public class Cart extends Base {
     public String removeSingleItemFromCart()
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-           waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
-           cartPageObjects.ok_Got_It_btn.get(0).click();
+            if(isExist(cartPageObjects.ok_Got_It_btn))
+                cartPageObjects.ok_Got_It_btn.get(0).click();
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to remove!");
                if(cartPageObjects.product_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
@@ -91,8 +102,8 @@ public class Cart extends Base {
                return productName;
            }
         else {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
-            cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+            if(isExist(cartPageObjects.ok_Got_It_btn_MM))
+                 cartPageObjects.ok_Got_It_btn_MM.get(0).click();
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to remove!");
             else {
@@ -123,8 +134,8 @@ public class Cart extends Base {
     public void removeAllItemsFromCart()
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
-            cartPageObjects.ok_Got_It_btn.get(0).click();
+            if(isExist(cartPageObjects.ok_Got_It_btn))
+                cartPageObjects.ok_Got_It_btn.get(0).click();
             if ((verifyEmptyCart()))
                throw new RuntimeException("There is no item available in cart to remove!");
             if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
@@ -134,8 +145,8 @@ public class Cart extends Base {
             cartPageObjects.delete_third_btn.click();
         }
         else {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
-            cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+            if(isExist(cartPageObjects.ok_Got_It_btn_MM))
+                cartPageObjects.ok_Got_It_btn_MM.get(0).click();
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to remove!");
             if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
@@ -151,28 +162,24 @@ public class Cart extends Base {
         return !(isExist(cartPageObjects.product_Title_In_Cart_lbl));
     }
 
-    public void addProductFromCartToWishlist()
-    {
+    public void addProductFromCartToWishlist() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
-            cartPageObjects.ok_Got_It_btn.get(0).click();
+            if (isExist(cartPageObjects.ok_Got_It_btn))
+                cartPageObjects.ok_Got_It_btn.get(0).click();
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
-            else
-            {
-                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox.get(0));
+            else {
+                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0), cartPageObjects.product_chkbox.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By);
                 cartPageObjects.wishlist_In_Cart_btn.get(0).click();
             }
-        }
-        else {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
-            cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+        } else {
+            if (isExist(cartPageObjects.ok_Got_It_btn_MM))
+                cartPageObjects.ok_Got_It_btn_MM.get(0).click();
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
-            else
-            {
-                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0),cartPageObjects.product_chkbox_MM.get(0));
+            else {
+                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0), cartPageObjects.product_chkbox_MM.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By_MM);
                 cartPageObjects.wishlist_In_Cart_btn.get(0).click();
             }

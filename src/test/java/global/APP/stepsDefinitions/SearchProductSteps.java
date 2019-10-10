@@ -32,7 +32,7 @@ public class SearchProductSteps {
 
     @Then("I should see search products")
     public void iShouldSeeSearchProducts() {
-      Assert.assertTrue(searchProduct.verifyTheSearchProduct(this.searchKeyword));
+      Assert.assertTrue(searchProduct.verifyTheSearchProduct(this.searchKeyword),"The search result(s) is/are not shown!");
     }
 
     @And("I navigate back to the main screen")
@@ -58,11 +58,11 @@ public class SearchProductSteps {
 
     @Then("I should see the search suggestion keyword in the product name")
     public void iShouldSeeTheSerachSuggestionKeywordInTheProductName() {
-     Assert.assertTrue(searchProduct.checkForSuggestionKeywordInProduct(this.searchSuggestionKeyword));
+     Assert.assertTrue(searchProduct.checkForSuggestionKeywordInProduct(this.searchSuggestionKeyword),"The search result(s) is/are not shown!");
     }
 
     @Then("I look for the did you mean option")
     public void iLookForTheDidYouMeanOption() throws InterruptedException {
-        Assert.assertTrue(searchProduct.clickOnDidYouMeanOption());
+        Assert.assertTrue(searchProduct.clickOnDidYouMeanOption(), "Did you mean option is not available for this search keyword!");
     }
 }
