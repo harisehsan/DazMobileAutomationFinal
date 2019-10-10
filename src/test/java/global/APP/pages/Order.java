@@ -34,7 +34,7 @@ public class Order extends Base {
             orderPageObject.select_Reason_btn.click();
             waitUntilPresentOfElementByString(cancellationReason.get(Index));
             clickElementMultipleTriesUsingString(cancellationReason.get(Index), 3);
-            clickMultipleTries(orderPageObject.reason_Confirm_btn,4);
+            clickMultipleTries(orderPageObject.reason_Confirm_btn,8);
         } while (!(waitWithoutExceptionByString(cancellationReason.get(Index))));
     }
 
