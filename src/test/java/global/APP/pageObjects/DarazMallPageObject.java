@@ -25,4 +25,5 @@ public class DarazMallPageObject {
     @AndroidFindBy (xpath = "//*[@text='Official Stores ( 14 Days Return )' and ./parent::*[@class='android.widget.FrameLayout']]") public List <WebElement> official_Store_container_lbl_MM;
     @AndroidFindBy (xpath = "((//*[@contentDescription='OfficialStore']/*[@class='android.widget.FrameLayout'])[1]/*[@text])[2]") public List <WebElement> official_Store_Shop_More_btn;
     @AndroidFindBy (id = "com.shop.android:id/laz_hpc_channel_top_text") public List <WebElement> official_Store_lbl_MM;
+    @AndroidFindBy (xpath = "//*[@text='DarazMall']") public List <WebElement> daraz_Mall_Title_lbl_NP;
 }

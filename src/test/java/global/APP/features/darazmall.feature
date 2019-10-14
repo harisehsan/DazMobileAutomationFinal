@@ -1,8 +1,8 @@
 @smoke @darazmall
 Feature: Daraz Mall Management
 
-  @22519011 @select_daraz_mall_by_icon
-  Scenario: Select Daraz Mall by icon and navigate back to home page
+  @22519011 @select_daraz_mall_by_channel
+  Scenario: Select Daraz Mall Channel on homepage and navigate back to home page
     Given I select the venture
     And I skip the shake shake popup
     And I check the existence of the Daraz Mall on Homepage

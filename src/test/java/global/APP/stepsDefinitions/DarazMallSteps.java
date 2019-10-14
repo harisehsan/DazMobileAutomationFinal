@@ -16,13 +16,13 @@ public class DarazMallSteps {
     }
 
     @And("I click on Daraz Mall icon to navigate to Daraz Mall")
-    public void iSelectShopMore() {
-       darazMall.selectShopMoreForDarazMall();
+    public void clickOnDarazMallChannel() {
+       darazMall.clickOnDarazMallChannel();
     }
 
     @Then("I should be on the Daraz Mall page")
     public void iShouldBeInTheDarazMall() {
-       Assert.assertTrue(darazMall.verifyTheDarazMall(), "Daraz Mall/Official Store is not working correctly!");
+       Assert.assertTrue(darazMall.verifyTheDarazMall(), "Daraz Mall/Official Store is not working or showing correctly!");
     }
 
     @And("I navigate back to the Home Page from {string}")
