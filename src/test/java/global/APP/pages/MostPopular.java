@@ -7,6 +7,12 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Developed By: Muhammad Haris Ehsan
+ * Date: 15-October-2019
+ */
+
+
 public class MostPopular extends Base {
 
     MostPopularPageObject mostPopularPageObject = new MostPopularPageObject();
