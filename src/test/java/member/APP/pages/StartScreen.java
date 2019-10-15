@@ -64,21 +64,21 @@ public class StartScreen extends Base {
        public void skipShakeShake(String env)
        {
            if(!(env.equalsIgnoreCase("mm.live"))) {
-               if (waitWithoutException(startScreenPageObjects.shake_lbl)) {
+               if (waitWithoutExceptionForElements(startScreenPageObjects.shake_lbl)) {
                    if (isExist(startScreenPageObjects.shake_Shake_Close_btn))
                        startScreenPageObjects.shake_Shake_Close_btn.get(0).click();
-                   else
-                       startScreenPageObjects.shake_lbl.click();
+                   else if(isExist(startScreenPageObjects.shake_lbl))
+                       startScreenPageObjects.shake_lbl.get(0).click();
                }
                }
            else
            {
-               if (waitWithoutException(startScreenPageObjects.shake_lbl_MM))
+               if (waitWithoutExceptionForElements(startScreenPageObjects.shake_lbl_MM))
                {
                    if (isExist(startScreenPageObjects.shake_Shake_Close_btn_MM))
                        startScreenPageObjects.shake_Shake_Close_btn_MM.get(0).click();
-                   else
-                       startScreenPageObjects.shake_lbl_MM.click();
+                   else if(isExist(startScreenPageObjects.shake_lbl_MM))
+                       startScreenPageObjects.shake_lbl.get(0).click();
                }
            }
        }
