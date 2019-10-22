@@ -174,15 +174,6 @@ public class JustForYou extends Base {
 
     public boolean verifyPDPPageItems() throws IOException {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-
-            System.out.println("Product Title: "+justForYouPageObject.product_Title_pdp.getText().contains(justForYouGetProperty.productTitle()));
-            System.out.println("Displayed Price: "+justForYouPageObject.display_Price_On_Pdp_lbl.getText().replaceAll("\\D+","").contains(justForYouGetProperty.displayedPrice()));
-            System.out.println("Original Price: "+(justForYouPageObject.original_Price_On_Pdp_lbl.getText().replaceAll("\\D+","").contains(justForYouGetProperty.originalPrice())));
-            System.out.println("Discount Rate: "+(justForYouPageObject.discount_Pdp_lbl.get(0).getText().contains(justForYouGetProperty.discountRate())));
-
-            System.out.println("This is PDP: "+justForYouPageObject.discount_Pdp_lbl.get(0).getText()+" This is the catalog: "+justForYouGetProperty.discountRate());
-
-
             return (justForYouPageObject.product_Title_pdp.getText().contains(justForYouGetProperty.productTitle())
                     &&  justForYouPageObject.display_Price_On_Pdp_lbl.getText().replaceAll("\\D+","").contains(justForYouGetProperty.displayedPrice())
                     && (justForYouPageObject.original_Price_On_Pdp_lbl.getText().replaceAll("\\D+","").contains(justForYouGetProperty.originalPrice()))
@@ -236,5 +227,4 @@ public class JustForYou extends Base {
         }
         return false;
     }
-
 }
