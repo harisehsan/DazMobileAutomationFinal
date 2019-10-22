@@ -130,7 +130,7 @@ public class JustForYou extends Base {
         }
         else
         {
-            for (int j=0;j<2;j++) {
+            for (int j=0;j<3;j++) {
                 for (int i = 0; i < justForYouPageObject.product_Title_lbl_MM.size(); i++) {
                     justForYouPageObject.product_Title_lbl_MM.get(i).click();
                     if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
