@@ -1,5 +1,6 @@
 package global.APP.pages;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import global.APP.getProperty.JustForYouGetProperty;
 import global.APP.getProperty.JustForYouSetProperty;
 import global.APP.pageObjects.CartPageObjects;
@@ -25,6 +26,8 @@ public class JustForYou extends Base {
     SearchPageObject searchPageObj = new SearchPageObject();
     JustForYouGetProperty justForYouGetProperty = new JustForYouGetProperty();
 
+    boolean isExistproductRating = false;
+
     public JustForYou(AppiumDriver<WebElement> driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), justForYouPageObject);
@@ -32,159 +35,140 @@ public class JustForYou extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObj);
     }
 
-    int productID;
-
     public boolean checkTheExistenceofJustForYou() {
         int tries = 20;
-        int j=0;
+        int j = 0;
         scrollDownMultipleTries(4);
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < tries; i++) {
-                if (isExist(justForYouPageObject.just_For_You_title_lbl))
-                {
-                    while ((!isExist(justForYouPageObject.rating_bar) || !isExist(justForYouPageObject.discount_lbl)) && j < 15) {
+                if (isExist(justForYouPageObject.just_For_You_title_lbl)) {
+                    while ((!isExist(justForYouPageObject.discount_lbl))) {
                         swiptToBottom();
                         j++;
                     }
                     return true;
-                }
-                else
+                } else
                     swiptToBottom();
             }
         } else {
             for (int i = 0; i < tries; i++) {
-                if (isExist(justForYouPageObject.just_For_You_title_lbl_MM))
-                {
-                    while ((!isExist(justForYouPageObject.rating_bar_MM) || !isExist(justForYouPageObject.discount_lbl_MM)) && j < 15) {
+                if (isExist(justForYouPageObject.just_For_You_title_lbl_MM)) {
+                    while (!isExist(justForYouPageObject.discount_lbl_MM)){
                         swiptToBottom();
                         j++;
                     }
                     return true;
-                }
-                else
+                } else
                     swiptToBottom();
             }
         }
         return false;
     }
 
-    public boolean verifyProductTitleAndPrice() throws IOException {
-        productID = selectTheDiscountableProducts();
+    public void collectProductInformation() throws IOException {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-           justForYouSetProperty.setProductInformation(justForYouPageObject.product_Title_lbl.get(productID).getText(),justForYouPageObject.display_Price_lbl.get(productID).getText());
-           return (isExist(justForYouPageObject.product_Title_lbl) && isExist(justForYouPageObject.display_Price_lbl) && isExist(justForYouPageObject.rating_bar));
+            justForYouSetProperty.setProductInformation(justForYouPageObject.product_Title_pdp.getText(), justForYouPageObject.display_Price_On_Pdp_lbl.getText());
+            justForYouSetProperty.setProductDiscountInformation(justForYouPageObject.discount_Pdp_lbl.get(0).getText(), justForYouPageObject.original_Price_On_Pdp_lbl.getText());
+            if (isExist(justForYouPageObject.rating_Pdp_bar))
+                isExistproductRating = true;
 
-        }
-        else
-        {
-            justForYouSetProperty.setProductInformation(justForYouPageObject.product_Title_lbl_MM.get(productID).getText(),justForYouPageObject.display_Price_lbl_MM.get(productID).getText());
-            return (isExist(justForYouPageObject.product_Title_lbl_MM) && isExist(justForYouPageObject.display_Price_lbl_MM) && isExist(justForYouPageObject.rating_bar_MM));
+        } else {
+            justForYouSetProperty.setProductInformation(justForYouPageObject.product_Title_pdp_MM.getText(), justForYouPageObject.display_Price_On_Pdp_lbl_MM.getText());
+            justForYouSetProperty.setProductDiscountInformation(justForYouPageObject.discount_Pdp_lbl_MM.get(0).getText(), justForYouPageObject.original_Price_On_Pdp_lbl_MM.getText());
+            if (isExist(justForYouPageObject.rating_Pdp_bar_MM))
+                isExistproductRating = true;
         }
     }
 
-    public boolean verifyTheOriginalAndDiscountRate() throws IOException {
-        int discountProductID;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            if (justForYouPageObject.discount_lbl.size()==1 || justForYouPageObject.original_Price_lbl.size()==1)
-                discountProductID = (justForYouPageObject.original_Price_lbl.size()-1);
-            else
-                discountProductID = productID;
-              justForYouSetProperty.setProductDiscountInformation(justForYouPageObject.discount_lbl.get(discountProductID).getText(), justForYouPageObject.original_Price_lbl.get(discountProductID).getText());
-              return (isExist(justForYouPageObject.discount_lbl) && isExist(justForYouPageObject.original_Price_lbl));
-        }
-        else
-        {
-            if (justForYouPageObject.discount_lbl_MM.size()==1 || justForYouPageObject.original_Price_lbl_MM.size()==1)
-                discountProductID = (justForYouPageObject.original_Price_lbl_MM.size()-1);
-            else
-                discountProductID = productID;
-            justForYouSetProperty.setProductDiscountInformation(justForYouPageObject.discount_lbl_MM.get(discountProductID).getText(),justForYouPageObject.original_Price_lbl_MM.get(discountProductID).getText());
-            return (isExist(justForYouPageObject.discount_lbl_MM) && isExist(justForYouPageObject.original_Price_lbl_MM));
-        }
-    }
+    public boolean verifyProductInformationInJustForYouSection() throws IOException {
+     int tries =5;
+     boolean isExistDiscountRate = false;
+     boolean isExistProductTitle =false;
+     boolean isExistDisplayedPrice = false;
+     boolean isExistedOriginalPrice =false;
+     boolean isExistedRating = true;
 
-    public int selectTheDiscountableProducts()
-    {
-        int k=0;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-        for (int j=0;j<3;j++) {
-            for (int i = 0; i < justForYouPageObject.product_Title_lbl.size(); i++) {
-                justForYouPageObject.product_Title_lbl.get(i).click();
-                if (isExist(cartPageObjects.overseas_Confirm_btn))
-                    cartPageObjects.overseas_Confirm_btn.get(0).click();
-                if (isExist(searchPageObj.ok_Got_It_btn))
-                    searchPageObj.ok_Got_It_btn.get(0).click();
-                if (isExist(justForYouPageObject.discount_Pdp_lbl) && isExist(justForYouPageObject.rating_Pdp_bar)) {
-                    driver.navigate().back();
-                    return i;
-                } else
-                    driver.navigate().back();
+      for (int i=0; i<tries; i++)
+      {
+          if (containsTextIsExist(justForYouGetProperty.discountRate()))
+          {
+              isExistDiscountRate =true;
+              break;
+          }
+          else
+              swiptToBottom();
+      }
+        for (int i=0; i<tries; i++)
+        {
+            if (containsTextIsExist(justForYouGetProperty.productTitle()))
+            {
+                isExistProductTitle =true;
+                break;
             }
-            scrollDownMultipleTries(2);
-            while ((!isExist(justForYouPageObject.rating_bar) || !isExist(justForYouPageObject.discount_lbl)) && k < 10) {
+            else
+            {
                 swiptToBottom();
-                k++;
             }
         }
-           throw new RuntimeException("There is no discountable product is available!");
-        }
-        else
+
+        for (int i=0; i<tries; i++)
         {
-            for (int j=0;j<3;j++) {
-                for (int i = 0; i < justForYouPageObject.product_Title_lbl_MM.size(); i++) {
-                    justForYouPageObject.product_Title_lbl_MM.get(i).click();
-                    if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
-                        cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
-                    if (isExist(searchPageObj.ok_Got_It_btn_MM))
-                        searchPageObj.ok_Got_It_btn_MM.get(0).click();
-                    if (isExist(justForYouPageObject.discount_Pdp_lbl_MM) && isExist(justForYouPageObject.rating_Pdp_bar_MM)) {
-                        driver.navigate().back();
-                        return i;
-                    } else
-                        driver.navigate().back();
+            if (containsTextIsExist(justForYouGetProperty.displayedPrice()))
+            {
+                isExistDisplayedPrice =true;
+                break;
+            }
+            else
+            {
+                swiptToBottom();
+            }
+        }
+
+        for (int i=0; i<tries; i++)
+        {
+            if (containsTextIsExist(justForYouGetProperty.originalPrice()))
+            {
+                isExistedOriginalPrice =true;
+                break;
+            }
+            else
+            {
+                swiptToBottom();
+            }
+        }
+        if (isExistproductRating)
+        {
+            for (int i=0; i<tries; i++)
+            {
+                if (isExist(justForYouPageObject.rating_bar) || isExist(justForYouPageObject.rating_bar_MM))
+                {
+                    isExistedRating =true;
+                    break;
                 }
-                scrollDownMultipleTries(2);
-                while ((!isExist(justForYouPageObject.rating_bar_MM) || !isExist(justForYouPageObject.discount_lbl_MM)) && k < 10) {
+                else
+                {
+                    isExistedRating =false;
                     swiptToBottom();
-                    k++;
                 }
             }
-            throw new RuntimeException("There is no discountable product is available!");
         }
+
+       return (isExistDiscountRate && isExistProductTitle && isExistDisplayedPrice && isExistedOriginalPrice && isExistedRating);
     }
 
-    public void navigateToPDPPage()
-    {
+    public void navigateToPDPPage() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            justForYouPageObject.product_Title_lbl.get(productID).click();
+           justForYouPageObject.discount_lbl.get(0).click();
             if (isExist(cartPageObjects.overseas_Confirm_btn))
                 cartPageObjects.overseas_Confirm_btn.get(0).click();
             if (isExist(searchPageObj.ok_Got_It_btn))
                 searchPageObj.ok_Got_It_btn.get(0).click();
-        }
-        else
-        {
-         justForYouPageObject.product_Title_lbl_MM.get(productID).click();
-         if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
-             cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
-         if (isExist(searchPageObj.ok_Got_It_btn_MM))
-             searchPageObj.ok_Got_It_btn_MM.get(0).click();
-        }
-    }
-
-    public boolean verifyPDPPageItems() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            return (justForYouPageObject.product_Title_pdp.getText().contains(justForYouGetProperty.productTitle())
-                    &&  justForYouPageObject.display_Price_On_Pdp_lbl.getText().replaceAll("\\D+","").contains(justForYouGetProperty.displayedPrice())
-                    && (justForYouPageObject.original_Price_On_Pdp_lbl.getText().replaceAll("\\D+","").contains(justForYouGetProperty.originalPrice()))
-                    && (justForYouPageObject.discount_Pdp_lbl.get(0).getText().contains(justForYouGetProperty.discountRate())));
-        }
-        else
-        {
-            return (justForYouPageObject.product_Title_pdp_MM.getText().contains(justForYouGetProperty.productTitle())
-                    &&  justForYouPageObject.display_Price_On_Pdp_lbl_MM.getText().replaceAll("\\D+","").contains(justForYouGetProperty.displayedPrice())
-                    && (justForYouPageObject.original_Price_On_Pdp_lbl_MM.getText().replaceAll("\\D+","").contains(justForYouGetProperty.originalPrice()))
-                    && (justForYouPageObject.discount_Pdp_lbl_MM.get(0).getText().contains(justForYouGetProperty.discountRate())));
+        } else {
+            justForYouPageObject.discount_lbl_MM.get(0).click();
+            if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
+                cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
+            if (isExist(searchPageObj.ok_Got_It_btn_MM))
+                searchPageObj.ok_Got_It_btn_MM.get(0).click();
         }
     }
 
@@ -226,5 +210,10 @@ public class JustForYou extends Base {
             }
         }
         return false;
+    }
+
+    public void navigateBackToJustForYou()
+    {
+        driver.navigate().back();
     }
 }

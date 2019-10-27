@@ -24,19 +24,42 @@ public class JustForYouGetProperty {
 
     public String originalPrice() throws IOException {
         fileInputStream();
-        return (prop.getProperty("ORIGINAL_PRICE").replaceAll("\\D+",""));
+        String originalPrice= prop.getProperty("ORIGINAL_PRICE");
+        if (originalPrice.contains("Rs. "))
+           originalPrice = originalPrice.replace("Rs. ","");
+        else if (originalPrice.contains("Rs."))
+            originalPrice = originalPrice.replace("Rs.","");
+        else if (originalPrice.contains("৳ "))
+            originalPrice = originalPrice.replace("৳ ","");
+        else if (originalPrice.contains("Ks "))
+            originalPrice = originalPrice.replace("Ks ","");
+        return originalPrice;
     }
 
     public String displayedPrice() throws IOException {
         fileInputStream();
-        return (prop.getProperty("DISPLAYED_PRICE").replaceAll("\\D+",""));
+        String displayedPrice= prop.getProperty("DISPLAYED_PRICE");
+        if (displayedPrice.contains("Rs. "))
+            displayedPrice = displayedPrice.replace("Rs. ","");
+        else if (displayedPrice.contains("Rs."))
+            displayedPrice = displayedPrice.replace("Rs.","");
+        else if (displayedPrice.contains("৳ "))
+            displayedPrice = displayedPrice.replace("৳ ","");
+        else if (displayedPrice.contains("Ks "))
+            displayedPrice = displayedPrice.replace("Ks ","");
+        return displayedPrice;
     }
 
     public String productTitle() throws IOException {
         fileInputStream();
-        if(prop.getProperty("PRODUCT_TITLE").length() >= 9)
-            return (prop.getProperty("PRODUCT_TITLE").substring(0,9));
+        String productTitle = prop.getProperty("PRODUCT_TITLE");
+        if (productTitle.contains("'"))
+          productTitle =  productTitle.replaceAll("'.*","");
+        if (productTitle.contains("0 "))
+            productTitle = productTitle.replace("0 ","");
+        if(productTitle.length() >= 9)
+            return (productTitle.substring(0,9));
         else
-            return (prop.getProperty("PRODUCT_TITLE"));
+            return (productTitle);
     }
 }

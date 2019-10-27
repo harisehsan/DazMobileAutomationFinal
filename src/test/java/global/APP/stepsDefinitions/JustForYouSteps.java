@@ -22,21 +22,14 @@ public class JustForYouSteps {
     }
 
 
-    @And("I Check for the product title, current price and star")
+    @Then("I verify the product title, current price, discount rate, original price and rating")
     public void iCheckForTheProductTitlePriceAndStar() throws IOException {
-        Assert.assertTrue(justForYou.verifyProductTitleAndPrice(),"Product title or price is not displayed or existed on Homepage!");
-
+        Assert.assertTrue(justForYou.verifyProductInformationInJustForYouSection(),"One or more information of product is not same as shown in PDP!");
     }
 
-    @And("I Check for the discount rate and original price")
+    @Then("I verify for the discount rate and original price")
     public void iCheckForTheCurrentPriceDiscountRateAndOriginalPrice() throws IOException {
-      Assert.assertTrue(justForYou.verifyTheOriginalAndDiscountRate(),"Product discount rate is not existed!");
-    }
-
-
-    @Then("I should see the consistent information on PDP page")
-    public void iShouldSeeTheConsistentInformationOnPDPPage() throws IOException {
-        Assert.assertTrue(justForYou.verifyPDPPageItems(), "One or more PDP items is/are not same as shown in the catalog!");
+      Assert.assertTrue(justForYou.verifyProductInformationInJustForYouSection(),"Product discount rate is not existed!");
     }
 
     @And("I scroll down to Just For You Section on Homepage and check its existence in local language")
@@ -48,5 +41,15 @@ public class JustForYouSteps {
     @And("I goto the PDP page from just for you catalog")
     public void iGotoThePDPPageFromJustForYouCatalog() {
         justForYou.navigateToPDPPage();
+    }
+
+    @And("I collect the product title, current price, rating, discount rate and original price from PDP")
+    public void iCollectTheProductTitleCurrentPriceRatingDiscountRateAndOriginalPriceFromPDP() throws IOException {
+        justForYou.collectProductInformation();
+    }
+
+    @And("I navigate back to the just for you section")
+    public void iNavigateBackToTheJustForYouSection() {
+        justForYou.navigateBackToJustForYou();
     }
 }

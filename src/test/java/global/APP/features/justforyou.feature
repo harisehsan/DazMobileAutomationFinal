@@ -6,10 +6,11 @@ Feature: Just For You Management for Daraz Homepage
     Given I select the venture
     And I skip the shake shake popup
     And I scroll down to Just For You Section on Homepage and check its existence
-    And I Check for the product title, current price and star
-    And I Check for the discount rate and original price
     And I goto the PDP page from just for you catalog
-    Then I should see the consistent information on PDP page
+    And I collect the product title, current price, rating, discount rate and original price from PDP
+    And I navigate back to the just for you section
+    And I skip the shake shake popup
+    Then I verify the product title, current price, discount rate, original price and rating
 
   @23047870 @verify_the_existence_of_just_for_you_in_local_language @28811868
   Scenario: Verify the existence of just for you in local language
