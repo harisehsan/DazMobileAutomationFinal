@@ -312,4 +312,22 @@ public class SearchProduct extends Base {
         else
             return (isExist(searchPageObj.did_You_Mean_lbl_MM));
     }
+
+    public void searchInCategoriesSection(String searchKeyword)
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        {
+            searchPageObj.search_In_Categories_btn.click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+            searchPageObj.searchAfterClick_txtfield.sendKeys(searchKeyword);
+            searchPageObj.search_btn.click();
+        }
+        else
+        {
+            searchPageObj.search_In_Categories_btn_MM.click();
+            searchPageObj.searchAfterClick_txtfield_MM.sendKeys(searchKeyword);
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+            searchPageObj.search_btn_MM.click();
+        }
+    }
 }

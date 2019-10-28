@@ -65,4 +65,9 @@ public class SearchProductSteps {
     public void iLookForTheDidYouMeanOption() throws InterruptedException {
         Assert.assertTrue(searchProduct.clickOnDidYouMeanOption(), "Did you mean option is not available for this search keyword!");
     }
+
+    @And("I search for {string} in the categories section")
+    public void iSearchForInTheCategoriesSection(String searchKeyword) {
+       searchProduct.searchInCategoriesSection(searchKeyword);
+    }
 }

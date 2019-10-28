@@ -28,6 +28,8 @@ public class SearchPageObject {
     @AndroidFindBy (id = "com.shop.android:id/text") public List <WebElement> did_You_Mean_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android:id/got_it") public List <WebElement> ok_Got_It_btn;
     @AndroidFindBy(id = "com.shop.android:id/got_it") public List <WebElement> ok_Got_It_btn_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/iv_search")  public WebElement search_In_Categories_btn;
+    @AndroidFindBy(id = "com.shop.android:id/iv_search")  public WebElement search_In_Categories_btn_MM;
 
 
     public By searchResult_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
@@ -38,4 +40,5 @@ public class SearchPageObject {
     public By searchAfterClick_txtfield_By_MM = By.id("com.shop.android:id/search_input_box");
     public By searchBox_Final_txtfield_By = By.id("com.daraz.android:id/srp_search_input_box");
     public By searchBox_Final_txtfield_By_MM = By.id("com.shop.android:id/srp_search_input_box");
+
 }

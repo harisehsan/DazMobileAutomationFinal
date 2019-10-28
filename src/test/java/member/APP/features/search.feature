@@ -33,3 +33,13 @@ Feature: Daraz Search Product Management
     Given I select the venture
     And I search for "watet"
     Then I look for the did you mean option
+
+  @23184571 @search_on_category_page @28809432
+  Scenario: Search in categories page
+    Given I select the venture
+    And I skip the shake shake popup
+    And I scroll down to categories section on homepage
+    And I select shop more for categories
+    And I should be on the categories page
+    And I search for "PS4" in the categories section
+    Then I should see search products
