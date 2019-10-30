@@ -5,9 +5,12 @@ import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import member.APP.getProperty.SearchGetProperty;
 import member.APP.pageObjects.SearchPageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,7 +22,9 @@ public class SearchProduct extends Base {
     SearchPageObject searchPageObj = new SearchPageObject();
     CartPageObjects cartPageObjects = new CartPageObjects();
     CheckOutPageObjects checkOutPageObjects = new CheckOutPageObjects();
+    SearchGetProperty searchGetProperty = new SearchGetProperty();
     private String productName;
+    private String searchKeyword;
 
     public SearchProduct(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -229,6 +234,7 @@ public class SearchProduct extends Base {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             do {
                 driver.navigate().back();
+                hideKeyboard();
             }
             while (!isExist(searchPageObj.searchBeforeClick_txtfield));
 
@@ -236,12 +242,14 @@ public class SearchProduct extends Base {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
             do {
                 driver.navigate().back();
+                hideKeyboard();
             }
             while (!isExist(searchPageObj.searchBeforeClick_txtfield_MM));
         }
     }
 
     public void searchUsingHistory(String searchKeyword) {
+       this.searchKeyword = searchKeyword;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             findElementByTextUsingExactString(searchKeyword).click();
@@ -312,4 +320,145 @@ public class SearchProduct extends Base {
         else
             return (isExist(searchPageObj.did_You_Mean_lbl_MM));
     }
+
+    public void searchInCategoriesSection(String searchKeyword)
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        {
+            searchPageObj.search_In_Categories_btn.click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+            searchPageObj.searchAfterClick_txtfield.sendKeys(searchKeyword);
+            searchPageObj.search_btn.click();
+        }
+        else
+        {
+            searchPageObj.search_In_Categories_btn_MM.click();
+            searchPageObj.searchAfterClick_txtfield_MM.sendKeys(searchKeyword);
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+            searchPageObj.search_btn_MM.click();
+        }
+    }
+
+    public void gotoStorePage() throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        {
+            for (int i=0;i<searchGetProperty.storeSearchKeyword().size();i++) {
+                searchPageObj.searchBeforeClick_txtfield.get(0).click();
+                waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+                searchPageObj.searchAfterClick_txtfield.sendKeys(searchGetProperty.storeSearchKeyword().get(i));
+                searchPageObj.search_btn.click();
+               if (waitWithoutExceptionByString("VISIT STORE")) {
+                   findElementByString("VISIT STORE").click();
+                   break;
+               }
+               else {
+                   do {
+                       driver.navigate().back();
+                       hideKeyboard();
+                   } while (!isExist(searchPageObj.searchBeforeClick_txtfield));
+               }
+            }
+        }
+        else
+        {
+            for (int i=0;i<searchGetProperty.storeSearchKeyword().size();i++) {
+                searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+                waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+                searchPageObj.searchAfterClick_txtfield_MM.sendKeys(searchGetProperty.storeSearchKeyword().get(i));
+                searchPageObj.search_btn_MM.click();
+                if (waitWithoutExceptionByString("VISIT STORE")) {
+                    findElementByString("VISIT STORE").click();
+                    break;
+                }
+                else {
+                    do {
+                        driver.navigate().back();
+                        hideKeyboard();
+                    } while (!isExist(searchPageObj.searchBeforeClick_txtfield_MM));
+                }
+            }
+        }
+
+    }
+
+    public void searchProductInStore()
+    {
+
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if(isExist(searchPageObj.got_It_Store_btn))
+                searchPageObj.got_It_Store_btn.get(0).click();
+            searchPageObj.all_Product_tab.click();
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
+            productName = searchPageObj.searchResult_lbl.get(0).getText();
+            searchPageObj.search_tab.click();
+            searchPageObj.searchAfterClick_txtfield.sendKeys(productName);
+            searchPageObj.search_btn.click();
+        }
+        else
+        {
+            if(isExist(searchPageObj.got_It_Store_btn_MM))
+                searchPageObj.got_It_Store_btn_MM.get(0).click();
+            searchPageObj.all_Product_tab.click();
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
+            productName = searchPageObj.searchResult_lbl_MM.get(0).getText();
+            searchPageObj.search_tab_MM.click();
+            searchPageObj.searchAfterClick_txtfield_MM.sendKeys(productName);
+            searchPageObj.search_btn_MM.click();
+        }
+    }
+
+    public boolean goToPDPFromStorePage()
+    {
+        if (productName.length() >= 10)
+            productName = productName.substring(0,10);
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
+            searchPageObj.searchResult_lbl.get(0).click();
+            if (isExist(cartPageObjects.overseas_Confirm_btn))
+                cartPageObjects.overseas_Confirm_btn.get(0).click();
+            if (isExist(searchPageObj.ok_Got_It_btn))
+                searchPageObj.ok_Got_It_btn.get(0).click();
+            return (cartPageObjects.product_Title_lbl.getText().contains(productName));
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
+            searchPageObj.searchResult_lbl_MM.get(0).click();
+            if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
+                cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
+            if (isExist(searchPageObj.ok_Got_It_btn_MM))
+                searchPageObj.ok_Got_It_btn_MM.get(0).click();
+            return (cartPageObjects.product_Title_lbl_MM.getText().contains(productName));
+        }
+    }
+
+    public void deleteSearchHistory() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            do {
+                driver.navigate().back();
+                hideKeyboard();
+            } while (!isExist(searchPageObj.searchBeforeClick_txtfield));
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.delete_Search_History_icon_By);
+            searchPageObj.delete_Search_History_icon.click();
+        }
+        else
+        {
+            do {
+                driver.navigate().back();
+                hideKeyboard();
+            } while (!isExist(searchPageObj.searchBeforeClick_txtfield_MM));
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.delete_Search_History_icon_By_MM);
+            searchPageObj.delete_Search_History_icon_MM.click();
+        }
+    }
+
+    public boolean verifyForDeletedSearchHistory() {
+        return (!isExistByText(searchKeyword));
+    }
+
+
+
+
 }

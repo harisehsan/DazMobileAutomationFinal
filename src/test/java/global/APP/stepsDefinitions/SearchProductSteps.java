@@ -65,4 +65,34 @@ public class SearchProductSteps {
     public void iLookForTheDidYouMeanOption() throws InterruptedException {
         Assert.assertTrue(searchProduct.clickOnDidYouMeanOption(), "Did you mean option is not available for this search keyword!");
     }
+
+    @And("I search for {string} in the categories section")
+    public void iSearchForInTheCategoriesSection(String searchKeyword) {
+       searchProduct.searchInCategoriesSection(searchKeyword);
+    }
+
+    @And("I goto the store page from Homepage")
+    public void iGotoTheStorePageFromHomepage() throws IOException {
+        searchProduct.gotoStorePage();
+    }
+
+    @And("I search a product in store page")
+    public void iSearchAProductInStorePage() {
+        searchProduct.searchProductInStore();
+    }
+
+    @Then("I goto the PDP page from store page")
+    public void iGotoThePDPPageFromStorePage() {
+     Assert.assertTrue(searchProduct.goToPDPFromStorePage(),"Not navigated correctly to the PDP page from store page!");
+    }
+
+    @And("I delete the search history")
+    public void iDeleteTheSearchHistory() {
+      searchProduct.deleteSearchHistory();
+    }
+
+    @Then("I should not see the search history")
+    public void iShouldNotSeeTheSearchHistory() {
+        Assert.assertTrue(searchProduct.verifyForDeletedSearchHistory(),"Search History is not deleted properly!");
+    }
 }

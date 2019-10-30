@@ -4,6 +4,7 @@ import global.APP.pageObjects.SortPageObject;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import member.APP.pageObjects.SearchPageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,10 +17,12 @@ import org.openqa.selenium.support.PageFactory;
 public class Sort extends Base {
 
     SortPageObject sortPageObject = new SortPageObject();
+    SearchPageObject searchPageObject = new SearchPageObject();
 
     public Sort(AppiumDriver<WebElement> driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), sortPageObject);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObject);
     }
 
     public void sortCatalog(String sortType) {
@@ -220,5 +223,37 @@ public class Sort extends Base {
         }
         else
             return false;
+    }
+
+    public void selectAllProductInSearchHint()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (isExist(searchPageObject.got_It_Store_btn))
+                searchPageObject.got_It_Store_btn.get(0).click();
+            searchPageObject.search_tab.click();
+            waitUntilPresentOfElementBy(sortPageObject.all_Products_btn_By);
+            sortPageObject.all_Products_btn.click();
+        }
+        else
+        {
+            if (isExist(searchPageObject.got_It_Store_btn_MM))
+                searchPageObject.got_It_Store_btn_MM.get(0).click();
+            searchPageObject.search_tab_MM.click();
+            waitUntilPresentOfElementBy(sortPageObject.all_Products_btn_By);
+            sortPageObject.all_Products_btn.click();
+        }
+    }
+
+    public void applyListViewOnCatalog(String sortMode)
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+         waitUntilPresentOfElementBy(searchPageObject.searchResult_lbl_By);
+          sortPageObject.catalog_View_icon.click();
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(searchPageObject.searchResult_lbl_By_MM);
+            sortPageObject.catalog_View_icon_MM.click();
+        }
     }
 }
