@@ -83,6 +83,16 @@ public class SearchProductSteps {
 
     @Then("I goto the PDP page from store page")
     public void iGotoThePDPPageFromStorePage() {
-     Assert.assertTrue(searchProduct.goToPDPFromStorePage(),"Not navigated correctly to PDP page from store page!");
+     Assert.assertTrue(searchProduct.goToPDPFromStorePage(),"Not navigated correctly to the PDP page from store page!");
+    }
+
+    @And("I delete the search history")
+    public void iDeleteTheSearchHistory() {
+      searchProduct.deleteSearchHistory();
+    }
+
+    @Then("I should not see the search history")
+    public void iShouldNotSeeTheSearchHistory() {
+        Assert.assertTrue(searchProduct.verifyForDeletedSearchHistory(),"Search History is not deleted properly!");
     }
 }

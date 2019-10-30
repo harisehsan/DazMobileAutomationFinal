@@ -13,13 +13,15 @@ Feature: Daraz Search Product Management
     And I search for "PS4"
     Then I should see search products
 
-  @21842974 @search_a_product_by_search_history
-  Scenario: Search a product by search history
+  @21842974 @search_a_product_by_search_history @28809419
+  Scenario: Search a product by search history and then delete search history
     Given I select the venture
     And I search for "PS4"
     And I navigate back to the main screen
     And I search a product using search history
     Then I should see search products
+    And I delete the search history
+    Then I should not see the search history
 
   @21842974 @search_by_suggestion_result
   Scenario: Search a product by using suggestion result

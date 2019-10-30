@@ -24,6 +24,7 @@ public class SearchProduct extends Base {
     CheckOutPageObjects checkOutPageObjects = new CheckOutPageObjects();
     SearchGetProperty searchGetProperty = new SearchGetProperty();
     private String productName;
+    private String searchKeyword;
 
     public SearchProduct(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -233,6 +234,7 @@ public class SearchProduct extends Base {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             do {
                 driver.navigate().back();
+                hideKeyboard();
             }
             while (!isExist(searchPageObj.searchBeforeClick_txtfield));
 
@@ -240,12 +242,14 @@ public class SearchProduct extends Base {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
             do {
                 driver.navigate().back();
+                hideKeyboard();
             }
             while (!isExist(searchPageObj.searchBeforeClick_txtfield_MM));
         }
     }
 
     public void searchUsingHistory(String searchKeyword) {
+       this.searchKeyword = searchKeyword;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             findElementByTextUsingExactString(searchKeyword).click();
@@ -427,4 +431,34 @@ public class SearchProduct extends Base {
             return (cartPageObjects.product_Title_lbl_MM.getText().contains(productName));
         }
     }
+
+    public void deleteSearchHistory() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            do {
+                driver.navigate().back();
+                hideKeyboard();
+            } while (!isExist(searchPageObj.searchBeforeClick_txtfield));
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.delete_Search_History_icon_By);
+            searchPageObj.delete_Search_History_icon.click();
+        }
+        else
+        {
+            do {
+                driver.navigate().back();
+                hideKeyboard();
+            } while (!isExist(searchPageObj.searchBeforeClick_txtfield_MM));
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.delete_Search_History_icon_By_MM);
+            searchPageObj.delete_Search_History_icon_MM.click();
+        }
+    }
+
+    public boolean verifyForDeletedSearchHistory() {
+        return (!isExistByText(searchKeyword));
+    }
+
+
+
+
 }

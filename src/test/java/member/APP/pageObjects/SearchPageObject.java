@@ -36,6 +36,8 @@ public class SearchPageObject {
     @AndroidFindBy(id="com.shop.android:id/search_text") public WebElement search_tab_MM;
     @AndroidFindBy(id="com.daraz.android:id/got_it_btn") public List <WebElement> got_It_Store_btn;
     @AndroidFindBy(id="com.shop.android:id/got_it_btn") public List <WebElement> got_It_Store_btn_MM;
+    @AndroidFindBy(id="com.daraz.android:id/clean_image_view") public WebElement delete_Search_History_icon;
+    @AndroidFindBy(id="com.shop.android:id/clean_image_view") public WebElement delete_Search_History_icon_MM;
 
 
     public By searchResult_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
@@ -46,5 +48,7 @@ public class SearchPageObject {
     public By searchAfterClick_txtfield_By_MM = By.id("com.shop.android:id/search_input_box");
     public By searchBox_Final_txtfield_By = By.id("com.daraz.android:id/srp_search_input_box");
     public By searchBox_Final_txtfield_By_MM = By.id("com.shop.android:id/srp_search_input_box");
+    public By delete_Search_History_icon_By = By.id("com.daraz.android:id/clean_image_view");
+    public By delete_Search_History_icon_By_MM = By.id("com.shop.android:id/clean_image_view");
 
 }
