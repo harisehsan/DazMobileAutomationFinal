@@ -43,4 +43,14 @@ public class SortSteps {
     public void iVerifyForTheAppliedFilter() {
       Assert.assertTrue(searchProduct.verifyTheSearchProduct(filterKeyword));
     }
+
+    @And("I select all-products in the search hint option")
+    public void iSelectAllProductsInTheSearchHintOption() {
+        sort.selectAllProductInSearchHint();
+    }
+
+    @And("I change the catalog view to {string}")
+    public void iChangeTheCatalogViewTo(String sortMode) {
+        sort.applyListViewOnCatalog(sortMode);
+    }
 }

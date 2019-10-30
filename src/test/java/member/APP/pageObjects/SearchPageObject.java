@@ -1,5 +1,6 @@
 package member.APP.pageObjects;
 
+import com.codeborne.selenide.impl.WebElementsCollection;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,11 @@ public class SearchPageObject {
     @AndroidFindBy(id = "com.shop.android:id/got_it") public List <WebElement> ok_Got_It_btn_MM;
     @AndroidFindBy(id = "com.daraz.android:id/iv_search")  public WebElement search_In_Categories_btn;
     @AndroidFindBy(id = "com.shop.android:id/iv_search")  public WebElement search_In_Categories_btn_MM;
+    @AndroidFindBy(xpath = "//*[@text='All Products']") public WebElement all_Product_tab;
+    @AndroidFindBy(id="com.daraz.android:id/search_text") public WebElement search_tab;
+    @AndroidFindBy(id="com.shop.android:id/search_text") public WebElement search_tab_MM;
+    @AndroidFindBy(id="com.daraz.android:id/got_it_btn") public List <WebElement> got_It_Store_btn;
+    @AndroidFindBy(id="com.shop.android:id/got_it_btn") public List <WebElement> got_It_Store_btn_MM;
 
 
     public By searchResult_lbl_By = By.id("com.daraz.android:id/product_name_text_view");

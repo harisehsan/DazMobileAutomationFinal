@@ -70,4 +70,19 @@ public class SearchProductSteps {
     public void iSearchForInTheCategoriesSection(String searchKeyword) {
        searchProduct.searchInCategoriesSection(searchKeyword);
     }
+
+    @And("I goto the store page from Homepage")
+    public void iGotoTheStorePageFromHomepage() throws IOException {
+        searchProduct.gotoStorePage();
+    }
+
+    @And("I search a product in store page")
+    public void iSearchAProductInStorePage() {
+        searchProduct.searchProductInStore();
+    }
+
+    @Then("I goto the PDP page from store page")
+    public void iGotoThePDPPageFromStorePage() {
+     Assert.assertTrue(searchProduct.goToPDPFromStorePage(),"Not navigated correctly to PDP page from store page!");
+    }
 }

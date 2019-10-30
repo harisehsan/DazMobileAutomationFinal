@@ -21,6 +21,8 @@ public class SortPageObject {
     @AndroidFindBy (id = "com.daraz.android:id/libsf_tab_text") public List <WebElement> search_tab;
     @AndroidFindBy (id = "com.daraz.android:id/filter_text") public WebElement filter_btn;
     @AndroidFindBy (id = "com.daraz.android:id/done_button") public WebElement done_btn;
+    @AndroidFindBy (xpath = "//*[@text='All-Products']") public WebElement all_Products_btn;
+    @AndroidFindBy (id = "com.daraz.android:id/liststyle_icon") public WebElement catalog_View_icon;
 
     @AndroidFindBy (id = "com.shop.android:id/sort_text") public WebElement sort_drpDown_MM;
     @AndroidFindBy (id = "com.shop.android:id/sortbar_item_text") public List <WebElement> filter_lstItem_MM;
@@ -30,6 +32,7 @@ public class SortPageObject {
     @AndroidFindBy (id = "com.shop.android:id/libsf_tab_text") public List <WebElement> search_tab_MM;
     @AndroidFindBy (id = "com.shop.android:id/filter_text") public WebElement filter_btn_MM;
     @AndroidFindBy (id = "com.shop.android:id/done_button") public WebElement done_btn_MM;
+    @AndroidFindBy (id = "com.shop.android:id/liststyle_icon") public WebElement catalog_View_icon_MM;
 
 
     public By sort_drpDown_By = By.id("com.daraz.android:id/sort_text");
@@ -37,6 +40,7 @@ public class SortPageObject {
     public By search_tab_By = By.id("com.daraz.android:id/libsf_tab_text");
     public By filter_btn_By = By.id("com.daraz.android:id/filter_text");
     public By done_btn_By = By.id("com.daraz.android:id/done_button");
+    public By all_Products_btn_By = By.xpath("//*[@text='All-Products']");
 
     public By sort_drpDown_By_MM = By.id("com.shop.android:id/sort_text");
     public By product_Name_lbl_By_MM = By.id("com.shop.android:id/product_name_text_view");

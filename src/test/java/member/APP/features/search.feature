@@ -35,7 +35,7 @@ Feature: Daraz Search Product Management
     Then I look for the did you mean option
 
   @23184571 @search_on_category_page @28809432
-  Scenario: Search in categories page
+  Scenario: Search on categories page
     Given I select the venture
     And I skip the shake shake popup
     And I scroll down to categories section on homepage
@@ -43,3 +43,11 @@ Feature: Daraz Search Product Management
     And I should be on the categories page
     And I search for "PS4" in the categories section
     Then I should see search products
+
+    @23184571 @search_on_store_page @28809430
+    Scenario: Search on store page
+      Given I select the venture
+      And I goto the store page from Homepage
+      And I search a product in store page
+      Then I should see search products
+      Then I goto the PDP page from store page

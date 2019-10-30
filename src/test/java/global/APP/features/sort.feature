@@ -47,3 +47,21 @@ Feature: Daraz Sorting Management
     And I select filter
     And I apply filter for "Samsung" Brand
     And I verify for the applied brand filter
+
+  @23184571 @price_high_to_low_filter_in_store @28809426 @28809427 @28809428 @28809429
+  Scenario: Select all product in search hint, shown catalog in list view and Price high to low filter
+    Given I select the venture
+    And I goto the store page from Homepage
+    And I select all-products in the search hint option
+    And I apply for the sort filter "Price high to low"
+    And I change the catalog view to "listview"
+    Then I verify that product catalog is sorted according to the "Price high to low"
+
+  @23184571 @price_low_to_high_filter_in_store @28809426 @28809427 @28809428 @28809429
+  Scenario: Select all product in search hint, shown catalog in list view and Price low to High filter
+    Given I select the venture
+    And I goto the store page from Homepage
+    And I select all-products in the search hint option
+    And I apply for the sort filter "Price low to high"
+    And I change the catalog view to "listview"
+    Then I verify that product catalog is sorted according to the "Price low to high"
