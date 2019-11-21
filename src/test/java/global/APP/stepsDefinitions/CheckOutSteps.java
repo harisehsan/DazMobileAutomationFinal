@@ -26,7 +26,7 @@ public class CheckOutSteps {
 
     @And("I select Buy Now button")
     public void iSelectBuyNow() {
-        checkout.selectbuyNow();
+        checkout.selectBuyNow();
     }
 
     @And("I click on proceed to pay button")

@@ -33,11 +33,15 @@ public class CheckOut extends Base {
             return cartPageObjects.product_Title_lbl_MM.getText();
     }
 
-    public void selectbuyNow() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+    public void selectBuyNow() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitWithoutExceptionForElements(cartPageObjects.buy_Now_btn);
             cartPageObjects.buy_Now_btn.get(0).click();
-        else
+        }
+        else {
+            waitWithoutExceptionForElements(cartPageObjects.buy_Now_btn_MM);
             cartPageObjects.buy_Now_btn_MM.get(0).click();
+        }
     }
 
     public void proceedToPay() {
@@ -85,7 +89,7 @@ public class CheckOut extends Base {
             waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
             cartPageObjects.ok_Got_It_btn.get(0).click();
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
-                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName)) {
+                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
                     if (cartPageObjects.product_chkbox.get(i).getAttribute("checked").equalsIgnoreCase("false"))
                         cartPageObjects.product_chkbox.get(i).click();
                     return i;
@@ -96,7 +100,7 @@ public class CheckOut extends Base {
             waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
             cartPageObjects.ok_Got_It_btn_MM.get(0).click();
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
-                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName)) {
+                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
                     if (cartPageObjects.product_chkbox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false"))
                         cartPageObjects.product_chkbox_MM.get(i).click();
                     return i;

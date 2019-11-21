@@ -51,4 +51,6 @@ public class SearchPageObject {
     public By delete_Search_History_icon_By = By.id("com.daraz.android:id/clean_image_view");
     public By delete_Search_History_icon_By_MM = By.id("com.shop.android:id/clean_image_view");
 
+
+
 }

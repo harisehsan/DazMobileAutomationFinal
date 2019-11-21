@@ -10,7 +10,7 @@ Feature: Daraz Cart Management
     And I signin with google account
     Then I verify item has been added to cart by success message
 
-  @21001814 @remove_single_item_from_cart
+  @21001814 @remove_single_item_from_cart @28811375
   Scenario: Remove a single product from cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
