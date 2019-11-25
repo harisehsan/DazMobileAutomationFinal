@@ -307,11 +307,11 @@ public class Base {
             Name = Name.substring(0, 40);
         return (driver.findElements(By.xpath("//*[contains(@text,'" +Name+ "')]")).size() > 0);
     }
-//
-//    protected void swipeHorizontallyWithInElement(WebElement ele) {
-//        TouchAction touchAction = new TouchAction(driver);
-//        touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), ele.getLocation().getY())).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele2.getLocation().getX(), ele2.getLocation().getY())).release().perform();
-//    }
+
+    protected void swipeHorizontallyWithInElement(WebElement ele) {
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.press(new PointOption().withCoordinates(ele.getSize().width-5, (ele.getLocation().getY()+ele.getSize().height)/2)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele.getLocation().getX()+5, (ele.getLocation().getY()+ele.getSize().height)/2)).release().perform();
+    }
 public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     try {
         new WebDriverWait(driver, 25)
@@ -322,4 +322,7 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         return true;
     }
 }
+    protected WebElement findElementByTextUsingContainsString(String Name) {
+        return driver.findElement(By.xpath("//*[contains(@text,'" +Name+ "')]"));
+    }
 }

@@ -12,7 +12,7 @@ Feature: Daraz Wishlist Management
     And I remove the already added product from wishlist
     Then I verify item has been removed to wishlist by success message
 
-  @21001151 @add_item_into_wishlist
+  @21001151 @add_item_into_wishlist @28811386
   Scenario: Add item into wishlist
     Given I select the venture
     And I search a Product using SKU for "Wishlist"
