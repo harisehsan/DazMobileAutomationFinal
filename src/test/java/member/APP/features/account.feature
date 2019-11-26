@@ -1,14 +1,14 @@
 @smoke @account
 Feature: Daraz Account Management
 
-  @21598886 @signin_using_google_account
+  @21598886 @signin_using_google_account @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019
   Scenario: I signin using google account
     Given I select the venture
     And I navigate to the signin screen
     And I signin with google account
     And I verify that I have been logged in using google Account
 
-  @21598886 @view_product_in_pay_now_menu
+  @21598886 @view_product_in_pay_now_menu @28810410 @28810411 @30526026
   Scenario: I view the product in pay now menu
     Given I select the venture
     And I search a Product using SKU for "Checkout"
@@ -20,7 +20,7 @@ Feature: Daraz Account Management
     And I select the pay now widget
     Then I should see that product in the pay now menu
 
-  @21001814 @view_cancelled_orders_in_my_cancellation_menu
+  @21001814 @view_cancelled_orders_in_my_cancellation_menu @28810383 @30526026
   Scenario: I view the cancelled products in my cancellation menu
     Given I select the venture
     And I search a Product using SKU for "Checkout"

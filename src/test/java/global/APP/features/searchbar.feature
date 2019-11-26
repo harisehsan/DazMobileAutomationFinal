@@ -1,13 +1,13 @@
 @smoke @searchbar
 Feature: Daraz Search Bar Management
 
-  @22702821 @check_scan_icon_and_text
+  @22702821 @check_scan_icon_and_text @28811799 @29893919
   Scenario: Check the scan icon and text on Homepage
     Given I select the venture
     And I skip the shake shake popup
     Then I check the existence of scan icon and text on Homepage
 
-  @22702821 @navigate_to_scan_and_return_back_to_homepage
+  @22702821 @navigate_to_scan_and_return_back_to_homepage @28811800
   Scenario: Navigate to scan page and back to Homepage
     Given I select the venture
     And I skip the shake shake popup
@@ -16,7 +16,7 @@ Feature: Daraz Search Bar Management
     And I navigate back to the Home Page from "Scan Page"
     Then I check the existence of scan icon and text on Homepage
 
-    @22702821 @search_item_and_return_back_to_homepage
+    @22702821 @search_item_and_return_back_to_homepage @28811806 @28811808 @28811803
     Scenario: Search the item and return back to homepage
       Given I select the venture
       And I skip the shake shake popup
@@ -25,13 +25,13 @@ Feature: Daraz Search Bar Management
       And I navigate back to the Home Page from "Catalog Page"
       Then I check for the existence of the searchbar on Homepage
 
-   @22702821 @check_for_existence_of_wallet_icon_and_text
+   @22702821 @check_for_existence_of_wallet_icon_and_text @28811804
    Scenario: Check the daraz wallet existence on Homepage
      Given I select the venture
      And I skip the shake shake popup
      Then I check for the existence of daraz wallet icon and text
 
-  @22702821 @navigate_to_wallet_and_return_back_to_homepage
+  @22702821 @navigate_to_wallet_and_return_back_to_homepage @28811809 @28811805
   Scenario: Navigate to daraz wallet and back to homepage
     Given I select the venture
     And I skip the shake shake popup

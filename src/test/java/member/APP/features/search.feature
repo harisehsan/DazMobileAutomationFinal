@@ -23,14 +23,14 @@ Feature: Daraz Search Product Management
     And I delete the search history
     Then I should not see the search history
 
-  @21842974 @search_by_suggestion_result
+  @21842974 @search_by_suggestion_result @28809421
   Scenario: Search a product by using suggestion result
     Given I select the venture
     And I use "jacket" keyword to verify the search suggestion results
     And I select a suggestion result for search
     Then I should see search results
 
-  @21842974 @search_by_incorrect_keyword
+  @21842974 @search_by_incorrect_keyword @28809420
   Scenario: Search a product by incorrect keyword
     Given I select the venture
     And I search for "watet"

@@ -12,7 +12,7 @@ Feature: Just For You Management for Daraz Homepage
     And I skip the shake shake popup
     Then I verify the product title, current price, discount rate, original price and rating
 
-  @23047870 @verify_the_existence_of_just_for_you_in_local_language @28811868
+  @23047870 @verify_the_existence_of_just_for_you_in_local_language @28811868 @30526041
   Scenario: Verify the existence of just for you in local language
     Given I select the venture
     And I navigate to the account settings menu

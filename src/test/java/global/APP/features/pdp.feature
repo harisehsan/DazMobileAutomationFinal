@@ -173,7 +173,7 @@ Feature: PDP page Management
     And I check the existence of "Frequently Bought Together" promotion
     Then I open the "Frequently Bought Together" promotion popup and verify it
 
-  @28811393 @verify_buy_more_save_promotion @28811330 @28811331 @28811321
+  @28811393 @verify_buy_more_save_promotion @28811330 @28811331 @28811321 @28810210
   Scenario: Verify buy more save promotion on PDP and cart
     Given I select the venture
     And I search product using sku for "Save more"
@@ -186,7 +186,7 @@ Feature: PDP page Management
     And I select that product in cart
     Then I should see the promo saved price
 
-  @28811393 @verify_buy_one_get_one_promotion @28811330 @28811331 @28811321
+  @28811393 @verify_buy_one_get_one_promotion @28811330 @28811331 @28811321 @28810195 @28810268
   Scenario: Verify buy one get one promotion on PDP, cart and checkout
     Given I select the venture
     And I search product using sku for "B1G1"

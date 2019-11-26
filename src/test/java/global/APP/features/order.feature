@@ -1,7 +1,7 @@
 @smoke @order
 Feature: Daraz Order Cancellation Management
 
-  @21001814 @order_cancellation
+  @21001814 @order_cancellation @28810439 @28810397 @28810383 @28810448 @@30564196 @30564196 @30564632 @30564633 @30564634 @30564636
   Scenario: Cancel the order
     Given I select the venture
     And I search a Product using SKU for "Checkout"
@@ -18,7 +18,7 @@ Feature: Daraz Order Cancellation Management
     And I click on submit button
     Then I verify that order has been cancelled
 
-  @21001814 @order_cancellation_by_changing_quantity
+  @21001814 @order_cancellation_by_changing_quantity @28810439 @28810397 @28810383 @28810448 @@30564196 @30564196 @30564632 @30564633 @30564634 @30564636
   Scenario: Cancel the order by changing quantity
     Given I select the venture
     And I search a Product using SKU for "Checkout"

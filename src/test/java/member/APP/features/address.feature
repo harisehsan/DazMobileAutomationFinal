@@ -1,7 +1,7 @@
 @smoke @address
 Feature: Daraz Address Management
 
-  @21298974 @edit_the_address_details
+  @21298974 @edit_the_address_details @28810289 @28810291 @28810292 @30523147 @30523152 @30523155 @30523156 @30523157 @30523158 @30523159 @30523160 @30526038
   Scenario: Change the address details
     Given I select the venture
     And I navigate to the signin screen
@@ -12,7 +12,7 @@ Feature: Daraz Address Management
     And I save the changes
     Then I verify the address details
 
-  @21298974 @add_new_address
+  @21298974 @add_new_address @28810289 @30523164 @30523147 @30523151 @30523152 @30523153 @30523155 @30523156 @30523157 @30523158 @30523159 @30523162 @30523165 @30526038
   Scenario: Add new address
     Given I select the venture
     And I navigate to the signin screen
@@ -24,7 +24,7 @@ Feature: Daraz Address Management
     And I save the changes
     Then I verify the address details
 
-  @21298974 @delete_all_the_deletable_addresses
+  @21298974 @delete_all_the_deletable_addresses @30523163 @30523147 @30523163 @30523164 @30526038
   Scenario: Delete all the deletable addresses
     Given I select the venture
     And I navigate to the signin screen
