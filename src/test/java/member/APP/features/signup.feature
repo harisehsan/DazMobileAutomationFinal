@@ -1,7 +1,7 @@
 #@smoke @signup
 #Feature: Signup new Daraz Account
 #
-# @20580001 @signup_google
+# @20580001 @signup_google @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019 @30526020 @30526021 @30526023 @30526025 @30526044
 #  Scenario: Signup with Google Account
 #    Given I select the venture
 #    And I navigate to the signup screen
@@ -14,7 +14,7 @@
 #    And I should be signed up using google account
 #    Then I log out
 #
-#  @20580001 @signup_facebook
+#  @20580001 @signup_facebook @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019 @30526020 @30526021 @30526023 @30526025 @30526044
 #  Scenario: Signup with Facebook Account
 #    Given I select the venture
 #    And I navigate to the signup screen

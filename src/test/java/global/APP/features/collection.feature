@@ -7,7 +7,7 @@ Feature: Daraz Collections Management
 #    And I skip the shake shake popup
 #    Then I check the existence of the Collections on Homepage
 
-  @22614390 @select_collections_and_back_to_homepage
+  @22614390 @select_collections_and_back_to_homepage @28811832 @28811837 @28811836
   Scenario: Select collections and navigate back to homepage
     Given I select the venture
     And I skip the shake shake popup
@@ -17,7 +17,7 @@ Feature: Daraz Collections Management
     And I skip the shake shake popup
     Then I check again the existence of the Collections on Homepage
 
-  @22614390 @change_language_and_check_the_existence_of_collections
+  @22614390 @change_language_and_check_the_existence_of_collections @28811834 @30526041
   Scenario: Change the language and check the existence of collections on homepage
     Given I select the venture
     And I skip the shake shake popup

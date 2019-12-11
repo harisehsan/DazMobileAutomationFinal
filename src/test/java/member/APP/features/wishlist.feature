@@ -1,7 +1,7 @@
 @smoke @wishlist
 Feature: Daraz Wishlist Management
 
-  @21001151 @add_and_remove_item_without_open_wishlist_menu
+  @21001151 @add_and_remove_item_without_open_wishlist_menu @28809425
   Scenario: Add and remove a product from wishlist without opening a wishlist
     Given I select the venture
     And I search a Product using SKU for "Wishlist"
@@ -12,7 +12,7 @@ Feature: Daraz Wishlist Management
     And I remove the already added product from wishlist
     Then I verify item has been removed to wishlist by success message
 
-  @21001151 @add_item_into_wishlist @28811386
+  @21001151 @add_item_into_wishlist @28811386 @28809425
   Scenario: Add item into wishlist
     Given I select the venture
     And I search a Product using SKU for "Wishlist"
@@ -32,7 +32,7 @@ Feature: Daraz Wishlist Management
     And I delete a single item form wishlist
     Then I verify that deleted item should not present in wishlist
 
-  @21001151 @remove_all_items_from_wishlist
+  @21001151 @remove_all_items_from_wishlist @28810283
   Scenario: Remove all items from wishlist
     Given I select the venture
     And I search a Product using SKU for "Wishlist"
@@ -43,7 +43,7 @@ Feature: Daraz Wishlist Management
     And I delete all items form wishlist
     Then I verify that no item left in the wishlist
 
-  @21001151 @add_product_from_cart_to_wishlist
+  @21001151 @add_product_from_cart_to_wishlist @28810197 @28810163 @28810262 @28810209 @28810212
   Scenario: Add a product from Cart to Wishlist
     Given I select the venture
     And I search a Product using SKU for "Cart"

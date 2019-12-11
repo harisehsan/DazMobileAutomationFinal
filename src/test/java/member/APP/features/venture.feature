@@ -1,13 +1,13 @@
 @smoke @venture
   Feature: Daraz Venture Management
 
-  @21969750 @select_venture @no_mm
+  @21969750 @select_venture @no_mm @30526040
   Scenario: I select a venture
     Given I select the venture
     And I navigate to the country menu
     Then I check for the selected venture
 
-  @21969750 @change_venture @no_mm
+  @21969750 @change_venture @no_mm @30526040
   Scenario: I change a venture
     Given I select the venture
     And I navigate to the country menu

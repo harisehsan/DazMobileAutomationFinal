@@ -10,7 +10,7 @@ Feature: Daraz Cart Management
     And I signin with google account
     Then I verify item has been added to cart by success message
 
-  @21001814 @remove_single_item_from_cart @28811375
+  @21001814 @remove_single_item_from_cart @28811375 @28810239 @28810241
   Scenario: Remove a single product from cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
@@ -21,7 +21,7 @@ Feature: Daraz Cart Management
     And I remove a single item from cart
     Then I verify that removed item should not present in cart
 
-  @21001814 @add_item_to_cart
+  @21001814 @add_item_to_cart @28810277 @28810165
   Scenario: Add a product to cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
@@ -31,7 +31,7 @@ Feature: Daraz Cart Management
     And I goto cart menu from PDP screen
     Then I verify item has been added item in cart
 
-  @21001814 @remove_all_items_from_cart
+  @21001814 @remove_all_items_from_cart @28810161 @28810273 @28810166
   Scenario: Remove all products from cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
@@ -42,7 +42,7 @@ Feature: Daraz Cart Management
     And I remove all items from cart
     Then I verify that all items in cart are successfully removed
 
-  @21001814 @add_product_from_wishlist_to_cart
+  @21001814 @add_product_from_wishlist_to_cart @28810240 @28810273
   Scenario: Add a product from Wishlist to Cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
