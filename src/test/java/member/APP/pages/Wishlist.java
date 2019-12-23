@@ -6,6 +6,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.WishlistPageObjects;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -19,6 +20,8 @@ public class Wishlist extends Base {
     WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
     CartPageObjects cartPageObjects = new CartPageObjects();
     SearchPageObject searchPageObj = new SearchPageObject();
+    private int tries=25;
+
     public Wishlist(AppiumDriver<WebElement> driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
@@ -31,10 +34,14 @@ public class Wishlist extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(wishlistPageObjects.product_Name_lbl_By);
             productName = wishlistPageObjects.product_Name_lbl.getText();
+            if (productName.startsWith("0 "))
+                productName = productName.replace("0 ","");
             return productName;
         } else {
             waitUntilPresentOfElementBy(wishlistPageObjects.product_Name_lbl_MM_By);
             productName = wishlistPageObjects.product_Name_lbl_MM.getText();
+            if (productName.startsWith("0 "))
+                productName = productName.replace("0 ","");
             return productName;
         }
     }
@@ -75,20 +82,20 @@ public class Wishlist extends Base {
 
     public String wishlistAddSuccessMessage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By);
+//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By);
             return wishlistPageObjects.wishlist_Success_Message_lbl.getText();
         } else {
-            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By_MM);
+//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By_MM);
             return wishlistPageObjects.wishlist_Success_Message_lbl_MM.getText();
         }
     }
 
     public String wishlistRemoveSuccessMessage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By);
+//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By);
             return wishlistPageObjects.wishlist_Success_Message_lbl.getText();
         } else {
-            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By_MM);
+//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By_MM);
             return wishlistPageObjects.wishlist_Success_Message_lbl_MM.getText();
         }
     }
@@ -117,11 +124,13 @@ public class Wishlist extends Base {
             if (isExist(searchPageObj.ok_Got_It_btn))
                 searchPageObj.ok_Got_It_btn.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.product_Name_lbl_By);
-            if (wishlistPageObjects.product_Name_lbl.getText().startsWith("0")) {
-                productTitle = wishlistPageObjects.product_Name_lbl.getText().replaceFirst("0 ", "");
-                return productTitle;
-            } else
-                return wishlistPageObjects.product_Name_lbl.getText();
+            productTitle = wishlistPageObjects.product_Name_lbl.getText();
+            if (productTitle.startsWith("0"))
+                productTitle = productTitle.replaceFirst("0 ", "");
+            if (productTitle.length() > 15)
+                productTitle = productTitle.substring(0,15);
+             return productTitle;
+
         } else {
             waitUntilPresentOfElementBy(wishlistPageObjects.dots_btn_By_MM);
             wishlistPageObjects.dots_btn_MM.get(0).click();
@@ -130,9 +139,8 @@ public class Wishlist extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_lbl_By_MM);
             wishlistPageObjects.wishlist_lbl_MM.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
-            for (int i = 0;i<tries;i++)
-            {
-                if(isExistByString(PRODUCT_NAME))
+            for (int i = 0; i < tries; i++) {
+                if (isExistByString(PRODUCT_NAME))
                     break;
                 else
                     swiptToBottom();
@@ -143,13 +151,13 @@ public class Wishlist extends Base {
             if (isExist(searchPageObj.ok_Got_It_btn_MM))
                 searchPageObj.ok_Got_It_btn_MM.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.product_Name_lbl_MM_By);
-            if (wishlistPageObjects.product_Name_lbl_MM.getText().startsWith("0")) {
-                productTitle = wishlistPageObjects.product_Name_lbl_MM.getText().replaceFirst("0 ", "");
-                return productTitle;
-            } else
-                return wishlistPageObjects.product_Name_lbl_MM.getText();
+            productTitle = wishlistPageObjects.product_Name_lbl_MM.getText();
+            if (productTitle.startsWith("0"))
+                productTitle = productTitle.replaceFirst("0 ", "");
+            if (productTitle.length() > 15)
+                productTitle = productTitle.substring(0, 15);
+            return productTitle;
         }
-
     }
 
     public void navigate_To_Login_Screen() {
@@ -183,20 +191,38 @@ public class Wishlist extends Base {
         }
     }
 
-    public void deleteSingleItem()
+    public void deleteSingleItem(String productName)
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
-            wishlistPageObjects.wishlist_Delete_icon.get(0).click();
-            waitUntilPresentOfElementBy(wishlistPageObjects.remove_btn_By);
-            wishlistPageObjects.remove_btn.click();
+            for (int i = 0; i < tries; i++) {
+                if (isExistByString(productName)) {
+                    break;
+                } else
+                    swiptToBottom();
+            }
+            do {
+                wishlistPageObjects.wishlist_Delete_icon.get(0).click();
+                waitUntilPresentOfElementBy(wishlistPageObjects.remove_btn_By);
+                wishlistPageObjects.remove_btn.click();
+            } while (isExistByString(productName));
         }
         else
         {
             waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Delete_icon_By);
+            for (int i=0; i<tries;i++) {
+                if (isExistByString(productName)) {
+                    break;
+                }
+                else
+                    swiptToBottom();
+            }
+            do {
             wishlistPageObjects.wishlist_Delete_icon.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.remove_btn_By);
             wishlistPageObjects.remove_btn.click();
+            }while (isExistByString(productName));
         }
     }
 
@@ -251,9 +277,92 @@ public class Wishlist extends Base {
 
     public boolean verifyThePresenceOfDeletedItem(String productName)
     {
-        return (isExistByString(productName));
+        return (isExistByCompleteString(productName));
     }
 
+    public boolean verifyTheExistenceOfJustForYou()
+    {
+        waitWithoutExceptionByTextContains("My Wishlist");
+       for (int i=0; i<tries; i++)
+       {
+         if (isExistByString("Just For You"))
+         {
+             return true;
+         }
+         else
+             swiptToBottom();
+       }
+       return false;
+    }
 
+    public void addAllToCartButton()
+    {
+        waitUntilPresentOfElementByString("ADD ALL TO CART");
+        findElementByString("ADD ALL TO CART").click();
+    }
+
+    public void navigateToCartFromWishList()
+    {
+        if ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            wishlistPageObjects.cart_Icon_Wishlist.click();
+            if(isExist( cartPageObjects.ok_Got_It_btn))
+                cartPageObjects.ok_Got_It_btn.get(0).click();
+        }
+        else
+            wishlistPageObjects.cart_Icon_Wishlist_MM.click();
+            if(isExist( cartPageObjects.ok_Got_It_btn_MM))
+                cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+    }
+
+    public boolean verifyTheAddedItemsInCart()
+    {
+      if ((!System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            waitUntilPresentOfElementBy(wishlistPageObjects.items_In_Cart_lbl_By);
+            return (isExist(wishlistPageObjects.items_In_Cart_lbl));
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(wishlistPageObjects.items_In_Cart_lbl_MM_By);
+            return (isExist(wishlistPageObjects.items_In_Cart_lbl_MM));
+        }
+    }
+
+   public boolean verifyTheExistenceOfBackInStockWatchlistOutOfStock()
+   {
+       if ((!System.getProperty("env").equalsIgnoreCase("mm.live")))
+           waitUntilPresentOfElementBy((wishlistPageObjects.cart_Icon_Wishlist_By));
+       else
+           waitUntilPresentOfElementBy((wishlistPageObjects.cart_Icon_Wishlist_MM_By));
+     for (int i=0; i<tries; i++) {
+         if (isExistByString("Watchlist") || isExistByString("Out of stock"))
+             return true;
+         else
+             swiptToBottom();
+     }
+     return false;
+   }
+
+   public boolean checkForNoFavouriteItem()
+   {
+       return (isExistByString("There are no favorites yet."));
+   }
+
+   public void clickOnContinueShoppingButton()
+   {
+       findElementByString("CONTINUE SHOPPING").click();
+   }
+
+   public boolean iShouldBeOnTheHomePage()
+   {
+       if ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+           waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
+           return (isExist(searchPageObj.searchBeforeClick_txtfield));
+       }
+       else
+       {
+           waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
+           return (isExist(searchPageObj.searchBeforeClick_txtfield_MM));
+       }
+   }
 }
-

@@ -294,7 +294,7 @@ public class Base {
 
     protected boolean waitWithoutExceptionByText(String Name) {
         try {
-            new WebDriverWait(driver, 15)
+            new WebDriverWait(driver, 25)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='"+Name+"']")));
             return true;
         } catch (Exception ex) {
@@ -324,5 +324,21 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
 }
     protected WebElement findElementByTextUsingContainsString(String Name) {
         return driver.findElement(By.xpath("//*[contains(@text,'" +Name+ "')]"));
+    }
+
+    protected boolean waitWithoutExceptionByTextContains(String Name) {
+        try {
+            if (Name.length() > 10)
+                Name = Name.substring(0, 10);
+            new WebDriverWait(driver, 25)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    protected boolean isExistByCompleteString(String Name) {
+        return (driver.findElements(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']")).size() > 0);
     }
 }

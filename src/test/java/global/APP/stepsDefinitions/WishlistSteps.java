@@ -43,6 +43,8 @@ public class WishlistSteps {
 
     @Then("I goto the wishlist to verify the added item")
     public void iGotoTheWishlistToVerifyTheAddedItem() throws InterruptedException {
+        if(productName.length() > 15)
+          productName =  productName.substring(0,15);
        Assert.assertEquals(wishlist.verifyAddedItemInWishlist(productName), productName,"Add item to wishlist is not Successful!");
     }
 
@@ -59,7 +61,7 @@ public class WishlistSteps {
 
     @And("I delete a single item form wishlist")
     public void iDeleteASingleItemFormWishlist() {
-    wishlist.deleteSingleItem();
+    wishlist.deleteSingleItem(productName);
     }
 
 
@@ -81,5 +83,45 @@ public class WishlistSteps {
     @Then("I verify that deleted item should not present in wishlist")
     public void iVerifyThatDeletedItemShouldNotPresentInWishlist() {
         Assert.assertFalse(wishlist.verifyThePresenceOfDeletedItem(productName),"Item is not deleted from wishlist!");
+    }
+
+    @Then("I scroll down to just for you section")
+    public void iScrollDownToJustForYouSection() {
+      Assert.assertTrue(wishlist.verifyTheExistenceOfJustForYou(),"Just for you section is not existed in wishlist!");
+    }
+
+    @And("I click on the add all to cart button")
+    public void iClickOnTheAddAllToCartButton() {
+      wishlist.addAllToCartButton();
+    }
+
+    @And("I navigate to cart from wishlist")
+    public void iNavigateToCart() {
+        wishlist.navigateToCartFromWishList();
+    }
+
+    @Then("I should see the added products in the cart")
+    public void iShouldSeeTheAddedProductsInTheCart() {
+     Assert.assertTrue(wishlist.verifyTheAddedItemsInCart(),"Item(s) from wishlist are not added successfully to Cart!");
+    }
+
+    @And("I check for no favourite item message")
+    public void iCheckForNoFavouriteItemMessage() {
+        Assert.assertTrue(wishlist.checkForNoFavouriteItem(),"All wishlist Items are not successfully deleted!");
+    }
+
+    @And("I click on Continue shopping button")
+    public void iClickOnContinueShoppingButton() {
+        wishlist.clickOnContinueShoppingButton();
+    }
+
+    @Then("I should be on the homepage")
+    public void iShouldBeOnTheHomepage() {
+        Assert.assertTrue(wishlist.iShouldBeOnTheHomePage(),"Not successfully navigated to homepage from empty wishlist!");
+    }
+
+    @Then("I check for the watchlist, Out of Stock or Back In Stock sections in wishlist")
+    public void iCheckForTheWatchlistOutOfStockOrBackInStock() {
+        Assert.assertTrue(wishlist.verifyTheExistenceOfBackInStockWatchlistOutOfStock(),"Watchlist, Out Of Stock Or Back in stock section is not displayed in wishlist!");
     }
 }
