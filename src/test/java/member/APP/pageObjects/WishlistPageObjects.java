@@ -4,6 +4,7 @@ import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 
@@ -50,6 +51,11 @@ public class WishlistPageObjects {
     @AndroidFindBy(id = "com.daraz.android:id/dots") public List <WebElement> dots_btn;
     @AndroidFindBy(id = "com.shop.android:id/dots") public List <WebElement> dots_btn_MM;
     @AndroidFindBy (xpath = "//*[@text='My Account']") public WebElement my_Account_menuItem;
+    @AndroidFindBy(xpath = "//*[@text='Cart']") public WebElement cart_lbl;
+    @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_item_title") public List <WebElement> items_In_Cart_lbl;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_item_title") public List <WebElement> items_In_Cart_lbl_MM;
+    @AndroidFindBy(id="com.daraz.android:id/iv_cart") public WebElement cart_Icon_Wishlist;
+    @AndroidFindBy(id="com.shop.android:id/iv_cart") public WebElement cart_Icon_Wishlist_MM;
 
     public By dots_btn_By = By.id("com.daraz.android:id/dots");
     public By dots_btn_By_MM = By.id("com.shop.android:id/dots");
@@ -81,4 +87,9 @@ public class WishlistPageObjects {
     public By remove_btn_By = By.xpath("//*[@contentDescription='REMOVE'] | //*[@content-desc='REMOVE']");
     public By product_Name_lbl_By = By.id("com.daraz.android:id/title");
     public By product_Name_lbl_MM_By = By.id("com.shop.android:id/title");
+    public By cart_lbl_By = By.xpath("//*[@text='Cart']");
+    public By items_In_Cart_lbl_By = By.id("com.daraz.android:id/tv_laz_trade_item_title");
+    public By items_In_Cart_lbl_MM_By = By.id("com.shop.android:id/tv_laz_trade_item_title");
+    public By cart_Icon_Wishlist_By = By.id("com.daraz.android:id/iv_cart");
+    public By cart_Icon_Wishlist_MM_By = By.id("com.shop.android:id/iv_cart");
 }
