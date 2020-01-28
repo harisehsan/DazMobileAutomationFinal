@@ -51,7 +51,7 @@ public class WishlistPageObjects {
     @AndroidFindBy(id = "com.daraz.android:id/dots") public List <WebElement> dots_btn;
     @AndroidFindBy(id = "com.shop.android:id/dots") public List <WebElement> dots_btn_MM;
     @AndroidFindBy (xpath = "//*[@text='My Account']") public WebElement my_Account_menuItem;
-    @AndroidFindBy(xpath = "//*[@text='Cart']") public WebElement cart_lbl;
+    @AndroidFindBy(xpath = "//*[@text='My Cart']") public List <WebElement> cart_lbl;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_item_title") public List <WebElement> items_In_Cart_lbl;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_item_title") public List <WebElement> items_In_Cart_lbl_MM;
     @AndroidFindBy(id="com.daraz.android:id/iv_cart") public WebElement cart_Icon_Wishlist;

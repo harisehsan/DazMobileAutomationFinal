@@ -35,13 +35,23 @@ public class CartPageObjects {
     @AndroidFindBy(id = "com.daraz.android:id/btn_laz_trade_management_delete") public WebElement delete_second_btn;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_action_manage_btn") public WebElement delete_first_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_management_delete") public WebElement delete_second_btn_MM;
-    @AndroidFindBy (id= "android:id/button1") public WebElement delete_third_btn;
+    @AndroidFindBy (id= "com.daraz.android:id/btn_trade_confirm_dialog_positive") public WebElement delete_third_btn;
+    @AndroidFindBy (id= "com.shop.android:id/btn_trade_confirm_dialog_positive") public WebElement delete_third_btn_MM;
     @AndroidFindBy (id = "com.daraz.android:id/confirm_button") public List <WebElement> overseas_Confirm_btn;
     @AndroidFindBy (id = "com.shop.android:id/confirm_button") public List <WebElement> overseas_Confirm_btn_MM;
     @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/ckb_laz_trade_total_checkbox"),@AndroidBy(id = "com.shop.android:id/ckb_laz_trade_total_checkbox")}) public WebElement select_All_chkbox;
     @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/iv_laz_trade_item_action_wishlist"),@AndroidBy(id = "com.shop.android:id/iv_laz_trade_item_action_wishlist")}) public List <WebElement> wishlist_In_Cart_btn;
     @AndroidFindBy(id = "com.daraz.android:id/other_action") public List <WebElement> buy_Now_btn;
     @AndroidFindBy(id = "com.shop.android:id/other_action") public List <WebElement> buy_Now_btn_MM;
+    @AndroidFindBy(id="com.daraz.android:id/laz_trade_shop_checkbox") public List <WebElement> shop_check_box;
+    @AndroidFindBy(id="com.shop.android:id/laz_trade_shop_checkbox") public List <WebElement> shop_check_box_MM;
+    @AndroidFindBy(id="com.daraz.android:id/tv_laz_trade_item_sku") public List <WebElement> shopName_For_Product;
+    @AndroidFindBy(id="com.shop.android:id/tv_laz_trade_item_sku") public List <WebElement> shopName_For_Product_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_order_total_amount") public List <WebElement> displayed_Amount_txt;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_order_total_amount")  public List <WebElement> displayed_Amount_txt_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_total_bar_fee_value") public List <WebElement> original_Amount_txt;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_total_bar_fee_value") public List <WebElement> original_Amount_txt_MM;
+
 
     public By searchProduct_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");

@@ -4,6 +4,8 @@ import global.APP.pageObjects.CartPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import member.APP.pageObjects.WishlistPageObjects;
+import member.APP.pages.Wishlist;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,12 +17,14 @@ import org.openqa.selenium.support.PageFactory;
 public class Cart extends Base {
 
     CartPageObjects cartPageObjects = new CartPageObjects();
+    WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
 
     String productName;
 
     public Cart(AppiumDriver<WebElement> driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), cartPageObjects);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
     }
 
     public void addToCart() {
@@ -112,7 +116,7 @@ public class Cart extends Base {
                 cartPageObjects.product_chkbox_MM.get(0).click();
                 cartPageObjects.delete_first_btn_MM.click();
                 cartPageObjects.delete_second_btn_MM.click();
-                cartPageObjects.delete_third_btn.click();
+                cartPageObjects.delete_third_btn_MM.click();
                 return productName;
                 }
             }
@@ -153,7 +157,7 @@ public class Cart extends Base {
                 cartPageObjects.select_All_chkbox.click();
             cartPageObjects.delete_first_btn_MM.click();
             cartPageObjects.delete_second_btn_MM.click();
-            cartPageObjects.delete_third_btn.click();
+            cartPageObjects.delete_third_btn_MM.click();
         }
     }
 
@@ -200,4 +204,103 @@ public class Cart extends Base {
             else return (verifyEmptyCart());
         }
     }
- }
+
+    public boolean verifyTheToolTipAndCountBar()
+    {
+        return  (wishlistPageObjects.cart_lbl.get(0).getText().contains(".*\\d.*"));
+    }
+
+    public boolean checkforTheCartPage()
+    {
+        return isExist(wishlistPageObjects.cart_lbl);
+    }
+
+    public boolean checkTheShopBox()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (cartPageObjects.shop_check_box.get(0).getAttribute("checked").equalsIgnoreCase("false") && cartPageObjects.product_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
+                cartPageObjects.shop_check_box.get(0).click();
+                return cartPageObjects.product_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("true");
+            } else
+                return false;
+        }
+        else
+        {
+            if (cartPageObjects.shop_check_box_MM.get(0).getAttribute("checked").equalsIgnoreCase("false") && cartPageObjects.product_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
+                cartPageObjects.shop_check_box_MM.get(0).click();
+                return cartPageObjects.product_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("true");
+            } else
+                return false;
+        }
+    }
+
+    public boolean checkForTheShopName()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            return isExist(cartPageObjects.shopName_For_Product);
+        }
+        else
+        {
+            return isExist(cartPageObjects.shopName_For_Product_MM);
+        }
+    }
+
+    public boolean checkForCurrentPriceAndOriginalPrice()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            return (isExist(cartPageObjects.displayed_Amount_txt) || isExist(cartPageObjects.original_Amount_txt));
+        }
+        else
+        {
+            return (isExist(cartPageObjects.displayed_Amount_txt_MM) || isExist(cartPageObjects.original_Amount_txt_MM));
+        }
+    }
+
+
+    public void cartDeliveryInfoCheck()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
+            cartPageObjects.ok_Got_It_btn.get(0).click();
+            waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By);
+            cartPageObjects.success_Message_lbl.click();
+            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
+            wishlistPageObjects.wishlist_lbl.get(0).click();
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By_MM);
+            cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+            waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By_MM);
+            cartPageObjects.success_Message_lbl_MM.click();
+            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
+            wishlistPageObjects.wishlist_lbl_MM.get(0).click();
+        }
+    }
+
+    public void productTitle()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
+            cartPageObjects.ok_Got_It_btn.get(0).click();
+            waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By);
+            cartPageObjects.success_Message_lbl.click();
+            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
+            wishlistPageObjects.wishlist_lbl.get(0).click();
+        }
+        else
+        {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By_MM);
+            cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+            waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By_MM);
+            cartPageObjects.success_Message_lbl_MM.click();
+            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
+            wishlistPageObjects.wishlist_lbl_MM.get(0).click();
+        }
+    }
+
+
+
+}
