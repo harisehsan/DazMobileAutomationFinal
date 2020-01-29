@@ -20,7 +20,7 @@ public class PdpSteps {
     }
 
     @And("I goto the PDP page")
-    public void iGotoThePDPPage() {
+    public void  iGotoThePDPPage() {
         pdp.gotoPdpPage();
     }
 

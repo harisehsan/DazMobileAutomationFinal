@@ -79,4 +79,39 @@ public class CartSteps {
     public void iGotoTheWishlistToSelectTheAddedProduct() throws InterruptedException {
         productTitle = wishlist.verifyAddedItemInWishlist(productName);
     }
+
+    @And("I check for the count in header and in tooltip")
+    public void iCheckForTheCountInHeaderAndInTooltip() {
+       Assert.assertFalse(cart.verifyTheToolTipAndCountBar(),"Count Bar is not properly shown for the empty cart");
+    }
+
+    @Then("I should remain on the cart screen")
+    public void iShouldRemainOnTheCartScreen() {
+        Assert.assertTrue(cart.checkforTheCartPage(),"Navigation is made from cart to checkout without product select!");
+    }
+
+    @Then("I check shop checkbox for product")
+    public void iCheckShopCheckboxForProduct() {
+      Assert.assertTrue(cart.checkTheShopBox(),"Shop checkbox is not same as the product checkbox!");
+    }
+
+    @Then("I check for shop name for product")
+    public void iCheckForShopNameForProduct() {
+      Assert.assertTrue(cart.checkForTheShopName(),"Shop Name is not properly displayed on the cart screen!");
+    }
+
+    @Then("I check for Current Price and Original Price")
+    public void iCheckForCurrentPriceAndOriginalPrice() {
+        Assert.assertTrue(cart.checkForCurrentPriceAndOriginalPrice(),"Current price and original price are not correctly displayed!");
+    }
+
+    @Then("I check for the product title")
+    public void iCheckForTheProductTitle() {
+        cart.selectProductForCart();
+    }
+
+    @Then("I check for delivery Information")
+    public void iCheckForDeliveryInformation() {
+        cart.cartDeliveryInfoCheck();
+    }
 }
