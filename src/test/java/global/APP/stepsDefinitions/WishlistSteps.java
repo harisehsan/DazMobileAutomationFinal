@@ -7,6 +7,7 @@ import member.APP.pages.Wishlist;
 import org.testng.Assert;
 
 public class WishlistSteps {
+
     Drivers driver = new Drivers();
     Wishlist wishlist = new Wishlist(driver.getDriver());
     String productName;

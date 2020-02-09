@@ -38,7 +38,3 @@ Feature: Daraz Account Management
     And I navigate to my account from cancellation screen
     And I select my cancellation widget
     Then I verify the order in the cancellation screen
-
-
-
-

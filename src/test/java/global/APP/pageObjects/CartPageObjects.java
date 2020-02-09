@@ -51,7 +51,14 @@ public class CartPageObjects {
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_order_total_amount")  public List <WebElement> displayed_Amount_txt_MM;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_total_bar_fee_value") public List <WebElement> original_Amount_txt;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_total_bar_fee_value") public List <WebElement> original_Amount_txt_MM;
-
+    @AndroidFindBy(id = "com.daraz.android:id/iv_laz_trade_item_action_delete") public List <WebElement> delete_Slide_Element_btn;
+    @AndroidFindBy(id = "com.shop.android:id/iv_laz_trade_item_action_delete") public List <WebElement> delete_Slide_Element_btn_MM;
+    @AndroidFindBy(id= "com.daraz.android:id/tv_laz_trade_not_available_action_delete") public List <WebElement> delete_unavailable_item_btn;
+    @AndroidFindBy(id= "com.shop.android:id/tv_laz_trade_not_available_action_delete") public List <WebElement> delete_unavailable_item_btn_MM;
+    @AndroidFindBy(id="com.daraz.android:id/btn_trade_confirm_dialog_positive") public List <WebElement> delete_Final_btn;
+    @AndroidFindBy(id="com.shop.android:id/btn_trade_confirm_dialog_positive") public List <WebElement> delete_Final_btn_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_recommend_title") public List <WebElement> just_For_You_Title_lbl;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_recommend_title") public List <WebElement> just_For_You_Title_lbl_MM;
 
     public By searchProduct_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");
@@ -68,4 +75,12 @@ public class CartPageObjects {
     public By wishlist_In_Cart_btn_By = By.id("com.daraz.android:id/iv_laz_trade_item_action_wishlist");
     public By wishlist_In_Cart_btn_By_MM = By.id("com.shop.android:id/iv_laz_trade_item_action_wishlist");
     public By proceed_To_Pay_btn_by = By.id("com.daraz.android:id/btn_laz_trade_order_total_proceed_next");
+    public By go_To_Cart_btn_By = By.id("com.daraz.android:id/cart");
+    public By go_To_Cart_btn_By_MM = By.id("com.shop.android:id/cart");
+    public By delete_Slide_Element_btn_By = By.id("com.daraz.android:id/iv_laz_trade_item_action_delete");
+    public By delete_Slide_Element_btn_By_MM = By.id("com.shop.android:id/iv_laz_trade_item_action_delete");
+    public By delete_Final_btn_By = By.id("com.daraz.android:id/btn_trade_confirm_dialog_positive");
+    public By delete_Final_btn_By_MM = By.id("com.shop.android:id/btn_trade_confirm_dialog_positive");
+
+
 }

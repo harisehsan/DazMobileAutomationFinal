@@ -71,6 +71,7 @@ public class PdpPageObject {
  @AndroidFindBy(id="com.daraz.android:id/container_laz_trade_item_content") public List <WebElement> cart_Item_container;
  @AndroidFindBy (xpath = "//*[@text='2']") public WebElement item_Count_lbl;
  @AndroidFindBy(id="com.daraz.android:id/confirm_btn") public WebElement confirm_btn;
+ @AndroidFindBy(id = "com.daraz.android:id/recommend_image") public List <WebElement> recommended_By_Seller_Products;
 
 
  @AndroidFindBy(id= "com.shop.android:id/pdp_gallery_item_video_icon") public List<WebElement> video_icon_MM;
@@ -117,6 +118,7 @@ public class PdpPageObject {
  @AndroidFindBy(id="com.shop.android:id/container_laz_trade_item_content") public List <WebElement> cart_Item_container_MM;
  @AndroidFindBy(id="com.shop.android:id/confirm_btn") public WebElement confirm_btn_MM;
  @AndroidFindBy(id="com.shop.android:id/share_panel_title") public List <WebElement> share_Title_lbl_MM;
+ @AndroidFindBy(id = "com.shop.android:id/recommend_image") public List <WebElement> recommended_By_Seller_Products_MM;
 
 
  public By video_Close_btn_By = By.id("com.daraz.android:id/video_button_close");

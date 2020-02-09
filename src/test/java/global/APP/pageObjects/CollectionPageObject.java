@@ -25,5 +25,5 @@ public class CollectionPageObject {
     @AndroidFindBy(id = "android:id/button1") public WebElement apply_btn;
 
     public By language_Options_chkbox_By = By.id("com.daraz.android:id/item_checkbox");
-    public By language_Options_rdobtn_By_MM = By.id("com.shop.android:id/item_checkbox");
+    public By  language_Options_rdobtn_By_MM = By.id("com.shop.android:id/item_checkbox");
 }

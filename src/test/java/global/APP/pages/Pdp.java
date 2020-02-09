@@ -21,7 +21,7 @@ public class Pdp extends Base {
     SearchPageObject searchPageObj = new SearchPageObject();
     PdpGetProperty pdpGetProperty = new PdpGetProperty();
     CartPageObjects cartPageObjects = new CartPageObjects();
-    private int tries = 15;
+    private int tries = 25;
     private String productName;
 
     public Pdp(AppiumDriver<WebElement> driver) {
@@ -47,6 +47,8 @@ public class Pdp extends Base {
            searchProduct=6;
        else if (searchType.contains("B1G1"))
            searchProduct=7;
+       else if (searchType.contains("Digital"))
+           searchProduct=8;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
@@ -471,9 +473,9 @@ public class Pdp extends Base {
 
     public boolean iClickOnTheRecommendedProduct() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            for (int i = 0; i < 2; i++) {
-                if (isExist(pdpPageObject.product_Title_lbl)) {
-                    pdpPageObject.product_Title_lbl.get(0).click();
+            for (int i = 0; i < 6; i++) {
+                if (isExist(pdpPageObject.recommended_By_Seller_Products)) {
+                    pdpPageObject.recommended_By_Seller_Products.get(0).click();
                     if (isExist(cartPageObjects.overseas_Confirm_btn))
                         cartPageObjects.overseas_Confirm_btn.get(0).click();
                     if (isExist(searchPageObj.ok_Got_It_btn))
@@ -485,9 +487,9 @@ public class Pdp extends Base {
 
         }
         else {
-            for (int i = 0; i < 2; i++) {
-                if (isExist(pdpPageObject.product_Title_lbl_MM)) {
-                    pdpPageObject.product_Title_lbl_MM.get(0).click();
+            for (int i = 0; i < 6; i++) {
+                if (isExist(pdpPageObject.recommended_By_Seller_Products_MM)) {
+                    pdpPageObject.recommended_By_Seller_Products_MM.get(0).click();
                     if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
                         cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
                     if (isExist(searchPageObj.ok_Got_It_btn_MM))

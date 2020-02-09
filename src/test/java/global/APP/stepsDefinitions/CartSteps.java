@@ -12,8 +12,8 @@ public class CartSteps {
     Cart cart = new Cart(driver.getDriver());
     Wishlist wishlist = new Wishlist(driver.getDriver());
 
-    String productName;
-    String productTitle;
+    String productName = "";
+    String productTitle = "";
 
     @And("I add a product to cart")
     public void iAddAProductToCart() {
@@ -67,7 +67,7 @@ public class CartSteps {
 
     @And("I add a product from cart to wishlist")
     public void iAddAProductFromCartToWishlist() {
-    cart.addProductFromCartToWishlist();
+      cart.addProductFromCartToWishlist();
     }
 
     @Then("I verify for added item in wishlist")
@@ -113,5 +113,25 @@ public class CartSteps {
     @Then("I check for delivery Information")
     public void iCheckForDeliveryInformation() {
         cart.cartDeliveryInfoCheck();
+    }
+
+    @And("I skip the cart popup")
+    public void iSkipTheCartPopup() {
+        cart.skipTheCartPopup();
+    }
+
+    @And("I get the product Name")
+    public void iGetTheProductName() {
+     productName = cart.getProductName();
+    }
+
+    @And("I slide the item in the cart to view the delete button and delete the item")
+    public void iSlideTheItemInTheCartToViewTheDeleteButton() {
+      cart.slideTheItemInCartToViewOptions(productName);
+    }
+
+    @And("I scroll down to view product in cart")
+    public void iScrollDownToViewProductTheProductInCart() {
+        cart.scrollToProduct(productName);
     }
 }

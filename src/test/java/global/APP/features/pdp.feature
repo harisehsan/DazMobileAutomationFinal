@@ -113,7 +113,7 @@ Feature: PDP page Management
     And I search for "water"
     And I goto the Daraz Mall
     And I goto the PDP page
-    And I check existence of daraz mall in the product title
+#    And I check existence of daraz mall in the product title
     And I verify the existence of services
     And I click on services to open its poppage
     Then I should see the services of daraz mall on poppage

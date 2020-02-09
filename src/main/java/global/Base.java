@@ -166,7 +166,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 25)
+            new WebDriverWait(driver, 60)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {
@@ -246,6 +246,13 @@ public class Base {
         return driver.findElement(By.xpath("//*[@text='"+Name+"']"));
     }
 
+    protected WebElement findElementByContentDescrpitionUsingContainString(String Name) {
+        if (Name.length() > 20)
+            Name = Name.substring(0, 20);
+        return driver.findElement(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']"));
+    }
+
+
     protected void clickElementMultipleTriesUsingString(String Name, int tries) {
         for (int i = 0; i < tries; i++) {
             try {
@@ -260,7 +267,7 @@ public class Base {
         try {
             if (Name.length() > 25)
                 Name = Name.substring(0, 25);
-            new WebDriverWait(driver, 15)
+            new WebDriverWait(driver, 40)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
@@ -285,7 +292,7 @@ public class Base {
     }
 
     protected boolean isExistByText(String Name) {
-        return (driver.findElements(By.xpath("//*[@text='"+Name+"']")).size() > 0);
+        return (driver.findElements(By.xpath("//*[@text= '"+Name+"']")).size() > 0);
     }
 
     protected boolean findElementsSizeByString(String Name) {
@@ -303,8 +310,8 @@ public class Base {
     }
 //
     protected boolean containsTextIsExist(String Name) {
-        if (Name.length() > 40)
-            Name = Name.substring(0, 40);
+        if (Name.length() > 30)
+            Name = Name.substring(0, 30);
         return (driver.findElements(By.xpath("//*[contains(@text,'" +Name+ "')]")).size() > 0);
     }
 
@@ -314,7 +321,7 @@ public class Base {
     }
 public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     try {
-        new WebDriverWait(driver, 25)
+        new WebDriverWait(driver, 50)
                 .until(ExpectedConditions.elementToBeClickable(id.get(0)));
         return true;
     } catch (Exception ex) {
@@ -340,5 +347,10 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
 
     protected boolean isExistByCompleteString(String Name) {
         return (driver.findElements(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']")).size() > 0);
+    }
+
+    protected void swipeHorizontallyToZeroWithInElement(WebElement ele) {
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), (ele.getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (ele.getLocation().getY()))).release().perform();
     }
 }
