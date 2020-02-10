@@ -31,6 +31,14 @@ public class Cart extends Base {
 
     public void addToCart() {
         cartPageObjects.add_To_Cart_btn.get(0).click();
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (isExist(cartPageObjects.add_To_Cart_Second_btn))
+                cartPageObjects.add_To_Cart_Second_btn.get(0).click();
+        }
+        else {
+            if (isExist(cartPageObjects.add_To_Cart_Second_btn_MM))
+                cartPageObjects.add_To_Cart_Second_btn_MM.get(0).click();
+        }
     }
 
     public String selectProductForCart() {

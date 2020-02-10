@@ -84,11 +84,11 @@ public class DarazMall extends Base {
     }
 
     public boolean verifyTheDarazMall() {
-        if ((!(System.getProperty("env").equalsIgnoreCase("mm.live"))) && (!(System.getProperty("env").equalsIgnoreCase("np.live")))) {
+        if ((!(System.getProperty("env").equalsIgnoreCase("mm.live"))) && (!(System.getProperty("env").equalsIgnoreCase("np.live"))) && (!(System.getProperty("env").equalsIgnoreCase("pk.live")))) {
             waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl);
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl));
         }
-        if ((System.getProperty("env").equalsIgnoreCase("np.live")))
+        if ((System.getProperty("env").equalsIgnoreCase("np.live"))|| ((System.getProperty("env").equalsIgnoreCase("pk.live"))))
         {
             waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl_NP);
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_NP) || isExist(darazMallPageObject.daraz_Mall_Title_lbl));

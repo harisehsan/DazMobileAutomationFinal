@@ -14,14 +14,14 @@ Feature: Daraz Cart Management
     Then I verify that all items in cart are successfully removed
     And I check for the count in header and in tooltip
 
-  @21001814 @add_item_without_open_cart_menu
-  Scenario: Add a product to cart without opening a cart menu
-    Given I select the venture
-    And I search a Product using SKU for "Cart"
-    And I select the product for cart
-    And I add a product to cart
-    And I signin with google account
-    Then I verify item has been added to cart by success message
+#  @21001814 @add_item_without_open_cart_menu
+#  Scenario: Add a product to cart without opening a cart menu
+#    Given I select the venture
+#    And I search a Product using SKU for "Cart"
+#    And I select the product for cart
+#    And I add a product to cart
+#    And I signin with google account
+#    Then I verify item has been added to cart by success message
 
   @21001814 @remove_single_item_from_cart @28811375 @28810239 @28810241 @28810183
   Scenario: Remove a single product from cart

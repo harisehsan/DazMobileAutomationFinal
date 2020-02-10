@@ -11,6 +11,13 @@ Feature: Daraz Wishlist Management
     And I goto wishlist from PDP screen
     Then I check for the watchlist, Out of Stock or Back In Stock sections in wishlist
 
+  @21001151 @check_just_for_you_in_wishlist @28810139 @28810144 @28810143 @28810138
+  Scenario: check for just for you section in wishlist
+    Given I select the venture
+    And I login using google account
+    And I open a wishlist
+    Then I scroll down to just for you section
+
   @21001151 @remove_all_items_from_wishlist @28810283 @28810140 @28810143 @28810138
   Scenario: Remove all items from wishlist
     Given I select the venture
@@ -74,13 +81,6 @@ Feature: Daraz Wishlist Management
 #    And I open a wishlist
 #    And I delete all items form wishlist
 #    Then I verify that no item left in the wishlist
-
-  @21001151 @check_just_for_you_in_wishlist @28810139 @28810144 @28810143 @28810138
-  Scenario: check for just for you section in wishlist
-    Given I select the venture
-    And I login using google account
-    And I open a wishlist
-    Then I scroll down to just for you section
 
   @21001151 @add_all_items_from_wishlist_to_cart @28810133
   Scenario: Add all wishlist items into cart

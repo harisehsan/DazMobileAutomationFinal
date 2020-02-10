@@ -43,6 +43,10 @@ public class SearchProduct extends Base {
                     for (String pkProduct : pkProducts) {
                         searchPageObj.searchAfterClick_txtfield.sendKeys(pkProduct);
                         searchPageObj.search_btn.click();
+                        if (!waitWithoutExceptionForElementsResult(searchPageObj.searchResult_lbl)) {
+                            searchPageObj.searchBar_Third_txtBox.get(0).click();
+                            continue;
+                        }
                         if (searchType.equalsIgnoreCase("Result"))
                             break;
                         waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
@@ -74,6 +78,10 @@ public class SearchProduct extends Base {
                     for (String bdProduct : bdProducts) {
                         searchPageObj.searchAfterClick_txtfield.sendKeys(bdProduct);
                         searchPageObj.search_btn.click();
+                        if (!waitWithoutExceptionForElementsResult(searchPageObj.searchResult_lbl)) {
+                            searchPageObj.searchBar_Third_txtBox.get(0).click();
+                            continue;
+                        }
                         if (searchType.equalsIgnoreCase("Result"))
                             break;
                         waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
@@ -105,6 +113,10 @@ public class SearchProduct extends Base {
                     for (String lkProduct : lkProducts) {
                         searchPageObj.searchAfterClick_txtfield.sendKeys(lkProduct);
                         searchPageObj.search_btn.click();
+                        if (!waitWithoutExceptionForElementsResult(searchPageObj.searchResult_lbl)) {
+                            searchPageObj.searchBar_Third_txtBox.get(0).click();
+                            continue;
+                        }
                         if (searchType.equalsIgnoreCase("Result"))
                             break;
                         waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
@@ -136,6 +148,10 @@ public class SearchProduct extends Base {
                     for (String npProduct : npProducts) {
                         searchPageObj.searchAfterClick_txtfield.sendKeys(npProduct);
                         searchPageObj.search_btn.click();
+                        if (!waitWithoutExceptionForElementsResult(searchPageObj.searchResult_lbl)) {
+                            searchPageObj.searchBar_Third_txtBox.get(0).click();
+                            continue;
+                        }
                         if (searchType.equalsIgnoreCase("Result"))
                             break;
                         waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_By);
@@ -168,6 +184,10 @@ public class SearchProduct extends Base {
             for (String mmProduct : mmProducts) {
                 searchPageObj.searchAfterClick_txtfield_MM.sendKeys(mmProduct);
                 searchPageObj.search_btn_MM.click();
+                if (!waitWithoutExceptionForElementsResult(searchPageObj.searchResult_lbl_MM)) {
+                    searchPageObj.searchBar_Third_txtBox_MM.get(0).click();
+                    continue;
+                }
                 if (searchType.equalsIgnoreCase("Result"))
                     break;
                 waitUntilPresentOfElementBy(cartPageObjects.searchProduct_lbl_MM_By);

@@ -249,7 +249,7 @@ public class Base {
     protected WebElement findElementByContentDescrpitionUsingContainString(String Name) {
         if (Name.length() > 20)
             Name = Name.substring(0, 20);
-        return driver.findElement(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']"));
+        return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]"));
     }
 
 
@@ -352,5 +352,16 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     protected void swipeHorizontallyToZeroWithInElement(WebElement ele) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), (ele.getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (ele.getLocation().getY()))).release().perform();
+    }
+
+    public boolean waitWithoutExceptionForElementsResult(List <WebElement> id) {
+        try {
+            new WebDriverWait(driver, 100)
+                    .until(ExpectedConditions.elementToBeClickable(id.get(0)));
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return false;
+        }
     }
 }

@@ -59,6 +59,8 @@ public class CartPageObjects {
     @AndroidFindBy(id="com.shop.android:id/btn_trade_confirm_dialog_positive") public List <WebElement> delete_Final_btn_MM;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_recommend_title") public List <WebElement> just_For_You_Title_lbl;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_recommend_title") public List <WebElement> just_For_You_Title_lbl_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/main_action") public List <WebElement> add_To_Cart_Second_btn;
+    @AndroidFindBy(id = "com.shop.android:id/main_action") public List <WebElement> add_To_Cart_Second_btn_MM;
 
     public By searchProduct_lbl_By = By.id("com.daraz.android:id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");
