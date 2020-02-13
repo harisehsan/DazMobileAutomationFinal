@@ -42,4 +42,6 @@ public class CheckOutPageObjects {
     public By track_Order_btn_By = By.xpath("//*[@contentDescription='TRACK ORDER'] | //*[@content-desc='TRACK ORDER']");
     public By available_quantity_By = By.id("com.daraz.android:id/tv_laz_trade_item_stock_tip");
     public By available_quantity_MM_By = By.id("com.shop.android:id/tv_laz_trade_item_stock_tip");
+    public By cod_lbl_MM_By = By.xpath("//*[@contentDescription='Cash On Delivery'] | //*[@content-desc='Cash On Delivery']");
+    public By cod_lbl_By = By.xpath("//*[@contentDescription='Cash on Delivery'] | //*[@content-desc='Cash on Delivery']");
 }

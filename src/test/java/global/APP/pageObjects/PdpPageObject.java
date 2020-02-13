@@ -72,6 +72,7 @@ public class PdpPageObject {
  @AndroidFindBy (xpath = "//*[@text='2']") public WebElement item_Count_lbl;
  @AndroidFindBy(id="com.daraz.android:id/confirm_btn") public WebElement confirm_btn;
  @AndroidFindBy(id = "com.daraz.android:id/recommend_image") public List <WebElement> recommended_By_Seller_Products;
+ @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_bundle_title") public List <WebElement> product_Cart_Title_lbl;
 
 
  @AndroidFindBy(id= "com.shop.android:id/pdp_gallery_item_video_icon") public List<WebElement> video_icon_MM;
@@ -119,6 +120,7 @@ public class PdpPageObject {
  @AndroidFindBy(id="com.shop.android:id/confirm_btn") public WebElement confirm_btn_MM;
  @AndroidFindBy(id="com.shop.android:id/share_panel_title") public List <WebElement> share_Title_lbl_MM;
  @AndroidFindBy(id = "com.shop.android:id/recommend_image") public List <WebElement> recommended_By_Seller_Products_MM;
+ @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_bundle_title") public List <WebElement> product_Cart_Title_lbl_MM;
 
 
  public By video_Close_btn_By = By.id("com.daraz.android:id/video_button_close");
@@ -148,4 +150,11 @@ public class PdpPageObject {
  public By product_Count_In_Cart_By_MM = By.id("com.shop.android:id/laz_trade_item_quantity_count");
  public By item_Count_drpDown_By = By.id("com.daraz.android:id/iv_laz_trade_item_action_dropdown");
  public By item_Count_drpDown_By_MM = By.id("com.shop.android:id/iv_laz_trade_item_action_dropdown");
+ public By cart_Item_container_By = By.id("com.daraz.android:id/container_laz_trade_item_content");
+ public By cart_Item_container_By_MM = By.id("com.shop.android:id/container_laz_trade_item_content");
+ public By store_Follow_btn_By  = By.id("com.daraz.android:id/laz_shop_follow_btn");
+ public By store_Follow_btn_By_MM  = By.id("com.shop.android:id/laz_shop_follow_btn");
+ public By item_Count_lbl_By = By.xpath("//*[@text='2']");
+ public By confirm_btn_By = By.id("com.daraz.android:id/confirm_btn");
+ public By confirm_btn_By_MM = By.id("com.shop.android:id/confirm_btn");
 }

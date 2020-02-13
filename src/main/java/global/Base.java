@@ -156,7 +156,7 @@ public class Base {
     }
 
     protected void waitUntilPresentOfElementBy(By by) {
-        new WebDriverWait(driver, 120)
+        new WebDriverWait(driver, 160)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -301,7 +301,7 @@ public class Base {
 
     protected boolean waitWithoutExceptionByText(String Name) {
         try {
-            new WebDriverWait(driver, 25)
+            new WebDriverWait(driver, 50)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='"+Name+"']")));
             return true;
         } catch (Exception ex) {
@@ -321,7 +321,7 @@ public class Base {
     }
 public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     try {
-        new WebDriverWait(driver, 50)
+        new WebDriverWait(driver, 120)
                 .until(ExpectedConditions.elementToBeClickable(id.get(0)));
         return true;
     } catch (Exception ex) {
@@ -337,7 +337,7 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         try {
             if (Name.length() > 10)
                 Name = Name.substring(0, 10);
-            new WebDriverWait(driver, 25)
+            new WebDriverWait(driver, 50)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
             return true;
         } catch (Exception ex) {
@@ -354,9 +354,9 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), (ele.getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (ele.getLocation().getY()))).release().perform();
     }
 
-    public boolean waitWithoutExceptionForElementsResult(List <WebElement> id) {
+    protected boolean waitWithoutExceptionForElementsResult(List<WebElement> id) {
         try {
-            new WebDriverWait(driver, 100)
+            new WebDriverWait(driver, 150)
                     .until(ExpectedConditions.elementToBeClickable(id.get(0)));
             return true;
         } catch (Exception ex) {

@@ -165,7 +165,7 @@ public class Collection extends Base {
     }
 
     public boolean checkForCollectionOnHomePageInLocalLanguage() {
-        int tries = 10;
+        int tries = 25;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {

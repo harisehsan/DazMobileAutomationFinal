@@ -27,20 +27,28 @@ public class CheckOut extends Base {
     }
 
     public String selectProductForCheckout() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-             return cartPageObjects.product_Title_lbl.getText();
-        else
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
+            return cartPageObjects.product_Title_lbl.getText();
+        }
+        else {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By_MM);
             return cartPageObjects.product_Title_lbl_MM.getText();
+        }
     }
 
     public void selectBuyNow() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitWithoutExceptionForElements(cartPageObjects.buy_Now_btn);
-            cartPageObjects.buy_Now_btn.get(0).click();
+            do {
+                cartPageObjects.buy_Now_btn.get(0).click();
+            }while(isExist(cartPageObjects.buy_Now_btn));
         }
         else {
             waitWithoutExceptionForElements(cartPageObjects.buy_Now_btn_MM);
-            cartPageObjects.buy_Now_btn_MM.get(0).click();
+            do {
+                cartPageObjects.buy_Now_btn_MM.get(0).click();
+            } while (isExist(cartPageObjects.buy_Now_btn_MM));
         }
     }
 
@@ -56,16 +64,15 @@ public class CheckOut extends Base {
 
     public void checkoutUsingCODPaymentMethod() {
         if ((System.getProperty("env").equalsIgnoreCase("np.live")) || (System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitWithoutException(checkOutPageObjects.cod_lbl_MM);
+            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             checkOutPageObjects.cod_lbl_MM.click();
         } else {
-            waitWithoutException(checkOutPageObjects.cod_lbl);
+            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_By);
             checkOutPageObjects.cod_lbl.click();
         }
     }
 
-    public void reachToOrderSuccessPage()
-    {
+    public void reachToOrderSuccessPage() {
         waitUntilPresentOfElementBy(checkOutPageObjects.confirm_Order_btn_By);
         checkOutPageObjects.confirm_Order_btn.click();
     }

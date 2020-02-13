@@ -327,4 +327,8 @@ public class PdpSteps {
     public void iShouldSeeTheB1G1QuantityOnCheckoutPage() {
       Assert.assertTrue(pdp.verifyB1G1QuantityOnCheckOut(),"The product quantity is not displayed or not correct for B1G1 on checkout screen!");
     }
+
+    @Then("I should see buy more & save up")
+    public void iShouldSeeBuyMoreSaveUp() {
+    }
 }
