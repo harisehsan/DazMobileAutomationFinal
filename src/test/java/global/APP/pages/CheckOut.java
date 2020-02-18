@@ -77,10 +77,23 @@ public class CheckOut extends Base {
         checkOutPageObjects.confirm_Order_btn.click();
     }
 
-    public void clickTrackOrder()
-    {
-        waitUntilPresentOfElementBy(checkOutPageObjects.track_Order_btn_By);
-        checkOutPageObjects.track_Order_btn.click();
+    public void clickTrackOrder() {
+        if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.track_Order_btn_By)) {
+            checkOutPageObjects.track_Order_btn.click();
+        }
+        else {
+            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+                if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
+                    checkOutPageObjects.rating_Later_btn.click();
+                    findElementByString("View Order").click();
+                 }
+                else
+                {
+                    if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By_MM))
+                    checkOutPageObjects.rating_Later_btn_MM.click();
+                    findElementByString("View Order").click();
+                }
+        }
     }
 
     public boolean verifyCheckOutItem(String productName) {

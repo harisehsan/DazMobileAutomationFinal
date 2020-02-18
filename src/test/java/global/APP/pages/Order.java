@@ -57,8 +57,12 @@ public class Order extends Base {
 
     public boolean verifyCancellationStatus()
     {
-       waitUntilPresentOfElementBy(orderPageObject.cancelled_lbl_by);
-       return isExist(orderPageObject.cancelled_lbl);
+       if(waitUntilPresentOfElementByWithoutException(orderPageObject.cancelled_lbl_by))
+            return isExist(orderPageObject.cancelled_lbl);
+       else
+       {
+           return isExistByString("Cancelled Item");
+       }
     }
 
     public String verifyCancelAmount(String amount)

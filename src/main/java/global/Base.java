@@ -160,6 +160,16 @@ public class Base {
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    protected boolean waitUntilPresentOfElementByWithoutException(By by) {
+        try {
+            new WebDriverWait(driver, 100)
+                    .until(ExpectedConditions.presenceOfElementLocated(by));
+            return true;
+        } catch (Exception e) {
+           return false;
+        }
+    }
+
     public boolean isExist(List<WebElement> id) {
         return id.size() > 0;
     }
@@ -337,7 +347,7 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         try {
             if (Name.length() > 10)
                 Name = Name.substring(0, 10);
-            new WebDriverWait(driver, 50)
+            new WebDriverWait(driver, 120)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
             return true;
         } catch (Exception ex) {

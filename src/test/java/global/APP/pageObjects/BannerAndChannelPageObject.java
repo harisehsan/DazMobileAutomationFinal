@@ -26,14 +26,14 @@ public class BannerAndChannelPageObject {
     @AndroidFindBy (id = "com.shop.android:id/laz_hpc_channel_top_text") public List <WebElement> channel_name_lbl_MM;
     @AndroidFindBy (id = "com.shop.android:id/traffic_hover_text") public List <WebElement> shake_lbl_MM;
 
-    @AndroidFindBy (id = "com.daraz.android:id/laz_hp_channel_horizontal_icon") public List <WebElement> channel_icon_NP;
-    @AndroidFindBy (id = "com.daraz.android:id/laz_hp_channel_horizontal_top_text") public List <WebElement> channel_name_lbl_np;
+    @AndroidFindBy (id = "com.daraz.android:id/laz_hpc_channel_icon") public List <WebElement> channel_icon_NP;
+    @AndroidFindBy (id = "com.daraz.android:id/laz_hpc_channel_top_text") public List <WebElement> channel_name_lbl_np;
 
 //    public By banner_picker_by = By.xpath("//*[@class='android.widget.ImageView']");
     public By banner_image_by = By.id("com.daraz.android:id/iv_homepage_banner");
     public By banner_image_by_MM = By.id("com.shop.android:id/iv_homepage_banner");
     public By channel_icon_by = By.id("com.daraz.android:id/laz_hpc_channel_icon");
-    public By channel_icon_by_NP = By.id("com.daraz.android:id/laz_hp_channel_horizontal_icon");
+    public By channel_icon_by_NP = By.id("com.daraz.android:id/laz_hpc_channel_icon");
     public By channel_icon_by_MM = By.id("com.shop.android:id/laz_hpc_channel_icon");
     public By page_view_by = By.xpath("//*[@class='android.view.View']");
 }

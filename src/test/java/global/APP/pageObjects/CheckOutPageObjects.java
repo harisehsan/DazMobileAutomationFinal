@@ -34,6 +34,9 @@ public class CheckOutPageObjects {
     @AndroidFindBy (id = "com.daraz.android:id/container_laz_trade_item_content") public List <WebElement> cart_item_container;
     @AndroidFindBy (id = "com.shop.android:id/container_laz_trade_item_content") public List <WebElement> cart_item_container_MM;
     @AndroidFindBy (id = "com.daraz.android:id/got_it") public List <WebElement> got_It_btn;
+    @AndroidFindBy (id = "com.daraz.android:id/dialog_btn_cancel") public WebElement rating_Later_btn;
+    @AndroidFindBy (id = "com.shop.android:id/dialog_btn_cancel") public WebElement rating_Later_btn_MM;
+
 
     public By proceed_To_Pay_btn_By = By.id("com.daraz.android:id/btn_laz_trade_order_total_proceed_next");
     public By proceed_To_Pay_btn_By_MM = By.id("com.shop.android:id/btn_laz_trade_order_total_proceed_next");
@@ -44,4 +47,6 @@ public class CheckOutPageObjects {
     public By available_quantity_MM_By = By.id("com.shop.android:id/tv_laz_trade_item_stock_tip");
     public By cod_lbl_MM_By = By.xpath("//*[@contentDescription='Cash On Delivery'] | //*[@content-desc='Cash On Delivery']");
     public By cod_lbl_By = By.xpath("//*[@contentDescription='Cash on Delivery'] | //*[@content-desc='Cash on Delivery']");
+    public By rating_Later_btn_By = By.id("com.daraz.android:id/dialog_btn_cancel");
+    public By rating_Later_btn_By_MM = By.id("com.shop.android:id/dialog_btn_cancel");
 }
