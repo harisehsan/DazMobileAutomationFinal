@@ -1,5 +1,6 @@
 package global.APP.pageObjects;
 
+import global.BuildIDPicker;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -12,7 +13,7 @@ import java.util.List;
  * Date: 10-July-2019
  */
 
-public class OrderPageObject {
+public class OrderPageObject extends BuildIDPicker {
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='CANCEL ']"),@AndroidBy(xpath = "//*[@content-desc='CANCEL ']")}) public WebElement order_Cancel_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Select']"),@AndroidBy(xpath = "//*[@content-desc='Select']")}) public WebElement select_Reason_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Confirm']"),@AndroidBy(xpath = "//*[@content-desc='Confirm']")}) public List <WebElement> reason_Confirm_btn;

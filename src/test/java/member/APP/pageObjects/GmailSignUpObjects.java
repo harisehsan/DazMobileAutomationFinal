@@ -1,5 +1,6 @@
 package member.APP.pageObjects;
 
+import global.BuildIDPicker;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -7,9 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 
-public class GmailSignUpObjects {
+public class GmailSignUpObjects extends BuildIDPicker {
 
-    @AndroidFindBy(id="com.daraz.android:id/view_login_social_google") public List <WebElement> gmail_btn;
+    @AndroidFindBy(id="com.daraz.android"+dev+":id/view_login_social_google") public List <WebElement> gmail_btn;
     @AndroidFindBy(xpath="//*[@resource-id='android:id/button1']") public WebElement policy_Agree_btn;
     @AndroidFindBy(id="com.google.android.gms:id/add_account_chip_title") public List <WebElement> new_User_link;
     @AndroidFindBy(id="com.android.settings:id/password_entry") public WebElement pin_txt;
@@ -31,7 +32,7 @@ public class GmailSignUpObjects {
     @AndroidFindBy(xpath="//*[@id='termsofserviceNext']") public WebElement term_Of_Service_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@text='Next']"), @AndroidBy(xpath = "//*[@id='next']")}) public List <WebElement> gmail_Final_Next_btn;
     @AndroidFindAll({@AndroidBy(id = "termsofserviceNext"), @AndroidBy(xpath = "//*[@text='I agree']")}) public List <WebElement> i_Agree_btn;
-    @AndroidFindBy (id="com.daraz.android:id/txt_name") public WebElement account_Holder_Name_lbl;
+    @AndroidFindBy (id="com.daraz.android"+dev+":id/txt_name") public WebElement account_Holder_Name_lbl;
     @AndroidFindBy (id  = "com.google.android.inputmethod.latin:id/icon") public List <WebElement> enter_btn;
     @AndroidFindBy(id="com.shop.android:id/view_login_social_google") public List <WebElement> gmail_btn_MM;
     @AndroidFindBy (id="com.shop.android:id/txt_name") public WebElement account_Holder_Name_lbl_MM;
@@ -61,8 +62,8 @@ public class GmailSignUpObjects {
     public By term_Of_Service_btn_By = By.xpath("//*[@id='termsofserviceNext']");
     public By i_Agree_btn_By = By.xpath("//*[@id='termsofserviceNext'] | //*[@text='I agree']");
     public By gmail_Final_Next_btn_By = By.xpath("//*[@text='Next'] | //*[@resource-id='next']");
-    public By gmail_btn_By = By.id("com.daraz.android:id/view_login_social_google");
-    public By account_Holder_Name_lbl_By = By.id("com.daraz.android:id/txt_name");
+    public By gmail_btn_By = By.id("com.daraz.android"+dev+":id/view_login_social_google");
+    public By account_Holder_Name_lbl_By = By.id("com.daraz.android"+dev+":id/txt_name");
     public By gmail_btn_By_MM = By.id("com.shop.android:id/view_login_social_google");
     public By account_Holder_Name_lbl_By_MM = By.id("com.shop.android:id/txt_name");
 }
