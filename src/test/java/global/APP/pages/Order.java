@@ -23,8 +23,10 @@ public class Order extends Base {
     }
 
     public void clickOnCancelOrder() {
-        waitUntilPresentOfElementBy(orderPageObject.order_Cancel_btn_by);
-        orderPageObject.order_Cancel_btn.click();
+        waitUntilPresentOfElementByString("CANCEL");
+        findElementByContentDescrpitionUsingContainString("CANCEL").click();
+        if (waitWithoutExceptionByString("Cancel Combo"))
+            findElementByContentDescrpitionUsingContainString("Cancel Combo").click();
     }
 
     public void selectReasonForCancellation(List<String> cancellationReason)  {
@@ -55,8 +57,12 @@ public class Order extends Base {
 
     public boolean verifyCancellationStatus()
     {
-       waitUntilPresentOfElementBy(orderPageObject.cancelled_lbl_by);
-       return isExist(orderPageObject.cancelled_lbl);
+       if(waitUntilPresentOfElementByWithoutException(orderPageObject.cancelled_lbl_by))
+            return isExist(orderPageObject.cancelled_lbl);
+       else
+       {
+           return isExistByString("Cancelled Item");
+       }
     }
 
     public String verifyCancelAmount(String amount)

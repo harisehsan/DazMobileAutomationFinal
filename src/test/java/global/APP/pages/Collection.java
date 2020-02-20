@@ -52,7 +52,7 @@ public class Collection extends Base {
 
     public boolean selectShopMoreForCollections()
     {
-        int tries = 15;
+        int tries = 25;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {
@@ -110,6 +110,7 @@ public class Collection extends Base {
 
     public boolean verifyTheCollectionPage()
     {
+            waitWithoutExceptionForElements(collectionPageObject.collection_header_lbl);
             String title = collectionPageObject.collection_header_lbl.get(0).getText();
             waitWithoutExceptionByText(title);
             return isExistByText(title);
@@ -164,7 +165,7 @@ public class Collection extends Base {
     }
 
     public boolean checkForCollectionOnHomePageInLocalLanguage() {
-        int tries = 10;
+        int tries = 25;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {

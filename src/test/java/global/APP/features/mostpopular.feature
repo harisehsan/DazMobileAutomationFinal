@@ -10,7 +10,7 @@
 
 
   @22953678 @verify_the_existence_of_most_popular_in_local_language @28811826 @30526041
-  Scenario: verify the existence of most popular
+  Scenario: verify the existence of most popular in local language
     Given I select the venture
     And I skip the shake shake popup
     Then I navigate to the account settings menu

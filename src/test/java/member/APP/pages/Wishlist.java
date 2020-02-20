@@ -64,7 +64,7 @@ public class Wishlist extends Base {
                 wishlistPageObjects.google_btn.click();
                 waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
                 wishlistPageObjects.agree_btn.click();
-                if (isExist(wishlistPageObjects.use_Another_Account_btn))
+                if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
             }
         } else {
@@ -74,7 +74,7 @@ public class Wishlist extends Base {
                 wishlistPageObjects.google_btn_MM.click();
                 waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
                 wishlistPageObjects.agree_btn.click();
-                if (isExist(wishlistPageObjects.use_Another_Account_btn))
+                if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
             }
         }
@@ -250,7 +250,8 @@ public class Wishlist extends Base {
 
     public boolean verifyEmptyWishlist()
     {
-        return (wishlistPageObjects.wishlist_Delete_icon.size() <= 0);
+        waitWithoutExceptionByString("CONTINUE SHOPPING");
+        return (!isExist(wishlistPageObjects.wishlist_Delete_icon));
     }
 
     public void goToWishlistFromPDPScreen()

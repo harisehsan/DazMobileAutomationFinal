@@ -305,7 +305,7 @@ public class PdpSteps {
 
     @And("I check the existence of {string} promotion on Popup")
     public void iCheckTheExistenceOfPromotionOnPopup(String promotionType) {
-       Assert.assertTrue(pdp.verifyTheExistenceOfBuyMoreSaveMoreOnPDP(promotionType),"Buy 1 Get 1 promotion is not Existed on PDP!");
+       Assert.assertTrue(pdp.verifyTheExistenceOfBuyMoreSaveMoreOnPDP(promotionType),"Buy more save more promotion is not Existed on PDP!");
     }
 
     @Then("I should see the promo saved price")
@@ -326,5 +326,9 @@ public class PdpSteps {
     @Then("I should see the B1G1 quantity on checkout page")
     public void iShouldSeeTheB1G1QuantityOnCheckoutPage() {
       Assert.assertTrue(pdp.verifyB1G1QuantityOnCheckOut(),"The product quantity is not displayed or not correct for B1G1 on checkout screen!");
+    }
+
+    @Then("I should see buy more & save up")
+    public void iShouldSeeBuyMoreSaveUp() {
     }
 }

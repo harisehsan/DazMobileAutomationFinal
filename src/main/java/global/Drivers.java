@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-public class Drivers {
+public class Drivers extends BuildIDPicker{
 
     public static AppiumDriver<WebElement> driver;
     public DesiredCapabilities cap;
@@ -29,11 +29,11 @@ public class Drivers {
         if(System.getProperty("env").equalsIgnoreCase("mm.live"))
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
         else
-            cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android");
+            cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android"+dev);
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
         cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.14.0");
         cap.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
-        cap.setCapability(MobileCapabilityType.NO_RESET,"true");
+        cap.setCapability(MobileCapabilityType.NO_RESET,false);
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.setLogLevel(Level.INFO);

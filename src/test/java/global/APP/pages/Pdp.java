@@ -21,7 +21,7 @@ public class Pdp extends Base {
     SearchPageObject searchPageObj = new SearchPageObject();
     PdpGetProperty pdpGetProperty = new PdpGetProperty();
     CartPageObjects cartPageObjects = new CartPageObjects();
-    private int tries = 15;
+    private int tries = 25;
     private String productName;
 
     public Pdp(AppiumDriver<WebElement> driver) {
@@ -47,6 +47,8 @@ public class Pdp extends Base {
            searchProduct=6;
        else if (searchType.contains("B1G1"))
            searchProduct=7;
+       else if (searchType.contains("Digital"))
+           searchProduct=8;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
@@ -118,7 +120,6 @@ public class Pdp extends Base {
 
     public boolean viewImagesOnPDP() {
         int[] imageQuantity = new int[2];
-
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             if (isExist(pdpPageObject.picture_Number_lbl)) {
                 String Quantity[] = pdpPageObject.picture_Number_lbl.get(0).getText().split("/");
@@ -434,10 +435,14 @@ public class Pdp extends Base {
     }
 
     public boolean iShouldFollowedThatStore() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(pdpPageObject.store_Follow_btn_By);
             return pdpPageObject.store_Follow_btn.getText().contains("Following");
-        else
+        }
+        else {
+            waitUntilPresentOfElementBy(pdpPageObject.store_Follow_btn_By_MM);
             return pdpPageObject.store_Follow_btn_MM.getText().contains("Following");
+        }
     }
 
     public boolean iShouldBeOnThePDPPage() {
@@ -471,9 +476,9 @@ public class Pdp extends Base {
 
     public boolean iClickOnTheRecommendedProduct() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            for (int i = 0; i < 2; i++) {
-                if (isExist(pdpPageObject.product_Title_lbl)) {
-                    pdpPageObject.product_Title_lbl.get(0).click();
+            for (int i = 0; i < 6; i++) {
+                if (isExist(pdpPageObject.recommended_By_Seller_Products)) {
+                    pdpPageObject.recommended_By_Seller_Products.get(0).click();
                     if (isExist(cartPageObjects.overseas_Confirm_btn))
                         cartPageObjects.overseas_Confirm_btn.get(0).click();
                     if (isExist(searchPageObj.ok_Got_It_btn))
@@ -485,9 +490,9 @@ public class Pdp extends Base {
 
         }
         else {
-            for (int i = 0; i < 2; i++) {
-                if (isExist(pdpPageObject.product_Title_lbl_MM)) {
-                    pdpPageObject.product_Title_lbl_MM.get(0).click();
+            for (int i = 0; i < 6; i++) {
+                if (isExist(pdpPageObject.recommended_By_Seller_Products_MM)) {
+                    pdpPageObject.recommended_By_Seller_Products_MM.get(0).click();
                     if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
                         cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
                     if (isExist(searchPageObj.ok_Got_It_btn_MM))
@@ -635,6 +640,7 @@ public class Pdp extends Base {
 
     public boolean verifyTheDarazMallServices()
     {
+       waitWithoutExceptionForElements(pdpPageObject.authentic_lbl);
        return (isExist(pdpPageObject.authentic_lbl) && isExist(pdpPageObject.easy_Return_lbl));
     }
 
@@ -794,14 +800,20 @@ public class Pdp extends Base {
        else
        {
            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+               waitUntilPresentOfElementBy(pdpPageObject.cart_Item_container_By);
                pdpPageObject.cart_Item_container.get(cartIndex).findElement(pdpPageObject.item_Count_drpDown_By).click();
+               waitUntilPresentOfElementBy(pdpPageObject.item_Count_lbl_By);
                pdpPageObject.item_Count_lbl.click();
+               waitUntilPresentOfElementBy(pdpPageObject.confirm_btn_By);
                pdpPageObject.confirm_btn.click();
            }
            else
            {
+               waitUntilPresentOfElementBy(pdpPageObject.cart_Item_container_By_MM);
                pdpPageObject.cart_Item_container_MM.get(cartIndex).findElement(pdpPageObject.item_Count_drpDown_By_MM).click();
+               waitUntilPresentOfElementBy(pdpPageObject.item_Count_lbl_By);
                pdpPageObject.item_Count_lbl.click();
+               waitUntilPresentOfElementBy(pdpPageObject.confirm_btn_By_MM);
                pdpPageObject.confirm_btn_MM.click();
            }
            return (isExist(pdpPageObject.promo_Saved_lbl) && Integer.parseInt(pdpPageObject.promo_Saved_Price_lbl.get(0).getText().replaceAll("\\D+","").replaceAll(",",""))>0);
@@ -865,5 +877,18 @@ public class Pdp extends Base {
             }
         }
         return false;
+    }
+
+    public boolean verifyBuyMoreAndSaveMoreInCart()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitWithoutExceptionForElements(pdpPageObject.product_Cart_Title_lbl);
+            return (isExist(pdpPageObject.product_Cart_Title_lbl));
+        }
+        else
+        {
+            waitWithoutExceptionForElements(pdpPageObject.product_Cart_Title_lbl_MM);
+            return (isExist(pdpPageObject.product_Cart_Title_lbl_MM));
+        }
     }
 }
