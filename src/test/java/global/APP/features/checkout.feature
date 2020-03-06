@@ -30,7 +30,7 @@ Feature: Daraz Checkout Management
     And I click on Track Order button
     Then I verify that order has been placed
 
-  @21001814 @proceed_to_checkout_from_cart_by_changing_quantity @28810394 @28810395 @28810439 @30564196 @30564196 @30564632 @30564633 @30564635 @#30564636
+  @21001814 @proceed_to_checkout_from_cart_by_changing_quantity @28810394 @28810395 @28810439 @30564196 @30564196 @30564632 @30564633 @30564635 @30564636
   Scenario: Make a checkout from cart product by changing product quantity
     Given I select the venture
     And I search a Product using SKU for "Checkout"

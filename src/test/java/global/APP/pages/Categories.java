@@ -26,7 +26,7 @@ public class Categories extends Base {
     }
 
     public void scrollDownToCategoriesSection() {
-        int tries = 15;
+        int tries = 25;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(categoriesPageObject.categories_lbl)) {

@@ -134,11 +134,12 @@ public class Sort extends Base {
 
     private boolean rupeesLowToHigh(){
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if(sortPageObject.product_Price_lbl.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", ""))) {
             if ((sortPageObject.product_Price_lbl.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)))
-                        swipeBetweenTwoItems(sortPageObject.product_img.get(3), sortPageObject.product_img.get(0));
+                        swipeBetweenTwoItems(sortPageObject.product_img.get(2), sortPageObject.product_img.get(0));
                     else
                         swipeBetweenTwoItems(sortPageObject.product_Price_lbl.get(3), sortPageObject.product_Price_lbl.get(0));
                 } while ((!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 2)) || (!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)));
@@ -153,6 +154,7 @@ public class Sort extends Base {
 
     private boolean takaLowToHigh() {
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if(sortPageObject.product_Price_lbl.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", ""))) {
             if ((sortPageObject.product_Price_lbl_MM.size() > 2)) {
                 do {
@@ -172,6 +174,7 @@ public class Sort extends Base {
 
     private boolean kyatLowToHigh()
     {
+        if(sortPageObject.product_Price_lbl_MM.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", ""))) {
             if ((sortPageObject.product_Price_lbl_MM.size() > 2)) {
                 do {
@@ -191,11 +194,12 @@ public class Sort extends Base {
 
     private boolean rupeesHighToLow() {
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if(sortPageObject.product_Price_lbl.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", ""))) {
             if ((sortPageObject.product_Price_lbl.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)))
-                        swipeBetweenTwoItems(sortPageObject.product_img.get(3), sortPageObject.product_img.get(0));
+                        swipeBetweenTwoItems(sortPageObject.product_img.get(2), sortPageObject.product_img.get(0));
                     else
                         swipeBetweenTwoItems(sortPageObject.product_Price_lbl.get(3), sortPageObject.product_Price_lbl.get(0));
                 } while ((!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 2)) || (!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)));
@@ -211,6 +215,7 @@ public class Sort extends Base {
     private boolean takaHighToLow()
     {
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if(sortPageObject.product_Price_lbl.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", ""))) {
             if ((sortPageObject.product_Price_lbl.size() > 2)) {
                 do {
@@ -229,6 +234,7 @@ public class Sort extends Base {
 
     private boolean kyatHighToLow()
     {
+        if(sortPageObject.product_Price_lbl_MM.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", ""))) {
            if((sortPageObject.product_Price_lbl_MM.size() > 2)) {
             do{

@@ -19,7 +19,7 @@ public class SortPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/price_text_view") public List <WebElement> product_Price_lbl;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/product_name_text_view") public List <WebElement> product_Name_lbl;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/product_image_view") public List <WebElement> product_img;
-    @AndroidFindBy (id = "com.daraz.android"+dev+"id/tab_text") public List <WebElement> search_tab;
+    @AndroidFindBy (id = "com.daraz.android"+dev+":id/tab_text") public List <WebElement> search_tab;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/filter_image") public WebElement filter_btn;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/done_button") public WebElement done_btn;
     @AndroidFindBy (xpath = "//*[@text='All-Products']") public WebElement all_Products_btn;
@@ -30,7 +30,7 @@ public class SortPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.shop.android:id/price_text_view") public List <WebElement> product_Price_lbl_MM;
     @AndroidFindBy (id = "com.shop.android:id/product_name_text_view") public List <WebElement> product_Name_lbl_MM;
     @AndroidFindBy (id = "com.shop.android:id/product_image_view") public List <WebElement> product_img_MM;
-    @AndroidFindBy (id = "com.shop.android:id/libsf_tab_text") public List <WebElement> search_tab_MM;
+    @AndroidFindBy (id = "com.shop.android:id/tab_text") public List <WebElement> search_tab_MM;
     @AndroidFindBy (id = "com.shop.android:id/filter_image") public WebElement filter_btn_MM;
     @AndroidFindBy (id = "com.shop.android:id/done_button") public WebElement done_btn_MM;
     @AndroidFindBy (id = "com.shop.android:id/liststyle_icon") public WebElement catalog_View_icon_MM;
@@ -38,14 +38,14 @@ public class SortPageObject extends BuildIDPicker {
 
     public By sort_drpDown_By = By.id("com.daraz.android"+dev+":id/sort_text");
     public By product_Name_lbl_By = By.id ("com.daraz.android"+dev+":id/product_name_text_view");
-    public By search_tab_By = By.id("com.daraz.android"+dev+"id/tab_text");
+    public By search_tab_By = By.id("com.daraz.android"+dev+":id/tab_text");
     public By filter_btn_By = By.id("com.daraz.android"+dev+":id/filter_image");
     public By done_btn_By = By.id("com.daraz.android"+dev+":id/done_button");
     public By all_Products_btn_By = By.xpath("//*[@text='All-Products']");
 
     public By sort_drpDown_By_MM = By.id("com.shop.android:id/sort_text");
     public By product_Name_lbl_By_MM = By.id("com.shop.android:id/product_name_text_view");
-    public By search_tab_By_MM = By.id("com.shop.android:id/libsf_tab_text");
+    public By search_tab_By_MM = By.id("com.shop.android:id/tab_text");
     public By filter_btn_By_MM = By.id("com.shop.android:id/filter_image");
     public By done_btn_By_MM = By.id("com.shop.android:id/done_button");
 }

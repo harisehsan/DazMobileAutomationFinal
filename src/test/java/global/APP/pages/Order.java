@@ -61,7 +61,7 @@ public class Order extends Base {
             return isExist(orderPageObject.cancelled_lbl);
        else
        {
-           return isExistByString("Cancelled Item");
+           return containsTextIsExist("Cancellation");
        }
     }
 

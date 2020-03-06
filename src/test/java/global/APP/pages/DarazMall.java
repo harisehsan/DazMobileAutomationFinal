@@ -94,8 +94,10 @@ public class DarazMall extends Base {
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_NP) || isExist(darazMallPageObject.daraz_Mall_Title_lbl));
         }
         else {
-            waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl_MM);
-            return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_MM));
+            waitWithoutExceptionByString("Official Stores");
+            return isExistByString("Official Stores");
+//            waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl_MM);
+//            return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_MM));
         }
     }
 
@@ -124,7 +126,7 @@ public class DarazMall extends Base {
         }
 
     public boolean clickOnShopMoreButtonForDarazMall() {
-        int tries = 15;
+        int tries = 25;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {

@@ -40,7 +40,7 @@ public class CategoriesGetProperty {
     public List<String> goodsTab() throws IOException {
         fileInputStream();
         List<String> goodsTabList = new ArrayList<>();
-        for (int i=0; i<(size-2) ;i++)
+        for (int i=0; i<(size-3) ;i++)
             goodsTabList.add(prop.getProperty("GOODS_TABS_"+(i+1)));
         return goodsTabList;
     }
