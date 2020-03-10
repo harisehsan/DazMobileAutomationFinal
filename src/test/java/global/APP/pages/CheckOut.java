@@ -39,16 +39,12 @@ public class CheckOut extends Base {
 
     public void selectBuyNow() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitWithoutExceptionForElements(cartPageObjects.buy_Now_btn);
-            do {
-                cartPageObjects.buy_Now_btn.get(0).click();
-            }while(isExist(cartPageObjects.buy_Now_btn));
+            waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn);
+            clickMultipleTries(cartPageObjects.buy_Now_btn,5);
         }
         else {
-            waitWithoutExceptionForElements(cartPageObjects.buy_Now_btn_MM);
-            do {
-                cartPageObjects.buy_Now_btn_MM.get(0).click();
-            } while (isExist(cartPageObjects.buy_Now_btn_MM));
+            waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn_MM);
+            clickMultipleTries(cartPageObjects.buy_Now_btn_MM,5);
         }
     }
 

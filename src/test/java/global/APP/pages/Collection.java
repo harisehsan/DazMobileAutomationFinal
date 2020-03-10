@@ -60,7 +60,9 @@ public class Collection extends Base {
                       switch (System.getProperty("env")){
                           case "pk.live":
                           case "bd.live":
-                          case "lk.live": {
+                          case "lk.live":
+                          case "np.live":
+                              {
                               if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Collections"))
                               {
                                collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
@@ -70,17 +72,17 @@ public class Collection extends Base {
                                   swiptToBottom();
                           }
                           break;
-                          case "np.live":
-                          {
-                              if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Dashain Specials!")) {
-                                  collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
-                                  return true;
-                              }
-                              else
-                                  swiptToBottom();
-
-                          }
-                          break;
+//                          case "np.live":
+//                          {
+//                              if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Dashain Specials!")) {
+//                                  collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
+//                                  return true;
+//                              }
+//                              else
+//                                  swiptToBottom();
+//
+//                          }
+//                          break;
                     }
                 }
                 else

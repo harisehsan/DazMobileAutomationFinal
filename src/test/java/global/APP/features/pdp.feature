@@ -184,7 +184,7 @@ Feature: PDP page Management
     And I signin with google account
     And I goto cart menu from PDP screen
     Then I should see buy more & save up
-#    And I select that product in cart
+    And I select that product in cart
 #    Then I should see the promo saved price
 
   @28811393 @verify_buy_one_get_one_promotion @28811330 @28811331 @28811321 @28810195 @28810268

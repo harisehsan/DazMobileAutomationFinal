@@ -231,7 +231,13 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheExistenceOfSpecification() {
-        return isExist(pdpPageObject.specifications_lbl);
+        for (int i = 0; i < tries; i++) {
+            if (isExist(pdpPageObject.specifications_lbl)) {
+                return true;
+            } else
+                swiptToBottom();
+        }
+        return false;
     }
 
     public boolean verifyTheContentsOfSpecifications() {

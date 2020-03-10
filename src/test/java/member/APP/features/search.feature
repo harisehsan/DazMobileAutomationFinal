@@ -10,13 +10,13 @@ Feature: Daraz Search Product Management
   @21842974 @search_a_product_by_name
   Scenario: Search a product by name
     Given I select the venture
-    And I search for "PS4"
+    And I search for "water"
     Then I should see search products
 
   @21842974 @search_a_product_by_search_history @28809419
   Scenario: Search a product by search history and then delete search history
     Given I select the venture
-    And I search for "PS4"
+    And I search for "water"
     And I navigate back to the main screen
     And I search a product using search history
     Then I should see search products

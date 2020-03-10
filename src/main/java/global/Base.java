@@ -277,7 +277,7 @@ public class Base {
         try {
             if (Name.length() > 25)
                 Name = Name.substring(0, 25);
-            new WebDriverWait(driver, 40)
+            new WebDriverWait(driver, 60)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
