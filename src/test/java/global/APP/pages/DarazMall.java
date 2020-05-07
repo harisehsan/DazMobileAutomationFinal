@@ -7,6 +7,7 @@ import global.APP.pageObjects.SearchBarPageObject;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.SignUpObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -23,6 +24,7 @@ public class DarazMall extends Base {
     SearchBarPageObject searchBarPageObject = new SearchBarPageObject();
     SignUpObjects signUpObjects = new SignUpObjects();
     BannerAndChannelPageObject bannerAndChannelPageObject = new BannerAndChannelPageObject();
+    SearchPageObject searchPageObject = new SearchPageObject();
 
     public DarazMall(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -31,6 +33,7 @@ public class DarazMall extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchBarPageObject);
         PageFactory.initElements(new AppiumFieldDecorator(driver), signUpObjects);
         PageFactory.initElements(new AppiumFieldDecorator(driver), bannerAndChannelPageObject);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObject);
     }
 
     public boolean checkExistenceofDarazMall() {
@@ -102,25 +105,35 @@ public class DarazMall extends Base {
     }
 
     public void navigatebackToHomePage(String page) {
-        if (page.equalsIgnoreCase("Catalog Page")){
+        if (page.equalsIgnoreCase("Catalog Page")) {
             driver.navigate().back();
             waitUntilPresentOfElementBy(searchBarPageObject.search_btn_By);
             hideKeyboard();
             driver.navigate().back();
-            }
-        else if (page.equalsIgnoreCase("My Account"))
-        {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-            {
-               waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
-               driver.navigate().back();
-            }
-            else
-            {
+        } else if (page.equalsIgnoreCase("My Account")) {
+            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+                waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
+                driver.navigate().back();
+            } else {
                 waitUntilPresentOfElementBy(signUpObjects.settings_icon_By_MM);
                 driver.navigate().back();
             }
+        } else if (page.equalsIgnoreCase("PDP") || page.equalsIgnoreCase("Address")) {
+            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+                do {
+                    driver.navigate().back();
+                    hideKeyboard();
+                } while (!isExist(searchPageObject.searchBeforeClick_txtfield));
+            }
+            else
+            {
+                do {
+                    driver.navigate().back();
+                    hideKeyboard();
+                } while (!isExist(searchPageObject.searchBeforeClick_txtfield_MM));
+            }
         }
+
         else
             driver.navigate().back();
         }

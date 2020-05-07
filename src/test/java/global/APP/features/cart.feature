@@ -14,6 +14,7 @@ Feature: Daraz Cart Management
     Then I verify that all items in cart are successfully removed
     And I check for the count in header and in tooltip
 
+
 #  @21001814 @add_item_without_open_cart_menu
 #  Scenario: Add a product to cart without opening a cart menu
 #    Given I select the venture
@@ -23,7 +24,7 @@ Feature: Daraz Cart Management
 #    And I signin with google account
 #    Then I verify item has been added to cart by success message
 
-  @21001814 @remove_single_item_from_cart @28811375 @28810239 @28810241 @28810183
+  @21001814 @remove_single_item_from_cart @28811375 @28810239 @28810241 @28810183 @28810286
   Scenario: Remove a single product from cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
@@ -157,6 +158,8 @@ Feature: Daraz Cart Management
     Then I check for Current Price and Original Price
     And I slide the item in the cart to view the delete button and delete the item
     Then I verify that removed item should not present in cart
+
+
 
 
 

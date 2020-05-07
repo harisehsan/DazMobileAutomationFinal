@@ -36,6 +36,7 @@ public class AddressPageObject extends BuildIDPicker {
     @AndroidFindBy (xpath = "//*[@text='Delete address']") public List <WebElement> delete_Address_btn;
     @AndroidFindBy (xpath = "//*[@text='Delete address']") public List <WebElement> delete_Address_btn_MM;
     @AndroidFindBy (id = "android:id/button1") public List <WebElement> delete_Confirm_btn;
+    @AndroidFindBy (id = "android:id/message") public List <WebElement> delete_Confirm_Message_lbl;
 
     public By address_Book_lbl_By = By.xpath("//*[@text='Address Book']");
     public By edit_Address_btn_By = By.id("com.daraz.android"+dev+":id/btn_edit");

@@ -2,6 +2,7 @@ package global.APP.stepsDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import global.Drivers;
 import member.APP.pages.FacebookSignUp;
 import member.APP.pages.GmailSignUp;
@@ -84,5 +85,18 @@ public class SignUpStep {
     @And("I provide name email and password for facebook account")
     public void iProvideNameEmailAndPasswordForFacebookAccount() throws IOException {
        FACEBOOK_NAME = facebookSignUp.emailAndPassword();
+    }
+
+    @And("I select message")
+    public void iSelectMessage() {
+        
+    }
+
+    @When("I select Login")
+    public void iSelectLogin() {
+    }
+
+    @Then("I should be on the login page")
+    public void iShouldBeOnTheLoginPage() {
     }
 }

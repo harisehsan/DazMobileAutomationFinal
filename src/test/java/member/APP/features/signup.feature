@@ -1,5 +1,5 @@
-#@smoke @signup
-#Feature: Signup new Daraz Account
+@smoke @signup
+Feature: Signup new Daraz Account
 #
 # @20580001 @signup_google @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019 @30526020 @30526021 @30526023 @30526025 @30526044
 #  Scenario: Signup with Google Account
@@ -23,3 +23,10 @@
 #    And I provide name email and password for facebook account
 #    And I should be signed up using facebook account
 #    Then I log out
+
+  @2058001 @goto_login_page_from_message @30524878
+  Scenario: Navigate to message page
+    Given I select the venture
+    And I select message
+    When I select Login
+    Then I should be on the login page

@@ -381,6 +381,42 @@ public class Cart extends Base {
         }
     }
 
+    public void addToCartforCombo() {
+        int tries = 0;
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            while (!isExist(cartPageObjects.combo_Add_To_Cart_btn) && tries < 20) {
+               swiptToBottom();
+                tries++;
+            }
+            waitUntilPresentOfElementBy(cartPageObjects.combo_Add_To_Cart_btn_By);
+            cartPageObjects.combo_Add_To_Cart_btn.get(0).click();
+
+        }
+        else
+        {
+            while (!isExist(cartPageObjects.combo_Add_To_Cart_btn_MM) && tries < 20) {
+                swiptToBottom();
+                tries++;
+            }
+            waitUntilPresentOfElementBy(cartPageObjects.combo_Add_To_Cart_btn_By_MM);
+            cartPageObjects.combo_Add_To_Cart_btn_MM.get(0).click();
+        }
+    }
+
+    public void selectTheAddedProduct(String productName) {
+        for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size() - 1; i++) {
+
+            if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
+                if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+                    cartPageObjects.product_chkbox.get(i).click();
+                } else {
+                    cartPageObjects.product_chkbox_MM.get(i).click();
+                }
+                break;
+            }
+        }
+    }
+
     private boolean lookForTargetProductInCart(String productName) {
         for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); i++) {
             if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName))
@@ -389,5 +425,10 @@ public class Cart extends Base {
         return false;
     }
 
+    public void selectAllItemsInCart()
+    {
+        if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
+            cartPageObjects.select_All_chkbox.click();
+    }
 
 }

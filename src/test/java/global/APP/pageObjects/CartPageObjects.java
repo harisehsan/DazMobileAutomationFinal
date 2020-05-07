@@ -32,7 +32,7 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/tab_layout") public List <WebElement> cart_icon_MM;
     @AndroidFindBy (id= "com.daraz.android"+dev+":id/ckb_laz_trade_item_checkbox") public List <WebElement> product_chkbox;
     @AndroidFindBy (id= "com.shop.android:id/ckb_laz_trade_item_checkbox") public List <WebElement> product_chkbox_MM;
-    @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_cart_action_manage_btn") public WebElement delete_first_btn;
+    @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_laz_cart_toolbar_management") public WebElement delete_first_btn;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/btn_laz_trade_management_delete") public WebElement delete_second_btn;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_action_manage_btn") public WebElement delete_first_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_management_delete") public WebElement delete_second_btn_MM;
@@ -64,6 +64,8 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/main_action") public List <WebElement> add_To_Cart_Second_btn_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/label") public List <WebElement> quantity_Pdp_lbl;
     @AndroidFindBy(id = "com.shop.android"+dev+":id/label") public List <WebElement> quantity_Pdp_lbl_MM;
+    @AndroidFindBy(id = "com.daraz.android"+dev+":id/add_to_cart") public List <WebElement> combo_Add_To_Cart_btn;
+    @AndroidFindBy(id = "com.shop.android"+dev+":id/add_to_cart") public List <WebElement> combo_Add_To_Cart_btn_MM;
 
     public By searchProduct_lbl_By = By.id("com.daraz.android"+dev+":id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");
@@ -86,6 +88,8 @@ public class CartPageObjects extends BuildIDPicker {
     public By delete_Slide_Element_btn_By_MM = By.id("com.shop.android:id/iv_laz_trade_item_action_delete");
     public By delete_Final_btn_By = By.id("com.daraz.android"+dev+":id/btn_trade_confirm_dialog_positive");
     public By delete_Final_btn_By_MM = By.id("com.shop.android:id/btn_trade_confirm_dialog_positive");
+    public By combo_Add_To_Cart_btn_By = By.id("com.daraz.android"+dev+":id/add_to_cart");
+    public By combo_Add_To_Cart_btn_By_MM = By.id("com.shop.android"+dev+":id/add_to_cart");
 
 
 }
