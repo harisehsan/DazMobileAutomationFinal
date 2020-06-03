@@ -1,7 +1,7 @@
 @smoke @pdp @22702821
 Feature: PDP page Management
 
-  @22702821 @verify_pdp_gallery @30180363 @28809899 @28811301 @28809900 @28811302 @28811368
+  @22702821 @verify_pdp_gallery @30180363 @28809899 @28811301 @28809900 @28811302 @28811368 @28810181
   Scenario: Verify the PDP gallery
     Given I select the venture
     And I search product using sku for "PDP"

@@ -36,7 +36,7 @@ public class SearchBarSteps {
 
     }
 
-    @And("I click on wallet icon to navigate to scan page")
+    @And("I click on wallet icon")
     public void iClickOnWalletIconToNavigateToScanPage() {
         searchBar.clickOnWallet();
     }

@@ -49,7 +49,7 @@ Feature: Daraz Cart Management
     And I scroll down to view product in cart
     Then I verify item has been added item in cart
 
-  @21001814 @add_product_from_wishlist_to_cart @28810240 @28810273
+  @21001814 @add_product_from_wishlist_to_cart @28810240 @28810273 @28810182
   Scenario: Add a product from Wishlist to Cart
     Given I select the venture
     And I search a Product using SKU for "Cart"
