@@ -18,9 +18,7 @@ public class FacebookSignUpObjects extends BuildIDPicker {
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Login']"),@AndroidBy(xpath = "//*[@content-desc='Login']"),@AndroidBy(xpath = "//*[@content-desc='Log In']"),@AndroidBy(xpath = "//*[@resource-id='u_0_5']"),@AndroidBy(xpath = "//*[@content-desc='Login click']"),@AndroidBy(xpath = "//*[@text='Log In']"),@AndroidBy(xpath = "//*[@contentDescription='Login click']")}) public List <WebElement> facebook_login_btn;
     @AndroidFindBy (id="com.daraz.android"+dev+":id/txt_name") public WebElement account_Holder_Name_lbl;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@text='Continue']"),@AndroidBy(xpath = "//*[starts-with(@text,'CONTINUE')]")}) public List <WebElement> continue_Facebook_Accout;
-
     @AndroidFindBy (id="com.shop.android:id/txt_name") public WebElement account_Holder_Name_lbl_MM;
-
     public By facebook_btn_By = By.id("com.daraz.android"+dev+":id/view_login_social_facebook");
     public By policy_Agree_btn_By = By.xpath("//*[@resource-id='android:id/button1']");
     public By facebook_btn_MM_By = By.id("com.shop.android:id/view_login_social_facebook");

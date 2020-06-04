@@ -99,65 +99,56 @@ public class Address extends Base {
             }
             return false;
 //            return new boolean[]{addressPageObject.buyer_Name_lbl.getText().equalsIgnoreCase(name), addressPageObject.buyer_address_lbl.getText().equalsIgnoreCase(address)};
+        } else {
+            waitUntilPresentOfElementBy(addressPageObject.buyer_Name_lbl_By_MM);
+            for (int i = 0; i < addressPageObject.buyer_Name_lbl_MM.size(); i++) {
+                if (addressPageObject.buyer_Name_lbl_MM.get(i).getText().equalsIgnoreCase(name) && addressPageObject.buyer_address_lbl_MM.get(i).getText().equalsIgnoreCase(address))
+                    return true;
+            }
+            return false;
         }
-     else
 
-    {
-        waitUntilPresentOfElementBy(addressPageObject.buyer_Name_lbl_By_MM);
-        for (int i = 0; i < addressPageObject.buyer_Name_lbl_MM.size(); i++) {
-            if (addressPageObject.buyer_Name_lbl_MM.get(i).getText().equalsIgnoreCase(name) && addressPageObject.buyer_address_lbl_MM.get(i).getText().equalsIgnoreCase(address))
-                return true;
-        }
-        return false;
     }
 
-}
-    public void newAddress()
-    {
+    public void newAddress() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By);
             addressPageObject.new_Address_btn.click();
-        }
-        else
-        {
+        } else {
             waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By_MM);
             addressPageObject.new_Address_btn_MM.click();
         }
     }
 
-    public void makeDefault()
-    {
+    public void makeDefault() {
         int tries = 5;
         scrollDownMultipleTries(4);
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(addressPageObject.make_Default_chkbox)) {
-                    if (addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
+                    if (isExist(addressPageObject.make_Default_chkbox) && addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
                         addressPageObject.make_Default_chkbox.get(0).click();
-                    if (addressPageObject.make_Default_chkbox.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                    if (addressPageObject.make_Default_chkbox.size() > 1 && addressPageObject.make_Default_chkbox.get(1).getAttribute("checked").equalsIgnoreCase("false"))
                         addressPageObject.make_Default_chkbox.get(1).click();
                     break;
                 } else
                     scrollDownMultipleTries(4);
             }
-        }
-        else {
-            for (int i=0;i<tries;i++) {
+        } else {
+            for (int i = 0; i < tries; i++) {
                 if (isExist(addressPageObject.make_Default_chkbox_MM)) {
                     if (addressPageObject.make_Default_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false"))
-                         addressPageObject.make_Default_chkbox_MM.get(0).click();
+                        addressPageObject.make_Default_chkbox_MM.get(0).click();
                     if (addressPageObject.make_Default_chkbox_MM.get(1).getAttribute("checked").equalsIgnoreCase("false"))
-                         addressPageObject.make_Default_chkbox_MM.get(1).click();
-                        break;
-                }
-                 else
-                     scrollDownMultipleTries(4);
-          }
+                        addressPageObject.make_Default_chkbox_MM.get(1).click();
+                    break;
+                } else
+                    scrollDownMultipleTries(4);
+            }
         }
     }
 
-    public void editAddress()
-    {
+    public void editAddress() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
             addressPageObject.edit_Address_btn.get(0).click();
@@ -185,8 +176,7 @@ public class Address extends Base {
                 if (isExist(addressPageObject.delete_Confirm_btn)) {
                     addressPageObject.delete_Confirm_btn.get(0).click();
                     deleteTries++;
-                }
-                else {
+                } else {
                     driver.navigate().back();
                     return;
                 }
@@ -206,8 +196,7 @@ public class Address extends Base {
                 if (isExist(addressPageObject.delete_Confirm_btn)) {
                     addressPageObject.delete_Confirm_btn.get(0).click();
                     deleteTries++;
-                }
-                else {
+                } else {
                     driver.navigate().back();
                     return;
                 }
@@ -215,13 +204,85 @@ public class Address extends Base {
         }
     }
 
-    public boolean verifyTheRemovedAddress()
-    {
+    public boolean verifyTheRemovedAddress() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
             return (addressPageObject.edit_Address_btn.size() > 0 && addressPageObject.edit_Address_btn.size() < 3);
         else
             return (addressPageObject.edit_Address_btn_MM.size() > 0 && addressPageObject.edit_Address_btn_MM.size() < 3);
 
+    }
+
+    public void makeDefaultShippingAddressOnly(String addressType) {
+        int tries = 5;
+        scrollDownMultipleTries(4);
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            for (int i = 0; i < tries; i++) {
+                if (isExist(addressPageObject.make_Default_chkbox)) {
+                    if (addressType.equalsIgnoreCase("shipping")) {
+                        if (isExist(addressPageObject.make_Default_chkbox) && addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
+                            addressPageObject.make_Default_chkbox.get(0).click();
+                            break;
+                        }
+                    } else if (addressType.equalsIgnoreCase("billing")) {
+                        if (isExist(addressPageObject.make_Default_chkbox) && addressPageObject.make_Default_chkbox.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                            addressPageObject.make_Default_chkbox.get(1).click();
+                        break;
+                    }
+                } else
+                    scrollDownMultipleTries(4);
+            }
+        } else {
+            for (int i = 0; i < tries; i++) {
+                if (isExist(addressPageObject.make_Default_chkbox_MM)) {
+                    if (addressType.equalsIgnoreCase("shipping")) {
+                        if (isExist(addressPageObject.make_Default_chkbox_MM) && addressPageObject.make_Default_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
+                            addressPageObject.make_Default_chkbox.get(0).click();
+                            break;
+                        }
+                    } else if (addressType.equalsIgnoreCase("billing")) {
+                        if (isExist(addressPageObject.make_Default_chkbox_MM) && addressPageObject.make_Default_chkbox_MM.get(1).getAttribute("checked").equalsIgnoreCase("false"))
+                            addressPageObject.make_Default_chkbox_MM.get(1).click();
+                        break;
+                    }
+                } else
+                    scrollDownMultipleTries(4);
+            }
+        }
+    }
+
+    public void selectEditAddressByOrder(String order) {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
+            if (order.equalsIgnoreCase("first"))
+                addressPageObject.edit_Address_btn.get(0).click();
+            else
+                addressPageObject.edit_Address_btn.get(1).click();
+        } else {
+            waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By_MM);
+            if (order.equalsIgnoreCase("first"))
+                addressPageObject.edit_Address_btn_MM.get(0).click();
+            else
+                addressPageObject.edit_Address_btn_MM.get(1).click();
+        }
+
+    }
+
+    public void selectDeletebutton() {
+        scrollDownMultipleTries(6);
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            while (!isExist(addressPageObject.delete_Address_btn))
+                swiptToBottom();
+            addressPageObject.delete_Address_btn.get(0).click();
+        } else {
+            while (!isExist(addressPageObject.delete_Address_btn_MM))
+                swiptToBottom();
+            addressPageObject.delete_Address_btn_MM.get(0).click();
+        }
+    }
+
+    public boolean verifyTheDeleteRestrictionMessage()
+    {
+         return (isExist(addressPageObject.delete_Confirm_Message_lbl));
     }
 
 }

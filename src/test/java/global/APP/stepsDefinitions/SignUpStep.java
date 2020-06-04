@@ -2,11 +2,9 @@ package global.APP.stepsDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import global.Drivers;
-import member.APP.pages.FacebookSignUp;
-import member.APP.pages.GmailSignUp;
-import member.APP.pages.Logout;
-import member.APP.pages.NavigateToSignUp;
+import member.APP.pages.*;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -17,6 +15,7 @@ public class SignUpStep {
     GmailSignUp gmailSignUp = new GmailSignUp(drivers.getDriver());
     FacebookSignUp facebookSignUp = new FacebookSignUp(drivers.getDriver());
     Logout logout = new Logout(drivers.getDriver());
+    Login login = new Login(drivers.getDriver());
     String GMAIL_NAME;
     String FACEBOOK_NAME;
 
@@ -84,5 +83,70 @@ public class SignUpStep {
     @And("I provide name email and password for facebook account")
     public void iProvideNameEmailAndPasswordForFacebookAccount() throws IOException {
        FACEBOOK_NAME = facebookSignUp.emailAndPassword();
+    }
+
+    @And("I select message")
+    public void iSelectMessage() {
+        login.selectMessage();
+    }
+
+    @When("I select Login button on {string} screen")
+    public void iSelectLogin(String screen) {
+        login.selectLogin(screen);
+    }
+
+    @Then("I should be on the login page")
+    public void iShouldBeOnTheLoginPage() {
+       Assert.assertTrue(login.verifyTheLoginPage(),"Not successfully navigated to the login page!");
+    }
+
+    @Then("I should be login successfully")
+    public void iShouldBeLoginSuccessfully() {
+        Assert.assertTrue(login.verifyTheLogin(),"Login is not successful!");
+    }
+
+    @When("I select forget password link")
+    public void iSelectForgetPasswordLink() {
+     login.selectForgetPasswordLink();
+    }
+
+    @Then("I should be on the reset password page")
+    public void iShouldBeOnTheResetPasswordPage() {
+        Assert.assertTrue(login.verifyTheResetPassword(),"Not successfully navigated to forget/reset password page!");
+    }
+
+    @When("I enter email")
+    public void iEnterEmail() throws IOException {
+        login.enterLoginEmail();
+    }
+
+    @And("I enter password")
+    public void iEnterPassword() throws IOException {
+        login.enterLoginPassword();
+    }
+
+    @And("I select login button")
+    public void iSelectLoginButton() {
+        login.clickLoginButton();
+    }
+
+    @When("I select create an account")
+    public void iSelectCreateAnAccount() {
+        login.selectCreateAccountPage();
+    }
+
+    @Then("I should be on the create account page")
+    public void iShouldBeOnTheCreateAccountPage() {
+      Assert.assertTrue(login.verifyTheCreateAccountPage(),"Not successfully to navigated to register page");
+    }
+
+    @And("I select agree button")
+    public void iSelectAgreeButton() {
+       login.selectFacebookAgreeButton();
+    }
+
+    @And("I select first login button")
+    public void iSelectFirstLoginButton() {
+      login.selectFirstLoginButton();
     }
 }

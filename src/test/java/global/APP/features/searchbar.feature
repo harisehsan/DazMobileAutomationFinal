@@ -35,7 +35,7 @@ Feature: Daraz Search Bar Management
   Scenario: Navigate to daraz wallet and back to homepage
     Given I select the venture
     And I skip the shake shake popup
-    And I click on wallet icon to navigate to scan page
+    And I click on wallet icon
     Then I should be on the Daraz Wallet page
     And I navigate back to the Home Page from "Daraz Wallet"
     Then I check for the existence of daraz wallet icon and text

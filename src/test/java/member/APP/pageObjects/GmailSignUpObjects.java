@@ -45,6 +45,8 @@ public class GmailSignUpObjects extends BuildIDPicker {
     @AndroidFindBy (id = "com.vivo.secime.service:id/hide_btn") public List <WebElement> vivo_Hide_Key_Board_btn;
     @AndroidFindBy (id = "com.google.android.gms:id/main_title") public List <WebElement> choose_Google_Account_lbl;
     @AndroidFindBy (id = "com.google.android.gms:id/account_display_name") public List <WebElement> account_google_lbl;
+    @AndroidFindBy (id = "com.daraz.android:id/icon") public List <WebElement> homepage_Tray_icon;
+    @AndroidFindBy (id = "com.shop.android:id/icon") public List <WebElement> homepage_Tray_icon_MM;
 
 
     public By policy_Agree_btn_By = By.xpath("//*[@resource-id='android:id/button1']");
@@ -66,4 +68,6 @@ public class GmailSignUpObjects extends BuildIDPicker {
     public By account_Holder_Name_lbl_By = By.id("com.daraz.android"+dev+":id/txt_name");
     public By gmail_btn_By_MM = By.id("com.shop.android:id/view_login_social_google");
     public By account_Holder_Name_lbl_By_MM = By.id("com.shop.android:id/txt_name");
+    public By homepage_Tray_icon_By = By.id("com.daraz.android:id/icon");
+    public By homepage_Tray_icon_By_MM = By.id("com.shop.android:id/icon");
 }

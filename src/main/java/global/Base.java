@@ -160,6 +160,11 @@ public class Base {
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    protected void waitUntilAbsentOfElement(WebElement ele) {
+        new WebDriverWait(driver, 30)
+                .until(ExpectedConditions.invisibilityOfAllElements(ele));
+    }
+
     protected boolean waitUntilPresentOfElementByWithoutException(By by) {
         try {
             new WebDriverWait(driver, 100)

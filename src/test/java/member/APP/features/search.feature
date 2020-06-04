@@ -10,13 +10,13 @@ Feature: Daraz Search Product Management
   @21842974 @search_a_product_by_name
   Scenario: Search a product by name
     Given I select the venture
-    And I search for "water"
+    And I search for "hand sanitizer"
     Then I should see search products
 
   @21842974 @search_a_product_by_search_history @28809419
   Scenario: Search a product by search history and then delete search history
     Given I select the venture
-    And I search for "water"
+    And I search for "hand sanitizer"
     And I navigate back to the main screen
     And I search a product using search history
     Then I should see search products
@@ -43,7 +43,7 @@ Feature: Daraz Search Product Management
     And I scroll down to categories section on homepage
     And I select shop more for categories
     And I should be on the categories page
-    And I search for "PS4" in the categories section
+    And I search for "hand sanitizer" in the categories section
     Then I should see search products
 
     @23184571 @search_on_store_page @28809430

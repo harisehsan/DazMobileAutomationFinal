@@ -1,23 +1,23 @@
 @smoke @order
 Feature: Daraz Order Cancellation Management
 
-  @21001814 @order_cancellation @28810439 @28810397 @28810383 @28810448 @@30564196 @30564196 @30564632 @30564633 @30564634 @30564636
-  Scenario: Cancel the order
-    Given I select the venture
-    And I search a Product using SKU for "Checkout"
-    And I select the product for checkout
-    And I select Buy Now button
-    And I signin with google account
-    And I click on proceed to pay button
-    And I select Cash on Delivery payment method
-    And I should reach to order successful page
-    And I click on Track Order button
-    And I click on cancel order button
-    And I Select the reason for cancellation
-    And I provide comments for cancellation
-    And I click on submit button
-    Then I verify that order has been cancelled
-
+#  @21001814 @order_cancellation @28810439 @28810397 @28810383 @28810448 @@30564196 @30564196 @30564632 @30564633 @30564634 @30564636
+#  Scenario: Cancel the order
+#    Given I select the venture
+#    And I search a Product using SKU for "Checkout"
+#    And I select the product for checkout
+#    And I select Buy Now button
+#    And I signin with google account
+#    And I click on proceed to pay button
+#    And I select Cash on Delivery payment method
+#    And I should reach to order successful page
+#    And I click on Track Order button
+#    And I click on cancel order button
+#    And I Select the reason for cancellation
+#    And I provide comments for cancellation
+#    And I click on submit button
+#    Then I verify that order has been cancelled
+#
   @21001814 @order_cancellation_by_changing_quantity @28810439 @28810397 @28810383 @28810448 @@30564196 @30564196 @30564632 @30564633 @30564634 @30564636
   Scenario: Cancel the order by changing quantity
     Given I select the venture

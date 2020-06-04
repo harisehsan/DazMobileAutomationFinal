@@ -134,4 +134,19 @@ public class CartSteps {
     public void iScrollDownToViewProductTheProductInCart() {
         cart.scrollToProduct(productName);
     }
+
+    @And("I add a combo product to cart")
+    public void iAddAComboProductToCart() {
+       cart.addToCartforCombo();
+    }
+
+    @And("I select the added product in cart")
+    public void iSelectTheAddedProductInCart() {
+      cart.selectTheAddedProduct(productName);
+    }
+
+    @And("I select all items in cart")
+    public void iSelectAllItemsInCart() {
+        cart.selectAllItemsInCart();
+    }
 }

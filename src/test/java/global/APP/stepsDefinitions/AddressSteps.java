@@ -2,6 +2,7 @@ package global.APP.stepsDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import global.Drivers;
 import member.APP.getProperty.AddressGetProperty;
 import member.APP.pages.Address;
@@ -71,5 +72,33 @@ public class AddressSteps {
     @And("I make the address default billing and shipping address")
     public void iMakeTheAddressDefaultBillingAndShippingAddress() {
         address.makeDefault();
+    }
+
+    @And("I make the address default {string} address only")
+    public void iMakeTheAddressDefaultShippingAddressOnly(String addressType) {
+        address.makeDefaultShippingAddressOnly(addressType);
+    }
+
+    @And("I verify default address delete restriction message")
+    public void iVerifyDefaultAddressDeleteRestrictionMessage() {
+    }
+
+    @And("I select the edit button of the {string} address")
+    public void iSelectTheEditButtonOfTheAddress(String order) {
+        address.selectEditAddressByOrder(order);
+    }
+
+    @When("I select the delete button")
+    public void iSelectTheDeleteButton() { 
+        address.selectDeletebutton();
+    }
+
+    @Then("I should see the delete restriction message")
+    public void iShouldSeeTheDeleteRestrictionMessage() {
+        Assert.assertTrue(address.verifyTheDeleteRestrictionMessage(),"The Delete restriction message for default address is not shown!");
+    }
+
+    @And("I navigate back to the address menu")
+    public void iNavigateBackToTheAddressMenu() {
     }
 }

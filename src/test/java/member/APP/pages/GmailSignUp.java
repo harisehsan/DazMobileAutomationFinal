@@ -224,5 +224,19 @@ public class GmailSignUp extends Base {
          }
      }
 
+     public void selectMessgae()
+     {
+         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+         {
+             waitUntilPresentOfElementBy(gmailsignUpObjects.homepage_Tray_icon_By);
+             gmailsignUpObjects.homepage_Tray_icon.get(1).click();
+         }
+         else
+         {
+             waitUntilPresentOfElementBy(gmailsignUpObjects.homepage_Tray_icon_By_MM);
+             gmailsignUpObjects.homepage_Tray_icon_MM.get(1).click();
+         }
+     }
+
 
 }
