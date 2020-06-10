@@ -22,6 +22,8 @@ public class AccountPageObject extends BuildIDPicker {
 
     public By my_Account_widget_By = By.id("com.daraz.android"+dev+":id/img_up");
     public By my_Account_widget_By_MM = By.id("com.shop.android:id/img_up");
+    public By down_lbl = By.id("com.daraz.android:id/txt_down");
+    public By down_lbl_MM = By.id("com.shop.android:id/txt_down");
 
 
 

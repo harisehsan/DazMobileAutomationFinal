@@ -22,6 +22,7 @@ public class SignUpObjects extends BuildIDPicker {
     @AndroidFindBy (id="com.shop.android:id/tv_settings") public WebElement settings_icon_MM;
 
 
+
     public By account_lbl_By = By.id("com.daraz.android"+dev+":id/tab_layout");
     public By signup_And_Login_btn_By = By.id("com.daraz.android"+dev+":id/txt_login_signup");
     public By signup_btn_By = By.id("com.daraz.android"+dev+":id/btn_login_fresh_welcome_sign_up");

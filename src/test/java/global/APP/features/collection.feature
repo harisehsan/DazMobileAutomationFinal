@@ -1,12 +1,12 @@
-#@smoke @collections
-#Feature: Daraz Collections Management
-#
-##  @22614390 @view_collections_module_on_homepage
-##  Scenario: View the collections module existence on home page
-##    Given I select the venture
-##    And I skip the shake shake popup
-##    Then I check the existence of the Collections on Homepage
-#
+@smoke @collections
+Feature: Daraz Collections Management
+
+#  @22614390 @view_collections_module_on_homepage
+#  Scenario: View the collections module existence on home page
+#    Given I select the venture
+#    And I skip the shake shake popup
+#    Then I check the existence of the Collections on Homepage
+
 #  @22614390 @select_collections_and_back_to_homepage @28811832 @28811837 @28811836
 #  Scenario: Select collections and navigate back to homepage
 #    Given I select the venture

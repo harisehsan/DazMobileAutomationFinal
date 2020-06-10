@@ -198,7 +198,13 @@ public class Cart extends Base {
 
     public boolean verifyEmptyCart()
     {
-        return !(isExist(cartPageObjects.product_Title_In_Cart_lbl));
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            return (isExist(cartPageObjects.continue_Shopping_Cart_btn));
+        }
+        else
+        {
+            return (isExist(cartPageObjects.continue_Shopping_Cart_btn_MM));
+        }
     }
 
     public void addProductFromCartToWishlist() {
@@ -361,24 +367,28 @@ public class Cart extends Base {
 
     }
 
-    public void scrollToProduct(String productName)
-    {
+    public void scrollToProduct(String productName) {
         int tries = 0;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            while (!isExist(cartPageObjects.just_For_You_Title_lbl) && tries < 20) {
-                if (lookForTargetProductInCart(productName)) return;
-                swiptToBottom();
-                tries++;
-            }
+            do {
+                if (containsTextIsExist(productName)) {
+                    return;
+                } else {
+                    swiptToBottom();
+                    tries++;
+                }
+            } while (!isExist(cartPageObjects.just_For_You_Title_lbl) && tries < 15);
+        } else {
+            do {
+                if (containsTextIsExist(productName)) {
+                    return;
+                } else {
+                    swiptToBottom();
+                    tries++;
+                }
+            } while (!isExist(cartPageObjects.just_For_You_Title_lbl_MM) && tries < 15);
         }
-        else
-        {
-            while (!isExist(cartPageObjects.just_For_You_Title_lbl_MM) && tries < 20) {
-                if (lookForTargetProductInCart(productName)) return;
-                swiptToBottom();
-                tries++;
-            }
-        }
+        throw new RuntimeException("Required product is not shown in Cart!");
     }
 
     public void addToCartforCombo() {

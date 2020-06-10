@@ -8,6 +8,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 /**
  * Developed By: Muhammad Haris Ehsan
  * Date: 26-June-2019
@@ -98,8 +100,7 @@ public class CheckOut extends Base {
 
     public int selectProductFromCart(String productName) {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
-            cartPageObjects.ok_Got_It_btn.get(0).click();
+            cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
                     if (cartPageObjects.product_chkbox.get(i).getAttribute("checked").equalsIgnoreCase("false"))
@@ -110,7 +111,7 @@ public class CheckOut extends Base {
             throw new RuntimeException("Required Product is not added to cart!");
         } else {
             waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
-            cartPageObjects.ok_Got_It_btn_MM.get(0).click();
+            cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
                     if (cartPageObjects.product_chkbox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false"))
@@ -404,5 +405,10 @@ public class CheckOut extends Base {
     {
         waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By);
         return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+    }
+
+    private void cartPopupSkip(List<WebElement> ok_got_it_btn) {
+        if (isExist(ok_got_it_btn))
+            ok_got_it_btn.get(0).click();
     }
 }
