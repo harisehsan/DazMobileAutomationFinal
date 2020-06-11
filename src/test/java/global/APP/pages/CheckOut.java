@@ -60,13 +60,13 @@ public class CheckOut extends Base {
     }
 
     public void checkoutUsingCODPaymentMethod() {
-        if ((System.getProperty("env").equalsIgnoreCase("np.live")) || (System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+//        if ((System.getProperty("env").equalsIgnoreCase("pk.live"))|| (System.getProperty("env").equalsIgnoreCase("np.live")) || (System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             checkOutPageObjects.cod_lbl_MM.click();
-        } else {
-            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_By);
-            checkOutPageObjects.cod_lbl.click();
-        }
+//        } else {
+//            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_By);
+//            checkOutPageObjects.cod_lbl.click();
+//        }
     }
 
     public void reachToOrderSuccessPage() {

@@ -44,7 +44,7 @@ public class LoginPageObject extends BuildIDPicker {
     public By first_login_btn_By = By.id("com.daraz.android:id/btn_login_fresh_welcome_login");
 
     public By tray_icon_By_MM = By.id("com.shop.android:id/icon");
-    public By message_Login_btn_By_MM = By.id("com.daraz.android:id/laz_msg_banner_ImageView");
+    public By message_Login_btn_By_MM = By.id("com.shop.android:id/laz_msg_banner_ImageView");
     public By loginID_lbl_By_MM = By.id("com.shop.android:id/txt_name");
     public By forget_password_lbl_By_MM = By.id("com.shop.android:id/tv_login_form_forgot_password");
     public By login_btn_By_MM = By.id("com.shop.android:id/btn_login_form_account_login");

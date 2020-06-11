@@ -61,7 +61,7 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else {
-            waitWithoutException(checkOutPageObjects.cod_lbl);
+            waitWithoutException(checkOutPageObjects.cod_lbl_MM);
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
@@ -72,8 +72,9 @@ public class Account extends Base {
     }
 
     public boolean verifyProductOnPayNowScreen(String productName) {
-        waitUntilPresentOfElementByString(productName);
-        return productName.contains(findElementByString(productName).getAttribute("contentDescription"));
+//        waitUntilPresentOfElementByString(productName);
+//        return productName.contains(findElementByString(productName).getAttribute("contentDescription"));
+        return waitWithoutExceptionByString(productName);
     }
 
     public void selectPayNowWidigt() {
@@ -212,8 +213,67 @@ public class Account extends Base {
         return waitWithoutExceptionByTextContains("Promo Messages");
     }
 
+    public boolean verifyTheExistenceOfWishlistFollowedStoreAndVoucher(boolean walletExistence)
+    {
+        if (walletExistence)
+        {
+            return (isExistByText("My Wishlist") && isExistByText("Followed Stores") && containsTextIsExist("Daraz Wallet"));
+        }
+        else
+        {
+            return (isExistByText("My Wishlist") && isExistByText("Followed Stores") && containsTextIsExist("Vouchers"));
 
+        }
+    }
 
+    public void navigateToDarazWalletORVoucherFromAccounts(boolean walletExistence)
+    {
+        if (walletExistence)
+        {
+            if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+                accountPageObect.wallet_Activate_Now_lbl.click();
+            else
+                accountPageObect.wallet_Activate_Now_lbl_MM.click();
+        }
+        else
+        {
+            findElementByTextUsingContainsString("Vouchers").click();
+        }
+    }
+
+    public boolean iShouldBeOnTheDarazWalletOrVoucherPage(boolean walletExistence)
+    {
+        if (walletExistence)
+        {
+            return waitWithoutExceptionByText("My Wallet");
+        }
+        else
+        {
+            return waitWithoutExceptionByText("My Voucher");
+        }
+    }
+
+    public boolean verifyTheExistenceOfRedDotOnMessage()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+             if (isExist(accountPageObect.red_Dot_lbl))
+             {
+                 return ((Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText()) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText())== Integer.parseInt(accountPageObect.red_Dot_lbl.get(1).getText()))));
+             }
+             else
+                 return true;
+        }
+        else
+        {
+            if (isExist(accountPageObect.red_Dot_lbl_MM))
+            {
+                return ((Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(0).getText()) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(0).getText())== Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(1).getText()))));
+            }
+            else
+                return true;
+        }
+    }
 
     }
 

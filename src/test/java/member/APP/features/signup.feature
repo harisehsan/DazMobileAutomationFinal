@@ -65,7 +65,7 @@ Feature: Signup new Daraz Account
     And I select login button
     Then I should be login successfully
 
-  @2058001 @verify_mailbox_registration_interface @30524882
+  @2058001 @verify_mailbox_registration_interface @30524882 @37058636
   Scenario: verify the mail box interface
     Given I select the venture
     And I navigate to the signin screen

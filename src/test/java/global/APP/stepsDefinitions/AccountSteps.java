@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.APP.getProperty.OrderGetProperty;
 import global.APP.pages.Order;
+import global.APP.pages.SearchBar;
 import global.Drivers;
 import member.APP.getProperty.AccountGetProperty;
 import member.APP.pages.Account;
@@ -20,6 +21,8 @@ public class AccountSteps {
     OrderGetProperty orderGetProperty = new OrderGetProperty();
     Order order = new Order(drivers.getDriver());
     SoftAssert softAssert = new SoftAssert();
+    SearchBar searchBar = new SearchBar(drivers.getDriver());
+    boolean walletExistence = false;
 
     @Then("I verify that I have been logged in using google Account")
     public void iVerifyThatIHaveBeenLoggedInUsingGoogleAccount() throws IOException {
@@ -111,7 +114,31 @@ public class AccountSteps {
      Assert.assertTrue(account.iShouldBeOnTheMessageSettingsPage(),"Not successfully navigated to message settings!");
     }
 
-    @Then("I should see visit store, my wishlist and voucher as per wallet availability")
-    public void iShouldSeeVisitStoreMyWishlistAndVoucherAsPerWalletAvailability() {
+    @Then("I check for the existence of daraz wallet")
+    public void iCheckForTheExistenceOfDarazWalletIconAndText() {
+      walletExistence = searchBar.verifyTheExistenceOfDarazWalletIconAndText();
+
+    }
+
+    @Then("I verify the existence of the My Wishlist, Followed Store and Voucher as per daraz wallet")
+    public void iVerifyTheExistenceOfTheMyWishlistFollowedStoreAndVoucherAsPerDarazWallet() {
+        Assert.assertTrue(account.verifyTheExistenceOfWishlistFollowedStoreAndVoucher(walletExistence),"Widgets are not shown properly in the my account");
+
+    }
+
+    @When("I jump to daraz wallet otherwise vouchers if daraz wallet is not existed")
+    public void iJumpToDarazWalletOtherwiseVouchersIfDarazWalletIsNotExisted() {
+      account.navigateToDarazWalletORVoucherFromAccounts(walletExistence);
+    }
+
+    @Then("I should be on the Daraz Wallet screen or voucher screen")
+    public void iShouldBeOnTheDarazWalletScreenOrVoucherScreen() {
+      Assert.assertTrue(account.iShouldBeOnTheDarazWalletOrVoucherPage(walletExistence),"Not successfully navigated to wallet or voucher screen!");
+
+    }
+
+    @Then("I verify the existence of red dot on message")
+    public void iVerifyTheExistenceOfRedDotOnMessage() {
+        Assert.assertTrue(account.verifyTheExistenceOfRedDotOnMessage(),"The red dot is not properly shown on message!");
     }
 }
