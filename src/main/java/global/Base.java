@@ -110,7 +110,7 @@ public class Base {
                 .moveTo(point(endx, starty)).release();
     }
 
-    public void swiptToBottom() {
+    public void swiptToBottom() {   // Perform little bit Down Scroll on Current Screen
         try {
             PointOption pointOption = new PointOption();
             Dimension dim = driver.manage().window().getSize();
@@ -118,7 +118,7 @@ public class Base {
             int width = dim.getWidth();
             int x = width / 2;
             int top_y = (int) (height * 0.80);
-            int bottom_y = (int) (height * 0.787);
+            int bottom_y = (int) (height * 0.7878);
 //            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
             TouchAction ts = new TouchAction(driver);
             ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
@@ -367,6 +367,11 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     protected void swipeHorizontallyToZeroWithInElement(WebElement ele) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), (ele.getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (ele.getLocation().getY()))).release().perform();
+    }
+
+    protected void swipeHorizontallyToZeroWithInElementbyText(String Name) {
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.press(new PointOption().withCoordinates(findElementByTextUsingContainsString(Name).getLocation().getX(), (findElementByTextUsingContainsString(Name).getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (findElementByTextUsingContainsString(Name).getLocation().getY()))).release().perform();
     }
 
     protected boolean waitWithoutExceptionForElementsResult(List<WebElement> id) {

@@ -388,7 +388,6 @@ public class Cart extends Base {
                 }
             } while (!isExist(cartPageObjects.just_For_You_Title_lbl_MM) && tries < 15);
         }
-        throw new RuntimeException("Required product is not shown in Cart!");
     }
 
     public void addToCartforCombo() {

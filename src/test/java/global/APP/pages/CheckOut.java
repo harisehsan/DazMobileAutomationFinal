@@ -75,9 +75,9 @@ public class CheckOut extends Base {
     }
 
     public void clickTrackOrder() {
-        if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.track_Order_btn_By)) {
-            checkOutPageObjects.track_Order_btn.click();
-        } else {
+//        if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.track_Order_btn_By)) {
+//            checkOutPageObjects.track_Order_btn.click();
+//        } else {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
                 if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
                     checkOutPageObjects.rating_Later_btn.click();
@@ -88,7 +88,7 @@ public class CheckOut extends Base {
                 findElementByString("View Order").click();
             }
         }
-    }
+//    }
 
     public boolean verifyCheckOutItem(String productName) {
         waitUntilPresentOfElementByString(productName);
@@ -190,17 +190,21 @@ public class CheckOut extends Base {
     }
 
     public void slideToViewDeleteButtonForPromotionProducts(String productName, String promotionName) {
+        if (productName.length() > 25)
+            productName = productName.substring(0, 25);
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            while (tries < 20) {
+            while (tries < 15) {
                 tries++;
                 if (isExist(checkOutPageObjects.item_On_Checkout_lbl)) {
-                    for (int i = checkOutPageObjects.item_On_Checkout_lbl.size() - 1; i >= 0; i--) {
-                        if (checkOutPageObjects.item_On_Checkout_lbl.get(i).getText().contains(productName) && containsTextIsExist(promotionName)) {
-                            swipeHorizontallyToZeroWithInElement(checkOutPageObjects.item_On_Checkout_lbl.get(i));
+//                    for (int i = checkOutPageObjects.item_On_Checkout_lbl.size() - 1; i >= 0; i--) {
+//                        if (checkOutPageObjects.item_On_Checkout_lbl.get(i).getText().contains(productName) && containsTextIsExist(promotionName)) {
+                            if (containsTextIsExist(productName) && isExistByText(promotionName)){
+                                swiptToBottom();
+                                swipeHorizontallyToZeroWithInElementbyText(productName);
                             break;
                         } else
                             swiptToBottom();
-                    }
+
                 } else {
                     swiptToBottom();
                     continue;
@@ -209,7 +213,7 @@ public class CheckOut extends Base {
                     break;
             }
         } else {
-            while (tries < 20) {
+            while (tries < 15) {
                 tries++;
                 if (isExist(checkOutPageObjects.item_On_Checkout_lbl_MM) && checkOutPageObjects.item_On_Checkout_lbl_MM.get(checkOutPageObjects.item_On_Checkout_lbl_MM.size() - 1).getText().contains(productName)) {
                     swiptToBottom();
@@ -403,8 +407,15 @@ public class CheckOut extends Base {
 
     public boolean verifyTheLogisticsTypeAndDeliveryDateAndPostage()
     {
-        waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By);
+        if (!(System.getProperty("env").equalsIgnoreCase("np.live"))) {
+            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By);
+//            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+        } else {
+            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By_NP);
+//            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+        }
         return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+
     }
 
     private void cartPopupSkip(List<WebElement> ok_got_it_btn) {

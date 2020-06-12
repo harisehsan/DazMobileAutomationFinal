@@ -86,4 +86,5 @@ public class CheckOutPageObjects extends BuildIDPicker {
     public By credit_Card_lbl_By = By.xpath("//*[@contentDescription='Credit/Debit Card'] | //*[@content-desc='Credit/Debit Card']");
     public By order_Details_By = By.xpath("//*[@text='Order Details']");
     public By cancel_btn_By = By.xpath("//*[@contentDescription='CANCEL '] | //*[@content-desc='CANCEL ']");
+    public By cancel_btn_By_NP = By.xpath("//*[@contentDescription='CANCEL'] | //*[@content-desc='CANCEL']");
 }

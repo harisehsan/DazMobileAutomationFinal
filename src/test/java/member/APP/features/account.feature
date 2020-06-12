@@ -18,7 +18,7 @@ Feature: Daraz Account Management
     Then I should be on the message page
 
   @21598886 @navigate_to_policies_and_help_and_message_settings_from_accounts @37058639 @37058658 @37058659 @37058639 @37058637
-  Scenario: I navigate to policies and help from account
+  Scenario: I navigate to policies and help from account and message settings
     Given I select the venture
     Then I navigate to the account settings menu
     When I navigate to the policies section from settings menu

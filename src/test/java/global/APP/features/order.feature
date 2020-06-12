@@ -40,7 +40,6 @@ Feature: Daraz Order Cancellation Management
     And I signin with google account
     And I goto cart menu from PDP screen
     And I skip the cart popup
-    And I scroll down to view product in cart
     And I select that product from cart for checkout
     And I change the quantity to 5
     And I click on checkout button in cart menu

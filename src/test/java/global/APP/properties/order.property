@@ -1,4 +1,4 @@
-#Thu Jun 11 19:57:23 PKT 2020
+#Fri Jun 12 18:24:59 PKT 2020
 CANCEL_REASON_6=Delivery time is too long
 CANCEL_REASON_5=Change/combine order
 ORDER_AMOUNT=5
@@ -7,4 +7,4 @@ CANCEL_REASON_3=Duplicate order
 CANCEL_REASON_2=Decided for alternative product
 CANCEL_REASON_1=Change of mind
 CANCEL_COMMENT=This is for testing purpose only. Please ignore this.
-PRODUCT_NAME=Shwe Pyi Nan Thanakha Body Lotion- 200ml (1500ks)
+PRODUCT_NAME=Test Sweater
