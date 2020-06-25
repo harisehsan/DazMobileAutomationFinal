@@ -11,6 +11,7 @@ Feature: Daraz Account Management
   @21598886 @navigate_to_message_from_account @37058638 @28810410 @28810411 @30526026 @37058634
   Scenario: I navigate to message from account
     Given I select the venture
+    And I navigate to the signin screen
     And I signin with google account
     And I navigate to the account menu
     Then I verify the existence of red dot on message

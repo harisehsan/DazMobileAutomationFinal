@@ -118,7 +118,7 @@ public class Base {
             int width = dim.getWidth();
             int x = width / 2;
             int top_y = (int) (height * 0.80);
-            int bottom_y = (int) (height * 0.7878);
+            int bottom_y = (int) (height * 0.787);
 //            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
             TouchAction ts = new TouchAction(driver);
             ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
@@ -336,7 +336,7 @@ public class Base {
     }
 public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     try {
-        new WebDriverWait(driver, 120)
+        new WebDriverWait(driver, 100)
                 .until(ExpectedConditions.elementToBeClickable(id.get(0)));
         return true;
     } catch (Exception ex) {
@@ -344,6 +344,16 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         return true;
     }
 }
+    protected boolean waitWithoutExceptionForElementsLessTime(List<WebElement> id) {
+        try {
+            new WebDriverWait(driver, 30)
+                    .until(ExpectedConditions.elementToBeClickable(id.get(0)));
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return true;
+        }
+    }
     protected WebElement findElementByTextUsingContainsString(String Name) {
         return driver.findElement(By.xpath("//*[contains(@text,'" +Name+ "')]"));
     }
@@ -353,6 +363,18 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
             if (Name.length() > 10)
                 Name = Name.substring(0, 10);
             new WebDriverWait(driver, 120)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    protected boolean waitWithoutExceptionByTextContainsLessTime(String Name) {
+        try {
+            if (Name.length() > 10)
+                Name = Name.substring(0, 10);
+            new WebDriverWait(driver, 30)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
             return true;
         } catch (Exception ex) {

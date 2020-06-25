@@ -49,7 +49,9 @@ Feature: Daraz Search Product Management
     @23184571 @search_on_store_page @28809430
     Scenario: Search on store page
       Given I select the venture
-      And I goto the store page from Homepage
+      And I search product using sku for "PDP"
+      And I goto the PDP page
+      And I click on store button
       And I search a product in store page
       Then I should see search products
       Then I goto the PDP page from store page

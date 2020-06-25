@@ -35,8 +35,15 @@ public class Order extends Base {
         waitUntilPresentOfElementBy(orderPageObject.select_Reason_btn_by);
         do {
             orderPageObject.select_Reason_btn.click();
-            waitUntilPresentOfElementByString(cancellationReason.get(Index));
-            clickElementMultipleTriesUsingString(cancellationReason.get(Index), 3);
+            try {
+                waitUntilPresentOfElementByString(cancellationReason.get(Index));
+                clickElementMultipleTriesUsingString(cancellationReason.get(Index), 3);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Index = randomNumberGenerator(cancellationReason.size());
+                waitUntilPresentOfElementByString(cancellationReason.get(Index));
+                clickElementMultipleTriesUsingString(cancellationReason.get(Index), 3);
+            }
             do {
                 clickMultipleTries(orderPageObject.reason_Confirm_btn,6);
                 tries++;

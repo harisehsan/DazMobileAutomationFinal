@@ -2,6 +2,7 @@ package global.APP.stepsDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import global.APP.pages.Cart;
 import global.Drivers;
 import member.APP.pages.Wishlist;
@@ -148,5 +149,30 @@ public class CartSteps {
     @And("I select all items in cart")
     public void iSelectAllItemsInCart() {
         cart.selectAllItemsInCart();
+    }
+
+    @When("I click on product in cart")
+    public void iClickOnProduct() {
+        cart.clickOnProduct(productName);
+    }
+
+    @Then("I should be on its PDP page")
+    public void iShouldBeOnItsPDPPage() {
+       Assert.assertTrue(cart.verifyTheProductNameOnPDP(productName),"Not successfully navigated from cart to PDP!");
+    }
+
+
+    @Then("I verify item has been added item in cart with promotion")
+    public void iVerifyItemHasBeenAddedItemInCartWithPromotion() {
+    }
+
+    @And("I scroll down to view product name and promotion {string} in cart")
+    public void iScrollDownToViewProductNameAndPromotionInCart(String promotionName) {
+        cart.scrollToProductAndPromotion(productName,promotionName);
+    }
+
+    @Then("I verify item has been added item in cart with promotion {string}")
+    public void iVerifyItemHasBeenAddedItemInCartWithPromotion(String promotionName) {
+        Assert.assertTrue(cart.verifyAddedProductInCartWithPromotion(productName,promotionName),"Product with promotion is not found in cart!");
     }
 }

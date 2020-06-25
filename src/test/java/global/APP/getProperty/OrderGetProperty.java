@@ -26,9 +26,9 @@ public class OrderGetProperty {
         cancellationReason.add(prop.getProperty("CANCEL_REASON_1"));
         cancellationReason.add(prop.getProperty("CANCEL_REASON_2"));
         cancellationReason.add(prop.getProperty("CANCEL_REASON_3"));
-        cancellationReason.add(prop.getProperty("CANCEL_REASON_4"));
-        cancellationReason.add(prop.getProperty("CANCEL_REASON_5"));
-        cancellationReason.add(prop.getProperty("CANCEL_REASON_6"));
+//        cancellationReason.add(prop.getProperty("CANCEL_REASON_4"));
+//        cancellationReason.add(prop.getProperty("CANCEL_REASON_5"));
+//        cancellationReason.add(prop.getProperty("CANCEL_REASON_6"));
         return cancellationReason;
     }
 

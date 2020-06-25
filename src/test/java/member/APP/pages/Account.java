@@ -45,7 +45,7 @@ public class Account extends Base {
 
     public void navigateToAccountFromPaymentScreen() {
         if (System.getProperty("env").equalsIgnoreCase("np.live")) {
-            waitWithoutException(checkOutPageObjects.cod_lbl_MM);
+            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
@@ -53,7 +53,7 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitWithoutException(checkOutPageObjects.cod_lbl_MM);
+            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn_MM)));
@@ -61,7 +61,7 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else {
-            waitWithoutException(checkOutPageObjects.cod_lbl_MM);
+            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
@@ -143,10 +143,7 @@ public class Account extends Base {
     }
 
     public boolean iShouldBeOnMessagePage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-            return waitUntilPresentOfElementByWithoutException(loginPageObject.message_Login_btn_By);
-        else
-            return waitUntilPresentOfElementByWithoutException(loginPageObject.message_Login_btn_By_MM);
+        return isExistByText("Messages");
     }
 
     public void navigateToPoliciesFromSettings() {
@@ -268,7 +265,7 @@ public class Account extends Base {
         {
             if (isExist(accountPageObect.red_Dot_lbl_MM))
             {
-                return ((Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(0).getText()) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(0).getText())== Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(1).getText()))));
+                return ((Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(0).getText()) > 0 ));
             }
             else
                 return true;

@@ -2,6 +2,7 @@ package global.APP.starter;
 
 import com.google.common.io.Files;
 import cucumber.api.testng.TestNGCucumberRunner;
+import global.APP.getProperty.ScreenshotGetProperty;
 import global.Drivers;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Attachment;
@@ -16,6 +17,7 @@ import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.UUID;
 
@@ -24,6 +26,7 @@ public class BaseRunner {
     public TestNGCucumberRunner testNGCucumberRunner;
     public Drivers drv = new Drivers();
     public String driver;
+    ScreenshotGetProperty screenshotGetProperty = new ScreenshotGetProperty();
 
 
     @BeforeClass(alwaysRun = true)
@@ -37,13 +40,16 @@ public class BaseRunner {
 
     @Attachment
     @AfterMethod(alwaysRun = true)
-    public void mobileScreenShot(ITestResult result) {
+    public void mobileScreenShot(ITestResult result) throws IOException {
+        int i= screenshotGetProperty.getScreenshotCount();
         System.out.println(result.getMethod().getMethodName());
         if (result.getStatus() == ITestResult.FAILURE) {
             try {
                 File srcFile = ((TakesScreenshot) drv.getDriver()).getScreenshotAs(OutputType.FILE);
                 String filename = UUID.randomUUID().toString();
-                File targetFile=new File(result.getMethod().getMethodName()+".jpg");
+                File targetFile=new File(result.getMethod().getMethodName()+i+".jpg");
+                ++i;
+                screenshotGetProperty.setScreenShotCount(Integer.toString(i));
                 Files.copy(srcFile,targetFile);
                 System.out.println(srcFile.getAbsolutePath());
             }catch (Exception e){

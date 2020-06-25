@@ -110,10 +110,9 @@ public class CheckOut extends Base {
             }
             throw new RuntimeException("Required Product is not added to cart!");
         } else {
-            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
             cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
-            for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
-                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
+            for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl_MM.size(); ++i) {
+                if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().contains(productName)) {
                     if (cartPageObjects.product_chkbox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false"))
                         cartPageObjects.product_chkbox_MM.get(i).click();
                     return i;
@@ -138,14 +137,30 @@ public class CheckOut extends Base {
             }
             currentItemQuantity = Integer.parseInt(checkOutPageObjects.quantity_lbl.getText());
             if (currentItemQuantity < quantity) {
-                for (int i = currentItemQuantity; i < quantity; i++) {
-                    waitForElementToClickable(checkOutPageObjects.quantity_increase_btn);
-                    checkOutPageObjects.quantity_increase_btn.click();
+                if (isExist(checkOutPageObjects.quantity_increase_btn)) {
+                    for (int i = currentItemQuantity; i < quantity; i++) {
+                        waitForElementToClickable(checkOutPageObjects.quantity_increase_btn.get(0));
+                        checkOutPageObjects.quantity_increase_btn.get(0).click();
+                    }
+                } else {
+                    checkOutPageObjects.quantity_drpDown.click();
+                    waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By);
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    checkOutPageObjects.quantity_Confirm_btn.click();
                 }
             } else if (currentItemQuantity > quantity) {
-                for (int i = currentItemQuantity; i > quantity; i--) {
-                    waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn);
-                    checkOutPageObjects.quantity_decrese_btn.click();
+                if (isExist(checkOutPageObjects.quantity_decrese_btn)) {
+                    for (int i = currentItemQuantity; i > quantity; i--) {
+                        waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn.get(0));
+                        checkOutPageObjects.quantity_decrese_btn.get(0).click();
+                    }
+                } else {
+                    checkOutPageObjects.quantity_drpDown.click();
+                    waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By);
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    checkOutPageObjects.quantity_Confirm_btn.click();
                 }
             } else {
                 System.out.println("Specified quantity is already applied or not applicable yet!");
@@ -161,14 +176,30 @@ public class CheckOut extends Base {
             }
             currentItemQuantity = Integer.parseInt(checkOutPageObjects.quantity_lbl_MM.getText());
             if (currentItemQuantity < quantity) {
-                for (int i = currentItemQuantity; i < quantity; i++) {
-                    waitForElementToClickable(checkOutPageObjects.quantity_increase_btn_MM);
-                    checkOutPageObjects.quantity_increase_btn_MM.click();
+                if (isExist(checkOutPageObjects.quantity_increase_btn_MM)) {
+                    for (int i = currentItemQuantity; i < quantity; i++) {
+                        waitForElementToClickable(checkOutPageObjects.quantity_increase_btn_MM.get(0));
+                        checkOutPageObjects.quantity_increase_btn_MM.get(0).click();
+                    }
+                } else {
+                    checkOutPageObjects.quantity_drpDown_MM.click();
+                    waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By_MM);
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    checkOutPageObjects.quantity_Confirm_btn_MM.click();
                 }
             } else if (currentItemQuantity > quantity) {
-                for (int i = currentItemQuantity; i > quantity; i--) {
-                    waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn_MM);
-                    checkOutPageObjects.quantity_decrese_btn_MM.click();
+                if (isExist(checkOutPageObjects.quantity_decrese_btn_MM)) {
+                    for (int i = currentItemQuantity; i > quantity; i--) {
+                        waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn_MM.get(0));
+                        checkOutPageObjects.quantity_decrese_btn_MM.get(0).click();
+                    }
+                } else {
+                    checkOutPageObjects.quantity_drpDown_MM.click();
+                    waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By_MM);
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    checkOutPageObjects.quantity_Confirm_btn_MM.click();
                 }
             } else {
                 System.out.println("Specified quantity is already applied or not applicable yet!");
@@ -215,13 +246,22 @@ public class CheckOut extends Base {
         } else {
             while (tries < 15) {
                 tries++;
-                if (isExist(checkOutPageObjects.item_On_Checkout_lbl_MM) && checkOutPageObjects.item_On_Checkout_lbl_MM.get(checkOutPageObjects.item_On_Checkout_lbl_MM.size() - 1).getText().contains(productName)) {
-                    swiptToBottom();
-                    swipeHorizontallyToZeroWithInElement(checkOutPageObjects.item_On_Checkout_lbl_MM.get(0));
-                    break;
+                if (isExist(checkOutPageObjects.item_On_Checkout_lbl_MM)) {
+//                    for (int i = checkOutPageObjects.item_On_Checkout_lbl.size() - 1; i >= 0; i--) {
+//                        if (checkOutPageObjects.item_On_Checkout_lbl.get(i).getText().contains(productName) && containsTextIsExist(promotionName)) {
+                    if (containsTextIsExist(productName) && isExistByText(promotionName)){
+                        swiptToBottom();
+                        swipeHorizontallyToZeroWithInElementbyText(productName);
+                        break;
+                    } else
+                        swiptToBottom();
+
                 } else {
                     swiptToBottom();
+                    continue;
                 }
+                if (isExist(checkOutPageObjects.checkout_Delete_btn_MM))
+                    break;
             }
         }
     }
@@ -383,7 +423,7 @@ public class CheckOut extends Base {
         else
         {
             while (tries < 15) {
-                if (isExist(checkOutPageObjects.order_Summary_lbl)) {
+                if (isExist(checkOutPageObjects.order_Summary_lbl_MM)) {
                     return (!checkOutPageObjects.item_On_Checkout_lbl_MM.get(0).getText().equalsIgnoreCase("") &&
                             !checkOutPageObjects.current_Price_lbl_MM.getText().equalsIgnoreCase("") &&
                             (Integer.parseInt(checkOutPageObjects.item_Count_lbl_MM.getText()) >=1) &&
@@ -414,7 +454,7 @@ public class CheckOut extends Base {
             waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By_NP);
 //            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
         }
-        return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+        return (findElementsSizeByString("Package") && (findElementsSizeByString("Sold by") || findElementsSizeByString("Get by")));
 
     }
 

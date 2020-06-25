@@ -1,15 +1,11 @@
 @smoke @order
 Feature: Daraz Order Cancellation Management
 
-  @21001814 @remove_all_items_from_cart @28810161 @28810273 @28810166 @28810160 @28810167
-  Scenario: Remove all products from cart
+  @21001814 @make_cart_empty_without_item_add_for_orders
+  Scenario: Remove all products from cart without add product
     Given I select the venture
-    And I search a Product using SKU for "Cart"
-    And I select the product for cart
-    And I add a product to cart
+    And I select cart
     And I signin with google account
-    And I goto cart menu from PDP screen
-    And I skip the cart popup
     And I remove all items from cart
     Then I verify that all items in cart are successfully removed
 
@@ -54,6 +50,6 @@ Feature: Daraz Order Cancellation Management
     And I click on cancel order button
     And I Select the reason for cancellation
     And I provide comments for cancellation
-    And I verify the quantity amount on cancellation page
+#    And I verify the quantity amount on cancellation page
     And I click on submit button
     Then I verify that order has been cancelled

@@ -236,7 +236,7 @@ public class Address extends Base {
                 if (isExist(addressPageObject.make_Default_chkbox_MM)) {
                     if (addressType.equalsIgnoreCase("shipping")) {
                         if (isExist(addressPageObject.make_Default_chkbox_MM) && addressPageObject.make_Default_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
-                            addressPageObject.make_Default_chkbox.get(0).click();
+                            addressPageObject.make_Default_chkbox_MM.get(0).click();
                             break;
                         }
                     } else if (addressType.equalsIgnoreCase("billing")) {

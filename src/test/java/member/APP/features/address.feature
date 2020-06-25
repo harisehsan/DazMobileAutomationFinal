@@ -65,11 +65,3 @@ Feature: Daraz Address Management
     And I select the edit button of the "second" address
     When I select the delete button
     Then I should see the delete restriction message
-
-
-
-
-
-
-
-

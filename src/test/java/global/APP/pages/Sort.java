@@ -134,12 +134,12 @@ public class Sort extends Base {
 
     private boolean rupeesLowToHigh(){
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
-        if(sortPageObject.product_Price_lbl.size() == 1) return true;
+        if(sortPageObject.product_img.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", ""))) {
-            if ((sortPageObject.product_Price_lbl.size() > 2)) {
+            if ((sortPageObject.product_img.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)))
-                        swipeBetweenTwoItems(sortPageObject.product_img.get(2), sortPageObject.product_img.get(0));
+                        swipeBetweenTwoItems(sortPageObject.product_img.get(3), sortPageObject.product_img.get(0));
                     else
                         swipeBetweenTwoItems(sortPageObject.product_Price_lbl.get(3), sortPageObject.product_Price_lbl.get(0));
                 } while ((!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 2)) || (!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)));
@@ -154,9 +154,9 @@ public class Sort extends Base {
 
     private boolean takaLowToHigh() {
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
-        if(sortPageObject.product_Price_lbl.size() == 1) return true;
+        if(sortPageObject.product_img.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", ""))) {
-            if ((sortPageObject.product_Price_lbl_MM.size() > 2)) {
+            if ((sortPageObject.product_img.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3))) {
                         swipeBetweenTwoItems(sortPageObject.product_img.get(3), sortPageObject.product_img.get(0));
@@ -174,9 +174,9 @@ public class Sort extends Base {
 
     private boolean kyatLowToHigh()
     {
-        if(sortPageObject.product_Price_lbl_MM.size() == 1) return true;
+        if(sortPageObject.product_img_MM.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", ""))) {
-            if ((sortPageObject.product_Price_lbl_MM.size() > 2)) {
+            if ((sortPageObject.product_img_MM.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl_MM, 3)))
                         swipeBetweenTwoItems(sortPageObject.product_img_MM.get(3), sortPageObject.product_img_MM.get(0));
@@ -194,12 +194,12 @@ public class Sort extends Base {
 
     private boolean rupeesHighToLow() {
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
-        if(sortPageObject.product_Price_lbl.size() == 1) return true;
+        if(sortPageObject.product_img.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", ""))) {
-            if ((sortPageObject.product_Price_lbl.size() > 2)) {
+            if ((sortPageObject.product_img.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)))
-                        swipeBetweenTwoItems(sortPageObject.product_img.get(2), sortPageObject.product_img.get(0));
+                        swipeBetweenTwoItems(sortPageObject.product_img.get(3), sortPageObject.product_img.get(0));
                     else
                         swipeBetweenTwoItems(sortPageObject.product_Price_lbl.get(3), sortPageObject.product_Price_lbl.get(0));
                 } while ((!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 2)) || (!waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3)));
@@ -215,9 +215,9 @@ public class Sort extends Base {
     private boolean takaHighToLow()
     {
         waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
-        if(sortPageObject.product_Price_lbl.size() == 1) return true;
+        if(sortPageObject.product_img.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", ""))) {
-            if ((sortPageObject.product_Price_lbl.size() > 2)) {
+            if ((sortPageObject.product_img.size() > 2)) {
                 do {
                     if (!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl, 3))) {
                         swipeBetweenTwoItems(sortPageObject.product_img.get(3), sortPageObject.product_img.get(0));
@@ -234,9 +234,9 @@ public class Sort extends Base {
 
     private boolean kyatHighToLow()
     {
-        if(sortPageObject.product_Price_lbl_MM.size() == 1) return true;
+        if(sortPageObject.product_img_MM.size() == 1) return true;
         if (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", ""))) {
-           if((sortPageObject.product_Price_lbl_MM.size() > 2)) {
+           if((sortPageObject.product_img_MM.size() > 2)) {
             do{
                 if(!(waitWithoutExceptionWithIndex(sortPageObject.product_Price_lbl_MM,3)))
                     swipeBetweenTwoItems(sortPageObject.product_img_MM.get(3), sortPageObject.product_img_MM.get(0));
@@ -257,18 +257,27 @@ public class Sort extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             if (isExist(searchPageObject.got_It_Store_btn))
                 searchPageObject.got_It_Store_btn.get(0).click();
-            searchPageObject.search_tab.click();
-            waitUntilPresentOfElementBy(sortPageObject.all_Products_btn_By);
-            sortPageObject.all_Products_btn.click();
+            if (isExistByText("All Products")) {
+                findElementByTextUsingExactString("All Products").click();
+            } else {
+                searchPageObject.search_tab.click();
+                waitUntilPresentOfElementBy(sortPageObject.all_Products_btn_By);
+                sortPageObject.all_Products_btn.click();
+            }
         }
         else
         {
             if (isExist(searchPageObject.got_It_Store_btn_MM))
                 searchPageObject.got_It_Store_btn_MM.get(0).click();
-            searchPageObject.search_tab_MM.click();
-            waitUntilPresentOfElementBy(sortPageObject.all_Products_btn_By);
-            sortPageObject.all_Products_btn.click();
-        }
+            if (isExistByText("All Products")) {
+                findElementByTextUsingExactString("All Products").click();
+            }
+              else{
+                 searchPageObject.search_tab_MM.click();
+                 waitUntilPresentOfElementBy(sortPageObject.all_Products_btn_By);
+                 sortPageObject.all_Products_btn.click();
+                }
+         }
     }
 
     public void applyListViewOnCatalog(String sortMode)
@@ -282,5 +291,125 @@ public class Sort extends Base {
             waitUntilPresentOfElementBy(searchPageObject.searchResult_lbl_By_MM);
             sortPageObject.catalog_View_icon_MM.click();
         }
+    }
+
+    public boolean verifyTheSortedCatalogOnStore(String sortType)
+    {
+        if (sortType.equalsIgnoreCase("Price low to high")) {
+            switch (System.getProperty("env")) {
+                case "pk.live":
+                case "lk.live":
+                case "np.live":
+                    return rupeesLowToHighOnStore();
+                case "bd.live":
+                    return takaLowToHighOnStore();
+                case "mm.live":
+                    return kyatLowToHighOnStore();
+            }
+        }
+        if (sortType.equalsIgnoreCase("Price high to low")) {
+            switch (System.getProperty("env")) {
+                case "pk.live":
+                case "lk.live":
+                case "np.live":
+                    return rupeesHighToLowOnStore();
+                case "bd.live":
+                    return takaHighToLowOnStore();
+                case "mm.live":
+                    return kyatHighToLowOnStore();
+            }
+        }
+        return false;
+    }
+
+    private boolean rupeesLowToHighOnStore() {
+        waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if (sortPageObject.product_img.size() == 1) return true;
+        if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", ""))) {
+            if ((sortPageObject.product_img.size() > 2)) {
+                scrollDownMultipleTries(6);
+                return (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", "")));
+            } else {
+                return true;
+            }
+        }
+        else
+            return false;
+    }
+
+    private boolean takaLowToHighOnStore() {
+        waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if(sortPageObject.product_img.size() == 1) return true;
+        if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", ""))) {
+            if ((sortPageObject.product_img.size() > 2)) {
+               scrollDownMultipleTries(6);
+                return  (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", "")));
+                }
+            else
+                return true;
+        }
+        else
+            return false;
+    }
+
+    private boolean kyatLowToHighOnStore()
+    {
+        if(sortPageObject.product_img_MM.size() == 1) return true;
+        if (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", ""))) {
+            if ((sortPageObject.product_img_MM.size() > 2)) {
+                scrollDownMultipleTries(6);
+                return (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) <= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", "")));
+                }
+            else
+                return true;
+        }
+        else
+            return false;
+    }
+
+    private boolean rupeesHighToLowOnStore() {
+        waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if (sortPageObject.product_img.size() == 1) return true;
+        if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", ""))) {
+            if ((sortPageObject.product_img.size() > 2)) {
+                scrollDownMultipleTries(6);
+                return (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("Rs. ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("Rs. ", "").replaceAll(",", "")));
+            } else {
+                return true;
+            }
+        }
+        else
+            return false;
+    }
+
+    private boolean takaHighToLowOnStore()
+    {
+        waitUntilPresentOfElementBy(sortPageObject.product_Name_lbl_By);
+        if(sortPageObject.product_img.size() == 1) return true;
+        if (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", ""))) {
+            if ((sortPageObject.product_img.size() > 2)) {
+                scrollDownMultipleTries(6);
+                return  (Integer.parseInt(sortPageObject.product_Price_lbl.get(0).getText().replace("৳ ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(1).getText().replace("৳ ", "").replaceAll(",", "")));
+            }
+            else
+                return true;
+        }
+        else
+            return false;
+    }
+
+    private boolean kyatHighToLowOnStore()
+    {
+        if(sortPageObject.product_img_MM.size() == 1) return true;
+        if (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", ""))) {
+            if ((sortPageObject.product_img_MM.size() > 2)) {
+                scrollDownMultipleTries(6);
+                return (Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(0).getText().replace("Ks ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl_MM.get(1).getText().replace("Ks ", "").replaceAll(",", "")));
+            }
+            else
+                return true;
+        }
+        else
+            return false;
     }
 }

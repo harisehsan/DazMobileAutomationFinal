@@ -4,6 +4,7 @@ import global.APP.pageObjects.CartPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.WishlistPageObjects;
 import member.APP.pages.Wishlist;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,7 @@ public class Cart extends Base {
 
     CartPageObjects cartPageObjects = new CartPageObjects();
     WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
+    SearchPageObject searchPageObj = new SearchPageObject();
 
     String productName;
 
@@ -27,6 +29,7 @@ public class Cart extends Base {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), cartPageObjects);
         PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObj);
     }
 
     public void addToCart() {
@@ -67,7 +70,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyAddedProductInCart(String productName) {
-        int tries = 5;
+        int tries = 1;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             for (int i = 0; i < tries; i++) {
@@ -80,9 +83,9 @@ public class Cart extends Base {
         } else {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
             for (int i = 0; i < tries; i++) {
-                for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl.size(); j++) {
-                    if (cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName))
-                        return cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName);
+                for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl_MM.size(); j++) {
+                    if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(j).getText().contains(productName))
+                        return cartPageObjects.product_Title_In_Cart_lbl_MM.get(j).getText().contains(productName);
                 }
                 scrollDownMultipleTries(2);
             }
@@ -130,7 +133,7 @@ public class Cart extends Base {
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to remove!");
             else {
-                productName = cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
+                productName = cartPageObjects.product_Title_In_Cart_lbl_MM.get(0).getText();
                 do {
                     if(cartPageObjects.product_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false"))
                     cartPageObjects.product_chkbox_MM.get(0).click();
@@ -146,15 +149,23 @@ public class Cart extends Base {
 
     public String verifyForRemovedItemInCart()
     {
-       if (cartPageObjects.product_Title_In_Cart_lbl.size() > 0) {
-           if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-               waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
-           else
-               waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By_MM);
-           return cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
-       }
-       else
-          return "";
+
+           if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+               if (cartPageObjects.product_Title_In_Cart_lbl.size() > 0) {
+                   waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
+                   return cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
+               }
+               else
+                   return "";
+           }
+           else {
+               if (cartPageObjects.product_Title_In_Cart_lbl_MM.size() > 0) {
+                   waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By_MM);
+                   return cartPageObjects.product_Title_In_Cart_lbl_MM.get(0).getText();
+               }
+               else
+                   return "";
+           }
      }
 
     public void removeAllItemsFromCart()
@@ -163,7 +174,7 @@ public class Cart extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             if ((verifyEmptyCart()))
-               throw new RuntimeException("There is no item available in cart to remove!");
+             return;
             if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
                 cartPageObjects.select_All_chkbox.click();
             cartPageObjects.delete_first_btn.click();
@@ -180,9 +191,9 @@ public class Cart extends Base {
         else {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
             if ((verifyEmptyCart()))
-                throw new RuntimeException("There is no item available in cart to remove!");
-            if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
-                cartPageObjects.select_All_chkbox.click();
+                return;
+            if(cartPageObjects.select_All_chkbox_MM.getAttribute("checked").equalsIgnoreCase("false"))
+                cartPageObjects.select_All_chkbox_MM.click();
             cartPageObjects.delete_first_btn_MM.click();
             cartPageObjects.delete_second_btn_MM.click();
             cartPageObjects.delete_third_btn_MM.click();
@@ -222,9 +233,9 @@ public class Cart extends Base {
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
             else {
-                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl.get(0), cartPageObjects.product_chkbox_MM.get(0));
+                swipeBetweenTwoItems(cartPageObjects.product_Title_In_Cart_lbl_MM.get(0), cartPageObjects.product_chkbox_MM.get(0));
                 waitUntilPresentOfElementBy(cartPageObjects.wishlist_In_Cart_btn_By_MM);
-                cartPageObjects.wishlist_In_Cart_btn.get(0).click();
+                cartPageObjects.wishlist_In_Cart_btn_MM.get(0).click();
             }
         }
     }
@@ -257,6 +268,7 @@ public class Cart extends Base {
     public boolean checkTheShopBox()
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+           waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
             if (cartPageObjects.shop_check_box.get(0).getAttribute("checked").equalsIgnoreCase("false") && cartPageObjects.product_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
                 cartPageObjects.shop_check_box.get(0).click();
                 return true;
@@ -265,6 +277,7 @@ public class Cart extends Base {
         }
         else
         {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By_MM);
             if (cartPageObjects.shop_check_box_MM.get(0).getAttribute("checked").equalsIgnoreCase("false") && cartPageObjects.product_chkbox_MM.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
                 cartPageObjects.shop_check_box_MM.get(0).click();
                 return true;
@@ -344,16 +357,29 @@ public class Cart extends Base {
 
     public void slideTheItemInCartToViewOptions(String productName)
     {
-     int tries = 0;
-     int i=0;
-        while (lookForTargetProductInCart(productName) && tries < 15)  {
-           for (i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
-               if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName))
-                   break;
-           swipeHorizontallyToZeroWithInElement(cartPageObjects.product_Title_In_Cart_lbl.get(i));
-           deleteElementFromCart();
-           tries++;
-       }
+        int tries = 0;
+        int i=0;
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
+            while (lookForTargetProductInCart(productName) && tries < 15)  {
+               for (i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
+                   if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName))
+                       break;
+               swipeHorizontallyToZeroWithInElement(cartPageObjects.product_Title_In_Cart_lbl.get(i));
+               deleteElementFromCart();
+               tries++;
+           }
+        } else {
+            while (lookForTargetProductInCart(productName) && tries < 15)  {
+                waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By_MM);
+                for (i=0; i<cartPageObjects.product_Title_In_Cart_lbl_MM.size(); i++)
+                    if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().equalsIgnoreCase(productName))
+                        break;
+                swipeHorizontallyToZeroWithInElement(cartPageObjects.product_Title_In_Cart_lbl_MM.get(i));
+                deleteElementFromCart();
+                tries++;
+            }
+        }
     }
 
     private void deleteElementFromCart() {
@@ -371,7 +397,7 @@ public class Cart extends Base {
         int tries = 0;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             do {
-                if (containsTextIsExist(productName)) {
+                if (isExistByText(productName)) {
                     return;
                 } else {
                     swiptToBottom();
@@ -380,7 +406,7 @@ public class Cart extends Base {
             } while (!isExist(cartPageObjects.just_For_You_Title_lbl) && tries < 15);
         } else {
             do {
-                if (containsTextIsExist(productName)) {
+                if (isExistByText(productName)) {
                     return;
                 } else {
                     swiptToBottom();
@@ -396,9 +422,13 @@ public class Cart extends Base {
             while (!isExist(cartPageObjects.combo_Add_To_Cart_btn) && tries < 20) {
                swiptToBottom();
                 tries++;
+                if (isExist(cartPageObjects.popup_Close_Button))
+                    cartPageObjects.popup_Close_Button.get(0).click();
+
             }
-            waitUntilPresentOfElementBy(cartPageObjects.combo_Add_To_Cart_btn_By);
             cartPageObjects.combo_Add_To_Cart_btn.get(0).click();
+//            if(waitWithoutExceptionForElements(cartPageObjects.add_To_Cart_Second_btn))
+//                cartPageObjects.add_To_Cart_Second_btn.get(0).click();
 
         }
         else
@@ -406,38 +436,135 @@ public class Cart extends Base {
             while (!isExist(cartPageObjects.combo_Add_To_Cart_btn_MM) && tries < 20) {
                 swiptToBottom();
                 tries++;
+                if (isExist(cartPageObjects.popup_Close_Button_MM))
+                    cartPageObjects.popup_Close_Button_MM.get(0).click();
             }
-            waitUntilPresentOfElementBy(cartPageObjects.combo_Add_To_Cart_btn_By_MM);
             cartPageObjects.combo_Add_To_Cart_btn_MM.get(0).click();
+//            if(waitWithoutExceptionForElements(cartPageObjects.add_To_Cart_Second_btn_MM))
+//                cartPageObjects.add_To_Cart_Second_btn_MM.get(0).click();
         }
     }
 
     public void selectTheAddedProduct(String productName) {
-        for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size() - 1; i++) {
-
-            if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
                 if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-                    cartPageObjects.product_chkbox.get(i).click();
-                } else {
-                    cartPageObjects.product_chkbox_MM.get(i).click();
+                    for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size() - 1; i++) {
+                        if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
+                            cartPageObjects.product_chkbox.get(i).click();
+                            break;
+                        }
+                    }
                 }
-                break;
-            }
+                else
+                    {
+                    for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl_MM.size() - 1; i++) {
+                         if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().contains(productName)) {
+                             cartPageObjects.product_chkbox_MM.get(i).click();
+                             break;
+                         }
+                        }
+                }
         }
-    }
-
     private boolean lookForTargetProductInCart(String productName) {
-        for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); i++) {
-            if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName))
-                return true;
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); i++) {
+                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName))
+                    return true;
+            }
+        } else {
+            for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl_MM.size(); i++) {
+                if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().equalsIgnoreCase(productName))
+                    return true;
+            }
         }
         return false;
     }
 
+
     public void selectAllItemsInCart()
     {
-        if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
-            cartPageObjects.select_All_chkbox.click();
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if(cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
+                cartPageObjects.select_All_chkbox.click();
+        } else {
+            if(cartPageObjects.select_All_chkbox_MM.getAttribute("checked").equalsIgnoreCase("false"))
+                cartPageObjects.select_All_chkbox_MM.click();
+        }
     }
+
+    public void clickOnProduct(String productName)
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            findElementByTextUsingExactString(productName).click();
+            if (isExist(cartPageObjects.overseas_Confirm_btn))
+                cartPageObjects.overseas_Confirm_btn.get(0).click();
+            if (isExist(searchPageObj.ok_Got_It_btn))
+                searchPageObj.ok_Got_It_btn.get(0).click();
+        } else {
+            findElementByTextUsingExactString(productName).click();
+            if (isExist(cartPageObjects.overseas_Confirm_btn_MM))
+                cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
+            if (isExist(searchPageObj.ok_Got_It_btn_MM))
+                searchPageObj.ok_Got_It_btn_MM.get(0).click();
+        }
+    }
+
+    public boolean verifyTheProductNameOnPDP(String productName) {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
+            return cartPageObjects.product_Title_lbl.getText().contains(productName);
+        } else {
+            waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By_MM);
+            return cartPageObjects.product_Title_lbl_MM.getText().contains(productName);
+        }
+    }
+
+    public void scrollToProductAndPromotion(String productName, String promotionName) {
+        int tries = 0;
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            do {
+                if (isExistByText(productName) && containsTextIsExist(promotionName)) {
+                    return;
+                } else {
+                    swiptToBottom();
+                    tries++;
+                }
+            } while (!isExist(cartPageObjects.just_For_You_Title_lbl) && tries < 15);
+        } else {
+            do {
+                if (isExistByText(productName) && containsTextIsExist(promotionName)) {
+                    return;
+                } else {
+                    swiptToBottom();
+                    tries++;
+                }
+            } while (!isExist(cartPageObjects.just_For_You_Title_lbl_MM) && tries < 15);
+        }
+    }
+
+    public boolean verifyAddedProductInCartWithPromotion(String productName,String promotionName) {
+        int tries = 5;
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            cartPopupSkip(cartPageObjects.ok_Got_It_btn);
+            for (int i = 0; i < tries; i++) {
+                for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl.size(); j++) {
+                    if (cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName))
+                        return (cartPageObjects.product_Title_In_Cart_lbl.get(j).getText().contains(productName) && containsTextIsExist(promotionName));
+                }
+                scrollDownMultipleTries(2);
+            }
+        } else {
+            cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
+            for (int i = 0; i < tries; i++) {
+                for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl_MM.size(); j++) {
+                    if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(j).getText().contains(productName))
+                        return (cartPageObjects.product_Title_In_Cart_lbl_MM.get(j).getText().contains(productName) && containsTextIsExist(promotionName));
+                }
+                scrollDownMultipleTries(2);
+            }
+        }
+        return false;
+    }
+
+
 
 }

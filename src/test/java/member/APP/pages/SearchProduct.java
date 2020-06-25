@@ -289,10 +289,12 @@ public class SearchProduct extends Base {
             for (int i = 0; i < (suggestionKeywordArray.length); i++) {
                 suggestionLetter.append(suggestionKeywordArray[i]);
                 searchPageObj.searchAfterClick_txtfield.sendKeys(suggestionLetter);
-                if (isExist(searchPageObj.search_Suggestion_lstItem)) {
+                if (waitWithoutExceptionForElementsLessTime(searchPageObj.search_Suggestion_lstItem)) {
                     if (!(searchPageObj.search_Suggestion_lstItem.get(0).getText().contains(suggestionLetter.toString())))
                         return false;
                 }
+                else
+                return false;
             }
 
         } else {
@@ -302,11 +304,12 @@ public class SearchProduct extends Base {
             for (int i = 0; i < suggestionKeywordArray.length; i++) {
                 suggestionLetter.append(suggestionKeywordArray[i]);
                 searchPageObj.searchAfterClick_txtfield_MM.sendKeys(suggestionLetter);
-                if (isExist(searchPageObj.search_Suggestion_lstItem_MM)) {
+                if (waitWithoutExceptionForElementsLessTime(searchPageObj.search_Suggestion_lstItem_MM)) {
                     if (!(searchPageObj.search_Suggestion_lstItem_MM.get(0).getText().contains(suggestionLetter.toString())))
                         return false;
                 }
-
+                else
+                    return false;
             }
         }
         return true;
@@ -336,9 +339,9 @@ public class SearchProduct extends Base {
 
     public boolean clickOnDidYouMeanOption()  {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
-            return (isExist(searchPageObj.did_You_Mean_lbl));
+            return (waitWithoutExceptionForElements(searchPageObj.did_You_Mean_lbl));
         else
-            return (isExist(searchPageObj.did_You_Mean_lbl_MM));
+            return (waitWithoutExceptionForElements((searchPageObj.did_You_Mean_lbl_MM)));
     }
 
     public void searchInCategoriesSection(String searchKeyword)
