@@ -78,23 +78,27 @@ public class Account extends Base {
     }
 
     public void selectPayNowWidigt() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By);
-            accountPageObect.my_Account_widget.get(0).click();
-        } else {
-            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
-            accountPageObect.my_Account_widget_MM.get(0).click();
-        }
+//        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+//            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By);
+//            accountPageObect.my_Account_widget.get(0).click();
+//        } else {
+//            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
+//            accountPageObect.my_Account_widget_MM.get(0).click();
+//        }
+        waitUntilPresentOfElementByText("To Pay");
+        findElementByTextUsingExactString("To Pay").click();
     }
 
     public void selectMyCancellationWidget() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By);
-            accountPageObect.my_Account_widget.get(3).click();
-        } else {
-            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
-            accountPageObect.my_Account_widget_MM.get(3).click();
-        }
+//        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+//            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By);
+//            accountPageObect.my_Account_widget.get(3).click();
+//        } else {
+//            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
+//            accountPageObect.my_Account_widget_MM.get(3).click();
+//        }
+        waitUntilPresentOfElementByText("My Cancellations");
+        findElementByTextUsingExactString("My Cancellations").click();
     }
 
     public void navigateToMyAccountFromCancellation() {

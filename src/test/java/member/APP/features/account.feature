@@ -63,7 +63,7 @@ Feature: Daraz Account Management
     And I navigate to my account from payment screen
     And I select the pay now widget
     Then I should see that product in the pay now menu
-#
+
   @21001814 @view_cancelled_orders_in_my_cancellation_menu @28810383 @30526026
   Scenario: I view the cancelled products in my cancellation menu
     Given I select the venture

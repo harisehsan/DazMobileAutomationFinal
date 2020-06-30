@@ -233,6 +233,11 @@ public class Base {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
     }
 
+    protected void waitUntilPresentOfElementByText(String Name) {
+        new WebDriverWait(driver, 120)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text= '"+Name+"']")));
+    }
+
     protected String getTextWithoutException(WebElement ele) {
         try {
             return ele.getText();
