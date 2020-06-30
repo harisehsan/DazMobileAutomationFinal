@@ -53,4 +53,10 @@ public class SortSteps {
     public void iChangeTheCatalogViewTo(String sortMode) {
         sort.applyListViewOnCatalog(sortMode);
     }
+
+    @Then("I verify that product catalog is sorted according to the {string} on store page")
+    public void iVerifyThatProductCatalogIsSortedAccordingToTheOnStorePage(String sortType) {
+        Assert.assertTrue(sort.verifyTheSortedCatalogOnStore(sortType),"catalog is not properly sorted on store page!");
+
+    }
 }

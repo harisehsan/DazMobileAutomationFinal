@@ -2,12 +2,15 @@ package global.APP.stepsDefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import global.APP.getProperty.OrderGetProperty;
 import global.APP.pages.Order;
+import global.APP.pages.SearchBar;
 import global.Drivers;
 import member.APP.getProperty.AccountGetProperty;
 import member.APP.pages.Account;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
@@ -17,6 +20,9 @@ public class AccountSteps {
     AccountGetProperty accountGetProperty = new AccountGetProperty();
     OrderGetProperty orderGetProperty = new OrderGetProperty();
     Order order = new Order(drivers.getDriver());
+    SoftAssert softAssert = new SoftAssert();
+    SearchBar searchBar = new SearchBar(drivers.getDriver());
+    boolean walletExistence = false;
 
     @Then("I verify that I have been logged in using google Account")
     public void iVerifyThatIHaveBeenLoggedInUsingGoogleAccount() throws IOException {
@@ -51,5 +57,88 @@ public class AccountSteps {
     @Then("I verify the order in the cancellation screen")
     public void iVerifyTheOrderInTheCancellationScreen() throws IOException {
         Assert.assertTrue(order.verifyProductNameOnCancellationScreen(orderGetProperty.productName()),"Required Product is not found on cancellation screen!");
+    }
+
+    @And("I navigate to the account menu")
+    public void iNavigateToTheAccountMenu() {
+        account.naviagteToAccounts();
+    }
+
+    @And("I select message in account section")
+    public void iSelectMessageInAccountSection() {
+     account.navigateToTheMessages();
+    }
+
+    @Then("I should be on the message page")
+    public void iShouldBeOnTheMessagePage() {
+       Assert.assertTrue(account.iShouldBeOnMessagePage(),"Not successfully navigated to the message page!");
+    }
+
+    @When("I navigate to the policies section from settings menu")
+    public void iNavigateToThePoliciesSectionFromSettingsMenu() {
+       account.navigateToPoliciesFromSettings();
+    }
+
+    @Then("I should be on the policies section")
+    public void iShouldBeOnThePoliciesSection() {
+        Assert.assertTrue(account.iShouldBeOnThePoliciesPage(),"Not successfully navigated to policies page!");
+    }
+
+    @And("I navigate back")
+    public void iNavigateBackToSettingsMenu() {
+        account.navigateBack();
+    }
+
+    @When("I navigate to the help section from accounts")
+    public void iNavigateToTheHelpSectionFromAccounts() {
+        account.navigateToHelpFromSettingsMenu();
+    }
+
+    @Then("I should be on the help section")
+    public void iShouldBeOnTheHelpSection() {
+      Assert.assertTrue(account.iShouldBeOnTheHelpMenu(),"Not successfully navigated to Help page!");
+    }
+
+    @Then("I should see the settings menu in local language")
+    public void iShouldSeeTheSettingsMenuInLocalLanguage() {
+        Assert.assertTrue(account.verifySettingsHeaderInLocalLanguage(),"Language change is not properly performed!");
+    }
+
+    @When("I navigate to messages settings from settings")
+    public void iNavigateToMessagesSettingsFromSettings() {
+       account.navigateToMessageSettings();
+    }
+
+    @Then("I should be on the message settings")
+    public void iShouldBeOnTheMessageSettings() {
+     Assert.assertTrue(account.iShouldBeOnTheMessageSettingsPage(),"Not successfully navigated to message settings!");
+    }
+
+    @Then("I check for the existence of daraz wallet")
+    public void iCheckForTheExistenceOfDarazWalletIconAndText() {
+      walletExistence = searchBar.verifyTheExistenceOfDarazWalletIconAndText();
+
+    }
+
+    @Then("I verify the existence of the My Wishlist, Followed Store and Voucher as per daraz wallet")
+    public void iVerifyTheExistenceOfTheMyWishlistFollowedStoreAndVoucherAsPerDarazWallet() {
+        Assert.assertTrue(account.verifyTheExistenceOfWishlistFollowedStoreAndVoucher(walletExistence),"Widgets are not shown properly in the my account");
+
+    }
+
+    @When("I jump to daraz wallet otherwise vouchers if daraz wallet is not existed")
+    public void iJumpToDarazWalletOtherwiseVouchersIfDarazWalletIsNotExisted() {
+      account.navigateToDarazWalletORVoucherFromAccounts(walletExistence);
+    }
+
+    @Then("I should be on the Daraz Wallet screen or voucher screen")
+    public void iShouldBeOnTheDarazWalletScreenOrVoucherScreen() {
+      Assert.assertTrue(account.iShouldBeOnTheDarazWalletOrVoucherPage(walletExistence),"Not successfully navigated to wallet or voucher screen!");
+
+    }
+
+    @Then("I verify the existence of red dot on message")
+    public void iVerifyTheExistenceOfRedDotOnMessage() {
+        Assert.assertTrue(account.verifyTheExistenceOfRedDotOnMessage(),"The red dot is not properly shown on message!");
     }
 }

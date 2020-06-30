@@ -29,7 +29,6 @@ public class SearchBarSteps {
     public void iCheckForTheExistenceOfTheSearchbarOnHomepage() {
         Assert.assertTrue(searchBar.verifyTheExistenceofSearchBar(), "Search bar is not existed on Homepage!");
     }
-
     @Then("I check for the existence of daraz wallet icon and text")
     public void iCheckForTheExistenceOfDarazWalletIconAndText() {
         Assert.assertTrue(searchBar.verifyTheExistenceOfDarazWalletIconAndText(), "Either a Daraz Wallet is not existed on homepage or not showing properly!");

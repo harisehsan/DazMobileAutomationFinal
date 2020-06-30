@@ -89,7 +89,14 @@ public class Pdp extends Base {
                 cartPageObjects.overseas_Confirm_btn.get(0).click();
             if (isExist(searchPageObj.ok_Got_It_btn))
                 searchPageObj.ok_Got_It_btn.get(0).click();
-            productName = pdpPageObject.product_Title_lbl.get(0).getText();
+            try {
+                productName = pdpPageObject.product_Title_lbl.get(0).getText();
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (isExist(pdpPageObject.product_Title_lbl)) {
+                    productName = pdpPageObject.product_Title_lbl.get(0).getText();
+                }
+            }
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
             searchPageObj.searchResult_lbl_MM.get(0).click();
@@ -97,7 +104,14 @@ public class Pdp extends Base {
                 cartPageObjects.overseas_Confirm_btn_MM.get(0).click();
             if (isExist(searchPageObj.ok_Got_It_btn_MM))
                 searchPageObj.ok_Got_It_btn_MM.get(0).click();
-            productName = pdpPageObject.product_Title_lbl_MM.get(0).getText();
+            try {
+                productName = pdpPageObject.product_Title_lbl_MM.get(0).getText();
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (isExist(pdpPageObject.product_Title_lbl_MM)) {
+                    productName = pdpPageObject.product_Title_lbl_MM.get(0).getText();
+                }
+            }
         }
     }
 
@@ -680,6 +694,10 @@ public class Pdp extends Base {
 
     public boolean changeQuantity() {
         int j=0;
+       do
+        {
+            scrollDownMultipleTries(2);
+        } while(!isExistByText("Quantity"));
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             while (Integer.parseInt(pdpPageObject.quantity_txtBox.getText()) < 5 && j<5 ) {
                 pdpPageObject.quantity_Increase_btn.click();
@@ -841,8 +859,8 @@ public class Pdp extends Base {
         } else {
             waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By_MM);
             cartPageObjects.ok_Got_It_btn_MM.get(0).click();
-            for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
-                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
+            for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl_MM.size(); ++i) {
+                if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().contains(productName)) {
                     if (cartPageObjects.product_chkbox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false"))
                         cartPageObjects.product_chkbox_MM.get(i).click();
                     return i;

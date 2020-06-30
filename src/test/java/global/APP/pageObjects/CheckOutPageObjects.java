@@ -25,11 +25,11 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next") public WebElement checkout_btn;
     @AndroidFindBy (id = "com.shop.android:id/btn_laz_trade_order_total_proceed_next") public WebElement checkout_btn_MM;
     @AndroidFindBy (id  = "com.daraz.android"+dev+":id/laz_trade_item_quantity_count") public WebElement quantity_lbl;
-    @AndroidFindBy (id  = "com.daraz.android"+dev+":id/iv_laz_trade_item_action_decrement") public WebElement quantity_decrese_btn;
-    @AndroidFindBy (id  = "com.daraz.android"+dev+":id/iv_laz_trade_item_action_increment") public WebElement quantity_increase_btn;
+    @AndroidFindBy (id  = "com.daraz.android"+dev+":id/iv_laz_trade_item_action_decrement") public List <WebElement> quantity_decrese_btn;
+    @AndroidFindBy (id  = "com.daraz.android"+dev+":id/iv_laz_trade_item_action_increment") public List <WebElement> quantity_increase_btn;
     @AndroidFindBy (id  = "com.shop.android:id/laz_trade_item_quantity_count") public WebElement quantity_lbl_MM;
-    @AndroidFindBy (id  = "com.shop.android:id/iv_laz_trade_item_action_decrement") public WebElement quantity_decrese_btn_MM;
-    @AndroidFindBy (id  = "com.shop.android:id/iv_laz_trade_item_action_increment") public WebElement quantity_increase_btn_MM;
+    @AndroidFindBy (id  = "com.shop.android:id/iv_laz_trade_item_action_decrement") public List <WebElement> quantity_decrese_btn_MM;
+    @AndroidFindBy (id  = "com.shop.android:id/iv_laz_trade_item_action_increment") public List <WebElement> quantity_increase_btn_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/tv_laz_trade_item_stock_tip") public List <WebElement> available_quantity;
     @AndroidFindBy (id = "com.shop.android:id/tv_laz_trade_item_stock_tip") public List <WebElement> available_quantity_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/container_laz_trade_item_content") public List <WebElement> cart_item_container;
@@ -64,7 +64,10 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_order_total_amount") public WebElement total_Price_On_Checkout_MM;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_pkg_footer_summary_label") public List <WebElement> order_Summary_lbl;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_pkg_footer_summary_label") public List <WebElement> order_Summary_lbl_MM;
-
+    @AndroidFindBy(id = "com.daraz.android:id/iv_laz_trade_item_action_dropdown") public WebElement quantity_drpDown;
+    @AndroidFindBy(id = "com.shop.android:id/iv_laz_trade_item_action_dropdown") public WebElement quantity_drpDown_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/confirm_btn") public WebElement quantity_Confirm_btn;
+    @AndroidFindBy(id = "com.shop.android:id/confirm_btn") public WebElement quantity_Confirm_btn_MM;
 
 
 
@@ -86,4 +89,7 @@ public class CheckOutPageObjects extends BuildIDPicker {
     public By credit_Card_lbl_By = By.xpath("//*[@contentDescription='Credit/Debit Card'] | //*[@content-desc='Credit/Debit Card']");
     public By order_Details_By = By.xpath("//*[@text='Order Details']");
     public By cancel_btn_By = By.xpath("//*[@contentDescription='CANCEL '] | //*[@content-desc='CANCEL ']");
+    public By cancel_btn_By_NP = By.xpath("//*[@contentDescription='CANCEL'] | //*[@content-desc='CANCEL']");
+    public By quantity_Option_By = By.id("com.daraz.android:id/laz_wheelview_item_content");
+    public By quantity_Option_By_MM = By.id("com.shop.android:id/laz_wheelview_item_content");
 }

@@ -1,5 +1,5 @@
 @smoke @signup
-Feature: Signup new Daraz Account
+Feature: Account Management for Daraz
 #
 # @20580001 @signup_google @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019 @30526020 @30526021 @30526023 @30526025 @30526044
 #  Scenario: Signup with Google Account
@@ -31,12 +31,12 @@ Feature: Signup new Daraz Account
     When I select Login button on "message" screen
     Then I should be on the login page
 
-  @2058001 @goto_login_page_from_wallet @30524878
-  Scenario: Navigate to login page from wallet
-    Given I select the venture
-    And I click on wallet icon
-    When I select Login button on "wallet" screen
-    Then I should be on the login page
+#  @2058001 @goto_login_page_from_wallet @30524878
+#  Scenario: Navigate to login page from wallet
+#    Given I select the venture
+#    And I click on wallet icon
+#    When I select Login button on "wallet" screen
+#    Then I should be on the login page
 
   @2058001 @facebook_login @30524875 @30524887
   Scenario: Navigate to login page from facebook
@@ -65,7 +65,7 @@ Feature: Signup new Daraz Account
     And I select login button
     Then I should be login successfully
 
-  @2058001 @verify_mailbox_registration_interface @30524882
+  @2058001 @verify_mailbox_registration_interface @30524882 @37058636
   Scenario: verify the mail box interface
     Given I select the venture
     And I navigate to the signin screen

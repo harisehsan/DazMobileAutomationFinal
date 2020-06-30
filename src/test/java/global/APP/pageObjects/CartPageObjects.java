@@ -5,6 +5,7 @@ import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/snackbar_text") public WebElement success_Message_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/cart") public WebElement go_To_Cart_btn;
     @AndroidFindBy(id = "com.shop.android:id/cart") public WebElement go_To_Cart_btn_MM;
-    @AndroidFindAll({@AndroidBy(id = "com.daraz.android"+dev+":id/tv_laz_trade_item_title"),@AndroidBy(id = "com.shop.android:id/tv_laz_trade_item_title")}) public List <WebElement> product_Title_In_Cart_lbl;
+    @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_trade_item_title") public List <WebElement> product_Title_In_Cart_lbl;
+    @AndroidFindBy(id = "com.shop.android"+dev+":id/tv_laz_trade_item_title") public List <WebElement> product_Title_In_Cart_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/tab_layout") public List <WebElement> cart_icon;
@@ -34,14 +36,16 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy (id= "com.shop.android:id/ckb_laz_trade_item_checkbox") public List <WebElement> product_chkbox_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_laz_cart_toolbar_management") public WebElement delete_first_btn;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/btn_laz_trade_management_delete") public WebElement delete_second_btn;
-    @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_action_manage_btn") public WebElement delete_first_btn_MM;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_laz_cart_toolbar_management") public WebElement delete_first_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_management_delete") public WebElement delete_second_btn_MM;
     @AndroidFindBy (id= "com.daraz.android"+dev+":id/btn_trade_confirm_dialog_positive") public WebElement delete_third_btn;
     @AndroidFindBy (id= "com.shop.android:id/btn_trade_confirm_dialog_positive") public WebElement delete_third_btn_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/confirm_button") public List <WebElement> overseas_Confirm_btn;
     @AndroidFindBy (id = "com.shop.android:id/confirm_button") public List <WebElement> overseas_Confirm_btn_MM;
-    @AndroidFindAll({@AndroidBy(id = "com.daraz.android"+dev+":id/ckb_laz_trade_total_checkbox"),@AndroidBy(id = "com.shop.android:id/ckb_laz_trade_total_checkbox")}) public WebElement select_All_chkbox;
-    @AndroidFindAll({@AndroidBy(id = "com.daraz.android"+dev+":id/iv_laz_trade_item_action_wishlist"),@AndroidBy(id = "com.shop.android:id/iv_laz_trade_item_action_wishlist")}) public List <WebElement> wishlist_In_Cart_btn;
+    @AndroidFindBy(id = "com.daraz.android"+dev+":id/ckb_laz_trade_total_checkbox") public WebElement select_All_chkbox;
+    @AndroidFindBy(id = "com.shop.android"+dev+":id/ckb_laz_trade_total_checkbox") public WebElement select_All_chkbox_MM;
+    @AndroidFindBy(id ="com.daraz.android"+dev+":id/iv_laz_trade_item_action_wishlist") public List <WebElement> wishlist_In_Cart_btn;
+    @AndroidFindBy(id ="com.shop.android"+dev+":id/iv_laz_trade_item_action_wishlist") public List <WebElement> wishlist_In_Cart_btn_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/other_action") public List <WebElement> buy_Now_btn;
     @AndroidFindBy(id = "com.shop.android:id/other_action") public List <WebElement> buy_Now_btn_MM;
     @AndroidFindBy(id="com.daraz.android"+dev+":id/laz_trade_shop_checkbox") public List <WebElement> shop_check_box;
@@ -58,14 +62,19 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id= "com.shop.android:id/tv_laz_trade_not_available_action_delete") public List <WebElement> delete_unavailable_item_btn_MM;
     @AndroidFindBy(id="com.daraz.android"+dev+":id/btn_trade_confirm_dialog_positive") public List <WebElement> delete_Final_btn;
     @AndroidFindBy(id="com.shop.android:id/btn_trade_confirm_dialog_positive") public List <WebElement> delete_Final_btn_MM;
-    @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_trade_recommend_title") public List <WebElement> just_For_You_Title_lbl;
-    @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_recommend_title") public List <WebElement> just_For_You_Title_lbl_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/tv_laz_recommendation_top_title") public List <WebElement> just_For_You_Title_lbl;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_recommendation_top_title") public List <WebElement> just_For_You_Title_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/main_action") public List <WebElement>  add_To_Cart_Second_btn;
     @AndroidFindBy(id = "com.shop.android:id/main_action") public List <WebElement> add_To_Cart_Second_btn_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/label") public List <WebElement> quantity_Pdp_lbl;
     @AndroidFindBy(id = "com.shop.android"+dev+":id/label") public List <WebElement> quantity_Pdp_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/add_to_cart") public List <WebElement> combo_Add_To_Cart_btn;
     @AndroidFindBy(id = "com.shop.android"+dev+":id/add_to_cart") public List <WebElement> combo_Add_To_Cart_btn_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/laz_tv_empty_button") public List <WebElement> continue_Shopping_Cart_btn;
+    @AndroidFindBy(id = "com.shop.android:id/laz_tv_empty_button") public List <WebElement> continue_Shopping_Cart_btn_MM;
+    @AndroidFindBy(id= "com.daraz.android:id/popup_header_close") public List <WebElement> popup_Close_Button;
+    @AndroidFindBy(id= "com.shop.android:id/popup_header_close") public List <WebElement> popup_Close_Button_MM;
+
 
     public By searchProduct_lbl_By = By.id("com.daraz.android"+dev+":id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");

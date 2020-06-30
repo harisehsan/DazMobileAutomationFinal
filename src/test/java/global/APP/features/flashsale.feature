@@ -1,12 +1,12 @@
-@smoke @flashsale
-Feature: Daraz Flash Sale Management
-
-  @22439570 @check_flash_sale_countdown
-  Scenario: Flash Sale countdown timer check
-    Given I select the venture
-    And I skip the shake shake popup
-    And I check for the existence of the Flash Sale on Homepage
-    Then I check the existence of Flash Sale remaining time on Homepage
+#@smoke @flashsale
+#Feature: Daraz Flash Sale Management
+#
+#  @22439570 @check_flash_sale_countdown
+#  Scenario: Flash Sale countdown timer check
+#    Given I select the venture
+#    And I skip the shake shake popup
+#    And I check for the existence of the Flash Sale on Homepage
+#    Then I check the existence of Flash Sale remaining time on Homepage
 
 #  @22439570 @navigate_to_pdp_from_flashsale @28811416 @28811414
 #  Scenario: Navigate to the PDP page from Flash Sale page

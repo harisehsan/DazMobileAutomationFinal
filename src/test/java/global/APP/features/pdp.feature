@@ -34,6 +34,9 @@ Feature: PDP page Management
   @22702821 @verify_product_delivery_options @28811348 @28811350
   Scenario: Verify the product delivery option content
     Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    And I navigate back to the Home Page from "My Account"
     And I search product using sku for "PDP"
     And I goto the PDP page
     And I verify the existence of delivery options
@@ -113,7 +116,7 @@ Feature: PDP page Management
     And I search for "water"
     And I goto the Daraz Mall
     And I goto the PDP page
-    And I check existence of daraz mall in the product title
+#    And I check existence of daraz mall in the product title
     And I verify the existence of services
     And I click on services to open its poppage
     Then I should see the services of daraz mall on poppage
@@ -183,9 +186,8 @@ Feature: PDP page Management
     And I add a product to cart
     And I signin with google account
     And I goto cart menu from PDP screen
-    Then I should see buy more & save up
     And I select that product in cart
-#    Then I should see the promo saved price
+    Then I should see the promo saved price
 
   @28811393 @verify_buy_one_get_one_promotion @28811330 @28811331 @28811321 @28810195 @28810268
   Scenario: Verify buy one get one promotion on PDP, cart and checkout

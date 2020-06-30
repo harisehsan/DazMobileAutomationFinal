@@ -110,7 +110,7 @@ public class Base {
                 .moveTo(point(endx, starty)).release();
     }
 
-    public void swiptToBottom() {
+    public void swiptToBottom() {   // Perform little bit Down Scroll on Current Screen
         try {
             PointOption pointOption = new PointOption();
             Dimension dim = driver.manage().window().getSize();
@@ -233,6 +233,11 @@ public class Base {
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
     }
 
+    protected void waitUntilPresentOfElementByText(String Name) {
+        new WebDriverWait(driver, 120)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text= '"+Name+"']")));
+    }
+
     protected String getTextWithoutException(WebElement ele) {
         try {
             return ele.getText();
@@ -336,7 +341,7 @@ public class Base {
     }
 public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     try {
-        new WebDriverWait(driver, 120)
+        new WebDriverWait(driver, 100)
                 .until(ExpectedConditions.elementToBeClickable(id.get(0)));
         return true;
     } catch (Exception ex) {
@@ -344,6 +349,16 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         return true;
     }
 }
+    protected boolean waitWithoutExceptionForElementsLessTime(List<WebElement> id) {
+        try {
+            new WebDriverWait(driver, 30)
+                    .until(ExpectedConditions.elementToBeClickable(id.get(0)));
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return true;
+        }
+    }
     protected WebElement findElementByTextUsingContainsString(String Name) {
         return driver.findElement(By.xpath("//*[contains(@text,'" +Name+ "')]"));
     }
@@ -360,6 +375,18 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         }
     }
 
+    protected boolean waitWithoutExceptionByTextContainsLessTime(String Name) {
+        try {
+            if (Name.length() > 10)
+                Name = Name.substring(0, 10);
+            new WebDriverWait(driver, 30)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     protected boolean isExistByCompleteString(String Name) {
         return (driver.findElements(By.xpath("//*[@contentDescription='" + Name + "' or @content-desc='" + Name + "']")).size() > 0);
     }
@@ -367,6 +394,11 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
     protected void swipeHorizontallyToZeroWithInElement(WebElement ele) {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.press(new PointOption().withCoordinates(ele.getLocation().getX(), (ele.getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (ele.getLocation().getY()))).release().perform();
+    }
+
+    protected void swipeHorizontallyToZeroWithInElementbyText(String Name) {
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.press(new PointOption().withCoordinates(findElementByTextUsingContainsString(Name).getLocation().getX(), (findElementByTextUsingContainsString(Name).getLocation().getY()))).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(0, (findElementByTextUsingContainsString(Name).getLocation().getY()))).release().perform();
     }
 
     protected boolean waitWithoutExceptionForElementsResult(List<WebElement> id) {

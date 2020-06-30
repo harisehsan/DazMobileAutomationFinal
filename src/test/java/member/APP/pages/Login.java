@@ -41,11 +41,15 @@ public class Login extends Base {
     public void selectLogin(String screen) {
         if (screen.equalsIgnoreCase("message")) {
             if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-                waitUntilPresentOfElementBy(loginPageObject.message_Login_btn_By);
-                loginPageObject.message_Login_btn.click();
+                do {
+                    waitUntilPresentOfElementBy(loginPageObject.message_Login_btn_By);
+                    loginPageObject.message_Login_btn.get(0).click();
+                } while (!isExist(loginPageObject.first_login_btn));
             } else {
-                waitUntilPresentOfElementBy(loginPageObject.message_Login_btn_By_MM);
-                loginPageObject.message_Login_btn_MM.click();
+                do {
+                    waitUntilPresentOfElementBy(loginPageObject.message_Login_btn_By_MM);
+                    loginPageObject.message_Login_btn_MM.get(0).click();
+                } while (!isExist(loginPageObject.first_login_btn_MM));
             }
         } else if (screen.equalsIgnoreCase("facebook")) {
             waitWithoutExceptionByText("Facebook");
@@ -67,10 +71,10 @@ public class Login extends Base {
 
     public boolean verifyTheLogin() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            waitUntilPresentOfElementBy(loginPageObject.loginID_lbl_By);
+            waitUntilPresentOfElementBy(loginPageObject.loginID_lbl_By);
             return (!loginPageObject.loginID_lbl.getText().equalsIgnoreCase(""));
         } else {
-//            waitUntilPresentOfElementBy(loginPageObject.loginID_lbl_By_MM);
+            waitUntilPresentOfElementBy(loginPageObject.loginID_lbl_By_MM);
             return (!loginPageObject.loginID_lbl_MM.getText().equalsIgnoreCase(""));
         }
     }
@@ -159,18 +163,20 @@ public class Login extends Base {
     {
        waitUntilPresentOfElementBy(loginPageObject.facebook_Agree_btn_By);
        loginPageObject.facebook_Agree_btn.click();
+       if (waitWithoutExceptionByTextContainsLessTime("CONTINUE AS"))
+           findElementByTextUsingContainsString("CONTINUE AS").click();
     }
 
     public void selectFirstLoginButton()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
            waitUntilPresentOfElementBy(loginPageObject.first_login_btn_By);
-           loginPageObject.first_login_btn.click();
+           loginPageObject.first_login_btn.get(0).click();
         }
         else
         {
             waitUntilPresentOfElementBy(loginPageObject.first_login_btn_By_MM);
-            loginPageObject.first_login_btn_MM.click();
+            loginPageObject.first_login_btn_MM.get(0).click();
         }
     }
 }
