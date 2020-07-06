@@ -36,7 +36,7 @@ Feature: Daraz Account Management
     Given I select the venture
     Then I navigate to the account settings menu
     And I change the language other then english
-    Then I navigate to the account settings menu
+    Then I navigate to the account settings menu in local language
     Then I should see the settings menu in local language
 
   @22702821 @check_for_existence_of_wallet_and_my_wishlist_followed_store_voucher_and_navigate_to_wallet_or_voucher @37058643 @37058646 @37058652 @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019

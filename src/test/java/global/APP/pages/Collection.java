@@ -131,14 +131,24 @@ public class Collection extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            signUpObjects.account_lbl.get(3).click();
+            try {
+                signUpObjects.account_lbl.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
             signUpObjects.settings_icon.click();
         }
         else
         {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
-            signUpObjects.account_lbl_MM.get(3).click();
+            try {
+                signUpObjects.account_lbl_MM.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(signUpObjects.settings_icon_By_MM);
             signUpObjects.settings_icon_MM.click();
         }

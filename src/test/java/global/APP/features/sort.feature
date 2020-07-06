@@ -42,7 +42,7 @@ Feature: Daraz Sorting Management
   @22204261 @apply_brand_filter_on_search_daraz_mall @28809423
   Scenario: Apply brand filer in Daraz mall
     Given I select the venture
-    And I search for "Samsung mobile"
+    And I search for "Samsung"
     And I goto the Daraz Mall
     And I select filter
     And I apply filter for "Samsung" Brand
@@ -58,7 +58,6 @@ Feature: Daraz Sorting Management
     And I apply for the sort filter "Price high to low"
     And I change the catalog view to "listview"
     Then I verify that product catalog is sorted according to the "Price high to low" on store page
-
 
   @23184571 @price_low_to_high_filter_in_store @28809426 @28809427 @28809428 @28809429 @28809424
   Scenario: Select all product in search hint of store, shown catalog in list view and Price low to High filter

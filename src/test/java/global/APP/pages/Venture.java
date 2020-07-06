@@ -30,7 +30,12 @@ public class Venture extends Base {
     public void navigateToVenture() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            signUpObjects.account_lbl.get(3).click();
+            try {
+                signUpObjects.account_lbl.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
             signUpObjects.settings_icon.click();
             waitUntilPresentOfElementBy(venturePageObject.change_Country_header_By);
