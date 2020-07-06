@@ -138,11 +138,12 @@ public class Account extends Base {
     }
 
     public void navigateToTheMessages() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            waitUntilPresentOfElementBy(accountPageObect.down_lbl);
-        } else {
-            waitUntilPresentOfElementBy(accountPageObect.down_lbl_MM);
-        }
+//        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+//            waitUntilPresentOfElementBy(accountPageObect.down_lbl);
+//        } else {
+//            waitUntilPresentOfElementBy(accountPageObect.down_lbl_MM);
+//        }
+        waitUntilPresentOfElementByText("Messages");
         findElementByTextUsingContainsString("Messages").click();
     }
 
@@ -276,5 +277,34 @@ public class Account extends Base {
         }
     }
 
+    public void navigateToAccountSettingsInLocalLanguage()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
+            try {
+                signUpObjects.account_lbl.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                if ((System.getProperty("env").equalsIgnoreCase("bd.live")))
+                    findElementByTextUsingExactString("অ্যাকাউন্ট").click();
+                else if ((System.getProperty("env").equalsIgnoreCase("lk.live")))
+                    findElementByTextUsingExactString("ගිණුම").click();
+                else if ((System.getProperty("env").equalsIgnoreCase("np.live")))
+                    findElementByTextUsingExactString("खाता").click();
+            }
+            waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
+            signUpObjects.settings_icon.click();
+        } else {
+            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
+            try {
+                signUpObjects.account_lbl_MM.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                findElementByTextUsingExactString("အေကာင့္").click();
+            }
+            waitUntilPresentOfElementBy(signUpObjects.settings_icon_By_MM);
+            signUpObjects.settings_icon_MM.click();
+        }
+    }
     }
 

@@ -5,6 +5,7 @@ import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
+import member.APP.pageObjects.SignUpObjects;
 import member.APP.pageObjects.WishlistPageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,7 @@ public class Wishlist extends Base {
     WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
     CartPageObjects cartPageObjects = new CartPageObjects();
     SearchPageObject searchPageObj = new SearchPageObject();
+    SignUpObjects signUpObjects = new SignUpObjects();
     private int tries=25;
 
     public Wishlist(AppiumDriver<WebElement> driver) {
@@ -27,6 +29,7 @@ public class Wishlist extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
         PageFactory.initElements(new AppiumFieldDecorator(driver), cartPageObjects);
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObj);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), signUpObjects);
     }
 
     public String selectProduct() {
@@ -163,12 +166,22 @@ public class Wishlist extends Base {
     public void navigate_To_Login_Screen() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(wishlistPageObjects.account_lbl_By);
-            wishlistPageObjects.account_lbl.get(3).click();
+            try {
+                wishlistPageObjects.account_lbl.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(wishlistPageObjects.login_Signup_btn_By);
             wishlistPageObjects.login_Signup_btn.click();
         } else {
             waitUntilPresentOfElementBy(wishlistPageObjects.account_lbl_By_MM);
-            wishlistPageObjects.account_lbl_MM.get(3).click();
+            try {
+                wishlistPageObjects.account_lbl_MM.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(wishlistPageObjects.login_Signup_btn_By_MM);
             wishlistPageObjects.login_Signup_btn_MM.click();
         }
@@ -319,12 +332,12 @@ public class Wishlist extends Base {
     {
       if ((!System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
-            waitUntilPresentOfElementBy(wishlistPageObjects.items_In_Cart_lbl_By);
+          waitWithoutExceptionForElements(wishlistPageObjects.items_In_Cart_lbl);
             return (isExist(wishlistPageObjects.items_In_Cart_lbl));
         }
         else
         {
-            waitUntilPresentOfElementBy(wishlistPageObjects.items_In_Cart_lbl_MM_By);
+            waitWithoutExceptionForElements(wishlistPageObjects.items_In_Cart_lbl_MM);
             return (isExist(wishlistPageObjects.items_In_Cart_lbl_MM));
         }
     }

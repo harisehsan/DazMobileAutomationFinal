@@ -20,7 +20,7 @@ public class SignUpObjects extends BuildIDPicker {
     @AndroidFindAll({@AndroidBy(id = "com.shop.android:id/txt_login_signup"), @AndroidBy(xpath = "//*[@text='Login / Sign up']")}) public List <WebElement> signup_And_Login_btn_MM;
     @AndroidFindBy(id="com.shop.android:id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn_MM;
     @AndroidFindBy (id="com.shop.android:id/tv_settings") public WebElement settings_icon_MM;
-
+    @AndroidFindBy(xpath = "//*[@text='Account']") public WebElement account_Homepage_lbl;
 
 
     public By account_lbl_By = By.id("com.daraz.android"+dev+":id/tab_layout");

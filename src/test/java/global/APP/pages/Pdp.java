@@ -767,9 +767,33 @@ public class Pdp extends Base {
 
     public boolean checkForVoucherSuccessMessage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
-            return isExist(pdpPageObject.voucher_Success_Message_snackbar);
-        else
-            return isExist(pdpPageObject.voucher_Success_Message_snackbar_MM);
+            if (isExist(pdpPageObject.voucher_Success_Message_snackbar))
+                return true;
+            else
+            {
+                try {
+                    searchPageObj.ok_Got_It_btn.get(0).click();
+                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar));
+                }
+            }
+
+        else {
+            if (isExist(pdpPageObject.voucher_Success_Message_snackbar_MM))
+                return true;
+            else
+            {
+                try {
+                    searchPageObj.ok_Got_It_btn_MM.get(0).click();
+                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar_MM));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar_MM));
+                }
+            }
+        }
     }
 
     public void clickOnCollectButton()

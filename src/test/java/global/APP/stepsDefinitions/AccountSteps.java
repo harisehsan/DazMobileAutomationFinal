@@ -141,4 +141,9 @@ public class AccountSteps {
     public void iVerifyTheExistenceOfRedDotOnMessage() {
         Assert.assertTrue(account.verifyTheExistenceOfRedDotOnMessage(),"The red dot is not properly shown on message!");
     }
+
+    @Then("I navigate to the account settings menu in local language")
+    public void iNavigateToTheAccountSettingsMenuInLocalLanguage() {
+      account.navigateToAccountSettingsInLocalLanguage();
+    }
 }

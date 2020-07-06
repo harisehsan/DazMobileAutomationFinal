@@ -15,6 +15,7 @@ import org.testng.ITestResult;
 import org.testng.TestRunner;
 import org.testng.annotations.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class BaseRunner {
         System.out.println(result.getMethod().getMethodName());
         if (result.getStatus() == ITestResult.FAILURE) {
             try {
+                Toolkit.getDefaultToolkit().beep();
                 File srcFile = ((TakesScreenshot) drv.getDriver()).getScreenshotAs(OutputType.FILE);
                 String filename = UUID.randomUUID().toString();
                 File targetFile=new File(result.getMethod().getMethodName()+i+".jpg");

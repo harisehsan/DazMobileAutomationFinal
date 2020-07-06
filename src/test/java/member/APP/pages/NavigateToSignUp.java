@@ -4,6 +4,7 @@ import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SignUpObjects;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -42,16 +43,25 @@ public class NavigateToSignUp extends Base {
     public void navigateToSigninScreen() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            signUpObjects.account_lbl.get(3).click();
+            try {
+                signUpObjects.account_lbl.get(3).click();
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn,2);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn,6);
         }
         else
         {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
-            signUpObjects.account_lbl_MM.get(3).click();
+            try {
+                signUpObjects.account_lbl_MM.get(3).click();
+            } catch (IndexOutOfBoundsException e) {
+                signUpObjects.account_Homepage_lbl.click();
+            }
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,2);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,6);
         }
     }
 }

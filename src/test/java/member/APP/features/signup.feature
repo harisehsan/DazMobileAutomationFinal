@@ -1,5 +1,5 @@
 @smoke @signup
-Feature: Account Management for Daraz
+Feature: Login Management for Daraz
 #
 # @20580001 @signup_google @30524871 @30524876 @30524878 @30524877 @30524879 @30524874 @30524875 @30526017 @30526019 @30526020 @30526021 @30526023 @30526025 @30526044
 #  Scenario: Signup with Google Account
