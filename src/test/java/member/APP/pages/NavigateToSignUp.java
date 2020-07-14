@@ -45,7 +45,7 @@ public class NavigateToSignUp extends Base {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
                 signUpObjects.account_lbl.get(3).click();
-            } catch (IndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 signUpObjects.account_Homepage_lbl.click();
             }
@@ -57,7 +57,7 @@ public class NavigateToSignUp extends Base {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
             try {
                 signUpObjects.account_lbl_MM.get(3).click();
-            } catch (IndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 signUpObjects.account_Homepage_lbl.click();
             }
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
