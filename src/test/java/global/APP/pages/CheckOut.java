@@ -61,8 +61,13 @@ public class CheckOut extends Base {
 
     public void checkoutUsingCODPaymentMethod() {
 //        if ((System.getProperty("env").equalsIgnoreCase("pk.live"))|| (System.getProperty("env").equalsIgnoreCase("np.live")) || (System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        try {
             waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             checkOutPageObjects.cod_lbl_MM.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+            findElementByTextUsingExactString("");
+        }
 //        } else {
 //            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_By);
 //            checkOutPageObjects.cod_lbl.click();
@@ -95,7 +100,7 @@ public class CheckOut extends Base {
         String Name = (findElementByString(productName).getAttribute("contentDescription"));
         if (Name.length() > 40)
             Name = Name.substring(0, 40);
-        return (productName.contains(Name));
+        return (Name.contains(productName));
     }
 
     public int selectProductFromCart(String productName) {

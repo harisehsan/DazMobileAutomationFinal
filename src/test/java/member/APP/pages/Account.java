@@ -45,7 +45,11 @@ public class Account extends Base {
 
     public void navigateToAccountFromPaymentScreen() {
         if (System.getProperty("env").equalsIgnoreCase("np.live")) {
-            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+            try {
+                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
@@ -53,7 +57,11 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+            try {
+                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn_MM)));
@@ -61,7 +69,11 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else {
-            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+            try {
+                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
