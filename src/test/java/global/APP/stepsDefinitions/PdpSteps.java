@@ -294,7 +294,7 @@ public class PdpSteps {
     }
 
     @And("I click on copy button")
-    public void iClickOnCopyButton() {
+    public void iClickOnCopyButton() throws IOException {
       pdp.clickOnVoucherCodeCopyButton();
     }
 

@@ -74,6 +74,9 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id="com.daraz.android"+dev+":id/confirm_btn") public WebElement confirm_btn;
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/recommend_image") public List <WebElement> recommended_By_Seller_Products;
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_trade_bundle_title") public List <WebElement> product_Cart_Title_lbl;
+ @AndroidFindBy(id = "com.daraz.android:id/code") public WebElement voucher_Code_lbl;
+ @AndroidFindBy(id = "com.shop.android:id/code") public WebElement voucher_Code_lbl_MM;
+
 
 
  @AndroidFindBy(id= "com.shop.android:id/pdp_gallery_item_video_icon") public List<WebElement> video_icon_MM;
