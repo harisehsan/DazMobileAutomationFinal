@@ -100,5 +100,6 @@ public class AddressSteps {
 
     @And("I navigate back to the address menu")
     public void iNavigateBackToTheAddressMenu() {
+
     }
 }

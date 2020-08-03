@@ -1,6 +1,7 @@
 package global.APP.pages;
 
 import global.APP.getProperty.PdpGetProperty;
+import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.PdpPageObject;
 import global.Base;
@@ -21,6 +22,7 @@ public class Pdp extends Base {
     SearchPageObject searchPageObj = new SearchPageObject();
     PdpGetProperty pdpGetProperty = new PdpGetProperty();
     CartPageObjects cartPageObjects = new CartPageObjects();
+    VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
     private int tries = 25;
     private String productName;
 
@@ -773,10 +775,10 @@ public class Pdp extends Base {
             {
                 try {
                     searchPageObj.ok_Got_It_btn.get(0).click();
-                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar));
+                    return (pdpPageObject.voucher_Success_Message_snackbar.get(0).getText().contains("Copied successfully!"));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar));
+                    return (pdpPageObject.voucher_Success_Message_snackbar.get(0).getText().contains("Copied successfully!"));
                 }
             }
 
@@ -786,11 +788,11 @@ public class Pdp extends Base {
             else
             {
                 try {
-                    searchPageObj.ok_Got_It_btn_MM.get(0).click();
-                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar_MM));
+                    searchPageObj.ok_Got_It_btn.get(0).click();
+                    return (pdpPageObject.voucher_Success_Message_snackbar_MM.get(0).getText().contains("Copied successfully!"));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return (isExist(pdpPageObject.voucher_Success_Message_snackbar_MM));
+                    return (pdpPageObject.voucher_Success_Message_snackbar_MM.get(0).getText().contains("Copied successfully!"));
                 }
             }
         }
@@ -820,9 +822,12 @@ public class Pdp extends Base {
         return containsTextIsExist(productType);
     }
 
-    public void clickOnVoucherCodeCopyButton()
-    {
+    public void clickOnVoucherCodeCopyButton() throws IOException {
         waitUntilPresentOfElementBy(pdpPageObject.voucher_Copy_btn_By);
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+            voucherGetProperty.setCorrectVoucherCode(pdpPageObject.voucher_Code_lbl.getText());
+        else
+            voucherGetProperty.setCorrectVoucherCode(pdpPageObject.voucher_Code_lbl_MM.getText());
         pdpPageObject.voucher_Copy_btn.click();
     }
 

@@ -8,7 +8,7 @@ Feature: Daraz Account Management
 #    And I signin with google account
 #    And I verify that I have been logged in using google Account
 #
-  @21598886 @navigate_to_message_from_account @37058638 @28810410 @28810411 @30526026 @37058634
+  @21598886 @navigate_to_message_from_account @37058638 @28810410 @28810411 @30526026 @37058634 @37058651
   Scenario: I navigate to message from account
     Given I select the venture
     And I navigate to the signin screen
@@ -18,7 +18,7 @@ Feature: Daraz Account Management
     And I select message in account section
     Then I should be on the message page
 
-  @21598886 @navigate_to_policies_and_help_and_message_settings_from_accounts @37058639 @37058658 @37058659 @37058639 @37058637
+  @21598886 @navigate_to_policies_and_help_and_message_settings_from_accounts @37058639 @37058658 @37058659 @37058639 @37058637 @37058655
   Scenario: I navigate to policies and help from account and message settings
     Given I select the venture
     Then I navigate to the account settings menu

@@ -57,6 +57,10 @@ public class WishlistPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_item_title") public List <WebElement> items_In_Cart_lbl_MM;
     @AndroidFindBy(id="com.daraz.android"+dev+":id/iv_cart") public WebElement cart_Icon_Wishlist;
     @AndroidFindBy(id="com.shop.android:id/iv_cart") public WebElement cart_Icon_Wishlist_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/tv_agree") public List <WebElement> login_Policy_Agree_btn;
+    @AndroidFindBy(id = "com.shop.android:id/tv_agree") public List <WebElement> login_Policy_Agree_btn_MM;
+    @AndroidFindBy(id = "com.daraz.android:id/iv_google") public List <WebElement> login_Google_btn;
+    @AndroidFindBy(id = "com.shop.android:id/iv_google") public List <WebElement> login_Google_btn_MM;
 
     public By dots_btn_By = By.id("com.daraz.android"+dev+":id/dots");
     public By dots_btn_By_MM = By.id("com.shop.android:id/dots");
@@ -93,4 +97,6 @@ public class WishlistPageObjects extends BuildIDPicker {
     public By items_In_Cart_lbl_MM_By = By.id("com.shop.android:id/tv_laz_trade_item_title");
     public By cart_Icon_Wishlist_By = By.id("com.daraz.android"+dev+":id/iv_cart");
     public By cart_Icon_Wishlist_MM_By = By.id("com.shop.android:id/iv_cart");
+    public By login_Google_btn_By = By.id("com.daraz.android:id/iv_google");
+    public By login_Google_btn_By_MM = By.id("com.shop.android:id/iv_google");
 }
