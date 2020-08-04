@@ -104,10 +104,16 @@ public class Cart extends Base {
     public void selectCart() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By);
-            cartPageObjects.cart_icon.get(2).click();
+//            cartPageObjects.cart_icon.get(2).click();
+           do {
+                findElementByTextUsingContainsString("Cart").click();
+            }while (isExistByText("Cart"));
         } else {
             waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By_MM);
-            cartPageObjects.cart_icon_MM.get(2).click();
+//            cartPageObjects.cart_icon_MM.get(2).click();
+            do {
+                findElementByTextUsingContainsString("Cart").click();
+            } while (isExistByText("Cart"));
         }
     }
 

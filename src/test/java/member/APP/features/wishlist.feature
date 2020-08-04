@@ -1,4 +1,4 @@
-@smoke @wishlist # Temproary Not Available for Sri Lanka (LK)
+@smoke @wishlist
 Feature: Daraz Wishlist Management
 
   @21001151 @check_for_watchlist_out_of_stock_back_in_stock_in_wishlist @28810149 @28810157 @28810134

@@ -83,4 +83,17 @@ public class Order extends Base {
         return productName.contains(findElementByString(productName).getAttribute("contentDescription"));
     }
 
+    public void skipFirstOrderVoucherPopup()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if (isExist(orderPageObject.first_Voucher_Close_btn))
+                orderPageObject.first_Voucher_Close_btn.get(0).click();
+        }
+        else
+        {
+            if (isExist(orderPageObject.first_Voucher_Close_btn_MM))
+                orderPageObject.first_Voucher_Close_btn_MM.get(0).click();
+        }
+    }
+
 }

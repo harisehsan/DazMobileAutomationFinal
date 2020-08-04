@@ -100,7 +100,7 @@ public class CheckOut extends Base {
         String Name = (findElementByString(productName).getAttribute("contentDescription"));
         if (Name.length() > 40)
             Name = Name.substring(0, 40);
-        return (Name.contains(productName));
+        return (productName.contains(Name));
     }
 
     public int selectProductFromCart(String productName) {

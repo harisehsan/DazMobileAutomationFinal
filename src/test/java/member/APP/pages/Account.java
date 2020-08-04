@@ -245,9 +245,11 @@ public class Account extends Base {
         if (walletExistence)
         {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-                accountPageObect.wallet_Activate_Now_lbl.click();
+//                accountPageObect.wallet_Activate_Now_lbl.click();
+                accountPageObect.wallet_New_Activate_Now_lbl.click();
             else
-                accountPageObect.wallet_Activate_Now_lbl_MM.click();
+//                accountPageObect.wallet_Activate_Now_lbl_MM.click();
+                accountPageObect.wallet_New_Activate_Now_lbl_MM.click();
         }
         else
         {
