@@ -38,7 +38,7 @@ Feature: Daraz Order Cancellation Management
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I select that product from cart for checkout
-    And I change the quantity to 4
+    And I change the quantity to 2
     And I click on checkout button in cart menu
     And I slide the product to view the delete button
     And I click on delete button checkout
