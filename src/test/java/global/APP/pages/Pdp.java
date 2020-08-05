@@ -77,6 +77,7 @@ public class Pdp extends Base {
                 }
                 break;
             }
+            System.out.println("Product ID SKU :::::::::::::::::: >>>>>>> " + searchPageObj.searchAfterClick_txtfield.getText());
             searchPageObj.search_btn.click();
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
@@ -378,6 +379,27 @@ public class Pdp extends Base {
         return result;
     }
 
+    public boolean checkTheExistanceOfQASection(){
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            while (!isExist(pdpPageObject.qa_Title_lbl)){
+            swiptToBottom();
+            if(isExist(pdpPageObject.qa_Title_lbl)){
+                return true;
+                }
+            }
+            return false;
+        } else {
+            while (!isExist(pdpPageObject.qa_Title_lbl_MM)){
+                swiptToBottom();
+                if(isExist(pdpPageObject.qa_Title_lbl_MM)){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
+
     public boolean checkTheExistenceofQaSection() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
@@ -479,6 +501,27 @@ public class Pdp extends Base {
         else
             return (isExist(pdpPageObject.product_Title_lbl_MM));
     }
+
+    public boolean verifyTheExistanceOFRecomendedBySellerSection(){
+            if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+                while (!isExist(pdpPageObject.recommended_By_Seller_lbl)){
+                    swiptToBottom();
+                    if(isExist(pdpPageObject.recommended_By_Seller_lbl)){
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                while (!isExist(pdpPageObject.recommended_By_Seller_lbl_MM)){
+                    swiptToBottom();
+                    if(isExist(pdpPageObject.recommended_By_Seller_lbl_MM)){
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+        }
 
     public boolean verifyTheExistenceOfRecommendedBySellerSection() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
