@@ -105,15 +105,23 @@ public class Cart extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By);
 //            cartPageObjects.cart_icon.get(2).click();
-           do {
-                findElementByTextUsingContainsString("Cart").click();
-            }while (isExistByText("Cart"));
+            try {
+                do {
+                     findElementByTextUsingContainsString("Cart").click();
+                 }while (isExistByText("Cart"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
-            waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By_MM);
+            try {
+                waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By_MM);
 //            cartPageObjects.cart_icon_MM.get(2).click();
-            do {
-                findElementByTextUsingContainsString("Cart").click();
-            } while (isExistByText("Cart"));
+                do {
+                    findElementByTextUsingContainsString("Cart").click();
+                } while (isExistByText("Cart"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -593,8 +601,9 @@ public class Cart extends Base {
             int TotalPriceRupee = Integer.parseInt(cartPageObjects.cart_Total_Price_lbl.getText().replace("Rs. ", "").replaceAll(",", ""));
             if (!(cartPageObjects.cart_Shipping_lbl.getText().equalsIgnoreCase("Shipping:") && !(cartPageObjects.cart_Total_lbl.getText().equalsIgnoreCase("Total:")))) {
                 if (!cartPageObjects.cart_Shipping_Price_lbl.getText().contains("Free")) {
-                    if (Integer.parseInt(cartPageObjects.cart_Shipping_Price_lbl.getText().replaceAll("Rs. ", "").replaceAll(",", "")) <= 0)
-                        return false;
+//                    if (Integer.parseInt(cartPageObjects.cart_Shipping_Price_lbl.getText().replaceAll("Rs. ", "").replaceAll(",", "")) <= 0)
+//                        return false;
+                    return (!cartPageObjects.cart_Shipping_Price_lbl.getText().equalsIgnoreCase(""));
                 }
                 return (TotalPriceRupee > 0);
             } else
@@ -603,8 +612,9 @@ public class Cart extends Base {
             int TotalPriceTaka = Integer.parseInt(cartPageObjects.cart_Total_Price_lbl.getText().replace("৳ ", "").replaceAll(",", ""));
             if (!(cartPageObjects.cart_Shipping_lbl.getText().equalsIgnoreCase("Shipping:") && !(cartPageObjects.cart_Total_lbl.getText().equalsIgnoreCase("Total:")))) {
                 if (!cartPageObjects.cart_Shipping_Price_lbl.getText().contains("Free")) {
-                    if (Integer.parseInt(cartPageObjects.cart_Shipping_Price_lbl.getText().replaceAll("৳ ", "").replaceAll(",", "")) <= 0)
-                        return false;
+//                    if (Integer.parseInt(cartPageObjects.cart_Shipping_Price_lbl.getText().replaceAll("৳ ", "").replaceAll(",", "")) <= 0)
+//                        return false;
+                    return (!cartPageObjects.cart_Shipping_Price_lbl.getText().equalsIgnoreCase(""));
                 }
                 return (TotalPriceTaka > 0);
             } else return false;
@@ -612,16 +622,16 @@ public class Cart extends Base {
             int TotalPriceKyat = Integer.parseInt(cartPageObjects.cart_Total_Price_lbl_MM.getText().replace("Ks ", "").replaceAll(",", ""));
             if (!(cartPageObjects.cart_Shipping_lbl_MM.getText().equalsIgnoreCase("Shipping:") && !(cartPageObjects.cart_Total_lbl_MM.getText().equalsIgnoreCase("Total:")))) {
                 if (!cartPageObjects.cart_Shipping_Price_lbl_MM.getText().contains("Free")) {
-                    if (Integer.parseInt(cartPageObjects.cart_Shipping_Price_lbl_MM.getText().replaceAll("Ks ", "").replaceAll(",", "")) <= 0) {
-                        return false;
+//                    if (Integer.parseInt(cartPageObjects.cart_Shipping_Price_lbl_MM.getText().replaceAll("Ks ", "").replaceAll(",", "")) <= 0) {
+//                        return false;
+                    return (!cartPageObjects.cart_Shipping_Price_lbl_MM.getText().equalsIgnoreCase(""));
                     }
                 }
                 return (TotalPriceKyat > 0);
             }
-            return false;
+//            return false;
 
         }
-    }
 
     public void selectGetVoucher() {
         waitUntilPresentOfElementByText("Get Voucher");
