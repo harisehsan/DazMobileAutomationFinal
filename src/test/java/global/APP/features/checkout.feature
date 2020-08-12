@@ -166,9 +166,9 @@ Feature: Daraz Checkout Management
     And I signin with google account
     Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
     And I check for the total price on checkout screen
-    And I click on proceed to pay button
-    And I select Cash on Delivery payment method
-    And I should reach to order successful page
-    And I click on Track Order button
-    Then I verify that order has been placed
-    Then I verify the logistics type, estimated delivery date, postage on Order details page
+#    And I click on proceed to pay button
+#    And I select Cash on Delivery payment method
+#    And I should reach to order successful page
+#    And I click on Track Order button
+#    Then I verify that order has been placed
+#    Then I verify the logistics type, estimated delivery date, postage on Order details page

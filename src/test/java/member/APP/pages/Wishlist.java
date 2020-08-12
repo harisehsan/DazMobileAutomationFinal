@@ -76,15 +76,15 @@ public class Wishlist extends Base {
 //            }
             } else {
 //            if (wishlistPageObjects.login_btn_MM.size() > 0) {
-                wishlistPageObjects.login_btn_MM.get(0).click();
-                waitUntilPresentOfElementBy(wishlistPageObjects.google_btn_By_MM);
-                wishlistPageObjects.google_btn_MM.click();
-                waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
-                wishlistPageObjects.agree_btn.click();
-//                waitUntilPresentOfElementBy(wishlistPageObjects.login_Google_btn_By_MM);
-//                wishlistPageObjects.login_Google_btn_MM.get(0).click();
-//                if (waitWithoutExceptionForElements(wishlistPageObjects.login_Policy_Agree_btn_MM))
-//                    wishlistPageObjects.login_Policy_Agree_btn_MM.get(0).click();
+//                wishlistPageObjects.login_btn_MM.get(0).click();
+//                waitUntilPresentOfElementBy(wishlistPageObjects.google_btn_By_MM);
+//                wishlistPageObjects.google_btn_MM.click();
+//                waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
+//                wishlistPageObjects.agree_btn.click();
+                waitUntilPresentOfElementBy(wishlistPageObjects.login_Google_btn_By_MM);
+                wishlistPageObjects.login_Google_btn_MM.get(0).click();
+                if (waitWithoutExceptionForElements(wishlistPageObjects.login_Policy_Agree_btn_MM))
+                    wishlistPageObjects.login_Policy_Agree_btn_MM.get(0).click();
                 if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
 //            }

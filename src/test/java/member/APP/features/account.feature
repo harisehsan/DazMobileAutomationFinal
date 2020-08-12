@@ -8,13 +8,17 @@ Feature: Daraz Account Management
 #    And I signin with google account
 #    And I verify that I have been logged in using google Account
 #
-  @21598886 @navigate_to_message_from_account @37058638 @28810410 @28810411 @30526026 @37058634 @37058651
-  Scenario: I navigate to message from account
+  @21598886 @navigate_to_message_from_account_verify_my_services_and_avatar_popup @37058638 @28810410 @28810411 @30526026 @37058634 @37058651 @37058648 @37058650
+  Scenario: I navigate to message from account verify my services and avatar popup
     Given I select the venture
     And I navigate to the signin screen
     And I signin with google account
     And I navigate to the account menu
     Then I verify the existence of red dot on message
+    Then I verify the components of my services
+    When I select avatar
+    Then Then I should see take photo and select from album options
+    And I navigate back
     And I select message in account section
     Then I should be on the message page
 

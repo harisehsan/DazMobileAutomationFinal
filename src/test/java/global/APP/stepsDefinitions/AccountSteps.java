@@ -146,4 +146,19 @@ public class AccountSteps {
     public void iNavigateToTheAccountSettingsMenuInLocalLanguage() {
       account.navigateToAccountSettingsInLocalLanguage();
     }
+
+    @Then("I verify the components of my services")
+    public void iVerifyTheComponentsOfMyServices() {
+        Assert.assertTrue(account.verifyTheComponentsOfMyServices(),"The Components of My Service are not properly displayed!");
+    }
+
+    @When("I select avatar")
+    public void iSelectAvatar() {
+        account.selectAvatar();
+    }
+
+    @Then("Then I should see take photo and select from album options")
+    public void thenIShouldSeeTakePhotoAndSelectFromAlbumOptions() {
+      Assert.assertTrue(account.verifyTheExistenceOfTakePhotoAndSelectFromAlbum(),"Photo options for avatar are not properly displayed!");
+    }
 }
