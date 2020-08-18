@@ -67,8 +67,8 @@ public class Login extends Base {
             {
                 waitUntilPresentOfElementBy(loginPageObject.facebook_Login_btn_By_MM);
                 loginPageObject.facebook_Login_btn_MM.click();
-                waitUntilPresentOfElementBy(loginPageObject.facebook_Agree_btn_By);
-                loginPageObject.facebook_Agree_btn.click();
+                waitUntilPresentOfElementBy(loginPageObject.facebook_Agree_btn_By_MM);
+                loginPageObject.facebook_Agree_btn_MM.click();
             }
 
         } else {
@@ -159,7 +159,7 @@ public class Login extends Base {
             loginPageObject.login_Email_Final_txt.get(1).sendKeys(loginGetProperty.loginPassword());
         } else {
 //            loginPageObject.login_Password_txt_MM.sendKeys(loginGetProperty.loginPassword());
-            loginPageObject.login_Email_Final_txt.get(1).sendKeys(loginGetProperty.loginPassword());
+            loginPageObject.login_Email_Final_txt_MM.get(1).sendKeys(loginGetProperty.loginPassword());
         }
     }
 

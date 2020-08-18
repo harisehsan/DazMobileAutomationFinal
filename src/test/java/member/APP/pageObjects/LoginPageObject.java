@@ -41,9 +41,10 @@ public class LoginPageObject extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/btn_login_fresh_welcome_login") public List <WebElement> first_login_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/iv_facebook") public WebElement facebook_Login_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/tv_signin") public WebElement login_Email_btn_MM;
-    @AndroidFindBy(id = "com.daraz.android:id/tv_forget_pwd") public WebElement forget_password_New_lbl_MM;
+    @AndroidFindBy(id = "com.shop.android:id/tv_forget_pwd") public WebElement forget_password_New_lbl_MM;
     @AndroidFindBy(id = "com.shop.android:id/btn_next") public WebElement final_Email_Login_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/et_input_text")  public List <WebElement> login_Email_Final_txt_MM;
+    @AndroidFindBy (id  = "com.shop.android:id/tv_agree") public WebElement facebook_Agree_btn_MM;
 
     public By tray_icon_By = By.id("com.daraz.android:id/icon");
     public By message_Login_btn_By = By.id("com.daraz.android:id/laz_msg_banner_ImageView");
