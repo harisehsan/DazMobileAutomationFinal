@@ -28,7 +28,7 @@ Feature: Login Management for Daraz
   Scenario: Navigate to login page from message page
     Given I select the venture
     And I select message
-    When I select Login button on "message" screen
+#    When I select Login button on "message" screen
     Then I should be on the login page
 
 #  @2058001 @goto_login_page_from_wallet @30524878
@@ -43,7 +43,7 @@ Feature: Login Management for Daraz
     Given I select the venture
     And I navigate to the signin screen
     When I select Login button on "facebook" screen
-    And I select agree button
+#    And I select agree button
     Then I should be login successfully
     Then I log out
 
@@ -51,7 +51,7 @@ Feature: Login Management for Daraz
   Scenario: verify foreget password Interface
     Given I select the venture
     And I navigate to the signin screen
-    And I select first login button
+#    And I select first login button
     When I select forget password link
     Then I should be on the reset password page
 
@@ -65,10 +65,10 @@ Feature: Login Management for Daraz
     And I select login button
     Then I should be login successfully
 
-  @2058001 @verify_mailbox_registration_interface @30524882 @37058636
-  Scenario: verify the mail box interface
-    Given I select the venture
-    And I navigate to the signin screen
-    And I select first login button
-    When I select create an account
-    Then I should be on the create account page
+#  @2058001 @verify_mailbox_registration_interface @30524882 @37058636
+#  Scenario: verify the mail box interface
+#    Given I select the venture
+#    And I navigate to the signin screen
+#    And I select first login button
+#    When I select create an account
+#    Then I should be on the create account page

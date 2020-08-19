@@ -96,7 +96,8 @@ Feature: PDP page Management
     And I search product using sku for "PDP"
     And I goto the PDP page
     And I navigate to login page from PDP
-    And I navigate back to pdp page
+#    And I navigate back to pdp page
+    And I signin with google account
     And I navigate to the Home page from PDP
     And I search product using sku for "PDP"
     And I goto the PDP page
@@ -114,7 +115,7 @@ Feature: PDP page Management
   Scenario: Verify daraz mall product PDP
     Given I select the venture
     And I search for "water"
-    And I goto the Daraz Mall
+#    And I goto the Daraz Mall
     And I goto the PDP page
 #    And I check existence of daraz mall in the product title
     And I verify the existence of services
@@ -150,15 +151,15 @@ Feature: PDP page Management
     And I signin with google account
     Then The voucher should be collected
 
-  @28811393 @verify_pdp_voucher_copy @28811316
-  Scenario: Verify PDP voucher copy feature
-    Given I select the venture
-    And I search product using sku for "Voucher Code"
-    And I goto the PDP page
-    And I check the existence of Voucher on PDP
-    And I open voucher section
-    And I click on copy button
-    Then The voucher code should be copied
+#  @28811393 @verify_pdp_voucher_copy @28811316
+#  Scenario: Verify PDP voucher copy feature
+#    Given I select the venture
+#    And I search product using sku for "Voucher Code"
+#    And I goto the PDP page
+#    And I check the existence of Voucher on PDP
+#    And I open voucher section
+#    And I click on copy button
+#    Then The voucher code should be copied
 
   @28811393 @verify_free_gift_promotion @28811327 @28811333
   Scenario: Verify free gift promotion on PDP

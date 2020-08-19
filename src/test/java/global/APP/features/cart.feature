@@ -215,8 +215,8 @@ Feature: Daraz Cart Management
     Then I verify the components of get voucher popup in cart
     Then I verify the voucher collection for the "first" time
     And I close the get voucher popup
-    When I select get voucher in cart
-    Then I verify the voucher collection for the "Second" time
+#    When I select get voucher in cart
+#    Then I verify the voucher collection for the "Second" time
 
   @28811393 @verify_pdp_and_cart_voucher_code_section @28811316 @37058439 @37058440 @37058441 @37058442
   Scenario: Verify PDP voucher copy feature for PDP & cart

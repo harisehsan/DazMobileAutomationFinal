@@ -8,6 +8,8 @@ import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
+import member.APP.pageObjects.WishlistPageObjects;
+import member.APP.pages.Login;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
@@ -23,6 +25,7 @@ public class Pdp extends Base {
     PdpGetProperty pdpGetProperty = new PdpGetProperty();
     CartPageObjects cartPageObjects = new CartPageObjects();
     VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
+    WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
     private int tries = 25;
     private String productName;
 
@@ -31,6 +34,7 @@ public class Pdp extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), pdpPageObject);
         PageFactory.initElements(new AppiumFieldDecorator(driver), cartPageObjects);
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObj);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
     }
 
     public void serchProductForPDP(String searchType) throws IOException {
@@ -73,6 +77,7 @@ public class Pdp extends Base {
                 }
                 break;
             }
+            System.out.println("Product ID SKU :::::::::::::::::: >>>>>>> " + searchPageObj.searchAfterClick_txtfield.getText());
             searchPageObj.search_btn.click();
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
@@ -238,9 +243,11 @@ public class Pdp extends Base {
 
     public boolean verifyTheShareDetails() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+           swiptToBottom();
             pdpPageObject.share_icon.get(0).click();
             return (isExist(pdpPageObject.share_Title_lbl));
         } else {
+            swiptToBottom();
             pdpPageObject.share_icon_MM.get(0).click();
             return (isExist(pdpPageObject.share_Title_lbl_MM));
         }
@@ -372,6 +379,27 @@ public class Pdp extends Base {
         return result;
     }
 
+    public boolean checkTheExistanceOfQASection(){
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            while (!isExist(pdpPageObject.qa_Title_lbl)){
+            swiptToBottom();
+            if(isExist(pdpPageObject.qa_Title_lbl)){
+                return true;
+                }
+            }
+            return false;
+        } else {
+            while (!isExist(pdpPageObject.qa_Title_lbl_MM)){
+                swiptToBottom();
+                if(isExist(pdpPageObject.qa_Title_lbl_MM)){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
+
     public boolean checkTheExistenceofQaSection() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
@@ -474,6 +502,27 @@ public class Pdp extends Base {
             return (isExist(pdpPageObject.product_Title_lbl_MM));
     }
 
+    public boolean verifyTheExistanceOFRecomendedBySellerSection(){
+            if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+                while (!isExist(pdpPageObject.recommended_By_Seller_lbl)){
+                    swiptToBottom();
+                    if(isExist(pdpPageObject.recommended_By_Seller_lbl)){
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                while (!isExist(pdpPageObject.recommended_By_Seller_lbl_MM)){
+                    swiptToBottom();
+                    if(isExist(pdpPageObject.recommended_By_Seller_lbl_MM)){
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+        }
+
     public boolean verifyTheExistenceOfRecommendedBySellerSection() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
@@ -532,13 +581,15 @@ public class Pdp extends Base {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
-            pdpPageObject.menu_List.get(1).click();
+//            pdpPageObject.menu_List.get(1).click();
+            pdpPageObject.menu_List.get(0).click();
             return isExist(searchPageObj.searchBeforeClick_txtfield);
         } else {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By_MM);
             pdpPageObject.dots_button_MM.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By_MM);
-            pdpPageObject.menu_List_MM.get(1).click();
+//            pdpPageObject.menu_List_MM.get(1).click();
+            pdpPageObject.menu_List_MM.get(0).click();
             return isExist(searchPageObj.searchBeforeClick_txtfield_MM);
         }
     }
@@ -549,13 +600,13 @@ public class Pdp extends Base {
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
             pdpPageObject.menu_List.get(0).click();
-            return isExist(pdpPageObject.login_btn);
+            return isExist(wishlistPageObjects.email_Login_btn);
         } else {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By_MM);
             pdpPageObject.dots_button_MM.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By_MM);
             pdpPageObject.menu_List_MM.get(0).click();
-            return isExist(pdpPageObject.login_btn_MM);
+            return isExist(wishlistPageObjects.email_Login_btn_MM);
         }
     }
 
@@ -568,13 +619,15 @@ public class Pdp extends Base {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
-            pdpPageObject.menu_List.get(3).click();
+//            pdpPageObject.menu_List.get(3).click();
+            pdpPageObject.menu_List.get(2).click();
             return (isExist(pdpPageObject.searchAfterClick_txtfield));
         } else {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By_MM);
             pdpPageObject.dots_button_MM.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By_MM);
-            pdpPageObject.menu_List_MM.get(3).click();
+//            pdpPageObject.menu_List_MM.get(3).click();
+            pdpPageObject.menu_List_MM.get(2).click();
             return (isExist(pdpPageObject.searchAfterClick_txtfield_MM));
         }
     }
@@ -594,13 +647,15 @@ public class Pdp extends Base {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
-            pdpPageObject.menu_List.get(4).click();
+//            pdpPageObject.menu_List.get(4).click();
+            pdpPageObject.menu_List.get(3).click();
             return isExist(pdpPageObject.messages_Header_lbl);
         } else {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By_MM);
             pdpPageObject.dots_button_MM.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By_MM);
-            pdpPageObject.menu_List_MM.get(4).click();
+//            pdpPageObject.menu_List_MM.get(4).click();
+            pdpPageObject.menu_List_MM.get(3).click();
             return isExist(pdpPageObject.messages_Header_lbl);
         }
     }
@@ -610,13 +665,15 @@ public class Pdp extends Base {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
-            pdpPageObject.menu_List.get(6).click();
+//            pdpPageObject.menu_List.get(6).click();
+            pdpPageObject.menu_List.get(5).click();
             return isExist(pdpPageObject.help_Header_lbl);
         } else {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By_MM);
             pdpPageObject.dots_button_MM.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By_MM);
-            pdpPageObject.menu_List_MM.get(6).click();
+//            pdpPageObject.menu_List_MM.get(6).click();
+            pdpPageObject.menu_List_MM.get(5).click();
             return isExist(pdpPageObject.help_Header_lbl);
         }
     }

@@ -206,10 +206,10 @@ public class Sort extends Base {
                 return Integer.parseInt(sortPageObject.product_Price_lbl.get(2).getText().replace("Rs. ", "").replaceAll(",", "")) >= Integer.parseInt(sortPageObject.product_Price_lbl.get(3).getText().replace("Rs. ", "").replaceAll(",", ""));
             }
             else
-                return true;
+            return true;
         }
         else
-            return false;
+        return false;
     }
 
     private boolean takaHighToLow()

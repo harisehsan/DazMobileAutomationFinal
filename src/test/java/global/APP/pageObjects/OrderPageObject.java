@@ -20,6 +20,8 @@ public class OrderPageObject extends BuildIDPicker {
     @AndroidFindBy (xpath = "//*[@class='android.widget.EditText']") public List <WebElement> cancel_Comment_txt;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Submit']"),@AndroidBy(xpath = "//*[@content-desc='Submit']")}) public WebElement cancel_Submit_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[contains(@contentDescription,'Cancelled')]"),@AndroidBy(xpath = "//*[contains(@content-desc,'Cancelled')]")}) public List <WebElement> cancelled_lbl;
+    @AndroidFindBy(id = "com.daraz.android:id/iv_close_btn") public List <WebElement> first_Voucher_Close_btn;
+    @AndroidFindBy(id = "com.shop.android:id/iv_close_btn") public List <WebElement> first_Voucher_Close_btn_MM;
 
     public By order_Cancel_btn_by = By.xpath("//*[@content-desc='CANCEL '] | //*[@contentDescription='CANCEL ']");
     public By select_Reason_btn_by = By.xpath("//*[@contentDescription='Select'] | //*[@content-desc='Select']");

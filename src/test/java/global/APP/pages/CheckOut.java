@@ -100,7 +100,7 @@ public class CheckOut extends Base {
         String Name = (findElementByString(productName).getAttribute("contentDescription"));
         if (Name.length() > 40)
             Name = Name.substring(0, 40);
-        return (Name.contains(productName));
+        return (productName.contains(Name));
     }
 
     public int selectProductFromCart(String productName) {
@@ -150,8 +150,8 @@ public class CheckOut extends Base {
                 } else {
                     checkOutPageObjects.quantity_drpDown.click();
                     waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By);
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
                     checkOutPageObjects.quantity_Confirm_btn.click();
                 }
             } else if (currentItemQuantity > quantity) {
@@ -163,8 +163,8 @@ public class CheckOut extends Base {
                 } else {
                     checkOutPageObjects.quantity_drpDown.click();
                     waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By);
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
                     checkOutPageObjects.quantity_Confirm_btn.click();
                 }
             } else {
@@ -189,8 +189,8 @@ public class CheckOut extends Base {
                 } else {
                     checkOutPageObjects.quantity_drpDown_MM.click();
                     waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By_MM);
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
                     checkOutPageObjects.quantity_Confirm_btn_MM.click();
                 }
             } else if (currentItemQuantity > quantity) {
@@ -202,8 +202,8 @@ public class CheckOut extends Base {
                 } else {
                     checkOutPageObjects.quantity_drpDown_MM.click();
                     waitUntilPresentOfElementBy(checkOutPageObjects.quantity_Option_By_MM);
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
-                    findElementByTextUsingExactString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
+                    findElementByTextUsingContainsString(Integer.toString(quantity)).click();
                     checkOutPageObjects.quantity_Confirm_btn_MM.click();
                 }
             } else {

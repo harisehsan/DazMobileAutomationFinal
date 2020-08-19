@@ -45,4 +45,9 @@ public class OrderSteps  {
     public void iVerifyTheQuantityAmountOnCancellationPage() throws IOException {
         Assert.assertEquals(orderGetProperty.cancellationOrderAmount(),order.verifyCancelAmount(orderGetProperty.cancellationOrderAmount()),"Order Cancel amount is not same as specified!");
     }
+
+    @And("I skip first order voucher popup")
+    public void iSkipFirstOrderVoucherPopup() {
+     order.skipFirstOrderVoucherPopup();
+    }
 }

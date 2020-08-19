@@ -132,7 +132,8 @@ public class PdpSteps {
 
     @And("I check the existence Question & Answer section")
     public void iCheckTheExistenceQuestionAnswerSection() {
-     Assert.assertTrue(pdp.checkTheExistenceofQaSection(),"Question & Answer section is not existed on PDP!");
+//     Assert.assertTrue(pdp.checkTheExistenceofQaSection(),"Question & Answer section is not existed on PDP!");
+     Assert.assertTrue(pdp.checkTheExistanceOfQASection(),"Question & Answer section is not existed on PDP!");
 
     }
 
@@ -169,7 +170,8 @@ public class PdpSteps {
 
     @And("I check the existence of Recommended by seller section")
     public void iCheckTheExistenceOfRecommendedBySellerSection() {
-      Assert.assertTrue(pdp.verifyTheExistenceOfRecommendedBySellerSection(),"Recommended by Seller section is not available ");
+//      Assert.assertTrue(pdp.verifyTheExistenceOfRecommendedBySellerSection(),"Recommended by Seller section is not available ");
+      Assert.assertTrue(pdp.verifyTheExistanceOFRecomendedBySellerSection(),"Recommended by Seller section is not available ");
     }
 
     @And("I select the product in the recommended list")

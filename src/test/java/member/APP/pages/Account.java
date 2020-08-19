@@ -5,6 +5,7 @@ import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -245,9 +246,11 @@ public class Account extends Base {
         if (walletExistence)
         {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-                accountPageObect.wallet_Activate_Now_lbl.click();
+//                accountPageObect.wallet_Activate_Now_lbl.click();
+                accountPageObect.wallet_New_Activate_Now_lbl.click();
             else
-                accountPageObect.wallet_Activate_Now_lbl_MM.click();
+//                accountPageObect.wallet_Activate_Now_lbl_MM.click();
+                accountPageObect.wallet_New_Activate_Now_lbl_MM.click();
         }
         else
         {
@@ -271,18 +274,19 @@ public class Account extends Base {
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
-             if (isExist(accountPageObect.red_Dot_lbl))
+             if (isExist(accountPageObect.my_Account_widget.get(4).findElements(accountPageObect.red_Dot_lbl_By)))
              {
-                 return ((Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText()) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText())== Integer.parseInt(accountPageObect.red_Dot_lbl.get(1).getText()))));
+//                 return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText().replaceAll("[^\\d.]", ""))== Integer.parseInt(accountPageObect.red_Dot_lbl.get(1).getText().replaceAll("[^\\d.]", "")))));
+                 return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0));
              }
              else
                  return true;
         }
         else
         {
-            if (isExist(accountPageObect.red_Dot_lbl_MM))
+            if (isExist(accountPageObect.Account_widget_MM.get(4).findElements(accountPageObect.red_Dot_lbl_MM_By)))
             {
-                return ((Integer.parseInt(accountPageObect.red_Dot_lbl_MM.get(0).getText()) > 0 ));
+                return ((Integer.parseInt(accountPageObect.my_Account_widget_MM.get(4).findElement(accountPageObect.red_Dot_lbl_MM_By).getText().replaceAll("[^\\d.]", "")) > 0));
             }
             else
                 return true;
@@ -318,5 +322,28 @@ public class Account extends Base {
             signUpObjects.settings_icon_MM.click();
         }
     }
+
+     public boolean verifyTheComponentsOfMyServices()
+     {
+        return (containsTextIsExist("Messages")
+                && containsTextIsExist("My Review")
+                && containsTextIsExist("Payment")
+                && containsTextIsExist("Help"));
+     }
+
+     public void selectAvatar()
+     {
+         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+            accountPageObect.avatar_img.click();
+         else
+             accountPageObect.avatar_img_MM.click();
+     }
+
+     public boolean verifyTheExistenceOfTakePhotoAndSelectFromAlbum()
+     {
+         waitWithoutExceptionByTextContains("Take photo");
+         return (isExistByText("Take photo") && isExistByText("Select from album") && isExistByText("Cancel"));
+
+     }
     }
 

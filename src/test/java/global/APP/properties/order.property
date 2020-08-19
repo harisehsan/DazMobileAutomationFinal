@@ -1,7 +1,7 @@
-#Mon Jul 27 16:50:03 PKT 2020
+#Mon Aug 17 17:46:40 PKT 2020
 CANCEL_COMMENT=This is for testing purpose only. Please ignore this.
-PRODUCT_NAME=QA Promotion Test (Do not buy)
 CANCEL_REASON_3=Change of Delivery Address
+PRODUCT_NAME=Test Edu 01
 CANCEL_REASON_2=Delivery time is too long
-ORDER_AMOUNT=3
 CANCEL_REASON_1=Duplicate order
+ORDER_AMOUNT=2

@@ -4,6 +4,7 @@ Feature: Daraz Order Cancellation Management
   @21001814 @make_cart_empty_without_item_add_for_orders
   Scenario: Remove all products from cart without add product
     Given I select the venture
+    And I skip first order voucher popup
     And I select cart
     And I signin with google account
     And I remove all items from cart
@@ -37,7 +38,7 @@ Feature: Daraz Order Cancellation Management
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I select that product from cart for checkout
-    And I change the quantity to 5
+    And I change the quantity to 2
     And I click on checkout button in cart menu
     And I slide the product to view the delete button
     And I click on delete button checkout

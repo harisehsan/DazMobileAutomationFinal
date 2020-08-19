@@ -112,9 +112,11 @@ public class Address extends Base {
 
     public void newAddress() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+           waitWithoutExceptionForElementsLessTime(addressPageObject.edit_Address_btn);
             waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By);
             addressPageObject.new_Address_btn.click();
         } else {
+            waitWithoutExceptionForElementsLessTime(addressPageObject.edit_Address_btn_MM);
             waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By_MM);
             addressPageObject.new_Address_btn_MM.click();
         }
