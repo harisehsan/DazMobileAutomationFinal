@@ -46,4 +46,14 @@ public class OrderGetProperty {
         fileInputStream();
         return prop.getProperty("PRODUCT_NAME");
     }
+
+    public String shippingAddress() throws IOException {
+        fileInputStream();
+        return prop.getProperty("SHIPPING_ADDRESS");
+    }
+
+    public String totalPrice() throws IOException {
+        fileInputStream();
+        return prop.getProperty("TOTAL_PRICE");
+    }
 }

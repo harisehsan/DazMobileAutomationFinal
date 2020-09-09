@@ -156,19 +156,3 @@ Feature: Daraz Checkout Management
     And I signin with google account
     Then I verify the existence of delivery time and email address on checkout
     Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
-
-  @21001814 @proceed_to_checkout_without_add_to_cart @28810395 @28810439 @30564196 @30564196 @30564632 @30564633 @30564635 @30564636 @28810295 @28810308 @28810309 @28810301 @28810298 @28810312
-  Scenario: Make a checkout without using cart
-    Given I select the venture
-    And I search a Product using SKU for "Checkout"
-    And I select the product for checkout
-    And I select Buy Now button
-    And I signin with google account
-    Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
-    And I check for the total price on checkout screen
-#    And I click on proceed to pay button
-#    And I select Cash on Delivery payment method
-#    And I should reach to order successful page
-#    And I click on Track Order button
-#    Then I verify that order has been placed
-#    Then I verify the logistics type, estimated delivery date, postage on Order details page

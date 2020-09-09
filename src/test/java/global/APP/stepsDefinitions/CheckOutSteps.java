@@ -152,4 +152,9 @@ public class CheckOutSteps {
     public void iVerifyTheLogisticsTypeEstimatedDeliveryDatePostageOnOrderDetailsPage() {
       Assert.assertTrue(checkout.verifyTheLogisticsTypeAndDeliveryDateAndPostage(),"The Logistics information are not properly displayed on Order Details Page!");
     }
+
+    @And("I mark the checkbox for that product in cart")
+    public void iMarkTheCheckboxForThatProductInCart() {
+        cart.selectTheCheckBoxForProduct(productName);
+    }
 }

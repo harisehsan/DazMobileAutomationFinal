@@ -115,7 +115,6 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_voucher_applied_tip") public List <WebElement> voucher_Success_Message_lbl_MM;
 
 
-
     public By searchProduct_lbl_By = By.id("com.daraz.android"+dev+":id/product_name_text_view");
     public By searchProduct_lbl_MM_By = By.id("com.shop.android:id/product_name_text_view");
     public By product_Title_lbl_By = By.id("com.daraz.android"+dev+":id/title");
@@ -153,5 +152,7 @@ public class CartPageObjects extends BuildIDPicker {
     public By cart_Voucher_Error_lbl_By_MM = By.id("com.shop.android:id/tv_laz_trade_voucher_validate_tip");
     public By get_Voucher_Validity_lbl_By = By.id("com.daraz.android:id/tv_laz_trade_seller_voucher_validity");
     public By get_Voucher_Validity_lbl_By_MM = By.id("com.shop.android:id/tv_laz_trade_seller_voucher_validity");
+    public By cart_product_descripition_By = By.id("com.daraz.android:id/tv_laz_trade_item_sku");
+    public By cart_product_descripition_By_MM = By.id("com.shop.android:id/tv_laz_trade_item_sku");
 
 }

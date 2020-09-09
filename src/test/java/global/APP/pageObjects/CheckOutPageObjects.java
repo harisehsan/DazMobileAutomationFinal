@@ -68,7 +68,8 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/iv_laz_trade_item_action_dropdown") public WebElement quantity_drpDown_MM;
     @AndroidFindBy(id = "com.daraz.android:id/confirm_btn") public WebElement quantity_Confirm_btn;
     @AndroidFindBy(id = "com.shop.android:id/confirm_btn") public WebElement quantity_Confirm_btn_MM;
-
+    @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_item_sku") public WebElement product_Description_Checkout_lbl;
+    @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_item_sku") public WebElement product_Description_Checkout_lbl_MM;
 
 
     public By proceed_To_Pay_btn_By = By.id("com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next");

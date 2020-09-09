@@ -452,14 +452,15 @@ public class CheckOut extends Base {
 
     public boolean verifyTheLogisticsTypeAndDeliveryDateAndPostage()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("np.live"))) {
-            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By);
-//            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
-        } else {
-            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By_NP);
-//            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
-        }
-        return (findElementsSizeByString("Package") && (findElementsSizeByString("Sold by") || findElementsSizeByString("Get by")));
+//        if (!(System.getProperty("env").equalsIgnoreCase("np.live") && !(System.getProperty("env").equalsIgnoreCase("lk.live")))) {
+//            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By);
+////            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+//        } else {
+//            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By_NP);
+////            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
+//        }
+        waitUntilPresentOfElementByString("Package");
+        return (findElementsSizeByString("Package") && (findElementsSizeByString("Sold by") || findElementsSizeByString("Get by")) && findElementsSizeByString("Processing"));
 
     }
 

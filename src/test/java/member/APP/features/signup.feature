@@ -31,12 +31,12 @@ Feature: Login Management for Daraz
 #    When I select Login button on "message" screen
     Then I should be on the login page
 
-#  @2058001 @goto_login_page_from_wallet @30524878
-#  Scenario: Navigate to login page from wallet
-#    Given I select the venture
-#    And I click on wallet icon
-#    When I select Login button on "wallet" screen
-#    Then I should be on the login page
+  @2058001 @goto_login_page_from_wallet @30524878
+  Scenario: Navigate to login page from wallet
+    Given I select the venture
+    And I click on wallet icon
+    When I select Login button on "wallet" screen
+    Then I should be on the login page
 
   @2058001 @facebook_login @30524875 @30524887
   Scenario: Navigate to login page from facebook
