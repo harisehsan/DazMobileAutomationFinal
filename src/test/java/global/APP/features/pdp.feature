@@ -12,14 +12,27 @@ Feature: PDP page Management
     And I check for all available images
     Then I return back to PDP page
 
-  @22702821 @verify_basic_information @28811313 @28811312 @28811368
-  Scenario: Verify basic information on PDP page
+  @22702821 @verify_basic_information @28811313 @28811312 @28811368 @37058324 @37058328 @37058328 @37058329
+  Scenario: Verify basic information on PDP page, Cart and Wishlist
     Given I select the venture
     And I search product using sku for "PDP"
     And I goto the PDP page
+    And I get the product Name
     And I check for product title, displayed price, original price and discount rate
+    And I save the product title, product price
     And I check for rating, wishlist and share icon
     Then I click on share icon to view its details
+    And I navigate back
+    And I add a product to cart
+    And I signin with google account
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I scroll down to view product in cart
+    Then I look for the product name, price and quantity in cart
+    And I navigate back to pdp page
+    And I add a product to wishlist
+    And I goto wishlist from PDP screen
+    Then I look for the product name and price in wishlist
 
   @22702821 @verify_product_specifications @28811345
   Scenario: Verify the product specifications content
@@ -122,14 +135,30 @@ Feature: PDP page Management
     And I click on services to open its poppage
     Then I should see the services of daraz mall on poppage
 
-  @28811393 @verify_sku_panel_variations @28811409 @28811407 @28811408 @28811343
-  Scenario: Verify SKU Panel & variations for PDP
+  @28811393 @verify_sku_panel_variations @28811409 @28811407 @28811408 @28811343 @37058320 @37058321 @37058322 @37058325 @37058326 @37058327 @37058330
+  Scenario: Verify SKU Panel & variations for PDP, Cart, Checkout
     Given I select the venture
     And I search product using sku for "SKU Panel"
     And I goto the PDP page
+    And I get the product Name
+    And I save the product title, product price
     And I click on variation to display its SKU panel
     And I perform switching between different SKUs
+    Then I should see the impact of changed SKU
     Then I change the product quantity
+    And I navigate back to pdp page
+    And I add a product to cart
+    And I signin with google account
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I scroll down to view product in cart
+    Then I look for the product name, price, quantity and size in cart
+    And I navigate back to pdp page
+    And I click on variation to display its SKU panel
+    And I select Buy Now button
+    And I scroll to view the product on checkout screen
+    Then I should see product name, price, quantity and size on checkout
+
 
   @28811393 @verify_pdp_chat @28811427
   Scenario: Verify PDP chat feature

@@ -76,7 +76,8 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_trade_bundle_title") public List <WebElement> product_Cart_Title_lbl;
  @AndroidFindBy(id = "com.daraz.android:id/code") public WebElement voucher_Code_lbl;
  @AndroidFindBy(id = "com.shop.android:id/code") public WebElement voucher_Code_lbl_MM;
-
+ @AndroidFindBy(id = "com.daraz.android:id/text_title") public WebElement product_Size_PDP_lbl;
+ @AndroidFindBy(id = "com.daraz.android:id/main_action") public WebElement add_To_Cart_Variation_btn;
 
 
  @AndroidFindBy(id= "com.shop.android:id/pdp_gallery_item_video_icon") public List<WebElement> video_icon_MM;
@@ -125,6 +126,8 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id="com.shop.android:id/share_panel_title") public List <WebElement> share_Title_lbl_MM;
  @AndroidFindBy(id = "com.shop.android:id/recommend_image") public List <WebElement> recommended_By_Seller_Products_MM;
  @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_bundle_title") public List <WebElement> product_Cart_Title_lbl_MM;
+ @AndroidFindBy(id = "com.shop.android:id/text_title") public WebElement product_Size_PDP_lbl_MM;
+ @AndroidFindBy(id = "com.shop.android:id/main_action") public WebElement add_To_Cart_Variation_btn_MM;
 
 
  public By video_Close_btn_By = By.id("com.daraz.android"+dev+":id/video_button_close");

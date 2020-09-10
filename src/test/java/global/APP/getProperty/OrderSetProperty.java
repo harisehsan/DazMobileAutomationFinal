@@ -33,4 +33,16 @@ public class OrderSetProperty {
         prop.setProperty("PRODUCT_NAME", productName);
         fileOutputStream();
     }
+
+    public void shippingAddress(String shippingAddress) throws IOException {
+        fileInputStream();
+        prop.setProperty("SHIPPING_ADDRESS", shippingAddress);
+        fileOutputStream();
+    }
+
+    public void totalPrice(String totalPrice) throws IOException {
+        fileInputStream();
+        prop.setProperty("TOTAL_PRICE", totalPrice);
+        fileOutputStream();
+    }
 }

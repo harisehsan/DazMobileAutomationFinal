@@ -22,8 +22,12 @@ public class OrderPageObject extends BuildIDPicker {
     @AndroidFindAll({@AndroidBy(xpath = "//*[contains(@contentDescription,'Cancelled')]"),@AndroidBy(xpath = "//*[contains(@content-desc,'Cancelled')]")}) public List <WebElement> cancelled_lbl;
     @AndroidFindBy(id = "com.daraz.android:id/iv_close_btn") public List <WebElement> first_Voucher_Close_btn;
     @AndroidFindBy(id = "com.shop.android:id/iv_close_btn") public List <WebElement> first_Voucher_Close_btn_MM;
+    @AndroidFindBy(id="com.daraz.android:id/tv_laz_trade_address_detail") public WebElement shipping_Address_Checkout_lbl;
+    @AndroidFindBy(id="com.shop.android:id/tv_laz_trade_address_detail") public WebElement shipping_Address_Checkout_lbl_MM;
 
     public By order_Cancel_btn_by = By.xpath("//*[@content-desc='CANCEL '] | //*[@contentDescription='CANCEL ']");
     public By select_Reason_btn_by = By.xpath("//*[@contentDescription='Select'] | //*[@content-desc='Select']");
     public By cancelled_lbl_by = By.xpath("//*[contains(@contentDescription,'Cancelled')] | //*[contains(@content-desc,'Cancelled')]");
+    public By shipping_Address_Checkout_lbl_By = By.id("com.daraz.android:id/tv_laz_trade_address_detail");
+    public By shipping_Address_Checkout_lbl_By_MM = By.id("com.shop.android:id/tv_laz_trade_address_detail");
 }

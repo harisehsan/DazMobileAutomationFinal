@@ -1,7 +1,9 @@
-#Mon Aug 17 17:46:40 PKT 2020
+#Wed Sep 09 18:52:52 PKT 2020
+SHIPPING_ADDRESS=Test Address (Please ignore this buyer), Balakot, Balakot, Khyber Pakhtunkhwa
 CANCEL_COMMENT=This is for testing purpose only. Please ignore this.
+TOTAL_PRICE=Rs. 1,099
 CANCEL_REASON_3=Change of Delivery Address
-PRODUCT_NAME=Test Edu 01
+PRODUCT_NAME=Camera TestingProductPleaseIngore
 CANCEL_REASON_2=Delivery time is too long
 CANCEL_REASON_1=Duplicate order
 ORDER_AMOUNT=2

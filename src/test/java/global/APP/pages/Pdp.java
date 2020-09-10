@@ -1,15 +1,17 @@
 package global.APP.pages;
 
 import global.APP.getProperty.PdpGetProperty;
+import global.APP.getProperty.ProductInfoGetProperty;
+import global.APP.getProperty.ProductInfoSetProperty;
 import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pageObjects.CartPageObjects;
+import global.APP.pageObjects.CheckOutPageObjects;
 import global.APP.pageObjects.PdpPageObject;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.WishlistPageObjects;
-import member.APP.pages.Login;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
@@ -26,6 +28,10 @@ public class Pdp extends Base {
     CartPageObjects cartPageObjects = new CartPageObjects();
     VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
     WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
+    ProductInfoSetProperty productInfoSetProperty = new ProductInfoSetProperty();
+    ProductInfoGetProperty productInfoGetProperty = new ProductInfoGetProperty();
+    CheckOutPageObjects checkOutPageObjects = new CheckOutPageObjects();
+
     private int tries = 25;
     private String productName;
 
@@ -35,6 +41,7 @@ public class Pdp extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), cartPageObjects);
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObj);
         PageFactory.initElements(new AppiumFieldDecorator(driver), wishlistPageObjects);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), checkOutPageObjects);
     }
 
     public void serchProductForPDP(String searchType) throws IOException {
@@ -738,38 +745,47 @@ public class Pdp extends Base {
         return false;
     }
 
-    public void switchBetweenDifferentSKUs() {
+    public void switchBetweenDifferentSKUs() throws IOException {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.sku_Selector_btn_By);
-            for (int i = 0; i < pdpPageObject.sku_Selector_btn.size(); i++)
-                pdpPageObject.sku_Selector_btn.get(i).click();
+            for (int i = 0; i < pdpPageObject.sku_Selector_btn.size(); i++) {
+                {
+                    pdpPageObject.sku_Selector_btn.get(i).click();
+                    productInfoSetProperty.setProductSize(pdpPageObject.sku_Selector_btn.get(i).getText());
+                }
+
+            }
 
         } else {
             waitUntilPresentOfElementBy(pdpPageObject.sku_Selector_btn_By_MM);
-            for (int i = 0; i < pdpPageObject.sku_Selector_btn_MM.size(); i++)
+            for (int i = 0; i < pdpPageObject.sku_Selector_btn_MM.size(); i++) {
                 pdpPageObject.sku_Selector_btn_MM.get(i).click();
+                productInfoSetProperty.setProductSize(pdpPageObject.sku_Selector_btn_MM.get(i).getText());
+            }
         }
     }
 
-    public boolean changeQuantity() {
+    public boolean changeQuantity() throws IOException {
         int j=0;
        do
         {
             scrollDownMultipleTries(2);
         } while(!isExistByText("Quantity"));
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            while (Integer.parseInt(pdpPageObject.quantity_txtBox.getText()) < 5 && j<5 ) {
+            while (Integer.parseInt(pdpPageObject.quantity_txtBox.getText()) < 2 && j<2 ) {
                 pdpPageObject.quantity_Increase_btn.click();
                 j++;
             }
+               productInfoSetProperty.setProductQuantity(pdpPageObject.quantity_txtBox.getText());
                return (Integer.parseInt(pdpPageObject.quantity_txtBox.getText()) >= 1);
         }
         else
             {
-            while (Integer.parseInt(pdpPageObject.quantity_txtBox_MM.getText()) < 5 && j<5) {
+            while (Integer.parseInt(pdpPageObject.quantity_txtBox_MM.getText()) < 2 && j<2) {
                 pdpPageObject.quantity_Increase_btn_MM.click();
                 j++;
             }
+            productInfoSetProperty.setProductQuantity(pdpPageObject.quantity_txtBox_MM.getText());
             return (Integer.parseInt(pdpPageObject.quantity_txtBox_MM.getText()) >= 1);
         }
     }
@@ -1001,4 +1017,130 @@ public class Pdp extends Base {
             return (isExist(pdpPageObject.product_Cart_Title_lbl_MM));
         }
     }
+
+    public void saveProductTitleAndPrice() throws IOException {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            productInfoSetProperty.setProductName(pdpPageObject.product_Title_lbl.get(0).getText());
+            productInfoSetProperty.setProductPrice(pdpPageObject.displayed_Price_lbl.get(0).getText());
+        }
+        else {
+            productInfoSetProperty.setProductName(pdpPageObject.product_Title_lbl_MM.get(0).getText());
+            productInfoSetProperty.setProductPrice(pdpPageObject.displayed_Price_lbl_MM.get(0).getText());
+        }
+    }
+
+    public boolean verifyTheProductNameAndPriceInCart() throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
+            {
+                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productInfoGetProperty.getProductTitle())) {
+                    return  (cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.product_Title_In_Cart_lbl_By).getText().contains(productInfoGetProperty.getProductTitle())
+                            && cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.cart_Item_Current_Price_By).getText().contains(productInfoGetProperty.getProductPrice())
+                            && Integer.parseInt(cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.cart_Item_Quantity_txt_By).getText()) > 0);
+                }
+            }
+        }
+        else
+        {
+            for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl_MM.size(); i++)
+            {
+                if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().equalsIgnoreCase(productInfoGetProperty.getProductTitle())) {
+                    return  (cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.product_Title_In_Cart_lbl_By_MM).getText().contains(productInfoGetProperty.getProductTitle())
+                            && cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.cart_Item_Current_Price_By_MM).getText().contains(productInfoGetProperty.getProductPrice())
+                            && Integer.parseInt(cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.cart_Item_Quantity_txt_By_MM).getText()) > 0);
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean verifyProductNameAndPriceInWishlist() throws IOException {
+
+       int tries = 0;
+        waitUntilPresentOfElementByString("\uE723");
+       while ((!isExistByString(productInfoGetProperty.getProductTitle()) || !isExistByString(productInfoGetProperty.getProductPrice())) && tries < 10)
+        {
+            swiptToBottom();
+            tries++;
+        }
+       return (isExistByString(productInfoGetProperty.getProductTitle()) && isExistByString(productInfoGetProperty.getProductPrice()));
+    }
+
+    public boolean verifyTheProductNameAndPriceAndQuantityAndSizeInCart() throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
+            {
+                if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productInfoGetProperty.getProductTitle())) {
+                    return  (cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.product_Title_In_Cart_lbl_By).getText().contains(productInfoGetProperty.getProductTitle())
+                            && cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.cart_Item_Current_Price_By).getText().contains(productInfoGetProperty.getProductPrice())
+                            && cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.cart_Item_Quantity_txt_By).getText().contains(productInfoGetProperty.getProductQuantity())
+                            && cartPageObjects.cart_Item_Container.get(i).findElement(cartPageObjects.cart_product_descripition_By).getText().contains(productInfoGetProperty.getProductSize())
+                    );
+                }
+            }
+        }
+        else
+        {
+            for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl_MM.size(); i++)
+            {
+                if (cartPageObjects.product_Title_In_Cart_lbl_MM.get(i).getText().equalsIgnoreCase(productInfoGetProperty.getProductTitle())) {
+                    return  (cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.product_Title_In_Cart_lbl_By_MM).getText().contains(productInfoGetProperty.getProductTitle())
+                            && cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.cart_Item_Current_Price_By_MM).getText().contains(productInfoGetProperty.getProductPrice())
+                            && cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.cart_Item_Quantity_txt_By_MM).getText().contains(productInfoGetProperty.getProductQuantity())
+                            && cartPageObjects.cart_Item_Container_MM.get(i).findElement(cartPageObjects.cart_product_descripition_By_MM).getText().contains(productInfoGetProperty.getProductSize())
+                    );
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean verifyTheImpactOfChangedSKU() throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+          return (pdpPageObject.product_Size_PDP_lbl.getText().contains(productInfoGetProperty.getProductSize()));
+        }
+        else
+        {
+            return (pdpPageObject.product_Size_PDP_lbl_MM.getText().contains(productInfoGetProperty.getProductSize()));
+        }
+    }
+
+    public void scrollToProductOnCheckout()
+    {
+        do {
+         swiptToBottom();
+        }while(!containsTextIsExist("Qty:"));
+    }
+
+    public boolean verifyTheProductNameAndPriceAndQuantityAndSizeOnCheckout() throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            return  (checkOutPageObjects.item_On_Checkout_lbl.get(0).getText().contains(productInfoGetProperty.getProductTitle())
+                    && checkOutPageObjects.current_Price_lbl.getText().contains(productInfoGetProperty.getProductPrice())
+                    && checkOutPageObjects.item_Count_lbl.getText().contains(productInfoGetProperty.getProductQuantity())
+                    && checkOutPageObjects.product_Description_Checkout_lbl.getText().contains(productInfoGetProperty.getProductSize())
+
+            );
+        }
+        else
+        {
+            return  (checkOutPageObjects.item_On_Checkout_lbl_MM.get(0).getText().contains(productInfoGetProperty.getProductTitle())
+                    && checkOutPageObjects.current_Price_lbl_MM.getText().contains(productInfoGetProperty.getProductPrice())
+                    && checkOutPageObjects.item_Count_lbl_MM.getText().contains(productInfoGetProperty.getProductQuantity())
+                    && checkOutPageObjects.product_Description_Checkout_lbl_MM.getText().contains(productInfoGetProperty.getProductSize())
+
+            );
+        }
+    }
+
+    public void goToCartFromPDPVariationScreen()
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+           pdpPageObject.add_To_Cart_Variation_btn.click();
+        }
+        else
+        {
+            pdpPageObject.add_To_Cart_Variation_btn_MM.click();
+        }
+    }
+
 }

@@ -245,12 +245,12 @@ public class PdpSteps {
     }
 
     @And("I perform switching between different SKUs")
-    public void iPerformSwitchingBetweenDifferentSKUs() {
+    public void iPerformSwitchingBetweenDifferentSKUs() throws IOException {
         pdp.switchBetweenDifferentSKUs();
     }
 
     @Then("I change the product quantity")
-    public void iChangeTheProductQuantity() {
+    public void iChangeTheProductQuantity() throws IOException {
        Assert.assertTrue(pdp.changeQuantity(),"Quantity is not successfully changed!");
     }
 
@@ -328,5 +328,47 @@ public class PdpSteps {
     @Then("I should see the B1G1 quantity on checkout page")
     public void iShouldSeeTheB1G1QuantityOnCheckoutPage() {
       Assert.assertTrue(pdp.verifyB1G1QuantityOnCheckOut(),"The product quantity is not displayed or not correct for B1G1 on checkout screen!");
+    }
+
+    @And("I save the product title, product price")
+    public void iSaveTheProductTitleProductPrice() throws IOException {
+      pdp.saveProductTitleAndPrice();
+    }
+
+    @Then("I look for the product name, price and quantity in cart")
+    public void iLookForTheProductNamePriceAndQuantityInCart() throws IOException {
+        Assert.assertTrue(pdp.verifyTheProductNameAndPriceInCart(), "Product name and price are not same on PDP and Cart!");
+    }
+
+    @Then("I look for the product name and price in wishlist")
+    public void iLookForTheProductNameAndPriceInWishlist() throws IOException {
+        Assert.assertTrue(pdp.verifyProductNameAndPriceInWishlist(),"Product name and price are not same on PDP and Wishlist!");
+    }
+
+    @Then("I look for the product name, price, quantity and size in cart")
+    public void iLookForTheProductNamePriceQuantityAndSizeInCart() throws IOException {
+        Assert.assertTrue(pdp.verifyTheProductNameAndPriceAndQuantityAndSizeInCart(),"Product name, price, quantity or product size are not same on PDP and Cart!");
+    }
+
+    @Then("I should see the impact of changed SKU")
+    public void iShouldSeeTheImpactOfChangedSKU() throws IOException {
+      Assert.assertTrue(pdp.verifyTheImpactOfChangedSKU(),"Changed SKU is not impacted on pdp");
+    }
+
+    @And("I scroll to view the product on checkout screen")
+    public void iScrollToViewTheProductOnCheckoutScreen() {
+      pdp.scrollToProductOnCheckout();
+    }
+
+
+    @Then("I should see product name, price, quantity and size on checkout")
+    public void iShouldSeeProductNamePriceQuantityAndSizeOnCheckout() throws IOException {
+        Assert.assertTrue(pdp.verifyTheProductNameAndPriceAndQuantityAndSizeOnCheckout(),"Product name, price, quantity or product size are not same on PDP and checkout!");
+    }
+
+    @And("I goto cart menu from PDP variation screen")
+    public void iGotoCartMenuFromPDPVariationScreen() {
+      pdp.goToCartFromPDPVariationScreen();
+
     }
 }

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -230,7 +231,7 @@ public class Base {
         if (Name.length() > 20)
             Name = Name.substring(0, 20);
         new WebDriverWait(driver, 120)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]")));
     }
 
     protected void waitUntilPresentOfElementByText(String Name) {
@@ -269,7 +270,7 @@ public class Base {
     protected WebElement findElementByContentDescrpitionUsingContainString(String Name) {
         if (Name.length() > 20)
             Name = Name.substring(0, 20);
-        return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]"));
+        return driver.findElement(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]"));
     }
 
 
@@ -288,7 +289,7 @@ public class Base {
             if (Name.length() > 25)
                 Name = Name.substring(0, 25);
             new WebDriverWait(driver, 60)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]")));
             return true;
         } catch (Exception ex) {
             return false;
@@ -410,5 +411,13 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
             System.out.println("Required element is not available yet!");
             return false;
         }
+    }
+
+    protected String[] currentDateSplit()
+    {
+        LocalDate date = LocalDate.now();
+        String[] dateArray;
+        dateArray = date.toString().split("-");
+         return dateArray;
     }
 }
