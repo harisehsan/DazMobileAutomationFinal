@@ -1,5 +1,5 @@
 @smoke @order
-Feature: Daraz Order Cancellation Management
+Feature: Daraz Order Details & Order Cancellation Management
 
   @21001814 @make_cart_empty_without_item_add_for_orders
   Scenario: Remove all products from cart without add product
@@ -45,6 +45,7 @@ Feature: Daraz Order Cancellation Management
     Then I should see the snackbar error message
     And I save the total price on checkout screen
     And I click on proceed to pay button
+    And I wait for the select payment screen
     And I select Cash on Delivery payment method
     And I should reach to order successful page
     And I click on Track Order button
@@ -75,6 +76,7 @@ Feature: Daraz Order Cancellation Management
     When I long press on order
     Then I should copied snackbar message
     When I select pay now button
+    And I wait for the select payment screen
     And I select Cash on Delivery payment method
     And I should reach to order successful page
     And I click on Track Order button
@@ -97,18 +99,19 @@ Feature: Daraz Order Cancellation Management
     And I select Buy Now button
     And I signin with google account
     And I click on proceed to pay button
+    And I wait for the select payment screen
     And I select Cash on Delivery payment method
     And I should reach to order successful page
     And I click on Track Order button
     Then I verify that order has been placed
-    Then I verify for the "Buy More & Save" promotion label
+    Then I verify for the "Buy more save more" promotion label
     Then I verify the logistics type, estimated delivery date, postage on Order details page
     And I click on cancel order button
     And I Select the reason for cancellation
     And I provide comments for cancellation
     And I click on submit button
     Then I verify that order has been cancelled
-    Then I verify for the "Buy More & Save" promotion label
+    Then I verify for the "Buy more save more" promotion label
 
   @21001814 @place_order_and_cancellation_on_buy_one_get_one @37058570 @37058557 @37058560
   Scenario: place order and cancellation on buy one get one
@@ -119,6 +122,7 @@ Feature: Daraz Order Cancellation Management
     And I select Buy Now button
     And I signin with google account
     And I click on proceed to pay button
+    And I wait for the select payment screen
     And I select Cash on Delivery payment method
     And I should reach to order successful page
     And I click on Track Order button
@@ -141,6 +145,7 @@ Feature: Daraz Order Cancellation Management
     And I select Buy Now button
     And I signin with google account
     And I click on proceed to pay button
+    And I wait for the select payment screen
     And I select Cash on Delivery payment method
     And I should reach to order successful page
     And I click on Track Order button
@@ -169,6 +174,7 @@ Feature: Daraz Order Cancellation Management
     And I mark the checkbox for that product in cart
     And I click on checkout button in cart menu
     And I click on proceed to pay button
+    And I wait for the select payment screen
     And I select Cash on Delivery payment method
     And I should reach to order successful page
     And I click on Track Order button

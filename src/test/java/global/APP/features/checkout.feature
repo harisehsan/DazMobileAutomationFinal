@@ -156,3 +156,13 @@ Feature: Daraz Checkout Management
     And I signin with google account
     Then I verify the existence of delivery time and email address on checkout
     Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
+
+#  @21001151 @verify_the_cnic_on_checkout_for_single_product
+#  Scenario: Add digital item into cart
+#    Given I select the venture
+#    And I search product using sku for "CNIC1"
+#    And I goto the PDP page
+#    And I get the product Name
+#    And I select Buy Now button
+#    And I signin with google account
+#    Then I verify the existence of CNIC field on checkout
