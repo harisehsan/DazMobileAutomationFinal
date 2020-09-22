@@ -157,4 +157,8 @@ public class CheckOutSteps {
     public void iMarkTheCheckboxForThatProductInCart() {
         cart.selectTheCheckBoxForProduct(productName);
     }
+
+    @Then("I verify the existence of CNIC field on checkout")
+    public void iVerifyTheExistenceOfCNICFieldOnCheckout() {
+    }
 }

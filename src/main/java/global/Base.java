@@ -296,6 +296,18 @@ public class Base {
         }
     }
 
+    protected boolean waitWithoutExceptionByStringLessTime(String Name) {
+        try {
+            if (Name.length() > 25)
+                Name = Name.substring(0, 25);
+            new WebDriverWait(driver, 20)
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]")));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     protected void pressEnterKey()
     {
         ((AndroidDriver)driver).pressKeyCode(66);

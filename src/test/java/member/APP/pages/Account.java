@@ -98,8 +98,10 @@ public class Account extends Base {
 //            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
 //            accountPageObect.my_Account_widget_MM.get(0).click();
 //        }
-        waitUntilPresentOfElementByText("To Pay");
-        findElementByTextUsingExactString("To Pay").click();
+      if (waitWithoutExceptionByTextContainsLessTime("View All")) {
+          waitUntilPresentOfElementByText("To Pay");
+          findElementByTextUsingExactString("To Pay").click();
+      }
     }
 
     public void selectMyCancellationWidget() {
@@ -143,10 +145,20 @@ public class Account extends Base {
     public void naviagteToAccounts() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            signUpObjects.account_lbl.get(3).click();
+            try {
+                signUpObjects.account_lbl.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                findElementByTextUsingContainsString("Account").click();
+            }
         } else {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
-            signUpObjects.account_lbl_MM.get(3).click();
+            try {
+                signUpObjects.account_lbl_MM.get(3).click();
+            } catch (Exception e) {
+                e.printStackTrace();
+                findElementByTextUsingContainsString("Account").click();
+            }
         }
     }
 
