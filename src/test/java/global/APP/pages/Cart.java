@@ -776,9 +776,11 @@ public class Cart extends Base {
 
     public void selectVoucherClearButton() throws IOException {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+           waitUntilPresentOfElementBy(cartPageObjects.voucher_Clear_btn_By);
             cartPageObjects.voucher_Clear_btn.click();
             voucherGetProperty.setCartTotalPrice(cartPageObjects.cart_Total_Price_lbl.getText().replaceAll("[^\\d]", ""));
         } else {
+            waitUntilPresentOfElementBy(cartPageObjects.voucher_Clear_btn_By_MM);
             cartPageObjects.voucher_Clear_btn_MM.click();
             voucherGetProperty.setCartTotalPrice(cartPageObjects.cart_Total_Price_lbl_MM.getText().replaceAll("[^\\d]", ""));
         }

@@ -186,7 +186,7 @@ public class ReturnRefund extends Base {
     {
         int tries = 0;
 //        while ((!isExistByString(orderID) || !isExistByString("Delivered")) && tries < 25) {
-        while ((!isExistByString(orderID)) && tries < 25) {
+        while ((!isExistByString(orderID)) && tries < 35) {
            swiptToBottom();
            tries++;
         }

@@ -1,9 +1,9 @@
-#Tue Sep 15 18:03:26 PKT 2020
+#Wed Sep 30 17:35:05 PKT 2020
+SHIPPING_ADDRESS=Test Address (Please ignore this buyer), Hpa-An, Hpa-An, Kayin
 CANCEL_COMMENT=This is for testing purpose only. Please ignore this.
-SHIPPING_ADDRESS=Test Address (Please ignore this buyer), Abed Dali Road, Dhaka - South, Dhaka
-TOTAL_PRICE=Rs. 1,099
-PRODUCT_NAME=Test product do not buy - Rasberry pi 3 model B
+TOTAL_PRICE=Ks 2,998
 CANCEL_REASON_3=Change of Delivery Address
+PRODUCT_NAME=MM Test 2 Do not buy
 CANCEL_REASON_2=Delivery time is too long
-ORDER_AMOUNT=2
 CANCEL_REASON_1=Duplicate order
+ORDER_AMOUNT=2

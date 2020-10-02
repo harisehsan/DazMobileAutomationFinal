@@ -64,7 +64,8 @@ Feature: Daraz Account Management
     And I select Buy Now button
     And I signin with google account
     And I click on proceed to pay button
-    And I navigate to my account from payment screen
+    And I wait for the select payment screen
+   And I navigate to my account from payment screen
     And I select the pay now widget
     Then I should see that product in the pay now menu
 
