@@ -1,6 +1,14 @@
 @smoke @pdp @22702821
 Feature: PDP page Management
 
+  @21001814 @make_cart_empty_without_item_add
+  Scenario: Remove all products from cart without add product
+    Given I select the venture
+    And I select cart
+    And I signin with google account
+    And I remove all items from cart
+    Then I verify that all items in cart are successfully removed
+
   @22702821 @verify_pdp_gallery @30180363 @28809899 @28811301 @28809900 @28811302 @28811368 @28810181
   Scenario: Verify the PDP gallery
     Given I select the venture
@@ -148,6 +156,7 @@ Feature: PDP page Management
     Then I change the product quantity
     And I navigate back to pdp page
     And I add a product to cart
+    And I goto cart menu from PDP variation screen
     And I signin with google account
     And I goto cart menu from PDP screen
     And I skip the cart popup

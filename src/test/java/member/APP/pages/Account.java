@@ -46,11 +46,11 @@ public class Account extends Base {
 
     public void navigateToAccountFromPaymentScreen() {
         if (System.getProperty("env").equalsIgnoreCase("np.live")) {
-            try {
-                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));

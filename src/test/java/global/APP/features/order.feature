@@ -150,7 +150,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I should reach to order successful page
     And I click on Track Order button
     Then I verify that order has been placed
-    Then I verify for the "Free Gift" promotion label
+   Then I verify for the "Free Gift" promotion label
     Then I verify the logistics type, estimated delivery date, postage on Order details page
     And I click on cancel order button
     And I Select the reason for cancellation
@@ -179,6 +179,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I should reach to order successful page
     And I click on Track Order button
     Then I verify that order has been placed
+
     Then I verify for the "Combo" promotion label
     Then I verify the logistics type, estimated delivery date, postage on Order details page
     And I click on cancel order button

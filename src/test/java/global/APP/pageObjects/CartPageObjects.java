@@ -154,5 +154,7 @@ public class CartPageObjects extends BuildIDPicker {
     public By get_Voucher_Validity_lbl_By_MM = By.id("com.shop.android:id/tv_laz_trade_seller_voucher_validity");
     public By cart_product_descripition_By = By.id("com.daraz.android:id/tv_laz_trade_item_sku");
     public By cart_product_descripition_By_MM = By.id("com.shop.android:id/tv_laz_trade_item_sku");
+    public By voucher_Clear_btn_By = By.id("com.daraz.android:id/icf_laz_trade_voucher_input_clear");
+    public By voucher_Clear_btn_By_MM = By.id("com.shop.android:id/icf_laz_trade_voucher_input_clear");
 
 }

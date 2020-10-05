@@ -515,16 +515,20 @@ public class Pdp extends Base {
 
     public boolean verifyTheExistanceOFRecomendedBySellerSection(){
             if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-                while (!isExist(pdpPageObject.recommended_By_Seller_lbl)){
+              int tries = 0;
+                while (!isExist(pdpPageObject.recommended_By_Seller_lbl) && tries < 30 ){
                     swiptToBottom();
+                    tries++;
                     if(isExist(pdpPageObject.recommended_By_Seller_lbl)){
                         return true;
                     }
                 }
                 return false;
             } else {
-                while (!isExist(pdpPageObject.recommended_By_Seller_lbl_MM)){
+               int tries = 0;
+                while (!isExist(pdpPageObject.recommended_By_Seller_lbl_MM) && tries < 30){
                     swiptToBottom();
+                    tries++;
                     if(isExist(pdpPageObject.recommended_By_Seller_lbl_MM)){
                         return true;
                     }
@@ -1139,11 +1143,13 @@ public class Pdp extends Base {
     public void goToCartFromPDPVariationScreen()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-           pdpPageObject.add_To_Cart_Variation_btn.click();
+          if (isExist(pdpPageObject.add_To_Cart_Variation_btn))
+           pdpPageObject.add_To_Cart_Variation_btn.get(0).click();
         }
         else
         {
-            pdpPageObject.add_To_Cart_Variation_btn_MM.click();
+            if (isExist( pdpPageObject.add_To_Cart_Variation_btn_MM))
+            pdpPageObject.add_To_Cart_Variation_btn_MM.get(0).click();
         }
     }
 
