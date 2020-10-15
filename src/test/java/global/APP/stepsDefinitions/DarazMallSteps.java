@@ -25,6 +25,7 @@ public class DarazMallSteps {
        Assert.assertTrue(darazMall.verifyTheDarazMall(), "Daraz Mall/Official Store is not working or showing correctly!");
     }
 
+
     @And("I navigate back to the Home Page from {string}")
     public void iNavigateBackToTheMainScreenFromDarazMall(String page) {
         darazMall.navigatebackToHomePage(page);

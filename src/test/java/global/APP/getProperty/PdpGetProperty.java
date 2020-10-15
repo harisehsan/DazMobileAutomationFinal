@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 
 public class PdpGetProperty {
-    private int listSize = 9;
+    private int listSize = 13;
     private Properties prop = new Properties();
 
     private void fileInputStream() throws IOException {

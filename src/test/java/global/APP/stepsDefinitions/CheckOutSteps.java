@@ -3,6 +3,7 @@ package global.APP.stepsDefinitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.getProperty.OrderSetProperty;
+import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pages.Cart;
 import global.APP.pages.CheckOut;
 import global.Drivers;
@@ -15,6 +16,7 @@ public class CheckOutSteps {
     CheckOut checkout = new CheckOut(driver.getDriver());
     Cart cart = new Cart(driver.getDriver());
     OrderSetProperty orderSetProperty = new OrderSetProperty();
+    VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
 
     String productName;
     int index;
@@ -160,5 +162,66 @@ public class CheckOutSteps {
 
     @Then("I verify the existence of CNIC field on checkout")
     public void iVerifyTheExistenceOfCNICFieldOnCheckout() {
+      Assert.assertTrue(checkout.verifyTheExistenceOfCNICField(),"The CNIC field is not existed!");
+    }
+
+    @And("I enter the garbage data for CNIC")
+    public void iEnterTheGarbageDataForCNIC() {
+        checkout.enterTheGarbageDatainCNIC();
+    }
+
+    @And("I wait for checkout screen")
+    public void iWaitForCheckoutScreen() {
+     checkout.waitForTheCheckoutScreen();
+    }
+
+    @Then("I should see the CNIC validation error")
+    public void iShouldSeeTheCNICValidationError() {
+        Assert.assertTrue(checkout.iShouldSeeTheValidationError(),"Validation Error is not displayed");
+    }
+
+    @And("I clear the CNIC field")
+    public void iClearTheCNICField() {
+     checkout.clearCNICField();
+    }
+
+    @And("I enter the valid CNIC")
+    public void iEnterTheValid() {
+        checkout.enterTheValidCNIC();
+    }
+
+    @Then("I should not see the CNIC field")
+    public void iShouldNotSeeTheCNICField() {
+        Assert.assertFalse(checkout.verifyTheExistenceOfCNICField(),"The CNIC field is still existed!");
+    }
+
+    @And("I wait for the order details page")
+    public void iWaitForTheOrderDetailsPage() {
+
+    }
+
+    @And("I save the CNIC number")
+    public void iSaveTheCNICNumber() {
+     checkout.saveCNIC();
+    }
+
+    @And("I enter the voucher code on checkout")
+    public void iApplyTheVoucherCodeOnCheckout() throws IOException {
+      checkout.enterTheCodeVoucherOnCheckout(voucherGetProperty.getCorrectVoucherCode());
+    }
+
+    @Then("I verify the empty CNIC field")
+    public void iVerifyTheEmptyCNICField() {
+       Assert.assertTrue(checkout.verifyTheEmptyCNICField(),"CNIC field in cleared properly!");
+    }
+
+    @And("I select the apply button for voucher")
+    public void iSelectTheApplyButtonForVoucher() {
+       checkout.selectTheApplyButton();
+    }
+
+    @Then("I verify the disabled proceed to pay button")
+    public void iVerifyTheDisabledProceedToPayButton() {
+        Assert.assertTrue(checkout.verifyTheDisabledProceedToPayButton(),"Proceed To Pay Button is not disabled!");
     }
 }
