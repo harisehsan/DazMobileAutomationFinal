@@ -188,7 +188,7 @@ Feature: Daraz Checkout Management
     Then I should not see the CNIC field
 
   @21001151 @verify_the_cnic_on_checkout_for_multiple_items_of_same_seller @30779726 @30779727 @30779737
-  Scenario: verify the CNIC multiple items of same seller
+  Scenario: verify the CNIC checkout for multiple items of same seller
     Given I select the venture
     And I search product using sku for "CNIC2"
     And I goto the PDP page
@@ -220,7 +220,7 @@ Feature: Daraz Checkout Management
     Then I verify the existence of CNIC field on checkout
 
   @21001151 @verify_the_cnic_on_checkout_for_multiple_items_of_different_seller @30779719 @30779723
-  Scenario: verify the CNIC multiple items of different seller
+  Scenario: verify the CNIC checkout for multiple items of different seller
     Given I select the venture
     And I select cart
     And I signin with google account
@@ -291,7 +291,7 @@ Feature: Daraz Checkout Management
     Then I should not see the CNIC field
 
   @21001151 @apply_code_voucher_to_check_cnic @30779718
-  Scenario: I apply the code voucher to check the disabled proceed to pay button
+  Scenario: Apply the code voucher to check the disabled proceed to pay button
     Given I select the venture
     And I search product using sku for "CNIC1"
     And I goto the PDP page
@@ -306,7 +306,7 @@ Feature: Daraz Checkout Management
     Then I verify the disabled proceed to pay button
 
   @21001151 @verify_existence_of_cnic_for_digital @30779714
-  Scenario: Verify the existence of CNIC on Checkout for digital
+  Scenario: Verify the existence of CNIC on Checkout for digital product
     Given I select the venture
     And I search product using sku for "CNIC4"
     And I goto the PDP page
