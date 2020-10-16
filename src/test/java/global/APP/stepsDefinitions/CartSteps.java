@@ -147,7 +147,7 @@ public class CartSteps {
 
     @And("I select the added product in cart")
     public void iSelectTheAddedProductInCart() {
-      cart.selectTheAddedProduct(productName);
+    cart.selectTheAddedProduct(productName);
     }
 
     @And("I select all items in cart")

@@ -251,7 +251,7 @@ public class SearchProduct extends Base {
 
     public void navigateBackToTheHomeScreen() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
+       //     waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             do {
                 driver.navigate().back();
                 hideKeyboard();

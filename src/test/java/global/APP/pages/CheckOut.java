@@ -5,6 +5,7 @@ import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -468,5 +469,155 @@ public class CheckOut extends Base {
     private void cartPopupSkip(List<WebElement> ok_got_it_btn) {
         if (isExist(ok_got_it_btn))
             ok_got_it_btn.get(0).click();
+    }
+
+    public boolean verifyTheExistenceOfCNICField()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            return waitWithoutExceptionForElementsResult(checkOutPageObjects.cnictxtbox);
+        }
+        else
+        {
+            return waitWithoutExceptionForElementsResult(checkOutPageObjects.cnictxtboxMM);
+        }
+    }
+
+    public void enterTheGarbageDatainCNIC()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            checkOutPageObjects.cnictxtbox.get(0).sendKeys("!@#$%^&*()-~`]!@#$%^&*()+-=");
+        }
+        else
+        {
+            checkOutPageObjects.cnictxtboxMM.get(0).sendKeys("!@#$%^&*()-~`]!@#$%^&*()+-=");
+        }
+    }
+
+    public void waitForTheCheckoutScreen()
+    {
+        waitWithoutExceptionByTextContains("Checkout");
+    }
+
+    public boolean iShouldSeeTheValidationError()
+    {
+         return containsTextIsExist("Please enter a valid CNIC Number");
+    }
+
+    public void clearCNICField()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            checkOutPageObjects.cnictxtbox.get(0).click();
+           if (waitWithoutException(checkOutPageObjects.cnic_Clear_btn))
+               checkOutPageObjects.cnic_Clear_btn.click();
+           else
+               checkOutPageObjects.cnictxtbox.get(0).clear();
+           hideKeyboard();
+        }
+        else
+        {
+
+            checkOutPageObjects.cnictxtboxMM.get(0).click();
+            if (waitWithoutException(checkOutPageObjects.cnic_Clear_btn_MM))
+                checkOutPageObjects.cnic_Clear_btn_MM.click();
+            else
+                checkOutPageObjects.cnictxtboxMM.get(0).clear();
+            hideKeyboard();
+        }
+    }
+
+    public void enterTheValidCNIC()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            checkOutPageObjects.cnictxtboxID.get(2).sendKeys("42101-2146723-9");
+        }
+        else
+        {
+            checkOutPageObjects.cnictxtboxIDMM.get(2).sendKeys("");
+        }
+    }
+
+    public void saveCNIC()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            checkOutPageObjects.cnictxtboxID.get(2).click();
+            checkOutPageObjects.save_CNIC_btn.click();
+        }
+        else
+        {
+            checkOutPageObjects.cnictxtboxID.get(2).click();
+            checkOutPageObjects.save_CNIC_btn_MM.click();
+        }
+    }
+
+    public void enterTheCodeVoucherOnCheckout(String correctVoucherCode)
+    {
+        scrollToCodeVoucherField();
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            checkOutPageObjects.checkout_Voucher_Field.get(0).sendKeys(correctVoucherCode);
+        }
+        else
+        {
+            checkOutPageObjects.checkout_Voucher_Field_MM.get(0).sendKeys(correctVoucherCode);
+        }
+    }
+
+    private void scrollToCodeVoucherField()
+    {
+      int tries = 0;
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            while(!isExist(checkOutPageObjects.checkout_Voucher_Field)  && tries < 10)
+            {
+                swiptToBottom();
+                tries++;
+            }
+        }
+        else
+            {
+                while(!isExist(checkOutPageObjects.checkout_Voucher_Field_MM)  && tries < 10)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+        }
+    }
+
+    public void selectTheApplyButton()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            checkOutPageObjects.voucher_Apply_btn.click();
+        }
+        else
+        {
+            checkOutPageObjects.voucher_Apply_btn_MM.click();
+        }
+    }
+
+    public boolean verifyTheEmptyCNICField()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            return (checkOutPageObjects.cnictxtboxID.get(2).getText().equalsIgnoreCase(""));
+        }
+        else
+        {
+            return (checkOutPageObjects.cnictxtboxIDMM.get(2).getText().equalsIgnoreCase(""));
+        }
+    }
+
+    public boolean verifyTheDisabledProceedToPayButton()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            return (checkOutPageObjects.proceed_To_Pay_btn.getAttribute("enabled").equalsIgnoreCase("false"));
+        }
+        else
+        {
+            return (checkOutPageObjects.proceed_To_Pay_btn_MM.getAttribute("enabled").equalsIgnoreCase("false"));
+        }
     }
 }

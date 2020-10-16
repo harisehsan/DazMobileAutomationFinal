@@ -66,6 +66,10 @@ public class Pdp extends Base {
            searchProduct=9;
        else if (searchType.contains("CNIC2"))
            searchProduct=10;
+       else if (searchType.contains("CNIC3"))
+           searchProduct=11;
+       else if (searchType.contains("CNIC4"))
+           searchProduct=12;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
