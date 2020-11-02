@@ -390,8 +390,8 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
 
     protected boolean waitWithoutExceptionByTextContainsLessTime(String Name) {
         try {
-            if (Name.length() > 10)
-                Name = Name.substring(0, 10);
+            if (Name.length() > 15)
+                Name = Name.substring(0, 15);
             new WebDriverWait(driver, 30)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
             return true;
