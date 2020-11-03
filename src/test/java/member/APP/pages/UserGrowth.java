@@ -237,14 +237,18 @@ public class UserGrowth extends Base {
        }
    }
 
-   public void iSelectCollectNowButton()
+   public void scrollToUserGrowthPopup()
    {
        int tries = 0;
-       while(!isExistByText("COLLECT") && tries < 5)
+       while(!isExistByText("COLLECT") && tries < 6)
        {
            swiptToBottom();
            tries++;
        }
+   }
+
+   public void iSelectCollectNowButton()
+   {
        findElementByTextUsingContainsString("COLLECT").click();
    }
 
@@ -255,7 +259,6 @@ public class UserGrowth extends Base {
 
    public boolean iShouldNotSeeTheCollectButton()
    {
-       swiptToBottom();
        if (isExistByText("COLLECTED"))
            return true;
        else if (isExistByText("COLLECT"))

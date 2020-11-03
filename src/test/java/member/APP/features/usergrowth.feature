@@ -19,6 +19,7 @@ Feature: Daraz User Growth
     Given I select the venture
     And I search a Product using SKU for "Usergrowth"
     And I select the product for checkout
+    And I scroll to user growth popup on PDP
     And I select collect button for user growth voucher
     And I signin with "1st" new account
     Then I should see the voucher collection message
@@ -39,6 +40,7 @@ Feature: Daraz User Growth
     And I navigate back to the main screen
     And I search a Product using SKU for "Usergrowth"
     And I select the product for checkout
+    And I scroll to user growth popup on PDP
     Then I should not see the voucher collect button
 
   @30475159 @verify_for_the_collected_voucher_in_my_voucher_section @38229376 @38229384 @38229395
@@ -61,8 +63,3 @@ Feature: Daraz User Growth
 #    Then I log out
 #    And I navigate back to the main screen
 #    Then I verify The existence of the main user growth popup
-
-
-
-
-

@@ -108,4 +108,9 @@ public class UserGrowthSteps {
     public void iVerifyTheExistenceOfTheMainUserGrowthPopup() {
 
     }
+
+    @And("I scroll to user growth popup on PDP")
+    public void iScrollToUserGrowthPopupOnPDP() {
+        userGrowth.scrollToUserGrowthPopup();
+    }
 }
