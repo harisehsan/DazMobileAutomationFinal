@@ -298,12 +298,12 @@ Feature: Daraz Checkout Management
     And I select Buy Now button
     And I signin with google account
     And I wait for checkout screen
-    Then I verify the existence of CNIC field on checkout
     And I clear the CNIC field
     And I enter the voucher code on checkout
     And I select the apply button for voucher
     And I wait for checkout screen
-    Then I verify the disabled proceed to pay button
+    Then I verify the existence of CNIC field on checkout
+#    Then I verify the disabled proceed to pay button
 
   @21001151 @verify_existence_of_cnic_for_digital @30779714
   Scenario: Verify the existence of CNIC on Checkout for digital product

@@ -88,11 +88,17 @@ public class CheckOut extends Base {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
                 if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
                     checkOutPageObjects.rating_Later_btn.click();
-                findElementByString("View Order").click();
+                if (findElementsSizeByString("View Order"))
+                    findElementByString("View Order").click();
+                else
+                    findElementByString("View order").click();
             } else {
                 if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By_MM))
                     checkOutPageObjects.rating_Later_btn_MM.click();
-                findElementByString("View Order").click();
+                if (findElementsSizeByString("View Order"))
+                    findElementByString("View Order").click();
+                else
+                    findElementByString("View order").click();
             }
         }
 //    }
