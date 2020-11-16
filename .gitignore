@@ -6,3 +6,5 @@ target/
 failed_screenshot/
 *browser.properties
 *build/
+Screenshots/
+*.apk
