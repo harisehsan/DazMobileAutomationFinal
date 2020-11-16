@@ -15,9 +15,9 @@ public class UserGrowthSteps {
     UserGrowth userGrowth = new UserGrowth(driver.getDriver());
     UserGrowthGetProperty userGrowthGetProperty = new UserGrowthGetProperty();
 
-    @Then("I verify the existence of user growth popup on HP")
-    public void iVerifyTheExistenceOfUserGrowthPopupOnHP() {
-        Assert.assertTrue(userGrowth.verifyTheExistenceOfUserGrowthOnHP());
+    @Then("I verify the existence of user growth popup on Home Screen")
+    public void iVerifyTheExistenceOfUserGrowthPopupOnHomeScreen() {
+        Assert.assertTrue(userGrowth.verifyTheExistenceOfUserGrowthPopupOnHomeScreen());
     }
 
     @And("I close the first order voucher popup")
@@ -74,14 +74,14 @@ public class UserGrowthSteps {
        Assert.assertTrue(userGrowth.verifyTheImpactOfVoucher(),"Voucher Impact is not shown correctly on price!");
     }
 
-    @Then("I verify the non existence of user growth popup on HP")
-    public void iVerifyTheNonExistenceOfUserGrowthPopupOnHP() {
-        Assert.assertFalse(userGrowth.verifyTheExistenceOfUserGrowthOnHP());
+    @Then("I verify the non existence of user growth popup on Home Screen")
+    public void iVerifyTheNonExistenceOfUserGrowthPopupOnHomeScreen() {
+        Assert.assertFalse(userGrowth.verifyTheExistenceOfUserGrowthPopupOnHomeScreen(),"First Order Voucher should not appear");
     }
 
-    @Then("I verify the existence of user growth wigit on my account")
-    public void iVerifyTheExistenceOfUserGrowthWigitOnMyAccount() {
-     Assert.assertTrue(userGrowth.verifyTheExistencOfUserGrowthPopup(),"User growth popup is not existed!");
+    @Then("I verify the existence of user growth module on my account")
+    public void iVerifyTheExistenceOfUserGrowthmoduleOnMyAccount() {
+        Assert.assertTrue(userGrowth.verifyTheExistencOfUserGrowthPopup(),"User growth popup is not existed!");
     }
 
     @And("I select go button user growth")
@@ -89,8 +89,8 @@ public class UserGrowthSteps {
         userGrowth.iSelectTheGoButtonforUserGrowthPopup();
     }
 
-    @Then("I verify the non existence of user growth wigit in my account")
-    public void iVerifyTheNonExistenceOfUserGrowthWigitInMyAccount() {
+    @Then("I verify the non existence of user growth module in my account")
+    public void iVerifyTheNonExistenceOfUserGrowthmoduleInMyAccount() {
         Assert.assertFalse(userGrowth.verifyTheExistencOfUserGrowthPopup(),"User growth popup is still existed!");
     }
 
@@ -112,5 +112,21 @@ public class UserGrowthSteps {
     @And("I scroll to user growth popup on PDP")
     public void iScrollToUserGrowthPopupOnPDP() {
         userGrowth.scrollToUserGrowthPopup();
+    }
+
+    @And("I close the first order voucher popup if appeared")
+    public void iCloseTheFirstOrderVoucherPopupIfAppeared() {
+        userGrowth.closeTheFirstVoucherPopup();
+    }
+
+    @And("I verify the non existence of user growth module on Home Screen")
+    public void iVerifyTheNonExistenceOfUserGrowthModuleOnHomeScreen() {
+
+    Assert.assertFalse(userGrowth.verifyTheExistenceOfUserGrowthModuleOnHomeScreen(),"User growth Module is still exist On Home Screen");
+    }
+
+    @And("I verify the non existence of user growth on PDP")
+    public void iVerifyTheNonExistenceOfUserGrowthOnPDP() {
+        Assert.assertFalse(userGrowth.verifytheExistanceOfUserGrowthonPDP());
     }
 }

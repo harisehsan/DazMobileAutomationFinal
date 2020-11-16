@@ -5,6 +5,7 @@ import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.UserGrowthPageObject;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -20,21 +21,31 @@ public class UserGrowth extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), checkOutPageObjects);
     }
 
-   public boolean verifyTheExistenceOfUserGrowthOnHP()
+   public boolean verifyTheExistenceOfUserGrowthPopupOnHomeScreen()
    {
        if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
-           return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_Popup_Hp));
+           return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_Popup_HomeScreen));
        } else {
-           return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_Popup_Hp_MM));
+           return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_Popup_HomeScreen_MM));
+       }
+   }
+
+   public boolean verifyTheExistenceOfUserGrowthModuleOnHomeScreen()
+   {
+       if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
+           return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_voucher_container_HomeScreen));
+       } else {
+            scrollDownMultipleTries(5);
+           return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_voucher_container_HomeScreen_MM));
        }
    }
 
    public void closeTheFirstVoucherPopup()
    {
        if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
-           userGrowthPageObject.first_Order_Popup_Hp.get(0).click();
+           userGrowthPageObject.first_Order_Popup_HomeScreen.get(0).click();
        } else {
-           userGrowthPageObject.first_Order_Popup_Hp_MM.get(0).click();
+           userGrowthPageObject.first_Order_Popup_HomeScreen_MM.get(0).click();
        }
    }
 
@@ -93,19 +104,19 @@ public class UserGrowth extends Base {
    {
        int tries = 0;
        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-           while (!isExist(userGrowthPageObject.avail_Now_Hp_btn) && tries <5)
+           while (!isExist(userGrowthPageObject.avail_Now_Home_Screen_btn) && tries <5)
            {
                swiptToBottom();
                tries++;
            }
-           userGrowthPageObject.avail_Now_Hp_btn.get(0).click();
+           userGrowthPageObject.avail_Now_Home_Screen_btn.get(0).click();
        } else {
-           while (!isExist(userGrowthPageObject.avail_Now_Hp_btn_MM) && tries <5)
+           while (!isExist(userGrowthPageObject.avail_Now_Home_Screen_btn_MM) && tries <5)
            {
                swiptToBottom();
                tries++;
            }
-           userGrowthPageObject.avail_Now_Hp_btn_MM.get(0).click();
+           userGrowthPageObject.avail_Now_Home_Screen_btn_MM.get(0).click();
        }
    }
 
@@ -236,6 +247,19 @@ public class UserGrowth extends Base {
            userGrowthPageObject.login_btn_MM.click();
        }
    }
+
+   public boolean verifytheExistanceOfUserGrowthonPDP(){
+//        Assert.assertFalse(userGrowthPageObject.user_Growth_On_Pdp.isDisplayed());
+       for (int i = 0; i < 6; i++) {
+           if (isExist(userGrowthPageObject.user_Growth_On_Pdp)) {
+               swiptToBottom();
+               return true;
+           } else
+               swiptToBottom();
+       }
+       return false;
+   }
+
 
    public void scrollToUserGrowthPopup()
    {
