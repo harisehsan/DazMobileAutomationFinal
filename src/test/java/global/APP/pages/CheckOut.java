@@ -63,6 +63,11 @@ public class CheckOut extends Base {
     public void checkoutUsingCODPaymentMethod() {
 //        if ((System.getProperty("env").equalsIgnoreCase("pk.live"))|| (System.getProperty("env").equalsIgnoreCase("np.live")) || (System.getProperty("env").equalsIgnoreCase("mm.live"))) {
         try {
+            if (System.getProperty("env").equalsIgnoreCase("pk.live"))
+            {
+              if (!waitWithoutException(checkOutPageObjects.cod_lbl_MM))
+                scrollDownMultipleTries(7);
+            }
          //   scrollDownMultipleTries(10);
             waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             checkOutPageObjects.cod_lbl_MM.click();

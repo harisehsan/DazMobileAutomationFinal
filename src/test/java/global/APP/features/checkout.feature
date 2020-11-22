@@ -37,7 +37,7 @@ Feature: Daraz Checkout Management
 #    And I click on Track Order button
 #    Then I verify that order has been placed with that quantity
 
-    @21001814 @make_cart_empty_without_item_add
+  @21001814 @make_cart_empty_without_item_add
   Scenario: Remove all products from cart without add product
     Given I select the venture
     And I select cart
@@ -314,4 +314,3 @@ Feature: Daraz Checkout Management
     And I signin with google account
     And I wait for checkout screen
     Then I verify the existence of CNIC field on checkout
-

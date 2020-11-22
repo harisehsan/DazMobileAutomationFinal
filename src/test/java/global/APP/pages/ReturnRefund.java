@@ -220,8 +220,8 @@ public class ReturnRefund extends Base {
     public boolean verifyTheInformationOnReturnDeatilsScreen()
     {
         waitWithoutExceptionByTextContains("Return Details");
-        if (isExistByString("Return Requested") || isExistByString("Return initiated"))
-            return isExistByString("Defective") || isExistByString("Item is defective");
+        if (isExistByString("Return Requested") || isExistByString("Return initiated") || isExistByString("Refunded"))
+            return (isExistByString("Defective") || isExistByString("Item is defective"));
         else
             return false;
     }
