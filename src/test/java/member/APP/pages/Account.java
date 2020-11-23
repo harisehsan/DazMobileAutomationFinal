@@ -21,6 +21,9 @@ public class Account extends Base {
     private WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
     SignUpObjects signUpObjects = new SignUpObjects();
     LoginPageObject loginPageObject = new LoginPageObject();
+    String trackPackage = "Track Package";
+    String ConsolidateDelivery = "Consolidated Delivery";
+    String packageStatus = "";
 
     public Account(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -58,11 +61,11 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            try {
-                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn_MM)));
@@ -70,11 +73,11 @@ public class Account extends Base {
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
         } else {
-            try {
-                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
@@ -98,10 +101,10 @@ public class Account extends Base {
 //            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
 //            accountPageObect.my_Account_widget_MM.get(0).click();
 //        }
-      if (waitWithoutExceptionByTextContainsLessTime("View All")) {
-          waitUntilPresentOfElementByText("To Pay");
-          findElementByTextUsingExactString("To Pay").click();
-      }
+        if (waitWithoutExceptionByTextContainsLessTime("View All")) {
+            waitUntilPresentOfElementByText("To Pay");
+            findElementByTextUsingExactString("To Pay").click();
+        }
     }
 
     public void selectMyCancellationWidget() {
@@ -199,114 +202,84 @@ public class Account extends Base {
         return waitWithoutExceptionByTextContains("Hi, how can we help?");
     }
 
-    public boolean verifySettingsHeaderInLocalLanguage()
-    {
-        switch(System.getProperty("env"))
-        {
-            case "bd.live":
-            {
+    public boolean verifySettingsHeaderInLocalLanguage() {
+        switch (System.getProperty("env")) {
+            case "bd.live": {
                 return waitWithoutExceptionByTextContains("সেটিং");
             }
 
-            case "lk.live":
-            {
+            case "lk.live": {
                 return waitWithoutExceptionByTextContains("කට්ටල අංග");
             }
 
-            case "np.live":
-            {
+            case "np.live": {
                 return waitWithoutExceptionByTextContains("सेटिङ्हरू");
             }
 
-            case "mm.live":
-            {
+            case "mm.live": {
                 return waitWithoutExceptionByTextContains("ျပင္ဆင္မွဳမ်ား");
             }
-            default:
-            {
-              throw new RuntimeException("Language change is not applicable for this venture");
+            default: {
+                throw new RuntimeException("Language change is not applicable for this venture");
             }
         }
     }
 
-    public void navigateToMessageSettings()
-    {
+    public void navigateToMessageSettings() {
         waitWithoutExceptionByTextContains("Messages");
         findElementByTextUsingContainsString("Messages").click();
     }
 
-    public boolean iShouldBeOnTheMessageSettingsPage()
-    {
+    public boolean iShouldBeOnTheMessageSettingsPage() {
         return waitWithoutExceptionByTextContains("Promo Messages");
     }
 
-    public boolean verifyTheExistenceOfWishlistFollowedStoreAndVoucher(boolean walletExistence)
-    {
-        if (walletExistence)
-        {
+    public boolean verifyTheExistenceOfWishlistFollowedStoreAndVoucher(boolean walletExistence) {
+        if (walletExistence) {
             return (isExistByText("My Wishlist") && isExistByText("Followed Stores") && containsTextIsExist("Daraz Wallet"));
-        }
-        else
-        {
+        } else {
             return (isExistByText("My Wishlist") && isExistByText("Followed Stores") && containsTextIsExist("Vouchers"));
 
         }
     }
 
-    public void navigateToDarazWalletORVoucherFromAccounts(boolean walletExistence)
-    {
-        if (walletExistence)
-        {
+    public void navigateToDarazWalletORVoucherFromAccounts(boolean walletExistence) {
+        if (walletExistence) {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
 //                accountPageObect.wallet_Activate_Now_lbl.click();
                 accountPageObect.wallet_New_Activate_Now_lbl.click();
             else
 //                accountPageObect.wallet_Activate_Now_lbl_MM.click();
                 accountPageObect.wallet_New_Activate_Now_lbl_MM.click();
-        }
-        else
-        {
+        } else {
             findElementByTextUsingContainsString("Vouchers").click();
         }
     }
 
-    public boolean iShouldBeOnTheDarazWalletOrVoucherPage(boolean walletExistence)
-    {
-        if (walletExistence)
-        {
+    public boolean iShouldBeOnTheDarazWalletOrVoucherPage(boolean walletExistence) {
+        if (walletExistence) {
             return waitWithoutExceptionByText("My Wallet");
-        }
-        else
-        {
+        } else {
             return waitWithoutExceptionByText("My Voucher");
         }
     }
 
-    public boolean verifyTheExistenceOfRedDotOnMessage()
-    {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-        {
-             if (isExist(accountPageObect.my_Account_widget.get(4).findElements(accountPageObect.red_Dot_lbl_By)))
-             {
+    public boolean verifyTheExistenceOfRedDotOnMessage() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (isExist(accountPageObect.my_Account_widget.get(4).findElements(accountPageObect.red_Dot_lbl_By))) {
 //                 return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText().replaceAll("[^\\d.]", ""))== Integer.parseInt(accountPageObect.red_Dot_lbl.get(1).getText().replaceAll("[^\\d.]", "")))));
-                 return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0));
-             }
-             else
-                 return true;
-        }
-        else
-        {
-            if (isExist(accountPageObect.Account_widget_MM.get(4).findElements(accountPageObect.red_Dot_lbl_MM_By)))
-            {
+                return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0));
+            } else
+                return true;
+        } else {
+            if (isExist(accountPageObect.Account_widget_MM.get(4).findElements(accountPageObect.red_Dot_lbl_MM_By))) {
                 return ((Integer.parseInt(accountPageObect.my_Account_widget_MM.get(4).findElement(accountPageObect.red_Dot_lbl_MM_By).getText().replaceAll("[^\\d.]", "")) > 0));
-            }
-            else
+            } else
                 return true;
         }
     }
 
-    public void navigateToAccountSettingsInLocalLanguage()
-    {
+    public void navigateToAccountSettingsInLocalLanguage() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
@@ -335,27 +308,81 @@ public class Account extends Base {
         }
     }
 
-     public boolean verifyTheComponentsOfMyServices()
-     {
+    public boolean verifyTheComponentsOfMyServices() {
         return (containsTextIsExist("Messages")
                 && containsTextIsExist("My Review")
                 && containsTextIsExist("Payment")
                 && containsTextIsExist("Help"));
-     }
-
-     public void selectAvatar()
-     {
-         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-            accountPageObect.avatar_img.click();
-         else
-             accountPageObect.avatar_img_MM.click();
-     }
-
-     public boolean verifyTheExistenceOfTakePhotoAndSelectFromAlbum()
-     {
-         waitWithoutExceptionByTextContains("Take photo");
-         return (isExistByText("Take photo") && isExistByText("Select from album") && isExistByText("Cancel"));
-
-     }
     }
+
+    public void selectAvatar() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+            accountPageObect.avatar_img.click();
+        else
+            accountPageObect.avatar_img_MM.click();
+    }
+
+    public boolean verifyTheExistenceOfTakePhotoAndSelectFromAlbum() {
+        waitWithoutExceptionByTextContains("Take photo");
+        return (isExistByText("Take photo") && isExistByText("Select from album") && isExistByText("Cancel"));
+    }
+
+    public boolean verifyTheExistenceOfTheTrackPackage() {
+        return (waitWithoutExceptionByText(trackPackage));
+    }
+
+    public boolean verifyTheSameOrderStatusOnConsolidatedDeliveryScreen() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            for (int i = 0; i < accountPageObect.track_Package_Slider.size() - 2; i++) {
+                int j = 0;
+                waitUntilPresentOfElementBy(accountPageObect.track_Package_lbl_By);
+                while (j < i) {
+                    swipeHorizontallyToZeroWithInElement(accountPageObect.package_Date_And_Time_lbl);
+                    j++;
+                }
+//                waitForElementToClickable(accountPageObect.package_Status_lnk);
+                packageStatus = accountPageObect.package_Status_lnk.getText().replaceAll(" >", "");
+                accountPageObect.package_Status_lnk.click();
+                if (!waitWithoutExceptionByText(ConsolidateDelivery))
+                    return false;
+
+                if (!findElementsSizeByString(packageStatus))
+                    return false;
+                driver.navigate().back();
+
+            }
+        } else {
+            for (int i = 0; i < accountPageObect.track_Package_Slider.size() -2 ; i++) {
+                int j = 0;
+                waitUntilPresentOfElementBy(accountPageObect.track_Package_lbl_By_MM);
+                while (j < i) {
+                    swipeHorizontallyToZeroWithInElement(accountPageObect.package_Date_And_Time_lbl_MM);
+                    j++;
+                }
+//                waitForElementToClickable(accountPageObect.package_Status_lnk_MM);
+                packageStatus = accountPageObect.package_Status_lnk_MM.getText().replaceAll(" >", "");
+                accountPageObect.package_Status_lnk_MM.click();
+                if (!waitWithoutExceptionByText(ConsolidateDelivery))
+                    return false;
+
+                if (!findElementsSizeByString(packageStatus))
+                    return false;
+                driver.navigate().back();
+            }
+        }
+        return true;
+    }
+
+    public void scrollToMessage()
+    {
+        int tries = 0;
+        while(!containsTextIsExist("My Review") && tries < 5)
+        {
+            swiptToBottom();
+            tries++;
+        }
+    }
+
+
+}
 
