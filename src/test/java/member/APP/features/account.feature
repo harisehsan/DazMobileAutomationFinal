@@ -89,10 +89,19 @@ Feature: Daraz Account Management
     And I select my cancellation widget
     Then I verify the order in the cancellation screen
 
-    @31128097 @verify_the_functionality_of_track_package_section
-    Scenario: I verify the functionality of track package section
-      Given I select the venture
-      And I navigate to the signin screen
-      And I signin with google account
-      Then I verify the existence of the track package section
-      Then I goto the consolidated delivery screen to verify the same order status
+  @21001814 @verify_the_functionality_of_track_package_section @31128097
+  Scenario: I verify the functionality of track package section
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    Then I verify the existence of the track package section
+    Then I goto the consolidated delivery screen to verify the same order status
+
+  @21001814 @my_order_status_validation @31107522
+  Scenario: I verify the my order status
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    And I navigate to the account menu
+    Then I verify status order status in my account
+

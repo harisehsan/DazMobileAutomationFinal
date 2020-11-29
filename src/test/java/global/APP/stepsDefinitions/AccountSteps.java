@@ -176,4 +176,9 @@ public class AccountSteps {
     public void iScrollToMessagesInMyAccountMenu() {
         account.scrollToMessage();
     }
+
+    @Then("I verify status order status in my account")
+    public void iVerifyStatusOrderStatusInMyAccount() throws IOException {
+   Assert.assertTrue(account.verifyTheOrderStatusOnAccountPage(accountGetProperty.getOrderStatus1(),accountGetProperty.getOrderStatus2(),accountGetProperty.getOrderID()),"Order status is not displayed on the account page!");
+    }
 }
