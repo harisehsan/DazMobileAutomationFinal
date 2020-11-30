@@ -31,7 +31,7 @@ public class BaseRunner {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
         drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort);
         screenshotGetProperty.setScreenShotCount("0"); //This will set Screenshot Count to Zero before each New invocation of driver.
-        createScreenshotDirectory ();
+        createScreenshotDirectory();
     }
 
     @Attachment
@@ -57,8 +57,9 @@ public class BaseRunner {
     // This method will create a directory Named "ScreenShots",
     // on each execution inside screenshots will create a directory named "current date and time" and will add new screenshots.
     public void createScreenshotDirectory () throws IOException {
+        System.out.println("this is environment >>>>> :::: >>>> " + System.getProperty("env"));
         String Time = LocalDateTime.now().toString().replaceAll("[^A-Za-z0-9]","-");
-        File theDir = new File("./Screenshots/" +Time);
+        File theDir = new File("./Screenshots/" + System.getProperty("env")+" - " +Time);
         if (!theDir.exists()) theDir.mkdirs();
         directoryPath = theDir.getCanonicalPath();
     }

@@ -224,4 +224,9 @@ public class CheckOutSteps {
     public void iVerifyTheDisabledProceedToPayButton() {
         Assert.assertTrue(checkout.verifyTheDisabledProceedToPayButton(),"Proceed To Pay Button is not disabled!");
     }
+
+    @Then("I verify the existence of Proceed to pay button")
+    public void iVerifyTheExistenceOfProceedToPayButton() {
+        Assert.assertFalse(checkout.verifyTheExistenceOfProceedToPayButton());
+    }
 }
