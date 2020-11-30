@@ -127,6 +127,6 @@ public class UserGrowthSteps {
 
     @And("I verify the non existence of user growth on PDP")
     public void iVerifyTheNonExistenceOfUserGrowthOnPDP() {
-        Assert.assertFalse(userGrowth.verifytheExistanceOfUserGrowthonPDP());
+        Assert.assertFalse(userGrowth.verifytheExistanceOfUserGrowthonPDP(),"The user growth is still existed!");
     }
 }

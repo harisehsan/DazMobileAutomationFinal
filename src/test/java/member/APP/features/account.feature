@@ -14,11 +14,12 @@ Feature: Daraz Account Management
     And I navigate to the signin screen
     And I signin with google account
     And I navigate to the account menu
-    Then I verify the existence of red dot on message
-    Then I verify the components of my services
     When I select avatar
     Then Then I should see take photo and select from album options
     And I navigate back
+    And I scroll to messages in my account menu
+    Then I verify the existence of red dot on message
+    Then I verify the components of my services
     And I select message in account section
     Then I should be on the message page
 
@@ -87,3 +88,20 @@ Feature: Daraz Account Management
     And I navigate to my account from cancellation screen
     And I select my cancellation widget
     Then I verify the order in the cancellation screen
+
+  @21001814 @verify_the_functionality_of_track_package_section @31128097
+  Scenario: I verify the functionality of track package section
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    Then I verify the existence of the track package section
+    Then I goto the consolidated delivery screen to verify the same order status
+
+  @21001814 @my_order_status_validation @31107522
+  Scenario: I verify the my order status
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    And I navigate to the account menu
+    Then I verify status order status in my account
+

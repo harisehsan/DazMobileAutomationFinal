@@ -19,7 +19,7 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next") public WebElement proceed_To_Pay_btn;
     @AndroidFindBy (id = "com.shop.android:id/btn_laz_trade_order_total_proceed_next") public WebElement proceed_To_Pay_btn_MM;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Cash on Delivery']"),@AndroidBy(xpath = "//*[@content-desc='Cash on Delivery']")}) public WebElement cod_lbl;
-    @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Cash On Delivery']"),@AndroidBy(xpath = "//*[@content-desc='Cash On Delivery']")}) public WebElement cod_lbl_MM;
+    @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Cash On Delivery']"),@AndroidBy(xpath = "//*[@content-desc='Cash on Delivery']")}) public WebElement cod_lbl_MM;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Confirm Order']"),@AndroidBy(xpath = "//*[@content-desc='Confirm Order']")}) public WebElement confirm_Order_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='TRACK ORDER']"),@AndroidBy(xpath = "//*[@content-desc='TRACK ORDER']")}) public WebElement track_Order_btn;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next") public WebElement checkout_btn;
@@ -92,7 +92,7 @@ public class CheckOutPageObjects extends BuildIDPicker {
     public By track_Order_btn_By = By.xpath("//*[@contentDescription='TRACK ORDER'] | //*[@content-desc='TRACK ORDER']");
     public By available_quantity_By = By.id("com.daraz.android"+dev+":id/tv_laz_trade_item_stock_tip");
     public By available_quantity_MM_By = By.id("com.shop.android:id/tv_laz_trade_item_stock_tip");
-    public By cod_lbl_MM_By = By.xpath("//*[@contentDescription='Cash On Delivery'] | //*[@content-desc='Cash On Delivery']");
+    public By cod_lbl_MM_By = By.xpath("//*[@contentDescription='Cash On Delivery'] | //*[@content-desc='Cash On Delivery'] | //*[@contentDescription='Cash on Delivery'] | //*[@content-desc='Cash on Delivery']");
     public By cod_lbl_By = By.xpath("//*[@contentDescription='Cash on Delivery'] | //*[@content-desc='Cash on Delivery']");
     public By rating_Later_btn_By = By.id("com.daraz.android"+dev+":id/dialog_btn_cancel");
     public By rating_Later_btn_By_MM = By.id("com.shop.android:id/dialog_btn_cancel");

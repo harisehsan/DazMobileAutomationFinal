@@ -161,4 +161,24 @@ public class AccountSteps {
     public void thenIShouldSeeTakePhotoAndSelectFromAlbumOptions() {
       Assert.assertTrue(account.verifyTheExistenceOfTakePhotoAndSelectFromAlbum(),"Photo options for avatar are not properly displayed!");
     }
+
+    @Then("I verify the existence of the track package section")
+    public void iVerifyTheExistenceOfTheTrackPackageSection() {
+        Assert.assertTrue(account.verifyTheExistenceOfTheTrackPackage(),"The track package is not displayed in my account section!");
+    }
+
+    @Then("I goto the consolidated delivery screen to verify the same order status")
+    public void iGotoTheConsolidatedDeliveryScreenToVerifyTheSameOrderStatus() {
+        Assert.assertTrue(account.verifyTheSameOrderStatusOnConsolidatedDeliveryScreen(),"The package name is not same as on consolidated screen!");
+    }
+
+    @And("I scroll to messages in my account menu")
+    public void iScrollToMessagesInMyAccountMenu() {
+        account.scrollToMessage();
+    }
+
+    @Then("I verify status order status in my account")
+    public void iVerifyStatusOrderStatusInMyAccount() throws IOException {
+   Assert.assertTrue(account.verifyTheOrderStatusOnAccountPage(accountGetProperty.getOrderStatus1(),accountGetProperty.getOrderStatus2(),accountGetProperty.getOrderID()),"Order status is not displayed on the account page!");
+    }
 }

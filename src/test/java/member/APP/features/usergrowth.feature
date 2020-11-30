@@ -73,17 +73,18 @@ Feature: Daraz User Growth
     Then I verify the non existence of user growth module in my account
 
 
-  @31422641 @Old_User_should_not_see_Voucher_On_Home_Screen @031325544
+  @31422641 @old_User_should_not_see_Voucher_On_Home_Screen @031325544
   Scenario: Verify Old user should not see free voucher on Home Screen
-    Given I select the ventures
+    Given I select the venture
     And I navigate to the signin screen
     And I signin with google account
-    And I navigate to the account menu
-    And I navigate back to the Home Page from "My Account"
+    And I navigate back to the main screen
+#    And I navigate to the account menu
+#    And I navigate back to the Home Page from "My Account"
     And I verify the non existence of user growth popup on Home Screen
     Then I verify the non existence of user growth module on Home Screen
 
-  @31422640 @New_User_voucher_Should_not_be_Display_on_PDP_to_an_Old_Customer @031325544
+  @31422640 @new_User_voucher_Should_not_be_Display_on_PDP_to_an_Old_Customer @031325544
   Scenario: Collect voucher should not be displayed on PDP screen to an old customer
     Given I select the venture
     And I navigate to the signin screen
