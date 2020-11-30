@@ -70,7 +70,7 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/confirm_btn") public WebElement quantity_Confirm_btn_MM;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_item_sku") public WebElement product_Description_Checkout_lbl;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_item_sku") public WebElement product_Description_Checkout_lbl_MM;
-    @AndroidFindBy(xpath = "//*[@text='42101-2146723-9']") public List <WebElement> cnictxtbox;
+    @AndroidFindBy(xpath = "//*[@resource-id='com.daraz.android:id/edit_laz_trade_text_editor_box' and @text='Enter your CNIC Number']") public List <WebElement> cnictxtbox;
     @AndroidFindBy (xpath = "//*[@text='42101-2146723-9']") public List <WebElement> cnictxtboxMM;
     @AndroidFindBy(id = "com.daraz.android:id/edit_laz_trade_text_editor_box") public List <WebElement> cnictxtboxID;
     @AndroidFindBy(id = "com.shop.android:id/edit_laz_trade_text_editor_box") public List <WebElement> cnictxtboxIDMM;
@@ -82,6 +82,8 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/edit_laz_trade_voucher_input") public List <WebElement> checkout_Voucher_Field_MM;
     @AndroidFindBy(id = "com.daraz.android:id/btn_laz_trade_voucher_input_apply") public WebElement voucher_Apply_btn;
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_voucher_input_apply") public WebElement voucher_Apply_btn_MM;
+    @AndroidFindBy(xpath = "//android.widget.Toast[@text='Please enter a valid CNIC Number.']") public WebElement CNIC_validate;
+    //android.widget.Toast[@text='toast text']
 
     public By proceed_To_Pay_btn_By = By.id("com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next");
     public By proceed_To_Pay_btn_By_MM = By.id("com.shop.android:id/btn_laz_trade_order_total_proceed_next");

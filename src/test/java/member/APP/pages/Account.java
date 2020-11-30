@@ -310,7 +310,9 @@ public class Account extends Base {
         }
     }
 
-    public boolean verifyTheComponentsOfMyServices() {
+     public boolean verifyTheComponentsOfMyServices()
+     {
+         scrollDownMultipleTries(2);
         return (containsTextIsExist("Messages")
                 && containsTextIsExist("My Review")
                 && containsTextIsExist("Payment")

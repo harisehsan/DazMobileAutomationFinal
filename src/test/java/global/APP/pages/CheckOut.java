@@ -620,8 +620,7 @@ public class CheckOut extends Base {
         }
     }
 
-    public boolean verifyTheDisabledProceedToPayButton()
-    {
+    public boolean verifyTheDisabledProceedToPayButton(){
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
             return (checkOutPageObjects.proceed_To_Pay_btn.getAttribute("enabled").equalsIgnoreCase("false"));
@@ -631,4 +630,17 @@ public class CheckOut extends Base {
             return (checkOutPageObjects.proceed_To_Pay_btn_MM.getAttribute("enabled").equalsIgnoreCase("false"));
         }
     }
+
+    public boolean verifyTheExistenceOfProceedToPayButton() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        {
+            return (checkOutPageObjects.proceed_To_Pay_btn.getAttribute("enabled").equalsIgnoreCase("true"));
+        }
+        else
+        {
+            return (checkOutPageObjects.proceed_To_Pay_btn_MM.getAttribute("enabled").equalsIgnoreCase("true"));
+        }
+    }
+
+
 }

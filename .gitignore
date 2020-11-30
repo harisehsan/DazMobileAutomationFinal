@@ -8,3 +8,4 @@ failed_screenshot/
 *build/
 Screenshots/
 *.apk
+tessdata/

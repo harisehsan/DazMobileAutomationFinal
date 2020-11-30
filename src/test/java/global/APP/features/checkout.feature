@@ -314,3 +314,16 @@ Feature: Daraz Checkout Management
     And I signin with google account
     And I wait for checkout screen
     Then I verify the existence of CNIC field on checkout
+
+  @31107015 @Verify_the_existance_and_Validation_of_CNIC_for_new_user @30779725
+    Scenario: Verify the existence of CNIC on Checkout for New Users
+    Given I select the venture
+    And I search product using sku for "CNIC1"
+    And I goto the PDP page
+    And I select Buy Now button
+    And I signin with "1st" new account
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+    And I click on proceed to pay button
+#    Then I should see the CNIC validation error
+    Then I verify the existence of Proceed to pay button
