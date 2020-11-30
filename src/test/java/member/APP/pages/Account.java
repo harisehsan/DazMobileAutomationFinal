@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 /**
  * Developed By: Muhammad Haris Ehsan
  * Date: 22-July-2019
@@ -101,7 +103,7 @@ public class Account extends Base {
 //            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
 //            accountPageObect.my_Account_widget_MM.get(0).click();
 //        }
-        if (waitWithoutExceptionByTextContainsLessTime("View All")) {
+        if (waitWithoutExceptionByTextContainsLessTime("To Pay")) {
             waitUntilPresentOfElementByText("To Pay");
             findElementByTextUsingExactString("To Pay").click();
         }
@@ -383,6 +385,55 @@ public class Account extends Base {
         }
     }
 
+    public boolean verifyTheOrderStatusOnAccountPage(List<String> orderStatuslst, List<String> orderStatuslst2, List<String> orderID) {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            for (int i = 0; i < 3; i++) {
+                if (waitWithoutExceptionByTextContains(orderStatuslst.get(i))) {
+                    findElementByTextUsingContainsString(orderStatuslst.get(i)).click();
+                    if (!waitWithoutExceptionByString(orderStatuslst.get(i))) {
+                        return false;
+                    }
+                    else
+                    driver.navigate().back();
+                } else
+                    return false;
+            }
+            for (int i = 0; i < 3; i++) {
+                if (waitWithoutExceptionByTextContains(orderStatuslst2.get(i))) {
+                    findElementByTextUsingContainsString(orderStatuslst2.get(i)).click();
+                    if (!containsTextIsExist(orderStatuslst2.get(i))) {
+                        return false;
+                    }
+                    driver.navigate().back();
+                } else
+                    return false;
+            }
+        } else {
+            for (int i = 0; i < 3; i++) {
+                if (waitWithoutExceptionByTextContains(orderStatuslst.get(i))) {
+                    findElementByTextUsingContainsString(orderStatuslst.get(i)).click();
+                    if (!waitWithoutExceptionByString(orderStatuslst.get(i))) {
+                        return false;
+                    }
+                    else
+                    driver.navigate().back();
+                } else
+                    return false;
+            }
+            for (int i = 0; i < 3; i++) {
+                if (waitWithoutExceptionByTextContains(orderStatuslst2.get(i))) {
+                    findElementByTextUsingContainsString(orderStatuslst2.get(i)).click();
+                    if (!containsTextIsExist(orderStatuslst2.get(i))) {
+                        return false;
+                    }
+                    else
+                    driver.navigate().back();
+                } else
+                    return false;
+            }
+        }
+        return true;
+    }
 
 }
 

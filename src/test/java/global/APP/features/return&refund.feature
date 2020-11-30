@@ -1,4 +1,4 @@
- @return&refund @30447331
+@smoke @return&refund @30447331
 Feature: Daraz Return & Refund Management
 
   @21001814 @verify_return_on_normal_product @37058581 @37058582
@@ -12,6 +12,7 @@ Feature: Daraz Return & Refund Management
     And I skip the delivered popup
     Then I look for the delivered ordered for "Normal" product in my orders
     And I select return
+    And I select return bundle option
     And I select reason for return
     And I provide comments for return
     And I select return shipping method

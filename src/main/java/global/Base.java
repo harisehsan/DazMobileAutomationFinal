@@ -432,4 +432,10 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         dateArray = date.toString().split("-");
          return dateArray;
     }
+
+  protected WebElement findElementByIdAndText(String id, String text)
+  {
+      return driver.findElement(By.xpath("//*[@resource-id='"+id+"' and @text='"+text+"']"));
+  }
+
 }

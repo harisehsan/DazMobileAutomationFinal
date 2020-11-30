@@ -78,8 +78,9 @@ Feature: Daraz User Growth
     Given I select the venture
     And I navigate to the signin screen
     And I signin with google account
-    And I navigate to the account menu
-    And I navigate back to the Home Page from "My Account"
+    And I navigate back to the main screen
+#    And I navigate to the account menu
+#    And I navigate back to the Home Page from "My Account"
     And I verify the non existence of user growth popup on Home Screen
     Then I verify the non existence of user growth module on Home Screen
 
