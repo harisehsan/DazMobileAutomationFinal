@@ -227,6 +227,6 @@ public class CheckOutSteps {
 
     @Then("I verify the existence of Proceed to pay button")
     public void iVerifyTheExistenceOfProceedToPayButton() {
-        Assert.assertFalse(checkout.verifyTheExistenceOfProceedToPayButton());
+        Assert.assertTrue(checkout.verifyTheExistenceOfProceedToPayButton(),"Proceed To Pay button Should be displayed!!");
     }
 }
