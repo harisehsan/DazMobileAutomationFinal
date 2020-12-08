@@ -5,7 +5,6 @@ import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -17,6 +16,7 @@ import java.util.List;
  */
 
 public class Account extends Base {
+    public Object clickAccountInformation;
     private AccountPageObject accountPageObect = new AccountPageObject();
     private GmailSignUpObjects gmailSignUpObjects = new GmailSignUpObjects();
     private CheckOutPageObjects checkOutPageObjects = new CheckOutPageObjects();
@@ -110,13 +110,6 @@ public class Account extends Base {
     }
 
     public void selectMyCancellationWidget() {
-//        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By);
-//            accountPageObect.my_Account_widget.get(3).click();
-//        } else {
-//            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By_MM);
-//            accountPageObect.my_Account_widget_MM.get(3).click();
-//        }
         waitUntilPresentOfElementByText("My Cancellations");
         findElementByTextUsingExactString("My Cancellations").click();
     }
@@ -147,7 +140,7 @@ public class Account extends Base {
         }
     }
 
-    public void naviagteToAccounts() {
+    public void navigateToAccounts() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
@@ -168,11 +161,6 @@ public class Account extends Base {
     }
 
     public void navigateToTheMessages() {
-//        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-//            waitUntilPresentOfElementBy(accountPageObect.down_lbl);
-//        } else {
-//            waitUntilPresentOfElementBy(accountPageObect.down_lbl_MM);
-//        }
         waitUntilPresentOfElementByText("Messages");
         findElementByTextUsingContainsString("Messages").click();
     }
@@ -195,13 +183,18 @@ public class Account extends Base {
         driver.navigate().back();
     }
 
-    public void navigateToHelpFromSettingsMenu() {
-        waitWithoutExceptionByTextContains("Help");
-        findElementByTextUsingContainsString("Help").click();
+    public void navigateToHelpFromSettingsMenu(String arg0) {
+        waitWithoutExceptionByTextContains(arg0);
+        findElementByTextUsingContainsString(arg0).click();
+    }
+
+    public void navigateToBySearchingText(String arg0) {
+        waitWithoutExceptionByTextContains(arg0);
+        findElementByTextUsingContainsString(arg0).click();
     }
 
     public boolean iShouldBeOnTheHelpMenu() {
-        return waitWithoutExceptionByTextContains("Hi, how can we help?");
+        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.help_Page_Text_By, 20);
     }
 
     public boolean verifySettingsHeaderInLocalLanguage() {
@@ -310,9 +303,8 @@ public class Account extends Base {
         }
     }
 
-     public boolean verifyTheComponentsOfMyServices()
-     {
-         scrollDownMultipleTries(2);
+    public boolean verifyTheComponentsOfMyServices() {
+        scrollDownMultipleTries(2);
         return (containsTextIsExist("Messages")
                 && containsTextIsExist("My Review")
                 && containsTextIsExist("Payment")
@@ -356,7 +348,7 @@ public class Account extends Base {
 
             }
         } else {
-            for (int i = 0; i < accountPageObect.track_Package_Slider.size() -2 ; i++) {
+            for (int i = 0; i < accountPageObect.track_Package_Slider.size() - 2; i++) {
                 int j = 0;
                 waitUntilPresentOfElementBy(accountPageObect.track_Package_lbl_By_MM);
                 while (j < i) {
@@ -377,11 +369,9 @@ public class Account extends Base {
         return true;
     }
 
-    public void scrollToMessage()
-    {
+    public void scrollToMessage() {
         int tries = 0;
-        while(!containsTextIsExist("My Review") && tries < 5)
-        {
+        while (!containsTextIsExist("My Review") && tries < 5) {
             swiptToBottom();
             tries++;
         }
@@ -394,9 +384,8 @@ public class Account extends Base {
                     findElementByTextUsingContainsString(orderStatuslst.get(i)).click();
                     if (!waitWithoutExceptionByString(orderStatuslst.get(i))) {
                         return false;
-                    }
-                    else
-                    driver.navigate().back();
+                    } else
+                        driver.navigate().back();
                 } else
                     return false;
             }
@@ -416,9 +405,8 @@ public class Account extends Base {
                     findElementByTextUsingContainsString(orderStatuslst.get(i)).click();
                     if (!waitWithoutExceptionByString(orderStatuslst.get(i))) {
                         return false;
-                    }
-                    else
-                    driver.navigate().back();
+                    } else
+                        driver.navigate().back();
                 } else
                     return false;
             }
@@ -427,9 +415,8 @@ public class Account extends Base {
                     findElementByTextUsingContainsString(orderStatuslst2.get(i)).click();
                     if (!containsTextIsExist(orderStatuslst2.get(i))) {
                         return false;
-                    }
-                    else
-                    driver.navigate().back();
+                    } else
+                        driver.navigate().back();
                 } else
                     return false;
             }
@@ -437,5 +424,37 @@ public class Account extends Base {
         return true;
     }
 
+    public boolean verifyTheExistenceofAccountInformation() {
+        return (!System.getProperty("env").equalsIgnoreCase("mm.live") ? isExist(accountPageObect.account_Information_tab) : isExist(accountPageObect.account_Information_tab_MM));
+    }
+
+    public void iNavigateToAccountInformation() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            accountPageObect.account_Information_tab.get(0).click();
+        } else {
+            accountPageObect.account_Information_tab_MM.get(0).click();
+        }
+    }
+
+    public boolean verifyTheExistenceOfAccountInfoTitle() {
+
+        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.account_Information_title, 5);
+    }
+
+    public void clickMoreOptionsMenu() {
+        accountPageObect.more_Options_click.click();
+    }
+
+    public WebElement clickHamburgerMenuElements(String arg0) {
+        return !(System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+                findElementByIdAndText("com.daraz.android:id/title", arg0) :
+                findElementByIdAndText("com.shop.android:id/title", arg0);
+    }
+
+    public boolean iShouldBeOnMyAccount() {
+        return !(System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+                accountPageObect.account_Order_Title.isDisplayed() :
+                accountPageObect.account_Order_Title_MM.isDisplayed();
+    }
 }
 
