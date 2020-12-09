@@ -172,9 +172,20 @@ public class Base {
                     .until(ExpectedConditions.presenceOfElementLocated(by));
             return true;
         } catch (Exception e) {
-           return false;
+            return false;
         }
     }
+
+    protected boolean waitForElementByWithoutExceptionUntillTimeReach(By element, int time) {
+        try {
+            new WebDriverWait(driver, time)
+                    .until(ExpectedConditions.presenceOfElementLocated(element));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
     public boolean isExist(List<WebElement> id) {
         return id.size() > 0;
@@ -231,12 +242,12 @@ public class Base {
         if (Name.length() > 20)
             Name = Name.substring(0, 20);
         new WebDriverWait(driver, 120)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
     }
 
     protected void waitUntilPresentOfElementByText(String Name) {
         new WebDriverWait(driver, 120)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text= '"+Name+"']")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text= '" + Name + "']")));
     }
 
     protected String getTextWithoutException(WebElement ele) {
@@ -264,13 +275,13 @@ public class Base {
     }
 
     protected WebElement findElementByTextUsingExactString(String Name) {
-        return driver.findElement(By.xpath("//*[@text='"+Name+"']"));
+        return driver.findElement(By.xpath("//*[@text='" + Name + "']"));
     }
 
     protected WebElement findElementByContentDescrpitionUsingContainString(String Name) {
         if (Name.length() > 20)
             Name = Name.substring(0, 20);
-        return driver.findElement(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]"));
+        return driver.findElement(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]"));
     }
 
 
@@ -289,7 +300,7 @@ public class Base {
             if (Name.length() > 25)
                 Name = Name.substring(0, 25);
             new WebDriverWait(driver, 60)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
             return false;
@@ -301,16 +312,15 @@ public class Base {
             if (Name.length() > 25)
                 Name = Name.substring(0, 25);
             new WebDriverWait(driver, 20)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'"+Name+"')] | //*[contains(@content-desc,'"+Name+"')]")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
             return false;
         }
     }
 
-    protected void pressEnterKey()
-    {
-        ((AndroidDriver)driver).pressKeyCode(66);
+    protected void pressEnterKey() {
+        ((AndroidDriver) driver).pressKeyCode(66);
     }
 
     protected boolean waitWithoutExceptionWithIndex(List<WebElement> id, int index) {
@@ -325,43 +335,46 @@ public class Base {
     }
 
     protected boolean isExistByText(String Name) {
-        return (driver.findElements(By.xpath("//*[@text= '"+Name+"']")).size() > 0);
+        return (driver.findElements(By.xpath("//*[@text= '" + Name + "']")).size() > 0);
     }
 
     protected boolean findElementsSizeByString(String Name) {
-        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" +Name+ "')] | //*[contains(@content-desc,'" +Name+ "')]")).size() > 0);
+        return (driver.findElements(By.xpath("//*[contains(@contentDescription,'" + Name + "')] | //*[contains(@content-desc,'" + Name + "')]")).size() > 0);
     }
 
     protected boolean waitWithoutExceptionByText(String Name) {
         try {
             new WebDriverWait(driver, 50)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='"+Name+"']")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='" + Name + "']")));
             return true;
         } catch (Exception ex) {
             return false;
         }
     }
-//
+
+    //
     protected boolean containsTextIsExist(String Name) {
         if (Name.length() > 30)
             Name = Name.substring(0, 30);
-        return (driver.findElements(By.xpath("//*[contains(@text,'" +Name+ "')]")).size() > 0);
+        return (driver.findElements(By.xpath("//*[contains(@text,'" + Name + "')]")).size() > 0);
     }
 
     protected void swipeHorizontallyWithInElement(WebElement ele) {
         TouchAction touchAction = new TouchAction(driver);
-        touchAction.press(new PointOption().withCoordinates(ele.getSize().width-5, (ele.getLocation().getY()+ele.getSize().height)/2)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele.getLocation().getX()+5, (ele.getLocation().getY()+ele.getSize().height)/2)).release().perform();
+        touchAction.press(new PointOption().withCoordinates(ele.getSize().width - 5, (ele.getLocation().getY() + ele.getSize().height) / 2)).waitAction(new WaitOptions().withDuration(Duration.ofMillis(656))).moveTo(new PointOption().withCoordinates(ele.getLocation().getX() + 5, (ele.getLocation().getY() + ele.getSize().height) / 2)).release().perform();
     }
-public boolean waitWithoutExceptionForElements(List <WebElement> id) {
-    try {
-        new WebDriverWait(driver, 100)
-                .until(ExpectedConditions.elementToBeClickable(id.get(0)));
-        return true;
-    } catch (Exception ex) {
-        System.out.println("Required element is not available yet!");
-        return true;
+
+    public boolean waitWithoutExceptionForElements(List<WebElement> id) {
+        try {
+            new WebDriverWait(driver, 100)
+                    .until(ExpectedConditions.elementToBeClickable(id.get(0)));
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return true;
+        }
     }
-}
+
     protected boolean waitWithoutExceptionForElementsLessTime(List<WebElement> id) {
         try {
             new WebDriverWait(driver, 30)
@@ -372,8 +385,9 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
             return true;
         }
     }
+
     protected WebElement findElementByTextUsingContainsString(String Name) {
-        return driver.findElement(By.xpath("//*[contains(@text,'" +Name+ "')]"));
+        return driver.findElement(By.xpath("//*[contains(@text,'" + Name + "')]"));
     }
 
     protected boolean waitWithoutExceptionByTextContains(String Name) {
@@ -381,7 +395,7 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
             if (Name.length() > 10)
                 Name = Name.substring(0, 10);
             new WebDriverWait(driver, 120)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
             return false;
@@ -393,7 +407,7 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
             if (Name.length() > 15)
                 Name = Name.substring(0, 15);
             new WebDriverWait(driver, 30)
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" +Name+ "')]")));
+                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
             return false;
@@ -425,17 +439,18 @@ public boolean waitWithoutExceptionForElements(List <WebElement> id) {
         }
     }
 
-    protected String[] currentDateSplit()
-    {
+    protected String[] currentDateSplit() {
         LocalDate date = LocalDate.now();
         String[] dateArray;
         dateArray = date.toString().split("-");
-         return dateArray;
+        return dateArray;
     }
 
-  protected WebElement findElementByIdAndText(String id, String text)
-  {
-      return driver.findElement(By.xpath("//*[@resource-id='"+id+"' and @text='"+text+"']"));
-  }
+    protected WebElement findElementByIdAndText(String id, String text) {
+        return driver.findElement(By.xpath("//*[@resource-id='" + id + "' and contains(text(), '" + text + "')]"));
+    }
 
+    protected WebElement findElementByClassAndText(String className, String text) {
+        return driver.findElement(By.xpath("//*[@text and @class='" + className + "' and contains(text(), '" + text + "')]"));
+    }
 }
