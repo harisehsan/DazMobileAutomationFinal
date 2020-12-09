@@ -105,3 +105,30 @@ Feature: Daraz Account Management
     And I navigate to the account menu
     Then I verify status order status in my account
 
+  @21001814 @verify_cart_icon_navigation @31107522
+  Scenario: I verify the cart icon navigation
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    And I navigate to the account menu
+    And I goto cart from account menu
+    And I skip the cart popup
+    Then I verify that I should be on the cart page
+    And I navigate back
+    Then I navigate to the account settings menu
+    And I goto account information menu
+    And I goto cart from account information page
+    And I skip the cart popup
+    Then I verify that I should be on the cart page
+
+  @21001814 @verify_navigation_from_account_information_to_search @31437469
+  Scenario: I verify the account information to search
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    And I navigate to the account menu
+    Then I navigate to the account settings menu
+    And I goto account information menu
+    And I select search button on account information page
+    Then I verify the existence of search bar
+

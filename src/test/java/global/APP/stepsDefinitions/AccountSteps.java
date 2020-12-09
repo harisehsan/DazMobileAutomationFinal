@@ -181,4 +181,36 @@ public class AccountSteps {
     public void iVerifyStatusOrderStatusInMyAccount() throws IOException {
    Assert.assertTrue(account.verifyTheOrderStatusOnAccountPage(accountGetProperty.getOrderStatus1(),accountGetProperty.getOrderStatus2(),accountGetProperty.getOrderID()),"Order status is not displayed on the account page!");
     }
+
+    @And("I goto cart from account menu")
+    public void iGotoCartFromAccountMenu() {
+       account.navigateToCartFromAccount();
+
+    }
+
+    @Then("I verify that I should be on the cart page")
+    public void iVerifyThatIShouldBeOnTheCartPage() {
+        Assert.assertTrue(account.verifyForTheCartPage(),"Not successfully navigated to the cart page!");
+    }
+
+
+    @And("I goto cart from account information page")
+    public void iGotoCartFromAccountInformationPage() {
+     account.gotoCartfromAccountInformationPage();
+    }
+
+    @And("I goto account information menu")
+    public void iGotoAccountInformationMenu() {
+        account.gotoaccountInformationMenu();
+    }
+
+    @And("I select search button on account information page")
+    public void iSelectSearchButtonOnAccountInformationPage() {
+      account.selectSearchbuttonOnAccountInformationPage();
+    }
+
+    @Then("I verify the existence of search bar")
+    public void iVerifyTheExistenceOfSearchBar() {
+        Assert.assertTrue(account.verifyTheSearchField(),"Not successfully navigated to the search field!");
+    }
 }

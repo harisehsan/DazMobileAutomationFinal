@@ -36,6 +36,15 @@ public class AccountPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.shop.android:id/txt_shipto") public WebElement package_Status_lnk_MM;
     @AndroidFindBy (id = "com.daraz.android:id/txt_time") public WebElement package_Date_And_Time_lbl;
     @AndroidFindBy (id = "com.shop.android:id/txt_time") public WebElement package_Date_And_Time_lbl_MM;
+    @AndroidFindBy (xpath="//*[@text='Cart']") public WebElement account_Cart_lbl;
+    @AndroidFindBy (xpath = "//*[@text='Account Information']") public WebElement account_Information_lbl;
+    @AndroidFindBy (id = "com.daraz.android:id/iv_cart") public WebElement cart_icon;
+    @AndroidFindBy (id = "com.shop.android:id/iv_cart") public WebElement cart_icon_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/iv_search") public WebElement serach_icon;
+    @AndroidFindBy (id = "com.shop.android:id/iv_search") public WebElement serach_icon_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/search_input_box") public List <WebElement> search_Bar_txtbox;
+    @AndroidFindBy (id = "com.shop.android:id/search_input_box") public List <WebElement> search_Bar_txtbox_MM;
+
 
     public By my_Account_widget_By = By.id("com.daraz.android"+dev+":id/img_up");
     public By my_Account_widget_By_MM = By.id("com.shop.android:id/img_up");
@@ -45,6 +54,8 @@ public class AccountPageObject extends BuildIDPicker {
     public By down_lbl_MM = By.id("com.shop.android:id/txt_down");
     public By track_Package_lbl_By = By.id("com.daraz.android:id/txt_logistic");
     public By track_Package_lbl_By_MM = By.id("com.shop.android:id/txt_logistic");
+    public By account_Cart_lbl_By = By.xpath("//*[@text='Cart']");
+    public By account_Information_lbl_By = By.xpath("//*[@text='Account Information']");
 
 
 

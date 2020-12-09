@@ -5,7 +5,6 @@ import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -26,6 +25,8 @@ public class Account extends Base {
     String trackPackage = "Track Package";
     String ConsolidateDelivery = "Consolidated Delivery";
     String packageStatus = "";
+    String myCartlbl = "My Cart";
+    String myNamelbl = "Name";
 
     public Account(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -435,6 +436,54 @@ public class Account extends Base {
             }
         }
         return true;
+    }
+
+    public void navigateToCartFromAccount()
+    {
+        waitUntilPresentOfElementBy(accountPageObect.account_Cart_lbl_By);
+        accountPageObect.account_Cart_lbl.click();
+    }
+
+    public boolean verifyForTheCartPage()
+    {
+        return waitWithoutExceptionByTextContains(myCartlbl);
+    }
+
+    public void gotoaccountInformationMenu()
+    {
+        waitUntilPresentOfElementBy(accountPageObect.account_Information_lbl_By);
+        accountPageObect.account_Information_lbl.click();
+    }
+
+    public void gotoCartfromAccountInformationPage()
+    {
+        waitUntilPresentOfElementByString(myNamelbl);
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            accountPageObect.cart_icon.click();
+        } else {
+            accountPageObect.cart_icon_MM.click();
+        }
+    }
+
+    public void selectSearchbuttonOnAccountInformationPage()
+    {
+        waitUntilPresentOfElementByString(myNamelbl);
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            accountPageObect.serach_icon.click();
+        } else {
+            accountPageObect.serach_icon_MM.click();
+        }
+    }
+
+    public boolean verifyTheSearchField()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            return isExist(accountPageObect.search_Bar_txtbox);
+        }
+        else
+        {
+            return isExist(accountPageObect.search_Bar_txtbox_MM);
+        }
     }
 
 }

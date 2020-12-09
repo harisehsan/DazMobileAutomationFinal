@@ -102,4 +102,19 @@ public class AddressSteps {
     public void iNavigateBackToTheAddressMenu() {
 
     }
+
+    @When("I scroll to the {string} button")
+    public void iScrollToTheButton(String addressType) {
+      address.scrollTotheAddressbuttonLocation(addressType);
+    }
+
+    @And("I select the {string} button")
+    public void iSelectTheButton(String addressType) {
+     address.selectTheAddressLocation(addressType);
+    }
+
+    @Then("I should see the address set as {string}")
+    public void iShouldSeeTheAddressSetAs(String addressType) {
+        address.verifyTheExistenceOfAddressLocation(addressType);
+    }
 }
