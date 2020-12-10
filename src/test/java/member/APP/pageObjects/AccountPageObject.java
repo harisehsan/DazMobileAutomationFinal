@@ -48,7 +48,22 @@ public class AccountPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.shop.android:id/checkbox") public List <WebElement> message_Settings_chkBox_MM;
 
 
-    public By my_Account_widget_By = By.id("com.daraz.android"+dev+":id/img_up");
+
+    @AndroidFindBy(xpath = "//*[@resource-id='com.daraz.android:id/title' and @text='Home']")
+    public WebElement hamburger_Menu_Home;
+    @AndroidFindBy(id = "com.daraz.android:id/setting_account_information_container")
+    public List<WebElement> account_Information_tab;
+    @AndroidFindBy(id = "com.shop.android:id/setting_account_information_container")
+    public List<WebElement> account_Information_tab_MM;
+    @AndroidFindBy(id = "com.shop.android:id/quantity")
+    @AndroidFindBy(id = "com.daraz.android:id/orders_title")
+    public WebElement account_Order_Title;
+    @AndroidFindBy(id = "com.shop.android:id/orders_title")
+    public WebElement account_Order_Title_MM;
+    @AndroidFindBy(xpath = "//*[@resource-id='com.daraz.android:id/title' and contains(text(), 'Need Help')]")
+    public WebElement TestingHELPELEMENT;
+
+    public By my_Account_widget_By = By.id("com.daraz.android" + dev + ":id/img_up");
     public By my_Account_widget_By_MM = By.id("com.shop.android:id/img_up");
     public By red_Dot_lbl_By = By.id("com.daraz.android:id/quantity");
     public By red_Dot_lbl_MM_By = By.id("com.daraz.android:id/quantity");
@@ -56,6 +71,11 @@ public class AccountPageObject extends BuildIDPicker {
     public By down_lbl_MM = By.id("com.shop.android:id/txt_down");
     public By track_Package_lbl_By = By.id("com.daraz.android:id/txt_logistic");
     public By track_Package_lbl_By_MM = By.id("com.shop.android:id/txt_logistic");
+    public By account_Information = By.id("com.daraz.android:id/setting_account_information_container");
+    public By account_Information_title = By.xpath("//*[@class='android.widget.TextView' and @text='Account Information']");
+    public By help_Page_Text_By = By.xpath("(//*[@text and @class='android.view.View' and contains(text(), 'Hi, how can we help?')])");
+    public By help_Page_Text_By_MM = By.xpath("(//*[@text and @class='android.view.View' and contains(text(), 'Hi, how can we help?')])");
+    public By hamburger_Menu_Home_by = By.xpath("//*[@resource-id='com.daraz.android:id/title' and @text='Home']");
     public By account_Cart_lbl_By = By.xpath("//*[@text='Cart']");
     public By account_Information_lbl_By = By.xpath("//*[@text='Account Information']");
 

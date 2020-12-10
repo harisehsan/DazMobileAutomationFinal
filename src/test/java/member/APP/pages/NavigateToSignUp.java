@@ -8,7 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-/** Developed By: Muhammad Haris Ehsan
+/**
+ * Developed By: Muhammad Haris Ehsan
  * Date: 28/05/2019
  */
 
@@ -25,16 +26,15 @@ public class NavigateToSignUp extends Base {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             signUpObjects.account_lbl.get(3).click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn,2);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn, 2);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By);
             signUpObjects.signup_btn.click();
-        }
-        else  // code for Shop (MM) app only
+        } else  // code for Shop (MM) app only
         {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
             signUpObjects.account_lbl_MM.get(3).click();
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,2);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM, 2);
             waitUntilPresentOfElementBy(signUpObjects.signup_btn_By_MM);
             signUpObjects.signup_btn_MM.click();
         }
@@ -50,10 +50,8 @@ public class NavigateToSignUp extends Base {
                 signUpObjects.account_Homepage_lbl.click();
             }
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn,6);
-        }
-        else
-        {
+            clickMultipleTries(signUpObjects.signup_And_Login_btn, 6);
+        } else {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
             try {
                 signUpObjects.account_lbl_MM.get(3).click();
@@ -61,7 +59,7 @@ public class NavigateToSignUp extends Base {
                 signUpObjects.account_Homepage_lbl.click();
             }
             waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM,6);
+            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM, 6);
         }
     }
 }
