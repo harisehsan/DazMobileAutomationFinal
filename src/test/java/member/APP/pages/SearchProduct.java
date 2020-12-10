@@ -259,7 +259,7 @@ public class SearchProduct extends Base {
             while (!isExist(searchPageObj.searchBeforeClick_txtfield));
 
         } else {
-            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
+//            waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By_MM);
             do {
                 driver.navigate().back();
                 hideKeyboard();

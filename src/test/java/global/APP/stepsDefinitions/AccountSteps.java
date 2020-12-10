@@ -213,4 +213,25 @@ public class AccountSteps {
     public void iVerifyTheExistenceOfSearchBar() {
         Assert.assertTrue(account.verifyTheSearchField(),"Not successfully navigated to the search field!");
     }
+
+    @When("I check all the message settings options")
+    public void iCheckAllTheMessageSettingsOptions() {
+        account.checkAllMessageSettings();
+    }
+
+    @Then("I should not see the notification for best offer and alerts")
+    public void iShouldNotSeeTheNotificationForBestOfferAndAlerts() {
+     Assert.assertFalse(account.verifyFortheNonExistenceOfTheOffersAndAlrets(),"Alerts and Offers message is displayed even when all message settings are turned on!");
+    }
+
+    @When("I uncheck all the message settings options")
+    public void iUncheckAllTheMessageSettingsOptions() {
+        account.unCheckAllMessageSettings();
+    }
+
+    @Then("I should see the notification for best offer and alerts")
+    public void iShouldSeeTheNotificationForBestOfferAndAlerts() {
+        Assert.assertTrue(account.verifyFortheNonExistenceOfTheOffersAndAlrets(),"Alerts and Offers message is not displayed even when all message settings are turned off!");
+
+    }
 }

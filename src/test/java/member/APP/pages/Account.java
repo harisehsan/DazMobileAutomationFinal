@@ -27,6 +27,7 @@ public class Account extends Base {
     String packageStatus = "";
     String myCartlbl = "My Cart";
     String myNamelbl = "Name";
+    String messageOffers = "Let us notify you with the best offers";
 
     public Account(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -485,6 +486,59 @@ public class Account extends Base {
             return isExist(accountPageObect.search_Bar_txtbox_MM);
         }
     }
+
+    public void checkAllMessageSettings()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+           for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++)
+           {
+               if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("false"))
+               {
+                   accountPageObect.message_Settings_chkBox.get(i).click();
+               }
+           }
+        }
+        else
+        {
+            for (int i=0; i <accountPageObect.message_Settings_chkBox_MM.size(); i++)
+            {
+                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false"))
+                {
+                    accountPageObect.message_Settings_chkBox_MM.get(i).click();
+                }
+            }
+        }
+    }
+
+    public boolean verifyFortheNonExistenceOfTheOffersAndAlrets()
+    {
+        return waitWithoutExceptionByTextContainsLessTime(messageOffers);
+    }
+
+    public void unCheckAllMessageSettings()
+    {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++)
+            {
+                if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("true"))
+                {
+                    accountPageObect.message_Settings_chkBox.get(i).click();
+                }
+            }
+        }
+        else
+        {
+            for (int i=0; i <accountPageObect.message_Settings_chkBox_MM.size(); i++)
+            {
+                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("true"))
+                {
+                    accountPageObect.message_Settings_chkBox_MM.get(i).click();
+                }
+            }
+        }
+    }
+
+
 
 }
 

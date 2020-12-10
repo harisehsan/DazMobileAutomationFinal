@@ -44,6 +44,8 @@ public class AccountPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.shop.android:id/iv_search") public WebElement serach_icon_MM;
     @AndroidFindBy (id = "com.daraz.android:id/search_input_box") public List <WebElement> search_Bar_txtbox;
     @AndroidFindBy (id = "com.shop.android:id/search_input_box") public List <WebElement> search_Bar_txtbox_MM;
+    @AndroidFindBy (id = "com.daraz.android:id/checkbox") public List <WebElement> message_Settings_chkBox;
+    @AndroidFindBy (id = "com.shop.android:id/checkbox") public List <WebElement> message_Settings_chkBox_MM;
 
 
     public By my_Account_widget_By = By.id("com.daraz.android"+dev+":id/img_up");

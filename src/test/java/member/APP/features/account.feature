@@ -132,3 +132,32 @@ Feature: Daraz Account Management
     And I select search button on account information page
     Then I verify the existence of search bar
 
+  @21001814 @verify_the_message_settings
+  Scenario: verify the message settings
+    Given I select the venture
+    And I navigate to the signin screen
+    And I signin with google account
+    And I navigate to the account menu
+    Then I navigate to the account settings menu
+    When I navigate to messages settings from settings
+    Then I should be on the message settings
+    When I check all the message settings options
+    And I navigate back to the main screen
+    And I navigate to the account menu
+    And I scroll to messages in my account menu
+    And I select message in account section
+    Then I should be on the message page
+    Then I should not see the notification for best offer and alerts
+    And I navigate back to the main screen
+    And I navigate to the account menu
+    Then I navigate to the account settings menu
+    When I navigate to messages settings from settings
+    Then I should be on the message settings
+    When I uncheck all the message settings options
+    And I navigate back to the main screen
+    And I navigate to the account menu
+    And I scroll to messages in my account menu
+    And I select message in account section
+    Then I should be on the message page
+    Then I should see the notification for best offer and alerts
+
