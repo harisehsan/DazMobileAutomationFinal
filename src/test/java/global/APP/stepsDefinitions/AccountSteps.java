@@ -228,4 +228,57 @@ public class AccountSteps {
     public void iShouldBeOnAccountScreen() {
         Assert.assertTrue(account.iShouldBeOnMyAccount(), "Page Not Loaded OR Not successfully navigated to My Account screen!");
     }
+
+    @And("I goto cart from account menu")
+    public void iGotoCartFromAccountMenu() {
+       account.navigateToCartFromAccount();
+
+    }
+
+    @Then("I verify that I should be on the cart page")
+    public void iVerifyThatIShouldBeOnTheCartPage() {
+        Assert.assertTrue(account.verifyForTheCartPage(),"Not successfully navigated to the cart page!");
+    }
+
+
+    @And("I goto cart from account information page")
+    public void iGotoCartFromAccountInformationPage() {
+     account.gotoCartfromAccountInformationPage();
+    }
+
+    @And("I goto account information menu")
+    public void iGotoAccountInformationMenu() {
+        account.gotoaccountInformationMenu();
+    }
+
+    @And("I select search button on account information page")
+    public void iSelectSearchButtonOnAccountInformationPage() {
+      account.selectSearchbuttonOnAccountInformationPage();
+    }
+
+    @Then("I verify the existence of search bar")
+    public void iVerifyTheExistenceOfSearchBar() {
+        Assert.assertTrue(account.verifyTheSearchField(),"Not successfully navigated to the search field!");
+    }
+
+    @When("I check all the message settings options")
+    public void iCheckAllTheMessageSettingsOptions() {
+        account.checkAllMessageSettings();
+    }
+
+    @Then("I should not see the notification for best offer and alerts")
+    public void iShouldNotSeeTheNotificationForBestOfferAndAlerts() {
+     Assert.assertFalse(account.verifyFortheNonExistenceOfTheOffersAndAlrets(),"Alerts and Offers message is displayed even when all message settings are turned on!");
+    }
+
+    @When("I uncheck all the message settings options")
+    public void iUncheckAllTheMessageSettingsOptions() {
+        account.unCheckAllMessageSettings();
+    }
+
+    @Then("I should see the notification for best offer and alerts")
+    public void iShouldSeeTheNotificationForBestOfferAndAlerts() {
+        Assert.assertTrue(account.verifyFortheNonExistenceOfTheOffersAndAlrets(),"Alerts and Offers message is not displayed even when all message settings are turned off!");
+
+    }
 }

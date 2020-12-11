@@ -80,11 +80,4 @@ public class SearchBar extends Base {
     {
         return isExist(searchBarPageObject.my_wallet_Header_lbl);
     }
-
-
-
-
-
-
-
 }
