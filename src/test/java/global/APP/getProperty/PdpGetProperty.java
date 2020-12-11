@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 
 public class PdpGetProperty {
-    private int listSize = 13;
+    private int listSize = 14;
     private Properties prop = new Properties();
 
     private void fileInputStream() throws IOException {
@@ -22,8 +22,9 @@ public class PdpGetProperty {
     public List<String> productPK() throws IOException {
         fileInputStream();
         List<String> productPK = new ArrayList<>();
-       for (int i=0; i<listSize;i++)
-           productPK.add(prop.getProperty("PRODUCT_PK_"+(i+1)));
+       for (int i=0; i<listSize;i++) {
+           productPK.add(prop.getProperty("PRODUCT_PK_" + (i + 1)));
+       }
        return productPK;
     }
 

@@ -243,3 +243,13 @@ Feature: PDP page Management
     And I navigate back to pdp page
     And I select Buy Now button
     Then I should see the B1G1 quantity on checkout page
+
+
+  @31782443 @Verify_Size_Chart_On_PDP_Page @39195168
+  Scenario: Verify Size Chart on PDP
+    Given I select the venture
+    And I search product using sku for "Size Chart"
+    And I goto the PDP page
+    And I click on variation to display its SKU panel
+    And I click on Size Chart lable
+    Then I Size chart should be displayed

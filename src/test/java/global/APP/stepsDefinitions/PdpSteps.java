@@ -369,6 +369,15 @@ public class PdpSteps {
     @And("I goto cart menu from PDP variation screen")
     public void iGotoCartMenuFromPDPVariationScreen() {
       pdp.goToCartFromPDPVariationScreen();
+    }
 
+    @And("I click on Size Chart lable")
+    public void iClickOnSizeChartLable() {
+        pdp.clickOnSizeChart();
+    }
+
+    @Then("I Size chart should be displayed")
+    public void iSizeChartShouldBeDisplayed() {
+        pdp.iShouldBeOnSizeChart();
     }
 }

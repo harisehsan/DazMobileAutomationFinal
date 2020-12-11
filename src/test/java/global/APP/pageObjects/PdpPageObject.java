@@ -128,10 +128,15 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_bundle_title") public List <WebElement> product_Cart_Title_lbl_MM;
  @AndroidFindBy(id = "com.shop.android:id/text_title") public WebElement product_Size_PDP_lbl_MM;
  @AndroidFindBy(id = "com.shop.android:id/main_action") public List <WebElement> add_To_Cart_Variation_btn_MM;
+ @AndroidFindBy(id = "com.daraz.android:id/size_chat_container") public WebElement size_Chart_lbl;
+ @AndroidFindBy(id = "com.shop.android:id/size_chat_container") public WebElement size_Chart_lbl_MM;
 
 
+ public By size_Chart_Screen_Lable = By.xpath("//*[@class='android.widget.TextView' and contains(text(), 'size')]");
+ public By size_Chart_lbl_By = By.id("com.daraz.android"+dev+":id/size_chat_container");
+ public By size_Chart_lbl_By_MM = By.id("com.shop.android"+dev+":id/size_chat_container");
  public By video_Close_btn_By = By.id("com.daraz.android"+dev+":id/video_button_close");
- public By video_Close_btn_By_MM = By.id("com.shop.android:id/video_button_close");
+ public By video_Close_btn_By_MM = By.id("com.shop.android"+dev+":id/video_button_close");
  public By picture_Number_lbl_By = By.id("com.daraz.android"+dev+":id/text_page_indicator");
  public By picture_Number_lbl_By_MM = By.id("com.shop.android:id/text_page_indicator");
  public By product_images_By = By.id("com.daraz.android"+dev+":id/image");
