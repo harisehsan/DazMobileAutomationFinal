@@ -18,6 +18,10 @@ public class Address extends Base {
     AddressPageObject addressPageObject = new AddressPageObject();
     SignUpObjects signUpObjects = new SignUpObjects();
 
+//    String addressHomebtnID = "com.daraz.android:id/home";
+//    String addressOfficebtnID = "com.daraz.android:id/work";
+
+
     public Address(AppiumDriver<WebElement> driver) {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), addressPageObject);
@@ -285,6 +289,65 @@ public class Address extends Base {
     public boolean verifyTheDeleteRestrictionMessage()
     {
          return (isExist(addressPageObject.delete_Confirm_Message_lbl));
+    }
+
+    public void scrollTotheAddressbuttonLocation(String addressType) {
+        int tries = 10;
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if (addressType.contains("HOME")) {
+                while (!isExist(addressPageObject.address_Home_btn) && tries < 15) {
+                    swiptToBottom();
+                    tries++;
+                }
+            }
+            else
+            {
+                while (!isExist(addressPageObject.address_Office_btn) && tries < 15) {
+                    swiptToBottom();
+                    tries++;
+                }
+            }
+        } else {
+            if (addressType.contains("HOME")) {
+                while (!isExist(addressPageObject.address_Home_btn_MM) && tries < 15) {
+                    swiptToBottom();
+                    tries++;
+                }
+            }
+            else
+            {
+                while (!isExist(addressPageObject.address_Office_btn_MM) && tries < 15) {
+                    swiptToBottom();
+                    tries++;
+                }
+            }
+        }
+    }
+
+    public void selectTheAddressLocation(String addressType) {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if (addressType.contains("HOME")) {
+                addressPageObject.address_Home_btn.get(0).click();
+            } else {
+                addressPageObject.address_Office_btn.get(0).click();
+            }
+        } else {
+            if (addressType.contains("HOME")) {
+                addressPageObject.address_Home_btn_MM.get(0).click();
+            } else {
+                addressPageObject.address_Office_btn_MM.get(0).click();
+            }
+        }
+    }
+    public boolean verifyTheExistenceOfAddressLocation(String addressType)
+    {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            return addressPageObject.addressLocationlbl.getText().contains(addressType);
+        }
+        else
+        {
+            return addressPageObject.addressLocationlblMM.getText().contains(addressType);
+        }
     }
 
 }

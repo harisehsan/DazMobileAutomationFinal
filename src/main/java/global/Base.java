@@ -453,4 +453,8 @@ public class Base {
     protected WebElement findElementByClassAndText(String className, String text) {
         return driver.findElement(By.xpath("//*[@text and @class='" + className + "' and contains(text(), '" + text + "')]"));
     }
+  protected boolean isExistByIdAndText(String id, String text)
+  {
+      return driver.findElements(By.xpath("//*[@resource-id='"+id+"' and @text='"+text+"']")).size() > 0;
+  }
 }
