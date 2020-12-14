@@ -70,6 +70,8 @@ public class Pdp extends Base {
            searchProduct=11;
        else if (searchType.contains("CNIC4"))
            searchProduct=12;
+        else if (searchType.contains("Size Chart"))
+           searchProduct=13;
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
@@ -92,7 +94,6 @@ public class Pdp extends Base {
                 }
                 break;
             }
-            System.out.println("Product ID SKU :::::::::::::::::: >>>>>>> " + searchPageObj.searchAfterClick_txtfield.getText());
             searchPageObj.search_btn.click();
         } else {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
@@ -101,6 +102,23 @@ public class Pdp extends Base {
             searchPageObj.searchAfterClick_txtfield_MM.sendKeys(pdpGetProperty.productMM().get(searchProduct));
             searchPageObj.search_btn_MM.click();
         }
+    }
+
+    public void getProductFromPropertyFile(String searchType) throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+            searchPageObj.searchAfterClick_txtfield.sendKeys(pdpGetProperty.getProductSKU(searchType));
+            searchPageObj.search_btn.click();
+        } else {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+            searchPageObj.searchAfterClick_txtfield_MM.sendKeys(pdpGetProperty.getProductSKU(searchType));
+            searchPageObj.search_btn_MM.click();
+        }
+
     }
 
     public void gotoPdpPage() {
@@ -1157,4 +1175,18 @@ public class Pdp extends Base {
         }
     }
 
+    public void clickOnSizeChart() {
+        if(!System.getProperty("env").equalsIgnoreCase("mm.live")){
+            waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.size_Chart_lbl_By,3);
+            pdpPageObject.size_Chart_lbl.click();
+        }
+        else {
+            waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.size_Chart_lbl_By_MM,3);
+            pdpPageObject.size_Chart_lbl_MM.click();
+        }
+    }
+
+    public boolean iShouldBeOnSizeChart(){
+       return waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.size_Chart_Screen_Lable,6);
+    }
 }
