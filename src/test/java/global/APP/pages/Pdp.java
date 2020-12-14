@@ -104,6 +104,23 @@ public class Pdp extends Base {
         }
     }
 
+    public void getProductFromPropertyFile(String searchType) throws IOException {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
+            searchPageObj.searchBeforeClick_txtfield.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
+            searchPageObj.searchAfterClick_txtfield.sendKeys(pdpGetProperty.getProductSKU(searchType));
+            searchPageObj.search_btn.click();
+        } else {
+            waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By_MM);
+            searchPageObj.searchBeforeClick_txtfield_MM.get(0).click();
+            waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By_MM);
+            searchPageObj.searchAfterClick_txtfield_MM.sendKeys(pdpGetProperty.getProductSKU(searchType));
+            searchPageObj.search_btn_MM.click();
+        }
+
+    }
+
     public void gotoPdpPage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);

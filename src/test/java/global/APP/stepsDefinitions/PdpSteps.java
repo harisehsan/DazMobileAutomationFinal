@@ -371,13 +371,18 @@ public class PdpSteps {
       pdp.goToCartFromPDPVariationScreen();
     }
 
-    @And("I click on Size Chart lable")
-    public void iClickOnSizeChartLable() {
+    @And("I click on Size Chart label")
+    public void iClickOnSizeChartLabel() {
         pdp.clickOnSizeChart();
     }
 
     @Then("I Size chart should be displayed")
     public void iSizeChartShouldBeDisplayed() {
         pdp.iShouldBeOnSizeChart();
+    }
+
+    @And("I search product using sku for {string} product")
+    public void iSearchProductUsingSkuForProduct(String searchType) throws IOException {
+        pdp.getProductFromPropertyFile(searchType);
     }
 }
