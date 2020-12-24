@@ -7,6 +7,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -147,15 +148,15 @@ public class Account extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
-                signUpObjects.account_lbl.get(3).click();
+                signUpObjects.account_lbl_ele.click();
             } catch (Exception e) {
                 e.printStackTrace();
                 findElementByTextUsingContainsString("Account").click();
             }
         } else {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By_MM, 3);
             try {
-                signUpObjects.account_lbl_MM.get(3).click();
+                signUpObjects.account_lbl_MM.click();
             } catch (Exception e) {
                 e.printStackTrace();
                 findElementByTextUsingContainsString("Account").click();
@@ -281,7 +282,7 @@ public class Account extends Base {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
-                signUpObjects.account_lbl.get(3).click();
+                signUpObjects.account_lbl_ele.click();
             } catch (Exception e) {
                 e.printStackTrace();
                 if ((System.getProperty("env").equalsIgnoreCase("bd.live")))
@@ -291,17 +292,17 @@ public class Account extends Base {
                 else if ((System.getProperty("env").equalsIgnoreCase("np.live")))
                     findElementByTextUsingExactString("खाता").click();
             }
-            waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.settings_icon_By, 3);
             signUpObjects.settings_icon.click();
         } else {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By_MM, 3);
             try {
-                signUpObjects.account_lbl_MM.get(3).click();
+                signUpObjects.account_lbl_MM.click();
             } catch (Exception e) {
                 e.printStackTrace();
                 findElementByTextUsingExactString("အေကာင့္").click();
             }
-            waitUntilPresentOfElementBy(signUpObjects.settings_icon_By_MM);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.settings_icon_By_MM, 3);
             signUpObjects.settings_icon_MM.click();
         }
     }
@@ -449,9 +450,7 @@ public class Account extends Base {
     }
 
     public WebElement clickHamburgerMenuElements(String arg0) {
-        return !(System.getProperty("env").equalsIgnoreCase("mm.live")) ?
-                findElementByIdAndText("com.daraz.android:id/title", arg0) :
-                findElementByIdAndText("com.shop.android:id/title", arg0);
+        return findElementByIdAndText("title", arg0);
     }
 
     public boolean iShouldBeOnMyAccount() {
@@ -459,25 +458,22 @@ public class Account extends Base {
                 accountPageObect.account_Order_Title.isDisplayed() :
                 accountPageObect.account_Order_Title_MM.isDisplayed();
     }
-    public void navigateToCartFromAccount()
-    {
+
+    public void navigateToCartFromAccount() {
         waitUntilPresentOfElementBy(accountPageObect.account_Cart_lbl_By);
         accountPageObect.account_Cart_lbl.click();
     }
 
-    public boolean verifyForTheCartPage()
-    {
+    public boolean verifyForTheCartPage() {
         return waitWithoutExceptionByTextContains(myCartlbl);
     }
 
-    public void gotoaccountInformationMenu()
-    {
+    public void gotoaccountInformationMenu() {
         waitUntilPresentOfElementBy(accountPageObect.account_Information_lbl_By);
         accountPageObect.account_Information_lbl.click();
     }
 
-    public void gotoCartfromAccountInformationPage()
-    {
+    public void gotoCartfromAccountInformationPage() {
         waitUntilPresentOfElementByString(myNamelbl);
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             accountPageObect.cart_icon.click();
@@ -486,8 +482,7 @@ public class Account extends Base {
         }
     }
 
-    public void selectSearchbuttonOnAccountInformationPage()
-    {
+    public void selectSearchbuttonOnAccountInformationPage() {
         waitUntilPresentOfElementByString(myNamelbl);
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             accountPageObect.serach_icon.click();
@@ -496,62 +491,44 @@ public class Account extends Base {
         }
     }
 
-    public boolean verifyTheSearchField()
-    {
+    public boolean verifyTheSearchField() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             return isExist(accountPageObect.search_Bar_txtbox);
-        }
-        else
-        {
+        } else {
             return isExist(accountPageObect.search_Bar_txtbox_MM);
         }
     }
 
-    public void checkAllMessageSettings()
-    {
+    public void checkAllMessageSettings() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-           for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++)
-           {
-               if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("false"))
-               {
-                   accountPageObect.message_Settings_chkBox.get(i).click();
-               }
-           }
-        }
-        else
-        {
-            for (int i=0; i <accountPageObect.message_Settings_chkBox_MM.size(); i++)
-            {
-                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false"))
-                {
-                    accountPageObect.message_Settings_chkBox_MM.get(i).click();
-                }
-            }
-        }
-    }
-
-    public boolean verifyFortheNonExistenceOfTheOffersAndAlrets()
-    {
-        return waitWithoutExceptionByTextContainsLessTime(messageOffers);
-    }
-
-    public void unCheckAllMessageSettings()
-    {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++)
-            {
-                if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("true"))
-                {
+            for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++) {
+                if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("false")) {
                     accountPageObect.message_Settings_chkBox.get(i).click();
                 }
             }
+        } else {
+            for (int i=0; i <accountPageObect.message_Settings_chkBox_MM.size(); i++) {
+                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("false")) {
+                    accountPageObect.message_Settings_chkBox_MM.get(i).click();
+                }
+            }
         }
-        else
-        {
-            for (int i=0; i <accountPageObect.message_Settings_chkBox_MM.size(); i++)
-            {
-                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("true"))
-                {
+    }
+
+    public boolean verifyFortheNonExistenceOfTheOffersAndAlrets() {
+        return waitWithoutExceptionByTextContainsLessTime(messageOffers);
+    }
+
+    public void unCheckAllMessageSettings() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++) {
+                if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("true")) {
+                    accountPageObect.message_Settings_chkBox.get(i).click();
+                }
+            }
+        } else {
+            for (int i = 0; i <accountPageObect.message_Settings_chkBox_MM.size(); i++) {
+                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("true")) {
                     accountPageObect.message_Settings_chkBox_MM.get(i).click();
                 }
             }
@@ -559,6 +536,38 @@ public class Account extends Base {
     }
 
 
+    public boolean verifyTheExistenceOf(String arg0) {
+        switch (arg0) {
+            case ("To Review"): {
+                return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.to_review_By, 3);
+            }
+            case ("My Review"): {
+                scrollToMessage();
+                return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.My_review_By, 3);
+            }
+        }
+        return false;
+    }
 
+    public void iClickOnInMyOrder(String arg0) {
+        switch (arg0) {
+            case ("To Review"):
+                accountPageObect.to_review_ele.click();
+                break;
+            case ("My Review"):
+                accountPageObect.my_review_ele.click();
+                break;
+        }
+    }
+
+    public void iShouldBeOnMyReviewScreen() {
+        waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.myReview_By, 3);
+        Assert.assertTrue(accountPageObect.review_history_ele.isDisplayed(), " History tab is not loaded in Review!!!!");
+    }
+
+    public void clickOnHistoryTab() {
+        waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.myReview_By, 3);
+        Assert.assertTrue(accountPageObect.review_history_ele.isDisplayed(), " History tab is not loaded in Review!!!!");
+        accountPageObect.review_history_ele.click();
+    }
 }
-

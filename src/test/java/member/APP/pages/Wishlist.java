@@ -61,26 +61,16 @@ public class Wishlist extends Base {
 
     public void signin() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            if (wishlistPageObjects.login_btn.size() > 0) {
-//                wishlistPageObjects.login_btn.get(0).click();
-//                waitUntilPresentOfElementBy(wishlistPageObjects.google_btn_By);
-//                wishlistPageObjects.google_btn.click();
                waitUntilPresentOfElementBy(wishlistPageObjects.login_Google_btn_By);
                wishlistPageObjects.login_Google_btn.get(0).click();
                 if (waitWithoutExceptionForElements(wishlistPageObjects.login_Policy_Agree_btn))
                     wishlistPageObjects.login_Policy_Agree_btn.get(0).click();
-//                waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
-//                wishlistPageObjects.agree_btn.click();
                 if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
+
+            waitForElementToDisAppear(wishlistPageObjects.login_Google_btn_By, 3);
 //            }
             } else {
-//            if (wishlistPageObjects.login_btn_MM.size() > 0) {
-//                wishlistPageObjects.login_btn_MM.get(0).click();
-//                waitUntilPresentOfElementBy(wishlistPageObjects.google_btn_By_MM);
-//                wishlistPageObjects.google_btn_MM.click();
-//                waitUntilPresentOfElementBy(wishlistPageObjects.agree_btn_by);
-//                wishlistPageObjects.agree_btn.click();
                 waitUntilPresentOfElementBy(wishlistPageObjects.login_Google_btn_By_MM);
                 wishlistPageObjects.login_Google_btn_MM.get(0).click();
                 if (waitWithoutExceptionForElements(wishlistPageObjects.login_Policy_Agree_btn_MM))
@@ -93,20 +83,16 @@ public class Wishlist extends Base {
 
     public String wishlistAddSuccessMessage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By);
             return wishlistPageObjects.wishlist_Success_Message_lbl.getText();
         } else {
-//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By_MM);
             return wishlistPageObjects.wishlist_Success_Message_lbl_MM.getText();
         }
     }
 
     public String wishlistRemoveSuccessMessage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By);
             return wishlistPageObjects.wishlist_Success_Message_lbl.getText();
         } else {
-//            waitUntilPresentOfElementBy(wishlistPageObjects.wishlist_Success_Message_lbl_By_MM);
             return wishlistPageObjects.wishlist_Success_Message_lbl_MM.getText();
         }
     }

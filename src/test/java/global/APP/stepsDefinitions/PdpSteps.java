@@ -385,4 +385,45 @@ public class PdpSteps {
     public void iSearchProductUsingSkuForProduct(String searchType) throws IOException {
         pdp.getProductFromPropertyFile(searchType);
     }
+
+    @And("I should see Condition attribute on pdp")
+    public void iShouldSeeConditionAttributeOnPdp() {
+        Assert.assertTrue(pdp.verifyConditionAttributeOnPDP(), "Conditions are not displayed on Renewed Product");
+    }
+
+    @And("I should see the ConditionBar on pdp")
+    public void iShouldSeeTheConditionBarOnPdp() {
+        Assert.assertTrue(pdp.verifyConditionBar(), "Condition Bar should be displayed on Renewed Product");
+    }
+
+    @And("I should see the Condition Text on pdp")
+    public void iShouldSeeTheConditionTextOnPdp() {
+        Assert.assertTrue(pdp.verifyConditionText(), "Condition Text should be displayed on Renewed Product");
+    }
+
+    @And("I click on ConditionBar on pdp")
+    public void iClickOnConditionBarOnPdp() {
+        pdp.clickOnConditionBar();
+    }
+
+    @And("I should see Condition popup")
+    public void iShouldSeeConditionPopup() {
+        Assert.assertTrue(pdp.conditionPopupVerification(), "Condition Popup is not displayed properly");
+        Assert.assertTrue(pdp.conditionPopupTextVerification());
+    }
+
+    @And("I should see {int} tabs of conditions")
+    public void iShouldSeeTabsOfConditions(int arg0) {
+        pdp.shouldDisplayTabs(arg0);
+    }
+
+    @And("I should see the conditionBar on popup")
+    public void iShouldSeeTheConditionBarOnPopup() {
+        pdp.verifyConditionBarOnPopup();
+    }
+
+    @And("I close the condition popup")
+    public void iCloseTheConditionPopup() {
+        pdp.closePopup();
+    }
 }

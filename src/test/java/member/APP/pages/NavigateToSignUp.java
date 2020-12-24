@@ -4,7 +4,6 @@ import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SignUpObjects;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -23,43 +22,34 @@ public class NavigateToSignUp extends Base {
 
     public void navigateToSignUpScreen() { //This method is used to navigate the control to the sigup screen to make it able to choose Facebook or gmail signup option
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            signUpObjects.account_lbl.get(3).click();
-            waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn, 2);
-            waitUntilPresentOfElementBy(signUpObjects.signup_btn_By);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By, 3);
+            signUpObjects.account_lbl_ele.click();
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_And_Login_btn_By, 3);
+            signUpObjects.signup_And_Login_btn_ele.click();
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_btn_By, 3);
             signUpObjects.signup_btn.click();
         } else  // code for Shop (MM) app only
         {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
-            signUpObjects.account_lbl_MM.get(3).click();
-            waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By_MM, 3);
+            signUpObjects.account_lbl_MM.click();
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_And_Login_btn_By_MM, 3);
             clickMultipleTries(signUpObjects.signup_And_Login_btn_MM, 2);
-            waitUntilPresentOfElementBy(signUpObjects.signup_btn_By_MM);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_btn_By_MM, 3);
             signUpObjects.signup_btn_MM.click();
         }
     }
 
     public void navigateToSigninScreen() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            try {
-                signUpObjects.account_lbl.get(3).click();
-            } catch (Exception e) {
-                e.printStackTrace();
-                signUpObjects.account_Homepage_lbl.click();
-            }
-            waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn, 6);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By, 3);
+            signUpObjects.account_lbl_ele.click();
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_And_Login_btn_By, 3);
+            signUpObjects.signup_And_Login_btn_ele.click();
         } else {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
-            try {
-                signUpObjects.account_lbl_MM.get(3).click();
-            } catch (Exception e) {
-                signUpObjects.account_Homepage_lbl.click();
-            }
-            waitUntilPresentOfElementBy(signUpObjects.signup_And_Login_btn_By_MM);
-            clickMultipleTries(signUpObjects.signup_And_Login_btn_MM, 6);
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By_MM, 3);
+            signUpObjects.account_lbl_MM.click();
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_And_Login_btn_By_MM, 3);
+            signUpObjects.signup_And_Login_btn_MM.get(0).click();
         }
     }
 }

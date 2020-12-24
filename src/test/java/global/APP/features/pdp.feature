@@ -255,3 +255,19 @@ Feature: PDP page Management
     And I Size chart should be displayed
     And I navigate back
     Then I should be on the PDP page
+
+  @31829094 @Verify_renewed_condition_on_pdp
+  Scenario: Verify Renewed condition on PDP
+    Given I select the venture
+    And I search for "renewed"
+    And I should see search products
+    And I goto the PDP page
+    And I skip the delivered popup
+    And I should see Condition attribute on pdp
+    And I should see the ConditionBar on pdp
+    And I should see the Condition Text on pdp
+    And I click on ConditionBar on pdp
+    And I should see Condition popup
+    And I should see 5 tabs of conditions
+    And I should see the conditionBar on popup
+    Then I close the condition popup

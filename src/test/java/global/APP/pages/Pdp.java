@@ -14,6 +14,7 @@ import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.WishlistPageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import java.io.IOException;
 
 /**
@@ -1187,6 +1188,57 @@ public class Pdp extends Base {
     }
 
     public boolean iShouldBeOnSizeChart(){
-       return waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.size_Chart_Screen_Lable,6);
+        return waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.size_Chart_Screen_Label_By, 6);
+    }
+
+    public boolean verifyConditionAttributeOnPDP() {
+        return (!System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+                waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.conditions_Pdp_Label_By, 6) :
+                waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.conditions_Pdp_Label_MM_By, 6);
+    }
+
+    public boolean verifyConditionBar() {
+        return (!System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+                waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_image_By, 6) :
+                waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_image_MM_By, 6);
+    }
+
+    public boolean verifyConditionText() {
+        return (!System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+                waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_text_By, 6) :
+                waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_text_MM_By, 6);
+    }
+
+    public void clickOnConditionBar() {
+        if ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            pdpPageObject.condition_Bar_Image_Ele.click();
+        } else {
+            pdpPageObject.condition_Bar_Image_Ele_MM.click();
+        }
+    }
+
+    public boolean conditionPopupVerification() {
+        return ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) ?
+                pdpPageObject.condition_Bar_Title_Ele.isDisplayed() :
+                pdpPageObject.condition_Bar_Title_Ele_MM.isDisplayed();
+    }
+
+    public boolean conditionPopupTextVerification() {
+        return ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) ?
+                pdpPageObject.condition_Bar_Title_Ele.isDisplayed() :
+                pdpPageObject.condition_Bar_Title_Ele_MM.isDisplayed();
+    }
+
+    public void shouldDisplayTabs(int arg0) {
+        Assert.assertEquals(arg0, pdpPageObject.condition_popup_Btn_list_Ele.size(), "Condition popup Buttons are not displayed.");
+    }
+
+    public void verifyConditionBarOnPopup() {
+        Assert.assertTrue(pdpPageObject.popup_condition_bar_Ele.isDisplayed());
+    }
+
+    public void closePopup() {
+        pdpPageObject.popup_close_btn_Ele.click();
+        Assert.assertTrue(pdpPageObject.add_to_Cart_btn_Ele.isDisplayed(), "Condition PopUp is not closed Yet!!!");
     }
 }
