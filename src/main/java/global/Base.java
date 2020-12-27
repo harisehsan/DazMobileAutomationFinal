@@ -59,9 +59,9 @@ public class Base {
         wait.until(ExpectedConditions.elementToBeClickable(id));
     }
 
-    public void waitForElementToDisAppear(String id) {
-        WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id(id)));
+    public void waitForElementToDisAppear(By id, int time) {
+        WebDriverWait wait = new WebDriverWait(driver, time);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(id));
     }
 
     public void waitForElementsToAppear(List<WebElement> id) {
@@ -447,14 +447,14 @@ public class Base {
     }
 
     protected WebElement findElementByIdAndText(String id, String text) {
-        return driver.findElement(By.xpath("//*[@resource-id='" + id + "' and contains(text(), '" + text + "')]"));
+        return driver.findElement(By.xpath("//*[contains(@resource-id,'" + id + "') and contains(@text,'" + text + "')]"));
     }
 
     protected WebElement findElementByClassAndText(String className, String text) {
         return driver.findElement(By.xpath("//*[@text and @class='" + className + "' and contains(text(), '" + text + "')]"));
     }
-  protected boolean isExistByIdAndText(String id, String text)
-  {
-      return driver.findElements(By.xpath("//*[@resource-id='"+id+"' and @text='"+text+"']")).size() > 0;
-  }
+
+    protected boolean isExistByIdAndText(String id, String text) {
+        return driver.findElements(By.xpath("//*[@resource-id='" + id + "' and @text='" + text + "']")).size() > 0;
+    }
 }

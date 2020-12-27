@@ -281,4 +281,38 @@ public class AccountSteps {
         Assert.assertTrue(account.verifyFortheNonExistenceOfTheOffersAndAlrets(),"Alerts and Offers message is not displayed even when all message settings are turned off!");
 
     }
+
+    @And("I verify the existence of {string} in My Orders")
+    public void iVerifyTheExistenceOfInMyOrders(String arg0) {
+        Assert.assertTrue(account.verifyTheExistenceOf(arg0));
+    }
+
+    @And("I click {string} in My Orders section")
+    public void iClickInMyOrders(String arg0) {
+        account.iClickOnInMyOrder(arg0);
+    }
+
+    @And("I should be on My Review Screen")
+    public void iShouldBeOnMyReviewScreen() {
+        account.iShouldBeOnMyReviewScreen();
+
+    }
+
+    @And("I verify {string} in My Services section")
+    public void iVerifyInMyServicesSection(String arg0) {
+        account.scrollToMessage();
+        Assert.assertTrue(account.verifyTheExistenceOf(arg0));
+    }
+
+    @And("I click {string} in My Services")
+    public void iClickInMyServices(String arg0) {
+        account.iClickOnInMyOrder(arg0);
+
+    }
+
+    @And("I click to History tab")
+    public void iClickToHistoryTab() {
+        account.iShouldBeOnMyReviewScreen();
+        account.clickOnHistoryTab();
+    }
 }

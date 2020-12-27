@@ -31,7 +31,7 @@ public class Venture extends Base {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
-                signUpObjects.account_lbl.get(3).click();
+                signUpObjects.account_lbl_ele.click();
             } catch (Exception e) {
                 e.printStackTrace();
                 signUpObjects.account_Homepage_lbl.click();
@@ -71,19 +71,18 @@ public class Venture extends Base {
     }
 
     public int changeVenture() {
-       int country_Index;
+        int country_Index;
         do {
             country_Index = randomNumberGenerator(venturePageObject.current_country_rdoBtn.size());
             venturePageObject.current_country_rdoBtn.get(country_Index).click();
         } while (!isExist(venturePageObject.change_Country_Continue_btn));
-            venturePageObject.change_Country_Continue_btn.get(0).click();
-            if (isExist(startScreenPageObjects.eng_Language_btn))
-             startScreenPageObjects.eng_Language_btn.get(0).click();
-             return country_Index;
+        venturePageObject.change_Country_Continue_btn.get(0).click();
+        if (isExist(startScreenPageObjects.eng_Language_btn))
+            startScreenPageObjects.eng_Language_btn.get(0).click();
+        return country_Index;
     }
 
-    public boolean verifyForTheChangedCountry(int country_Index)
-    {
-     return (venturePageObject.current_country_rdoBtn.get(country_Index).getAttribute("checked").equalsIgnoreCase("true"));
+    public boolean verifyForTheChangedCountry(int country_Index) {
+        return (venturePageObject.current_country_rdoBtn.get(country_Index).getAttribute("checked").equalsIgnoreCase("true"));
     }
 }

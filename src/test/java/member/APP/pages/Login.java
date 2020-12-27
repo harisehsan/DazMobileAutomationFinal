@@ -31,12 +31,10 @@ public class Login extends Base {
     public void selectMessage() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.tray_icon_By);
-//            loginPageObject.tray_icon.get(1).click();
             findElementByTextUsingExactString("Messages").click();
 
         } else {
             waitUntilPresentOfElementBy(loginPageObject.tray_icon_By_MM);
-//            loginPageObject.tray_icon_MM.get(1).click();
             findElementByTextUsingExactString("Messages").click();
         }
     }
@@ -55,8 +53,6 @@ public class Login extends Base {
                 } while (!isExist(loginPageObject.first_login_btn_MM));
             }
         } else if (screen.equalsIgnoreCase("facebook")) {
-//            waitWithoutExceptionByText("Facebook");
-//            findElementByTextUsingExactString("Facebook").click();
             if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
                waitUntilPresentOfElementBy(loginPageObject.facebook_Login_btn_By);
                 loginPageObject.facebook_Login_btn.click();
@@ -97,16 +93,12 @@ public class Login extends Base {
 
     public void selectForgetPasswordLink() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            waitUntilPresentOfElementBy(loginPageObject.forget_password_lbl_By);
-//            loginPageObject.forget_password_lbl.click();
             waitUntilPresentOfElementBy(loginPageObject.login_Email_btn_By);
             loginPageObject.login_Email_btn.click();
             waitUntilPresentOfElementBy(loginPageObject.forget_password_New_lbl_By);
             loginPageObject.forget_password_New_lbl.click();
 
         } else {
-//            waitUntilPresentOfElementBy(loginPageObject.forget_password_lbl_By_MM);
-//            loginPageObject.forget_password_lbl_MM.click();
             waitUntilPresentOfElementBy(loginPageObject.login_Email_btn_By_MM);
             loginPageObject.login_Email_btn_MM.click();
             waitUntilPresentOfElementBy(loginPageObject.forget_password_New_lbl_By_MM);
@@ -115,60 +107,44 @@ public class Login extends Base {
     }
 
     public boolean verifyTheResetPassword() {
-//        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            return (isExist(loginPageObject.reset_Password_btn));
-//        } else {
-//            return (isExist(loginPageObject.reset_Password_btn_MM));
-//        }
-//    }
         return waitWithoutExceptionByTextContains("Reset Password");
     }
+
     public void enterLoginEmail() throws IOException {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            waitUntilPresentOfElementBy(loginPageObject.login_btn_By);
             waitUntilPresentOfElementBy(loginPageObject.final_Email_Login_btn_By);
             switch (System.getProperty("env")) {
                 case "pk.live":
-//                    loginPageObject.login_Email_txt.sendKeys(loginGetProperty.loginEmail().get(0));
                     loginPageObject.login_Email_Final_txt.get(0).sendKeys(loginGetProperty.loginEmail().get(0));
                     break;
                 case "bd.live":
-//                    loginPageObject.login_Email_txt.sendKeys(loginGetProperty.loginEmail().get(1));
                     loginPageObject.login_Email_Final_txt.get(0).sendKeys(loginGetProperty.loginEmail().get(1));
                     break;
                 case "lk.live":
-//                    loginPageObject.login_Email_txt.sendKeys(loginGetProperty.loginEmail().get(2));
                     loginPageObject.login_Email_Final_txt.get(0).sendKeys(loginGetProperty.loginEmail().get(2));
                     break;
                 case "np.live":
-//                    loginPageObject.login_Email_txt.sendKeys(loginGetProperty.loginEmail().get(3));
                     loginPageObject.login_Email_Final_txt.get(0).sendKeys(loginGetProperty.loginEmail().get(3));
                     break;
             }
         } else {
-//            waitUntilPresentOfElementBy(loginPageObject.login_btn_By_MM);
             waitUntilPresentOfElementBy(loginPageObject.final_Email_Login_btn_By_MM);
-//            loginPageObject.login_Email_txt_MM.sendKeys(loginGetProperty.loginEmail().get(4));
             loginPageObject.login_Email_Final_txt_MM.get(0).sendKeys(loginGetProperty.loginEmail().get(4));
         }
     }
 
     public void enterLoginPassword() throws IOException {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            loginPageObject.login_Password_txt.sendKeys(loginGetProperty.loginPassword());
             loginPageObject.login_Email_Final_txt.get(1).sendKeys(loginGetProperty.loginPassword());
         } else {
-//            loginPageObject.login_Password_txt_MM.sendKeys(loginGetProperty.loginPassword());
             loginPageObject.login_Email_Final_txt_MM.get(1).sendKeys(loginGetProperty.loginPassword());
         }
     }
 
     public void clickLoginButton() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//            loginPageObject.login_btn.click();
             loginPageObject.final_Email_Login_btn.click();
         } else {
-//            loginPageObject.login_btn_MM.click();
             loginPageObject.final_Email_Login_btn_MM.click();
         }
     }
@@ -198,10 +174,6 @@ public class Login extends Base {
 
     public void selectFacebookAgreeButton()
     {
-//       waitUntilPresentOfElementBy(loginPageObject.facebook_Agree_btn_By);
-//       loginPageObject.facebook_Agree_btn.click();
-//       if (waitWithoutExceptionByTextContainsLessTime("CONTINUE AS"))
-//           findElementByTextUsingContainsString("CONTINUE AS").click();
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             if (waitWithoutExceptionForElements(wishlistPageObjects.login_Policy_Agree_btn))
                 wishlistPageObjects.login_Policy_Agree_btn.get(0).click();
@@ -214,16 +186,12 @@ public class Login extends Base {
     public void selectFirstLoginButton()
     {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-//           waitUntilPresentOfElementBy(loginPageObject.first_login_btn_By);
-//           loginPageObject.first_login_btn.get(0).click();
-            waitUntilPresentOfElementBy(loginPageObject.login_Email_btn_By);
+            waitForElementByWithoutExceptionUntillTimeReach(loginPageObject.login_Email_btn_By, 3);
             loginPageObject.login_Email_btn.click();
         }
         else
         {
-//            waitUntilPresentOfElementBy(loginPageObject.first_login_btn_By_MM);
-//            loginPageObject.first_login_btn_MM.get(0).click();
-            waitUntilPresentOfElementBy(loginPageObject.login_Email_btn_By_MM);
+            waitForElementByWithoutExceptionUntillTimeReach(loginPageObject.login_Email_btn_By_MM, 3);
             loginPageObject.login_Email_btn_MM.click();
         }
     }

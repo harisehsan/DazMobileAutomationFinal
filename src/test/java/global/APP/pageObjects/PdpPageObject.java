@@ -78,6 +78,12 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id = "com.shop.android:id/code") public WebElement voucher_Code_lbl_MM;
  @AndroidFindBy(id = "com.daraz.android:id/text_title") public WebElement product_Size_PDP_lbl;
  @AndroidFindBy(id = "com.daraz.android:id/main_action") public List <WebElement> add_To_Cart_Variation_btn;
+    @AndroidFindBy(xpath = "//*[contains(@resource-id,'img_condition_popup_status')]")
+    public WebElement popup_condition_bar_Ele;
+    @AndroidFindBy(xpath = "//*[contains(@resource-id,'popup_header_close')]")
+    public WebElement popup_close_btn_Ele;
+    @AndroidFindBy(xpath = "//*[contains(@resource-id,'main_action_container')]")
+    public WebElement add_to_Cart_btn_Ele;
 
 
  @AndroidFindBy(id= "com.shop.android:id/pdp_gallery_item_video_icon") public List<WebElement> video_icon_MM;
@@ -130,9 +136,25 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id = "com.shop.android:id/main_action") public List <WebElement> add_To_Cart_Variation_btn_MM;
  @AndroidFindBy(id = "com.daraz.android:id/size_chat_container") public WebElement size_Chart_lbl;
  @AndroidFindBy(id = "com.shop.android:id/size_chat_container") public WebElement size_Chart_lbl_MM;
+    @AndroidFindBy(id = "com.daraz.android" + dev + ":id/img_condition_status")
+    public WebElement condition_Bar_Image_Ele;
+    @AndroidFindBy(id = "com.shop.android" + dev + ":id/img_condition_status")
+    public WebElement condition_Bar_Image_Ele_MM;
+    @AndroidFindBy(id = "com.daraz.android" + dev + ":id/popup_header_title")
+    public WebElement condition_Bar_Title_Ele;
+    @AndroidFindBy(id = "com.shop.android" + dev + ":id/popup_header_title")
+    public WebElement condition_Bar_Title_Ele_MM;
+    @AndroidFindBy(xpath = "//*[contains(@resource-id,'btn_condition')]")
+    public List<WebElement> condition_popup_Btn_list_Ele;
 
 
- public By size_Chart_Screen_Lable = By.xpath("//*[@class='android.widget.TextView' and contains(text(), 'size')]");
+    public By conditions_Pdp_Label_By = By.xpath("//*[@resource-id='com.daraz.android" + dev + ":id/label_left_title' and @text='Condition']");
+    public By conditions_Pdp_Label_MM_By = By.xpath("//*[@resource-id='com.shop.android" + dev + ":id/label_left_title' and @text='Condition']");
+    public By condition_bar_image_By = By.id("com.daraz.android" + dev + ":id/img_condition_status");
+    public By condition_bar_image_MM_By = By.id("com.shop.android" + dev + ":id/img_condition_status");
+    public By condition_bar_text_By = By.id("com.daraz.android" + dev + ":id/txt_condition");
+    public By condition_bar_text_MM_By = By.id("com.shop.android" + dev + ":id/txt_condition");
+    public By size_Chart_Screen_Label_By = By.xpath("//*[@class='android.widget.TextView' and contains(text(), 'size')]");
  public By size_Chart_lbl_By = By.id("com.daraz.android"+dev+":id/size_chat_container");
  public By size_Chart_lbl_By_MM = By.id("com.shop.android"+dev+":id/size_chat_container");
  public By video_Close_btn_By = By.id("com.daraz.android"+dev+":id/video_button_close");

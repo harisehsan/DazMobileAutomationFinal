@@ -34,8 +34,8 @@ public class Collection extends Base {
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl))
 
-                  return true;
-                 else
+                    return true;
+                else
                     swiptToBottom();
             }
         } else {
@@ -43,108 +43,77 @@ public class Collection extends Base {
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl_MM))
                     return true;
-                 else
+                else
                     swiptToBottom();
             }
         }
         return false;
     }
 
-    public boolean selectShopMoreForCollections()
-    {
+    public boolean selectShopMoreForCollections() {
         int tries = 25;
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl)) {
-                      switch (System.getProperty("env")){
-                          case "pk.live":
-                          case "bd.live":
-                          case "lk.live":
-                          case "np.live":
-                              {
-                              if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Collections"))
-                              {
-                               collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
-                               return true;
-                              }
-                              else
-                                  swiptToBottom();
-                          }
-                          break;
-//                          case "np.live":
-//                          {
-//                              if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Dashain Specials!")) {
-//                                  collectionPageObject.shop_More_btn.get( collectionPageObject.shop_More_btn.size()-1).click();
-//                                  return true;
-//                              }
-//                              else
-//                                  swiptToBottom();
-//
-//                          }
-//                          break;
+                    switch (System.getProperty("env")) {
+                        case "pk.live":
+                        case "bd.live":
+                        case "lk.live":
+                        case "np.live": {
+                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().contains("Collections")) {
+                                collectionPageObject.shop_More_btn.get(collectionPageObject.shop_More_btn.size() - 1).click();
+                                return true;
+                            } else
+                                swiptToBottom();
+                        }
+                        break;
                     }
-                }
-                else
+                } else
                     swiptToBottom();
             }
-        }
-        else
-        {
+        } else {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl_MM)) {
-                    if (collectionPageObject.collection_lbl_MM.get(collectionPageObject.collection_lbl_MM.size()-1).getText().contains("Collections")) {
-                        collectionPageObject.shop_More_btn_MM.get(collectionPageObject.shop_More_btn_MM.size()-1).click();
+                    if (collectionPageObject.collection_lbl_MM.get(collectionPageObject.collection_lbl_MM.size() - 1).getText().contains("Collections")) {
+                        collectionPageObject.shop_More_btn_MM.get(collectionPageObject.shop_More_btn_MM.size() - 1).click();
                         return true;
-                    }
-                    else
-                    {
+                    } else {
                         swiptToBottom();
                     }
-                }
-                else
+                } else
                     swiptToBottom();
             }
         }
         return false;
     }
 
-    public boolean verifyTheCollectionPage()
-    {
-            waitWithoutExceptionForElements(collectionPageObject.collection_header_lbl);
-            String title = collectionPageObject.collection_header_lbl.get(0).getText();
-            waitWithoutExceptionByText(title);
-            return isExistByText(title);
+    public boolean verifyTheCollectionPage() {
+        waitWithoutExceptionForElements(collectionPageObject.collection_header_lbl);
+        String title = collectionPageObject.collection_header_lbl.get(0).getText();
+        waitWithoutExceptionByText(title);
+        return isExistByText(title);
     }
 
     public boolean checkTheExistenceOfCollectionOnHomePage() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-            return  (isExist(collectionPageObject.collection_lbl));
+            return (isExist(collectionPageObject.collection_lbl));
         else
-            return  (isExist(collectionPageObject.collection_lbl_MM));
+            return (isExist(collectionPageObject.collection_lbl_MM));
 
     }
 
-    public void naviagteToSettings()
-    {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
-        {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
-            try {
-                signUpObjects.account_lbl.get(3).click();
-            } catch (Exception e) {
-                e.printStackTrace();
-                signUpObjects.account_Homepage_lbl.click();
-            }
-            waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
+    public void naviagteToSettings() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By, 3);
+            signUpObjects.account_lbl_ele.click();
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.settings_icon_By, 3);
             signUpObjects.settings_icon.click();
-        }
-        else
-        {
-            waitUntilPresentOfElementBy(signUpObjects.account_lbl_By_MM);
+        } else {
+            waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By_MM, 3);
             try {
-                signUpObjects.account_lbl_MM.get(3).click();
+                signUpObjects.account_lbl_MM.click();
             } catch (Exception e) {
                 e.printStackTrace();
                 signUpObjects.account_Homepage_lbl.click();
@@ -154,21 +123,16 @@ public class Collection extends Base {
         }
     }
 
-    public void changeLanguage()
-    {
+    public void changeLanguage() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-          if (isExist(collectionPageObject.change_Language_lbl))
-          {
-            collectionPageObject.change_Language_lbl.get(0).click();
-            waitUntilPresentOfElementBy(collectionPageObject.language_Options_chkbox_By);
-            collectionPageObject.language_Options_chkbox.get(0).click();
-            collectionPageObject.apply_btn.click();
-          }
-          else
-              throw new RuntimeException("Language change is not applicable for this venture!");
-        }
-        else
-        {
+            if (isExist(collectionPageObject.change_Language_lbl)) {
+                collectionPageObject.change_Language_lbl.get(0).click();
+                waitUntilPresentOfElementBy(collectionPageObject.language_Options_chkbox_By);
+                collectionPageObject.language_Options_chkbox.get(0).click();
+                collectionPageObject.apply_btn.click();
+            } else
+                throw new RuntimeException("Language change is not applicable for this venture!");
+        } else {
             collectionPageObject.change_Language_lbl_MM.get(0).click();
             waitUntilPresentOfElementBy(collectionPageObject.language_Options_rdobtn_By_MM);
             collectionPageObject.language_Options_chkbox_MM.get(0).click();
@@ -184,48 +148,41 @@ public class Collection extends Base {
                 if (isExist(collectionPageObject.collection_lbl)) {
                     switch (System.getProperty("env")) {
                         case "bd.live": {
-                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("সংগ্রহগুলি"))
-                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().matches(".*[a-zA-Z].*"));
+                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().contains("সংগ্রহগুলি"))
+                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().matches(".*[a-zA-Z].*"));
                             else
                                 swiptToBottom();
                         }
                         break;
-                        case "lk.live":
-                        {
-                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("කලෙක්ශන්"))
-                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().matches(".*[a-zA-Z].*"));
+                        case "lk.live": {
+                            if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().contains("කලෙක්ශන්"))
+                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().matches(".*[a-zA-Z].*"));
                             else
                                 swiptToBottom();
                         }
                         break;
-                        case "np.live":
-                        {
-                            if ((collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("Dashain Specials!")) || (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().contains("संग्रह")))
-                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size()-1).getText().matches(".*[a-zA-Z].*"));
+                        case "np.live": {
+                            if ((collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().contains("Dashain Specials!")) || (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().contains("संग्रह")))
+                                return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().matches(".*[a-zA-Z].*"));
                             else
                                 swiptToBottom();
                         }
                     }
-                }
-                else
+                } else
                     swiptToBottom();
             }
-        }
-        else
-        {
+        } else {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By_MM);
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl_Local_MM)) {
-                    if ((collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_Local_MM.size()-1).getText().contains("Thadingyut Collections")) || (collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_MM.size()-1).getText().contains("စုစည်းမှုများ"))) {
-                        return (!(collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_Local_MM.size()-1).getText().matches(".*[a-zA-Z].*")));
-                    }
-                    else
+                    if ((collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_Local_MM.size() - 1).getText().contains("Thadingyut Collections")) || (collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_MM.size() - 1).getText().contains("စုစည်းမှုများ"))) {
+                        return (!(collectionPageObject.collection_lbl_Local_MM.get(collectionPageObject.collection_lbl_Local_MM.size() - 1).getText().matches(".*[a-zA-Z].*")));
+                    } else
                         swiptToBottom();
-                }
-                else
+                } else
                     swiptToBottom();
             }
         }
-      return false;
+        return false;
     }
 }

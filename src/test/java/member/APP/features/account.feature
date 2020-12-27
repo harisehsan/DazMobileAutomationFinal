@@ -208,3 +208,19 @@ Feature: Daraz Account Management
     Then I should be on the message page
     Then I should see the notification for best offer and alerts
 
+  @31829205 @Edit_a_review_against_old_order
+  Scenario: I Edit an old review
+    Given I select the venture
+    And I navigate to the account menu
+    And I navigate to the signin screen
+    And I signin with google account
+    And I should be on Account screen
+    And I verify the existence of "To Review" in My Orders
+    And I click "To Review" in My Orders section
+    And I should be on My Review Screen
+    And I navigate back
+    And I should be on Account screen
+    And I verify "My Review" in My Services section
+    And I click "My Review" in My Services
+    And I should be on My Review Screen
+    Then I click to History tab
