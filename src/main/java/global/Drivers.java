@@ -31,7 +31,7 @@ public class Drivers extends BuildIDPicker{
         else
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android"+dev);
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
-        cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.14.0");
+        cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.19.1");
         cap.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
         cap.setCapability(MobileCapabilityType.NO_RESET,false);
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
