@@ -46,7 +46,7 @@ Feature: Daraz Search Product Management
 #    And I search for "hand sanitizer" in the categories section
 #    Then I should see search products
 
-    @23184571 @search_on_store_page @28809430
+    @23184571 @search_on_store_page @28809430 @37058347
     Scenario: Search on store page
       Given I select the venture
       And I search product using sku for "PDP"
