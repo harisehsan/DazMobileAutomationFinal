@@ -1,7 +1,7 @@
 @smoke @privatezone
 Feature: Daraz Private Zone Management
 
-  @21298974 @verify_the_elements_of_store @37056860
+  @21298974 @verify_the_elements_of_store @37058342
   Scenario: verify the elements of the store
     Given I select the venture
     And I search product using sku for "PDP"
@@ -12,7 +12,7 @@ Feature: Daraz Private Zone Management
     And I select the options button on the store page
     Then I should see the share this store button
 
-  @21298974 @navigate_to_the_categories_page_and_profile_page_from_store @37056860
+  @21298974 @navigate_to_the_categories_page_and_profile_page_from_store @37056860 @37058348 @37058349
   Scenario: verify the elements of the store
     Given I select the venture
     And I search product using sku for "PDP"
@@ -26,7 +26,7 @@ Feature: Daraz Private Zone Management
     And I navigate to Profile from store
     Then I should be on the profile page
 
-  @21298974 @follow_and_unfollow_the_store @37056860
+  @21298974 @follow_and_unfollow_the_store @37058343 @37058350
   Scenario: I follow and unfollow the store
     Given I select the venture
     And I search product using sku for "PDP"
@@ -43,14 +43,4 @@ Feature: Daraz Private Zone Management
     And I select following button to unfollow the store
     And I skip the got it popup
     Then I should follow button again
-
-
-
-
-
-
-
-
-
-
 
