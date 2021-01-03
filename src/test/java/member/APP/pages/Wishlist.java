@@ -68,7 +68,11 @@ public class Wishlist extends Base {
                 if (waitWithoutException(wishlistPageObjects.use_Another_Account_btn))
                     wishlistPageObjects.accout_ID_lbl.get(0).click();
 
-            waitForElementToDisAppear(wishlistPageObjects.login_Google_btn_By, 3);
+            try {
+                waitForElementToDisAppear(wishlistPageObjects.login_Google_btn_By, 3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 //            }
             } else {
                 waitUntilPresentOfElementBy(wishlistPageObjects.login_Google_btn_By_MM);

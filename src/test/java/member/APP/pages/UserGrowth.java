@@ -341,6 +341,11 @@ public class UserGrowth extends Base {
 
    public void selectVoucherInMyAccountSection()
    {
+       int tries = 0;
+       while (!isExistByText("Vouchers") && tries < 10) {
+           swiptToBottom();
+           tries++;
+       }
        findElementByTextUsingContainsString("Vouchers").click();
    }
 
