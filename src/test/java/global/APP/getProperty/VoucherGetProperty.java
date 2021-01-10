@@ -1,7 +1,5 @@
 package global.APP.getProperty;
 
-import org.apache.velocity.runtime.directive.Parse;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,4 +42,43 @@ public class VoucherGetProperty {
         prop.setProperty("CART_VOUCHER_CODE_CORRECT", voucherCode);
         fileOutputStream();
     }
+
+    public String getPKVoucher() throws IOException {
+        fileInputStream();
+       return prop.getProperty("VOUCHER_PK");
+    }
+
+    public String getBDVoucher() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_BD");
+    }
+
+    public String getLKVoucher() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_LK");
+    }
+
+    public String getNPVoucher() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_NP");
+    }
+
+    public String getMMVoucher() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_MM");
+    }
+
+    public void setTotalPriceCheckout(String checkOutTotalPrice) throws IOException
+    {
+        fileInputStream();
+        prop.setProperty("CHECK_OUT_TOTAL_PRICE", checkOutTotalPrice);
+        fileOutputStream();
+    }
+
+    public String getTotalPriceCheckout() throws IOException
+    {
+        fileInputStream();
+       return prop.getProperty("CHECK_OUT_TOTAL_PRICE");
+    }
+
 }

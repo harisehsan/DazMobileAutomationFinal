@@ -457,4 +457,9 @@ public class Base {
     protected boolean isExistByIdAndText(String id, String text) {
         return driver.findElements(By.xpath("//*[@resource-id='" + id + "' and @text='" + text + "']")).size() > 0;
     }
+
+    protected int convertToIntFromString(String text)
+    {
+        return (Integer.parseInt(text.replaceAll("\\D+","")));
+    }
 }
