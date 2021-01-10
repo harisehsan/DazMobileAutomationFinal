@@ -7,16 +7,28 @@ Feature: Daraz Wishlist Management
     And I search a Product using SKU for "Wishlist"
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     And I goto wishlist from PDP screen
     Then I check for the watchlist, Out of Stock or Back In Stock sections in wishlist
 
   @21001151 @check_just_for_you_in_wishlist @28810139 @28810144 @28810143 @28810138
   Scenario: check for just for you section in wishlist
     Given I select the venture
-    And I login using google account
+    And I navigate to the signin screen
+    And I login with old buyer account
     And I open a wishlist
     Then I scroll down to just for you section
+
+  @21001151 @remove_single_item_from_wishlist @28810148
+  Scenario: Remove single item from wishlist
+    Given I select the venture
+    And I search a Product using SKU for "Wishlist"
+    And I select the product
+    And I add a product to wishlist
+    And I login with old buyer account
+    And I goto wishlist from PDP screen
+    And I delete a single item form wishlist
+    Then I verify that deleted item should not present in wishlist
 
   @21001151 @remove_all_items_from_wishlist @28810283 @28810140 @28810143 @28810138
   Scenario: Remove all items from wishlist
@@ -24,7 +36,7 @@ Feature: Daraz Wishlist Management
     And I search a Product using SKU for "Wishlist"
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     And I goto wishlist from PDP screen
     And I delete all items form wishlist
     Then I verify that no item left in the wishlist
@@ -38,7 +50,7 @@ Feature: Daraz Wishlist Management
     And I search a Product using SKU for "Wishlist"
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     Then I verify item has been added to wishlist by success message
     And I remove the already added product from wishlist
     Then I verify item has been removed to wishlist by success message
@@ -49,19 +61,8 @@ Feature: Daraz Wishlist Management
     And I search a Product using SKU for "Wishlist"
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     Then I goto the wishlist to verify the added item
-
-  @21001151 @remove_single_item_from_wishlist @28810148
-  Scenario: Remove single item from wishlist
-    Given I select the venture
-    And I search a Product using SKU for "Wishlist"
-    And I select the product
-    And I add a product to wishlist
-    And I signin with google account
-    And I goto wishlist from PDP screen
-    And I delete a single item form wishlist
-    Then I verify that deleted item should not present in wishlist
 
   @21001151 @add_product_from_cart_to_wishlist @28810197 @28810163 @28810262 @28810209 @28810212
   Scenario: Add a product from Cart to Wishlist
@@ -69,7 +70,7 @@ Feature: Daraz Wishlist Management
     And I search a Product using SKU for "Cart"
     And I select the product for cart
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I add a product from cart to wishlist
     Then I verify for added item in wishlist
@@ -77,7 +78,7 @@ Feature: Daraz Wishlist Management
 #  @21001151 @remove_all_items_from_wishlist_without_add_item
 #  Scenario: Remove all items from wishlist without add item
 #    Given I select the venture
-#    And I login using google account
+#    And I login with old buyer account
 #    And I open a wishlist
 #    And I delete all items form wishlist
 #    Then I verify that no item left in the wishlist
@@ -88,7 +89,7 @@ Feature: Daraz Wishlist Management
     And I search a Product using SKU for "Wishlist"
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     And I goto wishlist from PDP screen
     And I click on the add all to cart button
     And I navigate to cart from wishlist
@@ -101,7 +102,7 @@ Feature: Daraz Wishlist Management
     And I goto the PDP page
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     Then I goto the wishlist to verify the added item
 
   @21001151 @add_free_gift_item_into_wishlist @28810158
@@ -111,7 +112,7 @@ Feature: Daraz Wishlist Management
     And I goto the PDP page
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     Then I goto the wishlist to verify the added item
 
   @21001151 @add_buy_one_get_one_into_wishlist @28810158
@@ -121,5 +122,5 @@ Feature: Daraz Wishlist Management
     And I goto the PDP page
     And I select the product
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     Then I goto the wishlist to verify the added item

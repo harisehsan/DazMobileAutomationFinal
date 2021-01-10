@@ -1,5 +1,6 @@
 package global;
 
+import com.sun.javafx.scene.traversal.Direction;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -112,24 +113,96 @@ public class Base {
     }
 
     public void swiptToBottom() {   // Perform little bit Down Scroll on Current Screen
+//        try {
+//            PointOption pointOption = new PointOption();
+//            Dimension dim = driver.manage().window().getSize();
+//            int height = dim.getHeight();
+//            int width = dim.getWidth();
+//            int x = width / 2;
+//            int top_y = (int) (height * 0.80);
+//            int bottom_y = (int) (height * 0.787);
+////            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
+//            TouchAction ts = new TouchAction(driver);
+//            ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
+//            TouchActions action = new TouchActions(driver);
+////            action.scroll(744, 300);
+//            action.perform();
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//        }
+        swipeScreenSmall(Direction.UP);
+    }
+
+
+    public void swipeScreenSmall(Direction dir) {
+        System.out.println("swipeScreenSmall(): dir: '" + dir + "'"); // always log your actions
+
+        // Animation default time:
+        //  - Android: 300 ms
+        //  - iOS: 200 ms
+        // final value depends on your app and could be greater
+        final int ANIMATION_TIME = 200; // ms
+
+        final int PRESS_TIME = 200; // ms
+
+        PointOption pointOptionStart, pointOptionEnd;
+
+        // init screen variables
+        Dimension dims = driver.manage().window().getSize();
+
+        // init start point = center of screen
+//        pointOptionStart = PointOption.point(dims.width / 2, (int) (dims.height * 0.700));
+        pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
+
+        // reduce swipe move into multiplier times comparing to swipeScreen move
+        int mult = 10; // multiplier
+
+        System.out.println(" Dimentions are here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims);
+        System.out.println(" Actual Width is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.width);
+        System.out.println(" Width is  here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.width / 2);
+        System.out.println(" Actual hight is  here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.height);
+        System.out.println(" Height here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.height / 2);
+        System.out.println(" Formula is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + ((dims.height / 2) - (dims.height / 0.800) / mult));
+        System.out.println(" Formula is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + ((dims.height / 0.800) - (dims.height / 0.800) / mult));
+        System.out.println(" Dimentions formula is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + ((dims.height / 2) - (dims.height / 2) / mult));
+        switch (dir) {
+            case DOWN: // center of footer
+                pointOptionEnd = PointOption.point(dims.width / 2, (dims.height / 2) + (dims.height / 2) / mult);
+                break;
+            case UP: // center of header
+                pointOptionEnd = PointOption.point(dims.width / 2, (int) ((dims.height / 2) - (dims.height / 0.800) / mult));
+                break;
+            case LEFT: // center of left side
+                pointOptionEnd = PointOption.point((dims.width / 2) - (dims.width / 2) / mult, dims.height / 2);
+                break;
+            case RIGHT: // center of right side
+                pointOptionEnd = PointOption.point((dims.width / 2) + (dims.width / 2) / mult, dims.height / 2);
+                break;
+            default:
+                throw new IllegalArgumentException("swipeScreenSmall(): dir: '" + dir.toString() + "' NOT supported");
+        }
+        // execute swipe using TouchAction
         try {
-            PointOption pointOption = new PointOption();
-            Dimension dim = driver.manage().window().getSize();
-            int height = dim.getHeight();
-            int width = dim.getWidth();
-            int x = width / 2;
-            int top_y = (int) (height * 0.80);
-            int bottom_y = (int) (height * 0.787);
-//            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
-            TouchAction ts = new TouchAction(driver);
-            ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
-            TouchActions action = new TouchActions(driver);
-//            action.scroll(744, 300);
-            action.perform();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            new TouchAction(driver)
+
+                    .press(pointOptionStart)
+                    // a bit more reliable when we add small wait
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(PRESS_TIME)))
+                    .moveTo(pointOptionEnd)
+                    .release().perform();
+        } catch (Exception e) {
+            System.err.println("swipeScreenSmall(): TouchAction FAILED\n" + e.getMessage());
+            return;
+        }
+
+        // always allow swipe action to complete
+        try {
+            Thread.sleep(ANIMATION_TIME);
+        } catch (InterruptedException e) {
+            // ignore
         }
     }
+
 
     /**
      * method to set the context to required view.

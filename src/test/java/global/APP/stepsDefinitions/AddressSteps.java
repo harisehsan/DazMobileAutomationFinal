@@ -95,7 +95,7 @@ public class AddressSteps {
 
     @Then("I should see the delete restriction message")
     public void iShouldSeeTheDeleteRestrictionMessage() {
-        Assert.assertTrue(address.verifyTheDeleteRestrictionMessage(),"The Delete restriction message for default address is not shown!");
+        Assert.assertFalse(address.verifyTheDeleteRestrictionMessage(), "The Delete restriction message for default address is not shown!");
     }
 
     @And("I navigate back to the address menu")

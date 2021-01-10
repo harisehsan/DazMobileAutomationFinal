@@ -5,7 +5,7 @@ Feature: Daraz Address Management
   Scenario: Add new address
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     And I click on new address button
     And I add the address details
@@ -17,7 +17,7 @@ Feature: Daraz Address Management
   Scenario: Change the address details
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     And I click on edit address button
     And I edit the address details
@@ -28,7 +28,7 @@ Feature: Daraz Address Management
   Scenario: Delete all the deletable addresses
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     And I click on new address button
     And I add the address details
@@ -52,25 +52,7 @@ Feature: Daraz Address Management
   Scenario: delete the different shipping and billing addresses
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
-    And I navigate to address menu
-    And I click on new address button
-    And I add the address details
-    And I make the address default "shipping" address only
-    And I save the changes
-    And I select the edit button of the "first" address
-    When I select the delete button
-    Then I should see the delete restriction message
-    And I navigate back to the Home Page from "edit address"
-    And I select the edit button of the "second" address
-    When I select the delete button
-    Then I should see the delete restriction message
-
-  @21298974 @delete_the_different_shipping_billing_addresses @30523166 @30523149
-  Scenario: delete the different shipping and billing addresses
-    Given I select the venture
-    And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     And I click on new address button
     And I add the address details
@@ -88,7 +70,7 @@ Feature: Daraz Address Management
   Scenario: set the address as a home and office
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     When I scroll to the "HOME" button
     And I select the "HOME" button

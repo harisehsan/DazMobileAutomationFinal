@@ -149,4 +149,12 @@ public class SignUpStep {
     public void iSelectFirstLoginButton() {
       login.selectFirstLoginButton();
     }
+
+    @And("I login with old buyer account")
+    public void iLoginWithOldBuyerAccount() throws IOException {
+        login.selectFirstLoginButton();
+        login.enterLoginEmail();
+        login.enterLoginPassword();
+        login.clickLoginButton();
+    }
 }

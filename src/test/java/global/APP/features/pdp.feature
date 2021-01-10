@@ -5,7 +5,7 @@ Feature: PDP page Management
   Scenario: Remove all products from cart without add product
     Given I select the venture
     And I select cart
-    And I signin with google account
+    And I login with old buyer account
     And I remove all items from cart
     Then I verify that all items in cart are successfully removed
 
@@ -32,7 +32,7 @@ Feature: PDP page Management
     Then I click on share icon to view its details
     And I navigate back
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart
@@ -56,7 +56,7 @@ Feature: PDP page Management
   Scenario: Verify the product delivery option content
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate back to the Home Page from "My Account"
     And I search product using sku for "PDP"
     And I goto the PDP page
@@ -99,7 +99,7 @@ Feature: PDP page Management
     And I goto the PDP page
     And I click on store button
     And I click on Follow button
-    And I signin with google account
+    And I login with old buyer account
     Then I should be followed that store
 
   @22702821 @verify_recommended_by_seller @28811373
@@ -118,7 +118,7 @@ Feature: PDP page Management
     And I goto the PDP page
     And I navigate to login page from PDP
 #    And I navigate back to pdp page
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the Home page from PDP
     And I search product using sku for "PDP"
     And I goto the PDP page
@@ -157,7 +157,7 @@ Feature: PDP page Management
     And I navigate back to pdp page
     And I add a product to cart
     And I goto cart menu from PDP variation screen
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart
@@ -175,7 +175,7 @@ Feature: PDP page Management
     And I search product using sku for "PDP"
     And I goto the PDP page
     And I click on chat icon
-    And I signin with google account
+    And I login with old buyer account
     Then I should be on the chat page
 
   @28811393 @verify_pdp_voucher_collect @28811315 @28811317
@@ -186,7 +186,7 @@ Feature: PDP page Management
     And I check the existence of Voucher on PDP
     And I open voucher section
     And I click on collect button
-    And I signin with google account
+    And I login with old buyer account
     Then The voucher should be collected
 
 #  @28811393 @verify_pdp_voucher_copy @28811316
@@ -223,7 +223,7 @@ Feature: PDP page Management
     And I check the existence of "Buy More & Save More" promotion on Popup
     And I navigate back to pdp page
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I select that product in cart
     Then I should see the promo saved price
@@ -236,7 +236,7 @@ Feature: PDP page Management
     And I check the existence of "Buy One Get One Free" promotion on Popup
     And I navigate back to pdp page
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I select that product in cart
     Then I should see its quantity "2" in cart
