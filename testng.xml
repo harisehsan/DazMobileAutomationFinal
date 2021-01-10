@@ -5,8 +5,8 @@
     <test name="Device1">
     <parameter name="platformName" value="Android"/>
     <parameter name="deviceName" value="Galaxy J7"/>
-    <parameter name="platformVersion" value="8.1.0"/>
-    <parameter name="udid" value="1b175a61"/>
+    <parameter name="platformVersion" value="8.0.0"/>
+    <parameter name="udid" value="988673503850495234"/>
     <parameter name="port" value="4723"/>
     <parameter name="systemPort" value="8210"/>
     <classes>

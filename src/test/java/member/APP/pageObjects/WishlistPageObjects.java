@@ -49,8 +49,10 @@ public class WishlistPageObjects extends BuildIDPicker {
     @AndroidFindBy (id = "com.shop.android:id/txt_login_signup") public WebElement login_Signup_btn_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/uptext") public List  <WebElement> wishlist_lbl;
     @AndroidFindBy (id = "com.shop.android:id/uptext") public List <WebElement> wishlist_lbl_MM;
-    @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='\uE723']"),@AndroidBy(className= "//*[@content-desc='\uE723']")}) public List <WebElement> wishlist_Delete_icon;
-    @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='REMOVE']"),@AndroidBy(className= "//*[@content-desc='REMOVE']")}) public WebElement remove_btn;
+    @AndroidFindBy(xpath = "//*[@content-desc='\uE723']")
+    public List<WebElement> wishlist_Delete_icon;
+    @AndroidFindBy(xpath = "//*[@content-desc='REMOVE']")
+    public WebElement remove_btn;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/dots") public List <WebElement> dots_btn;
     @AndroidFindBy(id = "com.shop.android:id/dots") public List <WebElement> dots_btn_MM;
     @AndroidFindBy (xpath = "//*[@text='My Account']") public WebElement my_Account_menuItem;

@@ -1,4 +1,4 @@
- @order
+@smoke @order
 Feature: Daraz Order Details & Order Cancellation Management
 
   @21001814 @make_cart_empty_without_item_add_for_orders

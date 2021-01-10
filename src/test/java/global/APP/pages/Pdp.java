@@ -510,22 +510,28 @@ public class Pdp extends Base {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             if (isExist(searchPageObj.got_It_Store_btn))
                 searchPageObj.got_It_Store_btn.get(0).click();
-            pdpPageObject.store_Follow_btn.click();
+            pdpPageObject.store_Follow_lst_ele_btn.get(0).click();
         } else {
             if (isExist(searchPageObj.got_It_Store_btn_MM))
                 searchPageObj.got_It_Store_btn_MM.get(0).click();
-            pdpPageObject.store_Follow_btn_MM.click();
+            pdpPageObject.store_Follow_lst_ele_btn_MM.get(0).click();
         }
     }
 
     public boolean iShouldFollowedThatStore() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            waitUntilPresentOfElementBy(pdpPageObject.store_Follow_btn_By);
-            return pdpPageObject.store_Follow_btn.getText().contains("Following");
+            if (!isExist(pdpPageObject.store_Follow_lst_ele_btn)) {
+                driver.navigate().back();
+                iclickOnStore();
+            }
+            return pdpPageObject.store_Follow_lst_ele_btn.get(0).getText().contains("Following");
         }
         else {
-            waitUntilPresentOfElementBy(pdpPageObject.store_Follow_btn_By_MM);
-            return pdpPageObject.store_Follow_btn_MM.getText().contains("Following");
+            if (!isExist(pdpPageObject.store_Follow_lst_ele_btn_MM)) {
+                driver.navigate().back();
+                iclickOnStore();
+            }
+            return pdpPageObject.store_Follow_lst_ele_btn_MM.get(0).getText().contains("Following");
         }
     }
 

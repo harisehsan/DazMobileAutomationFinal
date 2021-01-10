@@ -27,7 +27,8 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id="com.daraz.android"+dev+":id/wishlist") public List <WebElement> wishlist_icon;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/share") public List <WebElement> share_icon;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/share_panel_title") public List <WebElement> share_Title_lbl;
- @AndroidFindBy(xpath = "//*[@text='Specifications' and @top='true']") public List <WebElement> specifications_lbl;
+ @AndroidFindBy(xpath = "//*[contains(@resource-id,'label_left_title') and contains(@text,'Specifications')]")
+ public List<WebElement> specifications_lbl;
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/specification_popup_item_title") public List <WebElement> specifications_Contents_lbl;
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/label_middle_des") public WebElement specification_Information_On_Pdp;
  @AndroidFindBy(xpath = "//*[@text='Delivery']") public List <WebElement> deliver_Options_lbl;
@@ -42,7 +43,10 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id="com.daraz.android"+dev+":id/ask_button") public List <WebElement> ask_Question_btn;
  @AndroidFindBy(xpath="//*[@text='Q&A']") public List <WebElement> qa_page_title_lbl;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/shopIcon") public WebElement store_btn;
- @AndroidFindBy(id="com.daraz.android"+dev+":id/laz_shop_follow_btn") public WebElement store_Follow_btn;
+ @AndroidFindBy(id = "com.daraz.android" + dev + ":id/laz_shop_follow_btn")
+ public List<WebElement> store_Follow_lst_ele_btn;
+ @AndroidFindBy(id = "com.shop.android" + dev + ":id/laz_shop_follow_btn")
+ public List<WebElement> store_Follow_lst_ele_btn_MM;
  @AndroidFindBy (id="com.daraz.android"+dev+":id/seller_recommend_title") public List <WebElement> recommended_By_Seller_lbl;
  @AndroidFindBy (id="com.daraz.android"+dev+":id/dots") public WebElement dots_button;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/menuText") public List <WebElement> menu_List;
@@ -111,7 +115,6 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id="com.shop.android:id/qa_view_all") public List <WebElement> qa_View_All_btn_MM;
  @AndroidFindBy(id="com.shop.android:id/ask_button") public List <WebElement> ask_Question_btn_MM;
  @AndroidFindBy(id="com.shop.android:id/shopIcon") public WebElement store_btn_MM;
- @AndroidFindBy(id="com.shop.android:id/laz_shop_follow_btn") public WebElement store_Follow_btn_MM;
  @AndroidFindBy (id="com.shop.android:id/seller_recommend_title") public List <WebElement> recommended_By_Seller_lbl_MM;
  @AndroidFindBy (id="com.shop.android:id/dots") public WebElement dots_button_MM;
  @AndroidFindBy(id="com.shop.android:id/menuText") public List <WebElement> menu_List_MM;
@@ -186,7 +189,7 @@ public class PdpPageObject extends BuildIDPicker {
  public By item_Count_drpDown_By_MM = By.id("com.shop.android:id/iv_laz_trade_item_action_dropdown");
  public By cart_Item_container_By = By.id("com.daraz.android"+dev+":id/container_laz_trade_item_content");
  public By cart_Item_container_By_MM = By.id("com.shop.android:id/container_laz_trade_item_content");
- public By store_Follow_btn_By  = By.id("com.daraz.android"+dev+":id/laz_shop_follow_btn");
+ public By store_Follow_btn_By = By.xpath("//*[contains(@resource-id,'laz_shop_follow_btn') and contains(@text,'Following')]");
  public By store_Follow_btn_By_MM  = By.id("com.shop.android:id/laz_shop_follow_btn");
  public By item_Count_lbl_By = By.xpath("//*[@text='2']");
  public By confirm_btn_By = By.id("com.daraz.android"+dev+":id/confirm_btn");
