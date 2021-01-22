@@ -79,7 +79,7 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/edit_laz_trade_text_editor_box") public List <WebElement> cnictxtboxIDMM;
     @AndroidFindBy(id= "com.daraz.android:id/btn_laz_trade_text_editor_save") public WebElement save_CNIC_btn;
     @AndroidFindBy(id= "com.daraz.android:id/btn_laz_trade_text_editor_save") public WebElement save_CNIC_btn_MM;
-    @AndroidFindBy(id = "com.daraz.android:id/icf_laz_trade_text_editor_clear") public WebElement  cnic_Clear_btn;
+    @AndroidFindBy(id = "com.daraz.android:id/icf_laz_trade_text_editor_clear") public WebElement cnic_Clear_btn;
     @AndroidFindBy(id = "com.shop.android:id/icf_laz_trade_text_editor_clear") public WebElement cnic_Clear_btn_MM;
     @AndroidFindBy(id = "com.daraz.android:id/edit_laz_trade_voucher_input") public List <WebElement> checkout_Voucher_Field;
     @AndroidFindBy(id = "com.shop.android:id/edit_laz_trade_voucher_input") public List <WebElement> checkout_Voucher_Field_MM;

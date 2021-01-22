@@ -7,7 +7,7 @@ Feature: Daraz Checkout Management
 #    And I search a Product using SKU for "Checkout"
 #    And I select the product for checkout
 #    And I add a product to cart
-#    And I signin with google account
+#    And I login with old buyer account
 #    And I goto cart menu from PDP screen
 #    And I select that product from cart for checkout
 #    And I click on checkout button in cart menu
@@ -23,7 +23,7 @@ Feature: Daraz Checkout Management
 #    And I search a Product using SKU for "Checkout"
 #    And I select the product for checkout
 #    And I add a product to cart
-#    And I signin with google account
+#    And I login with old buyer account
 #    And I goto cart menu from PDP screen
 #    And I select that product from cart for checkout
 #    And I change the quantity to 5
@@ -41,7 +41,7 @@ Feature: Daraz Checkout Management
   Scenario: Remove all products from cart without add product
     Given I select the venture
     And I select cart
-    And I signin with google account
+    And I login with old buyer account
     And I remove all items from cart
     Then I verify that all items in cart are successfully removed
 
@@ -51,7 +51,7 @@ Feature: Daraz Checkout Management
     And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I should be on the PDP page
     And I navigate back to the Home Page from "PDP"
     And I search product using sku for "Combo"
@@ -73,7 +73,7 @@ Feature: Daraz Checkout Management
     And I goto the PDP page
     And I get the product Name for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     Then I verify the existence of "Buy 1 Get 1 Free" promotion on checkout
     Then I verify "1 Item(s)" is not displayed on checkout
 
@@ -84,7 +84,7 @@ Feature: Daraz Checkout Management
     And I goto the PDP page
     And I get the product Name for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     Then I verify the existence of "Buy More & Save Up" promotion on checkout
 
   @21001814 @free_gift_logo_and_items_on_checkout @28810305
@@ -94,7 +94,7 @@ Feature: Daraz Checkout Management
     And I goto the PDP page
     And I get the product Name for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     Then I verify the existence of "Free Gift" promotion on checkout
     Then I verify "1 Item(s)" is not displayed on checkout
 
@@ -104,7 +104,7 @@ Feature: Daraz Checkout Management
       And I search a Product using SKU for "Checkout"
       And I select the product for checkout
       And I select Buy Now button
-      And I signin with google account
+      And I login with old buyer account
       And I click on edit address button on checkout
       And I click on edit address button
       And I edit the address details
@@ -115,7 +115,7 @@ Feature: Daraz Checkout Management
   Scenario: Edit addresses to verify different ship and bill address on checkout
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     And I click on edit address button
     And I make the address default billing and shipping address
@@ -134,7 +134,7 @@ Feature: Daraz Checkout Management
   Scenario: Edit addresses to verify same ship and bill address on checkout
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to address menu
     And I click on edit address button
     And I make the address default billing and shipping address
@@ -153,177 +153,177 @@ Feature: Daraz Checkout Management
     And I goto the PDP page
     And I get the product Name
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     Then I verify the existence of delivery time and email address on checkout
     Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
 
-#  @21001151 @verify_the_cnic_on_checkout_for_single_product @30779738 @30779724 @30779711 @30779720 @30779728 @30779732 @30779725
-#  Scenario: verify CNIC on checkout for the single item
-#    Given I select the venture
-#    And I search product using sku for "CNIC1"
-#    And I goto the PDP page
-#    And I select Buy Now button
-#    And I signin with google account
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-#    And I wait for checkout screen
-#    And I enter the garbage data for CNIC
-#    And I save the CNIC number
+  @21001151 @verify_the_cnic_on_checkout_for_single_product @30779738 @30779724 @30779711 @30779720 @30779728 @30779732 @30779725
+  Scenario: verify CNIC on checkout for the single item
+    Given I select the venture
+    And I search product using sku for "CNIC1"
+    And I goto the PDP page
+    And I select Buy Now button
+    And I login with old buyer account
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+    And I wait for checkout screen
+    And I enter the garbage data for CNIC
+    And I save the CNIC number
+    Then I should see the CNIC validation error
+    And I clear the CNIC field
+    Then I verify the empty CNIC field
+    And I enter the valid CNIC
+    And I save the CNIC number
+    And I click on proceed to pay button
+    And I wait for the select payment screen
+    And I select Cash on Delivery payment method
+    And I should reach to order successful page
+    And I click on Track Order button
+    And I wait for the order details page
+    And I navigate back to the main screen
+    And I search product using sku for "CNIC1"
+    And I goto the PDP page
+    And I select Buy Now button
+    And I wait for checkout screen
+    Then I should not see the CNIC field
+
+  @21001151 @verify_the_cnic_on_checkout_for_multiple_items_of_same_seller @30779726 @30779727 @30779737
+  Scenario: verify the CNIC checkout for multiple items of same seller
+    Given I select the venture
+    And I search product using sku for "CNIC2"
+    And I goto the PDP page
+    And I get the product Name
+    And I get the product Name for checkout
+    And I add a product to cart
+    And I login with old buyer account
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I scroll down to view product in cart
+    And I select that product from cart for checkout
+    And I change the quantity to 1
+    And I click on checkout button in cart menu
+    And I wait for checkout screen
+    Then I should not see the CNIC field
+    And I navigate back
+    And I scroll down to view product in cart
+    And I select that product from cart for checkout
+    And I change the quantity to 3
+    And I click on checkout button in cart menu
+    And I wait for checkout screen
+    Then I should not see the CNIC field
+    And I navigate back
+    And I scroll down to view product in cart
+    And I select that product from cart for checkout
+    And I change the quantity to 4
+    And I click on checkout button in cart menu
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+
+  @21001151 @verify_the_cnic_on_checkout_for_multiple_items_of_different_seller @30779719 @30779723
+  Scenario: verify the CNIC checkout for multiple items of different seller
+    Given I select the venture
+    And I select cart
+    And I login with old buyer account
+    And I remove all items from cart
+    Then I verify that all items in cart are successfully removed
+    And I navigate back to the main screen
+    And I search product using sku for "CNIC3"
+    And I goto the PDP page
+    And I get the product Name
+    And I get the product Name for checkout
+    And I add a product to cart
+    And I navigate back to the main screen
+    And I search product using sku for "CNIC2"
+    And I goto the PDP page
+    And I get the product Name
+    And I get the product Name for checkout
+    And I add a product to cart
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I scroll down to view product in cart
+    And I select that product from cart for checkout
+    And I change the quantity to 3
+    And I select all items in cart
+    And I click on checkout button in cart menu
+    And I wait for checkout screen
+    Then I should not see the CNIC field
+    And I navigate back
+    And I scroll down to view product in cart
+    And I select that product from cart for checkout
+    And I change the quantity to 4
+    And I select all items in cart
+    And I click on checkout button in cart menu
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+
+  @21001151 @delete_the_main_cnic_product_on_checkout @30779731
+  Scenario: Delete the main CNIC product from checkout
+    Given I select the venture
+    And I select cart
+    And I login with old buyer account
+    And I remove all items from cart
+    Then I verify that all items in cart are successfully removed
+    And I navigate back to the main screen
+    And I search product using sku for "CNIC2"
+    And I goto the PDP page
+    And I get the product Name
+    And I get the product Name for checkout
+    And I add a product to cart
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I scroll down to view product in cart
+    And I select that product from cart for checkout
+    And I change the quantity to 3
+    And I navigate back to the main screen
+    And I search product using sku for "CNIC1"
+    And I goto the PDP page
+    And I get the product Name
+    And I get the product Name for checkout
+    And I add a product to cart
+    And I goto cart menu from PDP screen
+    And I select all items in cart
+    And I click on checkout button in cart menu
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+    And I slide the product to view the delete button
+    And I click on delete button checkout
+    And I wait for checkout screen
+    Then I should not see the CNIC field
+
+  @21001151 @apply_code_voucher_to_check_cnic @30779718
+  Scenario: Apply the code voucher to check the disabled proceed to pay button
+    Given I select the venture
+    And I search product using sku for "CNIC1"
+    And I goto the PDP page
+    And I select Buy Now button
+    And I login with old buyer account
+    And I wait for checkout screen
+    And I clear the CNIC field
+    And I enter the voucher code on checkout
+    And I select the apply button for voucher
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+#    Then I verify the disabled proceed to pay button
+
+  @21001151 @verify_existence_of_cnic_for_digital @30779714
+  Scenario: Verify the existence of CNIC on Checkout for digital product
+    Given I select the venture
+    And I search product using sku for "CNIC4"
+    And I goto the PDP page
+    And I select Buy Now button
+    And I login with old buyer account
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+
+  @31107015 @Verify_the_existance_and_Validation_of_CNIC_for_new_user @30779725
+    Scenario: Verify the existence of CNIC on Checkout for New Users
+    Given I select the venture
+    And I search product using sku for "CNIC1"
+    And I goto the PDP page
+    And I select Buy Now button
+    And I signin with "1st" new account
+    And I wait for checkout screen
+    Then I verify the existence of CNIC field on checkout
+    And I click on proceed to pay button
 #    Then I should see the CNIC validation error
-#    And I clear the CNIC field
-#    Then I verify the empty CNIC field
-#    And I enter the valid CNIC
-#    And I save the CNIC number
-#    And I click on proceed to pay button
-#    And I wait for the select payment screen
-#    And I select Cash on Delivery payment method
-#    And I should reach to order successful page
-#    And I click on Track Order button
-#    And I wait for the order details page
-#    And I navigate back to the main screen
-#    And I search product using sku for "CNIC1"
-#    And I goto the PDP page
-#    And I select Buy Now button
-#    And I wait for checkout screen
-#    Then I should not see the CNIC field
-#
-#  @21001151 @verify_the_cnic_on_checkout_for_multiple_items_of_same_seller @30779726 @30779727 @30779737
-#  Scenario: verify the CNIC checkout for multiple items of same seller
-#    Given I select the venture
-#    And I search product using sku for "CNIC2"
-#    And I goto the PDP page
-#    And I get the product Name
-#    And I get the product Name for checkout
-#    And I add a product to cart
-#    And I signin with google account
-#    And I goto cart menu from PDP screen
-#    And I skip the cart popup
-#    And I scroll down to view product in cart
-#    And I select that product from cart for checkout
-#    And I change the quantity to 1
-#    And I click on checkout button in cart menu
-#    And I wait for checkout screen
-#    Then I should not see the CNIC field
-#    And I navigate back
-#    And I scroll down to view product in cart
-#    And I select that product from cart for checkout
-#    And I change the quantity to 3
-#    And I click on checkout button in cart menu
-#    And I wait for checkout screen
-#    Then I should not see the CNIC field
-#    And I navigate back
-#    And I scroll down to view product in cart
-#    And I select that product from cart for checkout
-#    And I change the quantity to 4
-#    And I click on checkout button in cart menu
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-#
-#  @21001151 @verify_the_cnic_on_checkout_for_multiple_items_of_different_seller @30779719 @30779723
-#  Scenario: verify the CNIC checkout for multiple items of different seller
-#    Given I select the venture
-#    And I select cart
-#    And I signin with google account
-#    And I remove all items from cart
-#    Then I verify that all items in cart are successfully removed
-#    And I navigate back to the main screen
-#    And I search product using sku for "CNIC3"
-#    And I goto the PDP page
-#    And I get the product Name
-#    And I get the product Name for checkout
-#    And I add a product to cart
-#    And I navigate back to the main screen
-#    And I search product using sku for "CNIC2"
-#    And I goto the PDP page
-#    And I get the product Name
-#    And I get the product Name for checkout
-#    And I add a product to cart
-#    And I goto cart menu from PDP screen
-#    And I skip the cart popup
-#    And I scroll down to view product in cart
-#    And I select that product from cart for checkout
-#    And I change the quantity to 3
-#    And I select all items in cart
-#    And I click on checkout button in cart menu
-#    And I wait for checkout screen
-#    Then I should not see the CNIC field
-#    And I navigate back
-#    And I scroll down to view product in cart
-#    And I select that product from cart for checkout
-#    And I change the quantity to 4
-#    And I select all items in cart
-#    And I click on checkout button in cart menu
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-#
-#  @21001151 @delete_the_main_cnic_product_on_checkout @30779731
-#  Scenario: Delete the main CNIC product from checkout
-#    Given I select the venture
-#    And I select cart
-#    And I signin with google account
-#    And I remove all items from cart
-#    Then I verify that all items in cart are successfully removed
-#    And I navigate back to the main screen
-#    And I search product using sku for "CNIC2"
-#    And I goto the PDP page
-#    And I get the product Name
-#    And I get the product Name for checkout
-#    And I add a product to cart
-#    And I goto cart menu from PDP screen
-#    And I skip the cart popup
-#    And I scroll down to view product in cart
-#    And I select that product from cart for checkout
-#    And I change the quantity to 3
-#    And I navigate back to the main screen
-#    And I search product using sku for "CNIC1"
-#    And I goto the PDP page
-#    And I get the product Name
-#    And I get the product Name for checkout
-#    And I add a product to cart
-#    And I goto cart menu from PDP screen
-#    And I select all items in cart
-#    And I click on checkout button in cart menu
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-#    And I slide the product to view the delete button
-#    And I click on delete button checkout
-#    And I wait for checkout screen
-#    Then I should not see the CNIC field
-#
-#  @21001151 @apply_code_voucher_to_check_cnic @30779718
-#  Scenario: Apply the code voucher to check the disabled proceed to pay button
-#    Given I select the venture
-#    And I search product using sku for "CNIC1"
-#    And I goto the PDP page
-#    And I select Buy Now button
-#    And I signin with google account
-#    And I wait for checkout screen
-#    And I clear the CNIC field
-#    And I enter the voucher code on checkout
-#    And I select the apply button for voucher
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-##    Then I verify the disabled proceed to pay button
-#
-#  @21001151 @verify_existence_of_cnic_for_digital @30779714
-#  Scenario: Verify the existence of CNIC on Checkout for digital product
-#    Given I select the venture
-#    And I search product using sku for "CNIC4"
-#    And I goto the PDP page
-#    And I select Buy Now button
-#    And I signin with google account
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-#
-#  @31107015 @Verify_the_existance_and_Validation_of_CNIC_for_new_user @30779725
-#    Scenario: Verify the existence of CNIC on Checkout for New Users
-#    Given I select the venture
-#    And I search product using sku for "CNIC1"
-#    And I goto the PDP page
-#    And I select Buy Now button
-#    And I signin with "1st" new account
-#    And I wait for checkout screen
-#    Then I verify the existence of CNIC field on checkout
-#    And I click on proceed to pay button
-##    Then I should see the CNIC validation error
-#    Then I verify the existence of Proceed to pay button
+    Then I verify the existence of Proceed to pay button
