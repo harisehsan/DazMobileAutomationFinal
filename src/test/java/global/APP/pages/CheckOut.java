@@ -65,20 +65,17 @@ public class CheckOut extends Base {
         try {
             if (System.getProperty("env").equalsIgnoreCase("pk.live"))
             {
-              if (!waitWithoutException(checkOutPageObjects.cod_lbl_MM))
-                scrollDownMultipleTries(7);
+                while (!checkOutPageObjects.cod_lbl_MM.isDisplayed()) {
+                    swiptToBottom();
+                }
             }
-         //   scrollDownMultipleTries(10);
+            //   scrollDownMultipleTries(10);
             waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
             checkOutPageObjects.cod_lbl_MM.click();
         } catch (Exception e) {
             e.printStackTrace();
             findElementByTextUsingExactString("Cash on Delivery");
         }
-//        } else {
-//            waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_By);
-//            checkOutPageObjects.cod_lbl.click();
-//        }
     }
 
     public void reachToOrderSuccessPage() {
@@ -87,9 +84,6 @@ public class CheckOut extends Base {
     }
 
     public void clickTrackOrder() {
-//        if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.track_Order_btn_By)) {
-//            checkOutPageObjects.track_Order_btn.click();
-//        } else {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
                 if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
                     checkOutPageObjects.rating_Later_btn.click();

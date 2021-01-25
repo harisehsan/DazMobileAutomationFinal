@@ -35,8 +35,8 @@ public class Order extends Base {
     }
 
     public void clickOnCancelOrder() {
-        waitUntilPresentOfElementByString("CANCEL");
-        findElementByContentDescrpitionUsingContainString("CANCEL").click();
+        waitForElement(orderPageObject.order_Cancel_btn).isDisplayed();
+        orderPageObject.order_Cancel_btn.click();
         if (waitWithoutExceptionByString("Cancel Combo"))
             findElementByContentDescrpitionUsingContainString("Cancel Combo").click();
     }

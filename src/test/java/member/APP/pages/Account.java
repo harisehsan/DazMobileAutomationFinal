@@ -516,7 +516,7 @@ public class Account extends Base {
     }
 
     public boolean verifyFortheNonExistenceOfTheOffersAndAlrets() {
-        return waitWithoutExceptionByTextContainsLessTime(messageOffers);
+        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.message_Settings_Gear_By, 3);
     }
 
     public void unCheckAllMessageSettings() {
@@ -569,5 +569,22 @@ public class Account extends Base {
         waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.myReview_By, 3);
         Assert.assertTrue(accountPageObect.review_history_ele.isDisplayed(), " History tab is not loaded in Review!!!!");
         accountPageObect.review_history_ele.click();
+    }
+
+    public void clickOnGearIconInMessageCenter() {
+        accountPageObect.message_Settings_Gear.click();
+    }
+
+    public void allCheckBoxesMustBeChecked() {
+        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            for (int i = 0; i < accountPageObect.message_Settings_chkBox.size(); i++) {
+                Assert.assertTrue(accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("true"));
+            }
+        } else {
+            for (int i = 0; i < accountPageObect.message_Settings_chkBox_MM.size(); i++) {
+                if (accountPageObect.message_Settings_chkBox_MM.get(i).getAttribute("checked").equalsIgnoreCase("true")) {
+                }
+            }
+        }
     }
 }

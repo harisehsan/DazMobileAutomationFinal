@@ -1,5 +1,6 @@
 package member.APP.pages;
 
+import com.sun.javafx.scene.traversal.Direction;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
@@ -33,9 +34,12 @@ public class UserGrowth extends Base {
    public boolean verifyTheExistenceOfUserGrowthModuleOnHomeScreen()
    {
        if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
+           swipeScreenSmall(Direction.DOWN);
+           waitForElementToDisAppear(userGrowthPageObject.first_Order_voucher_container_HomeScreen_By, 5);
            return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_voucher_container_HomeScreen));
        } else {
-            scrollDownMultipleTries(5);
+           swipeScreenSmall(Direction.DOWN);
+           waitForElementToDisAppear(userGrowthPageObject.first_Order_voucher_container_HomeScreen_MM_By, 5);
            return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_voucher_container_HomeScreen_MM));
        }
    }

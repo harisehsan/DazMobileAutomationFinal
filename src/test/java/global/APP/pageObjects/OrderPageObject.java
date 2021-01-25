@@ -14,7 +14,8 @@ import java.util.List;
  */
 
 public class OrderPageObject extends BuildIDPicker {
-    @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='CANCEL ']"),@AndroidBy(xpath = "//*[@content-desc='CANCEL ']")}) public WebElement order_Cancel_btn;
+    @AndroidFindBy(xpath = "//*[contains(@content-desc,'CANCEL')]")
+    public WebElement order_Cancel_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Select']"),@AndroidBy(xpath = "//*[@content-desc='Select']")}) public WebElement select_Reason_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Confirm']"),@AndroidBy(xpath = "//*[@content-desc='Confirm']")}) public List <WebElement> reason_Confirm_btn;
     @AndroidFindBy (xpath = "//*[@class='android.widget.EditText']") public List <WebElement> cancel_Comment_txt;

@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.APP.getProperty.OrderGetProperty;
+import global.APP.pages.Collection;
 import global.APP.pages.Order;
 import global.APP.pages.SearchBar;
 import global.Drivers;
@@ -91,7 +92,6 @@ public class AccountSteps {
 
     @When("I navigate to the {string} screen from settings")
     public void iNavigateToTheHelpScreenFromSettings(String arg0) {
-//        account.navigateToHelpFromSettingsMenu("Help");
         account.navigateToBySearchingText(arg0);
     }
 
@@ -314,5 +314,16 @@ public class AccountSteps {
     public void iClickToHistoryTab() {
         account.iShouldBeOnMyReviewScreen();
         account.clickOnHistoryTab();
+    }
+
+    @Then("I reset all message setting")
+    public void iResetAllMessageSetting() {
+        account.clickOnGearIconInMessageCenter();
+        account.checkAllMessageSettings();
+    }
+
+    @And("I verify all checkboxes must be checked")
+    public void iVerifyAllCheckboxesMustBeChecked() {
+        account.allCheckBoxesMustBeChecked();
     }
 }

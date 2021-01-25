@@ -30,4 +30,6 @@ public class UserGrowthPageObject extends BuildIDPicker {
     public By login_With_Email_link_By_MM = By.id("com.shop.android:id/tv_signin");
     public By email_txt_By = By.id("com.daraz.android:id/et_input_text");
     public By email_txt_MM_By = By.id("com.shop.android:id/et_input_text");
+    public By first_Order_voucher_container_HomeScreen_By = By.id("com.daraz.android:id/laz_homepage_new_user_section_container");
+    public By first_Order_voucher_container_HomeScreen_MM_By = By.id("com.shop.android:id/laz_homepage_new_user_section_container");
 }

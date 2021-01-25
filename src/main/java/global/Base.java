@@ -159,15 +159,14 @@ public class Base {
 
         System.out.println(" Dimentions are here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims);
         System.out.println(" Actual Width is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.width);
-        System.out.println(" Width is  here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.width / 2);
-        System.out.println(" Actual hight is  here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.height);
-        System.out.println(" Height here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.height / 2);
-        System.out.println(" Formula is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + ((dims.height / 2) - (dims.height / 0.800) / mult));
-        System.out.println(" Formula is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + ((dims.height / 0.800) - (dims.height / 0.800) / mult));
-        System.out.println(" Dimentions formula is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + ((dims.height / 2) - (dims.height / 2) / mult));
+        System.out.println(" Width after division is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.width / 2);
+        System.out.println(" Actual hight is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.height);
+        System.out.println(" Height after division is here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + dims.height / 2);
+        System.out.println(" Pointer starts here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + (dims.width / 5));
+        System.out.println(" Pointer End here ::::::::: >>>>>>>>>>>>>>>>>>>>>> " + (int) ((dims.height / 2) + (dims.height / 0.980) / mult));
         switch (dir) {
             case DOWN: // center of footer
-                pointOptionEnd = PointOption.point(dims.width / 2, (dims.height / 2) + (dims.height / 2) / mult);
+                pointOptionEnd = PointOption.point(dims.width / 2, (int) ((dims.height / 2) + (dims.height / 0.980) / 3));
                 break;
             case UP: // center of header
                 pointOptionEnd = PointOption.point(dims.width / 2, (int) ((dims.height / 2) - (dims.height / 0.800) / mult));

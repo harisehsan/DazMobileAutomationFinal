@@ -22,10 +22,7 @@ Feature: Daraz Voucher Management
     And I check the existence of Voucher on PDP
     And I open voucher section
     And I click on collect button
-    And I select first login button
-    When I enter email
-    And I enter password
-    And I select login button
+    And I login with old buyer account
     And I navigate back to the Home Page from "pdp"
     And I navigate to the account menu
     And I select voucher in my accounts
@@ -37,11 +34,7 @@ Feature: Daraz Voucher Management
     Given I select the venture
     And I search a Product using SKU for "Checkout"
     And I select the product for checkout
-    And I select Buy Now button
-    And I select first login button
-    When I enter email
-    And I enter password
-    And I select login button
+    And I login with old buyer account
     And I scroll down to the voucher
     And I save the total price on checkout screen for voucher
     And I enter the voucher code on checkout for discount
