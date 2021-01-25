@@ -212,7 +212,7 @@ public class CheckOutSteps {
 
     @Then("I verify the empty CNIC field")
     public void iVerifyTheEmptyCNICField() {
-        Assert.assertTrue(checkout.verifyTheEmptyCNICField(), "CNIC field in cleared properly!");
+        Assert.assertTrue(checkout.verifyTheEmptyCNICField(), "CNIC field is not cleared properly!");
     }
 
     @And("I select the apply button for voucher")

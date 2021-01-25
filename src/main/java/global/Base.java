@@ -113,24 +113,24 @@ public class Base {
     }
 
     public void swiptToBottom() {   // Perform little bit Down Scroll on Current Screen
-//        try {
-//            PointOption pointOption = new PointOption();
-//            Dimension dim = driver.manage().window().getSize();
-//            int height = dim.getHeight();
-//            int width = dim.getWidth();
-//            int x = width / 2;
-//            int top_y = (int) (height * 0.80);
-//            int bottom_y = (int) (height * 0.787);
-////            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
-//            TouchAction ts = new TouchAction(driver);
-//            ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
-//            TouchActions action = new TouchActions(driver);
-////            action.scroll(744, 300);
-//            action.perform();
-//        } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
-//        }
-        swipeScreenSmall(Direction.UP);
+        try {
+            PointOption pointOption = new PointOption();
+            Dimension dim = driver.manage().window().getSize();
+            int height = dim.getHeight();
+            int width = dim.getWidth();
+            int x = width / 2;
+            int top_y = (int) (height * 0.80);
+            int bottom_y = (int) (height * 0.787);
+            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
+            TouchAction ts = new TouchAction(driver);
+            ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
+            TouchActions action = new TouchActions(driver);
+//            action.scroll(744, 300);
+            action.perform();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+//        swipeScreenSmall(Direction.UP);
     }
 
 

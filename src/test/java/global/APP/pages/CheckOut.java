@@ -612,7 +612,7 @@ public class CheckOut extends Base {
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
-            return (checkOutPageObjects.cnictxtboxID.get(2).getText().equalsIgnoreCase(""));
+            return (checkOutPageObjects.cnictxtbox.get(0).getText().contains("Enter your CNIC Number"));
         }
         else
         {
