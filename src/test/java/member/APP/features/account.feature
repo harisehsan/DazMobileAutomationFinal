@@ -12,7 +12,7 @@ Feature: Daraz Account Management
   Scenario: I navigate to message from account verify my services and avatar popup
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     When I select avatar
     Then Then I should see take photo and select from album options
@@ -27,7 +27,7 @@ Feature: Daraz Account Management
   Scenario: I verify the Messages redirection from Account information Hamburger Icon
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     And I navigate to the account settings menu
     And I should see Account Information
@@ -55,7 +55,7 @@ Feature: Daraz Account Management
   Scenario: I verify existence and redirection of HELP icon on Account screen and Account information Hamburger Icon
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     And I scroll to "Help" in my account menu
     And I click on "Help" icon on account screen
@@ -82,7 +82,7 @@ Feature: Daraz Account Management
     Given I select the venture
     When I check for the existence of daraz wallet
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I verify that I have been logged in using google Account
     And I navigate to the account menu
     And I verify that I have been logged in using google Account
@@ -96,7 +96,7 @@ Feature: Daraz Account Management
     And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     And I click on proceed to pay button
     And I wait for the select payment screen
     And I navigate to my account from payment screen
@@ -109,7 +109,7 @@ Feature: Daraz Account Management
     And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     And I click on proceed to pay button
     And I select Cash on Delivery payment method
     And I should reach to order successful page
@@ -126,7 +126,7 @@ Feature: Daraz Account Management
   Scenario: I verify the functionality of track package section
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     Then I verify the existence of the track package section
     Then I goto the consolidated delivery screen to verify the same order status
 
@@ -134,7 +134,7 @@ Feature: Daraz Account Management
   Scenario: I verify the my order status
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     Then I verify status order status in my account
 
@@ -142,7 +142,7 @@ Feature: Daraz Account Management
   Scenario: I verify the Home Screen redirection from Account information Hamburger Icon
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     And I navigate to the account settings menu
     And I should see Account Information
@@ -156,7 +156,7 @@ Feature: Daraz Account Management
   Scenario: I verify the cart icon navigation
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     And I goto cart from account menu
     And I skip the cart popup
@@ -172,7 +172,7 @@ Feature: Daraz Account Management
   Scenario: I verify the account information to search
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     Then I navigate to the account settings menu
     And I goto account information menu
@@ -183,7 +183,7 @@ Feature: Daraz Account Management
   Scenario: verify the message settings
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     Then I navigate to the account settings menu
     When I navigate to messages settings from settings
@@ -205,15 +205,17 @@ Feature: Daraz Account Management
     And I navigate to the account menu
     And I scroll to "messages" in my account menu
     And I select message in account section
-    Then I should be on the message page
-    Then I should see the notification for best offer and alerts
+    And I should be on the message page
+    And I should see the notification for best offer and alerts
+    And I reset all message setting
+    And I verify all checkboxes must be checked
 
   @31829205 @Edit_a_review_against_old_order
   Scenario: I Edit an old review
     Given I select the venture
     And I navigate to the account menu
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I should be on Account screen
     And I verify the existence of "To Review" in My Orders
     And I click "To Review" in My Orders section

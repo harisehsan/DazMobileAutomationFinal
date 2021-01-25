@@ -22,8 +22,10 @@ public class BaseRunner {
     public TestNGCucumberRunner testNGCucumberRunner;
     public Drivers drv = new Drivers();
     public String driver;
-    ScreenshotGetProperty screenshotGetProperty = new ScreenshotGetProperty();
-    String directoryPath = "";
+    String Time = LocalDateTime.now().toString().replaceAll("[^A-Za-z0-9]", "-");
+    File targetFile = null;
+    private ScreenshotGetProperty screenshotGetProperty = new ScreenshotGetProperty();
+    private String directoryPath = "";
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort"})
@@ -31,7 +33,7 @@ public class BaseRunner {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
         drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort);
         screenshotGetProperty.setScreenShotCount("0"); //This will set Screenshot Count to Zero before each New invocation of driver.
-        createScreenshotDirectory();
+        createADirectory("Screenshots");
     }
 
     @Attachment
@@ -44,7 +46,7 @@ public class BaseRunner {
                 Toolkit.getDefaultToolkit().beep();
                 File srcFile = ((TakesScreenshot) drv.getDriver()).getScreenshotAs(OutputType.FILE);
                 String filename = UUID.randomUUID().toString();
-                File targetFile=new File(directoryPath +"/"+result.getMethod().getMethodName()+i+".jpg");
+                targetFile = new File(directoryPath + "/" + result.getMethod().getMethodName() + i + ".png");
                 ++i;
                 screenshotGetProperty.setScreenShotCount(Integer.toString(i));
                 Files.copy(srcFile,targetFile);
@@ -56,12 +58,10 @@ public class BaseRunner {
 
     // This method will create a directory Named "ScreenShots",
     // on each execution inside screenshots will create a directory named "current date and time" and will add new screenshots.
-    public void createScreenshotDirectory () throws IOException {
-        System.out.println("this is environment >>>>> :::: >>>> " + System.getProperty("env"));
-        String Time = LocalDateTime.now().toString().replaceAll("[^A-Za-z0-9]","-");
-        File theDir = new File("./Screenshots/" + System.getProperty("env")+" - " +Time);
+    public String createADirectory(String dirName) throws IOException {
+        File theDir = new File("./" + dirName + "/" + System.getProperty("env").replaceFirst("\\.", "-") + "-" + Time);
         if (!theDir.exists()) theDir.mkdirs();
-        directoryPath = theDir.getCanonicalPath();
+        return directoryPath = theDir.getCanonicalPath();
     }
 
     public byte[] saveFailScreenShot(AppiumDriver adriver){
@@ -78,5 +78,17 @@ public class BaseRunner {
     @AfterTest(alwaysRun = true)
     public void teardownBrowser() throws Exception {
         drv.closeDriver();
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void getRerunFile() throws IOException {
+        createADirectory("FailedScenarios");
+        File source = new File("target/cucumber-reports/rerun-reports/rerun.txt");
+        File dest = new File(directoryPath + "/" + "Rerun-" + System.getProperty("env").substring(0, 2) + ".txt");
+        try {
+            Files.copy(source, dest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

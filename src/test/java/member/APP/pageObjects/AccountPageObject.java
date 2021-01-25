@@ -80,6 +80,9 @@ public class AccountPageObject extends BuildIDPicker {
     public List<WebElement> message_Settings_chkBox;
     @AndroidFindBy(id = "com.shop.android:id/checkbox")
     public List<WebElement> message_Settings_chkBox_MM;
+    @AndroidFindAll({@AndroidBy(id = "com.daraz.android:id/tv_setting"),
+            @AndroidBy(id = "com.shop.android:id/tv_setting")})
+    public WebElement message_Settings_Gear;
 
 
     @AndroidFindBy(xpath = "//*[@resource-id='com.daraz.android:id/title' and @text='Home']")
@@ -93,6 +96,7 @@ public class AccountPageObject extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/orders_title")
     public WebElement account_Order_Title_MM;
 
+    public By message_Settings_Gear_By = By.xpath("//*[contains(@resource-id,'tv_setting')]");
     public By to_review_By = By.xpath("//*[contains(@resource-id,'txt_down') and contains(@text,'To Review')]");
     public By My_review_By = By.xpath("//*[contains(@resource-id,'txt_down') and contains(@text,'My Review')]");
     public By my_Account_widget_By = By.id("com.daraz.android" + dev + ":id/img_up");

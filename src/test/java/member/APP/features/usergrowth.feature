@@ -68,7 +68,7 @@ Feature: Daraz User Growth
   Scenario: Verify Old user should not see free voucher in my account section
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     Then I verify the non existence of user growth module in my account
 
@@ -77,7 +77,7 @@ Feature: Daraz User Growth
   Scenario: Verify Old user should not see free voucher on Home Screen
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate back to the main screen
 #    And I navigate to the account menu
 #    And I navigate back to the Home Page from "My Account"
@@ -88,7 +88,7 @@ Feature: Daraz User Growth
   Scenario: Collect voucher should not be displayed on PDP screen to an old customer
     Given I select the venture
     And I navigate to the signin screen
-    And I signin with google account
+    And I login with old buyer account
     And I navigate to the account menu
     And I navigate back to the Home Page from "My Account"
     And I search a Product using SKU for "Usergrowth"
