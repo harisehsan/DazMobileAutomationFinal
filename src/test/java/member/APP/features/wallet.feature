@@ -59,11 +59,3 @@ Feature: Daraz Wallet Management
     Then I should be on the coupon section
     When I goto the withdrawals section of wallet
     Then I should be on withdrawals section of wallet
-
-
-
-
-
-
-
-
