@@ -47,9 +47,13 @@ public class UserGrowth extends Base {
    public void closeTheFirstVoucherPopup()
    {
        if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
-           userGrowthPageObject.first_Order_Popup_HomeScreen.get(0).click();
+           if (waitForElementsLessTime(userGrowthPageObject.first_Order_Popup_HomeScreen)) {
+               userGrowthPageObject.first_Order_Popup_HomeScreen.get(0).click();
+           }
        } else {
-           userGrowthPageObject.first_Order_Popup_HomeScreen_MM.get(0).click();
+           if (waitForElementsLessTime(userGrowthPageObject.first_Order_Popup_HomeScreen_MM)) {
+               userGrowthPageObject.first_Order_Popup_HomeScreen_MM.get(0).click();
+           }
        }
    }
 

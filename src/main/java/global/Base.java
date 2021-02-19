@@ -458,6 +458,17 @@ public class Base {
         }
     }
 
+    protected boolean waitForElementsLessTime(List<WebElement> id) {
+        try {
+            new WebDriverWait(driver, 30)
+                    .until(ExpectedConditions.elementToBeClickable(id.get(0)));
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Required element is not available yet!");
+            return false;
+        }
+    }
+
     protected WebElement findElementByTextUsingContainsString(String Name) {
         return driver.findElement(By.xpath("//*[contains(@text,'" + Name + "')]"));
     }
@@ -466,7 +477,7 @@ public class Base {
         try {
             if (Name.length() > 10)
                 Name = Name.substring(0, 10);
-            new WebDriverWait(driver, 120)
+            new WebDriverWait(driver, 160)
                     .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + Name + "')]")));
             return true;
         } catch (Exception ex) {
