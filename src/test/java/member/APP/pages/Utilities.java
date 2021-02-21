@@ -38,6 +38,10 @@ public class Utilities extends Base {
     String enterTheAccountNumber = "Enter Account Number";
     String checkThebillbtn = "Check the bill";
     String reloads_Paybills_Lk = "Reload &\\nPay Bills";
+    String reloads_Paybills_Title_Lk = "Reloads & Pay Bills | Daraz.lk";
+    String quick_Top_Up = "Quick Top Up";
+    String limited_Time_offer = "Limited Time Offers";
+    String how_To_bill = "HOW TO PAY YOUR BILL";
 
 
     UtilitiesPageObject utilitiesPageObject = new UtilitiesPageObject();
@@ -202,6 +206,42 @@ public class Utilities extends Base {
             tries++;
         }while(!containsTextIsExist(add_New_Account) && tries < 5);
     }
+
+    public void selectReloadAndPayBills()
+    {
+        waitWithoutExceptionByTextContains(reloads_Paybills_Lk);
+        findElementByTextUsingContainsString(reloads_Paybills_Lk).click();
+    }
+
+    public boolean iShouldBeOnTheReloadAndPayBills()
+    {
+       return (waitWithoutExceptionByTextContains(reloads_Paybills_Title_Lk));
+    }
+
+    public void selectTheReload()
+    {
+        utilitiesPageObject.reload_lk.click();
+    }
+
+    public boolean quickTopUp()
+    {
+        return containsTextIsExist(quick_Top_Up);
+    }
+
+    public boolean verifyTheDetailsOfTheBillPage()
+    {
+        return (isExist(utilitiesPageObject.CEB_lk)
+                && isExist(utilitiesPageObject.Leco_lk)
+                && isExist(utilitiesPageObject.water_board_lk)
+                && isExist(utilitiesPageObject.terms_and_Conditions_lk));
+    }
+
+    public boolean verifyTheExtraDeatilsOfTheBillPage()
+    {
+        return (containsTextIsExist(limited_Time_offer)
+                && containsTextIsExist(how_To_bill));
+    }
+
 
 
 
