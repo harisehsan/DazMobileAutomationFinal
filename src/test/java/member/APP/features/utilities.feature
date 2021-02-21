@@ -1,8 +1,8 @@
 @smoke @utilities
 Feature: Daraz Utilities Management
 
-  @32135879 @verify_the_components_of_dbills
-  Scenario: verify The components of dbills
+  @32135879 @verify_the_components_of_dbills_pk
+  Scenario: verify The components of dbills pk
     Given I select the venture
     And I close the first order voucher popup
     And I navigate to the signin screen
@@ -24,8 +24,8 @@ Feature: Daraz Utilities Management
     When I select proceed to pay button
     Then I should be on the select payment screen
 
-  @32135879 @Enter_the_bill_details_and_verify
-  Scenario: Enter the bill details and verify
+  @32135879 @Enter_the_bill_details_and_verify_pk
+  Scenario: Enter the bill details and verify pk
     Given I select the venture
     And I close the first order voucher popup
     And I navigate to the signin screen
@@ -60,3 +60,20 @@ Feature: Daraz Utilities Management
     And I enter the details for the "Telephone & Internet" bill
     And I select check the bill "Telephone & Internet"
     Then I verify the data of the bill for "Telephone & Internet" bill
+
+  @32135879 @verify_the_components_of_dbills_lk
+  Scenario: verify The components of dbills lk
+    Given I select the venture
+    And I close the first order voucher popup
+    And I navigate to the signin screen
+    And I select first login button
+    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
+    And I select login button
+    And I navigate back to the main screen
+    When I select the Reload & pay bills
+    Then I should be on the reload & pay bill page
+    When I select reloads
+    Then I should be on the reload screen
+    And I navigate back
+    Then I verify for the bill options
+    Then I verify some extra information

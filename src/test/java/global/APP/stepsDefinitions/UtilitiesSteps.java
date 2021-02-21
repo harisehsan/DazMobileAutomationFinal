@@ -105,4 +105,35 @@ public class UtilitiesSteps {
     public void iVerifyTheFormDetailsFor(String type) {
       Assert.assertTrue(utilities.verifyTheComponentsOfTheNewBillForm(type),"The elements of bill are not displayed properly!");
     }
+
+    @When("I select the Reload & pay bills")
+    public void iSelectTheReloadPayBills() {
+        utilities.selectReloadAndPayBills();
+    }
+
+
+    @Then("I should be on the reload & pay bill page")
+    public void iShouldBeOnTheReloadPayBillPage() {
+        Assert.assertTrue(utilities.iShouldBeOnTheReloadAndPayBills(),"Not successfully navigated to the Reloads and Bills Page!");
+    }
+
+    @When("I select reloads")
+    public void iSelectReloads() {
+      utilities.selectTheReload();
+    }
+
+    @Then("I should be on the reload screen")
+    public void iShouldBeOnTheReloadScreen() {
+        Assert.assertTrue(utilities.quickTopUp(),"Not successfully navigated to the topup Page!");
+    }
+
+    @Then("I verify for the bill options")
+    public void iVerifyForTheBillOptions() {
+        Assert.assertTrue(utilities.verifyTheDetailsOfTheBillPage(),"One or more bill type is not properly displayed!");
+    }
+
+    @Then("I verify some extra information")
+    public void iVerifySomeExtraInformation() {
+        Assert.assertTrue(utilities.verifyTheExtraDeatilsOfTheBillPage(),"Extra information related to bill are not properly displayed!");
+    }
 }
