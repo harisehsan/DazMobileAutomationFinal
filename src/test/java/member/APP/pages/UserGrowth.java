@@ -47,8 +47,10 @@ public class UserGrowth extends Base {
    public void closeTheFirstVoucherPopup()
    {
        if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
+           waitForElementsToAppear(userGrowthPageObject.first_Order_Popup_HomeScreen);
            userGrowthPageObject.first_Order_Popup_HomeScreen.get(0).click();
        } else {
+           waitForElementsToAppear(userGrowthPageObject.first_Order_Popup_HomeScreen_MM);
            userGrowthPageObject.first_Order_Popup_HomeScreen_MM.get(0).click();
        }
    }

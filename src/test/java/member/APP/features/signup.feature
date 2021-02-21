@@ -27,7 +27,8 @@ Feature: Login Management for Daraz
   @2058001 @goto_login_page_from_message @30524878
   Scenario: Navigate to login page from message page
     Given I select the venture
-    And I select message
+    And I close the first order voucher popup
+    And I select "Messages" in the footer
 #    When I select Login button on "message" screen
     Then I should be on the login page
 

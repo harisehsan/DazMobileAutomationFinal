@@ -1,7 +1,7 @@
-#Sun Jan 10 22:35:31 PKT 2021
-SHIPPING_ADDRESS=Test Address (Please ignore this buyer), Ampagala, Kegalle, Sabaragamuwa
+#Mon Feb 22 00:26:52 PKT 2021
+SHIPPING_ADDRESS=HOME Test Address (Please ignore this buyer), Shwe In Kyinn Ward, Dhatkhina Thiri, Naypitaw U.Territory
 CANCEL_COMMENT=This is for testing purpose only. Please ignore this.
-TOTAL_PRICE=Rs. 600
+TOTAL_PRICE=Ks 2,998
 CANCEL_REASON_3=Change of Delivery Address
 PRODUCT_NAME=Reserve SIM (Test Only)
 CANCEL_REASON_2=Delivery time is too long

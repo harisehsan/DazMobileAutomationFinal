@@ -176,7 +176,7 @@ Feature: PDP page Management
     And I goto the PDP page
     And I click on chat icon
     And I login with old buyer account
-    Then I should be on the chat page
+    Then I should be on the chat screen
 
   @28811393 @verify_pdp_voucher_collect @28811315 @28811317
   Scenario: Verify PDP voucher collect feature

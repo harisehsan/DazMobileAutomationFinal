@@ -212,7 +212,8 @@ Feature: Daraz Cart Management
     And I skip the cart popup
 #    And I scroll down to view product in cart
     When I select get voucher in cart
-    Then I verify the components of get voucher popup in cart
+    Then I verify voucher From Total Amount Spend and Validity
+#    Then I verify the components of get voucher popup in cart
     Then I verify the voucher collection for the "first" time
 #    And I close the get voucher popup
 #    When I select get voucher in cart

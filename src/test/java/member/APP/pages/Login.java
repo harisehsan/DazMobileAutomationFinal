@@ -28,14 +28,13 @@ public class Login extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchBarPageObject);
     }
 
-    public void selectMessage() {
+    public void selectFooterOption(String arg) {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.tray_icon_By);
-            findElementByTextUsingExactString("Messages").click();
-
+            findElementByIdAndText("title",arg).click();
         } else {
             waitUntilPresentOfElementBy(loginPageObject.tray_icon_By_MM);
-            findElementByTextUsingExactString("Messages").click();
+            findElementByTextUsingExactString(arg).click();
         }
     }
 

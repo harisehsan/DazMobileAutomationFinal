@@ -19,7 +19,7 @@ Feature: Daraz Wallet Management
     When I select Login button on "wallet" screen
     And I select switch to another account
     And I select first login button
-    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
+    And I enter the email "daraz_qa200@test.com" and password "Test123"
     And I select login button
     Then I verify the components of wallet for the activated account
 
@@ -29,7 +29,7 @@ Feature: Daraz Wallet Management
     And I click on wallet icon
     When I select Login button on "wallet" screen
     And I select first login button
-    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
+    And I enter the email "daraz_qa200@test.com" and password "Test123"
     And I select login button
     And I select the top up button
     Then I should be on deposit screen
@@ -46,7 +46,7 @@ Feature: Daraz Wallet Management
     And I click on wallet icon
     When I select Login button on "wallet" screen
     And I select first login button
-    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
+    And I enter the email "daraz_qa200@test.com" and password "Test123"
     And I select login button
     Then I verify the components of all transaction section
     When I goto the purchase section of the wallet

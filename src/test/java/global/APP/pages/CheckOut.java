@@ -8,6 +8,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -637,4 +638,18 @@ public class CheckOut extends Base {
     }
 
 
+    public void waitForOrderDetailsPage() {
+         waitWithoutExceptionForElements(cartPageObjects.headerTitle);
+        Assert.assertTrue(cartPageObjects.headerTitle.get(0).getText().contains("Order Details"),"Should be Redirected to Order Detail Page");
+    }
+
+    public void verifyChatNowBtn() {
+        waitWithoutExceptionForElements(cartPageObjects.headerTitle);
+        isExistByString("Chat Now");
+
+    }
+
+    public void clickChatNowBtnOnOrderDetails() {
+        cartPageObjects.chatNow_btn.click();
+    }
 }

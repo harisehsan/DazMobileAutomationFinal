@@ -113,6 +113,8 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/icf_laz_trade_voucher_input_clear") public WebElement voucher_Clear_btn_MM;
     @AndroidFindBy(id = "com.daraz.android:id/tv_laz_trade_voucher_applied_tip") public List <WebElement> voucher_Success_Message_lbl;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_voucher_applied_tip") public List <WebElement> voucher_Success_Message_lbl_MM;
+    @AndroidFindBy(className = "android.widget.TextView") public List<WebElement> headerTitle;
+    @AndroidFindBy(xpath = "//*[@content-desc='Chat Now']") public WebElement chatNow_btn;
 
 
     public By searchProduct_lbl_By = By.id("com.daraz.android"+dev+":id/product_name_text_view");

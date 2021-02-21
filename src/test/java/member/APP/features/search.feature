@@ -1,7 +1,7 @@
 @smoke @search
 Feature: Daraz Search Product Management
 
-  @21842974 @search_a_product_by_sku
+  @21842974 @search_a_product_by_sku @pk
   Scenario: Search a product by sku
     Given I select the venture
     And I search a Product using SKU for "Result"
