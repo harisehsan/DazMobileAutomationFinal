@@ -1,4 +1,4 @@
- @return&refund @30447331
+@smoke @return&refund @30447331
 Feature: Daraz Return & Refund Management
 
   @21001814 @verify_return_on_normal_product @37058581 @37058582
