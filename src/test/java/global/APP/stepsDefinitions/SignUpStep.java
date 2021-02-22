@@ -87,7 +87,7 @@ public class SignUpStep {
 
     @And("I select message")
     public void iSelectMessage() {
-        login.selectMessage();
+        login.selectFooterOption("Message");
     }
 
     @When("I select Login button on {string} screen")
@@ -156,5 +156,10 @@ public class SignUpStep {
         login.enterLoginEmail();
         login.enterLoginPassword();
         login.clickLoginButton();
+    }
+
+    @And("I select {string} in the footer")
+    public void iSelectInTheFooter(String arg0) {
+        login.selectFooterOption(arg0);
     }
 }

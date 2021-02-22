@@ -6,8 +6,10 @@ import cucumber.api.java.en.When;
 import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pages.Cart;
 import global.Drivers;
+import member.APP.pages.Login;
 import member.APP.pages.Wishlist;
 import org.testng.Assert;
+import sun.util.resources.ga.LocaleNames_ga;
 
 import java.io.IOException;
 
@@ -15,7 +17,9 @@ public class CartSteps {
     Drivers driver = new Drivers();
     Cart cart = new Cart(driver.getDriver());
     Wishlist wishlist = new Wishlist(driver.getDriver());
+    Login login = new Login(driver.getDriver());
     VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
+
 
     String productName = "";
     String productTitle = "";
@@ -218,7 +222,7 @@ public class CartSteps {
 
     @Then("I verify the components of get voucher popup in cart")
     public void iVerifyTheComponentsOfGetVoucherPopupInCart() {
-    Assert.assertTrue(cart.verifyTheGetVocuherPopupComponents(),"One or More component of get voucher is/are not displayed properly!");
+
     }
 
     @Then("I verify the voucher collection for the {string} time")
@@ -284,5 +288,16 @@ public class CartSteps {
     @And("I select checkbox for that product")
     public void iSelectCheckboxForThatProduct() {
       cart.selectTheCheckBoxForProduct(productName);
+    }
+
+    @Then("I verify voucher From Total Amount Spend and Validity")
+    public void iVerifyVoucherFromTotalAmountSpendAndValidity() {
+        Assert.assertTrue(cart.verifyTheGetVocuherPopupComponents(),"One or More component of get voucher is/are not displayed properly!");
+    }
+
+    @And("I clear Shopping Cart")
+    public void iClearShoppingCart() {
+        login.selectFooterOption("Cart");
+        cart.clearCart();
     }
 }

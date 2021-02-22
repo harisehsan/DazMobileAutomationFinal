@@ -254,8 +254,8 @@ public class PdpSteps {
        Assert.assertTrue(pdp.changeQuantity(),"Quantity is not successfully changed!");
     }
 
-    @Then("I should be on the chat page")
-    public void iShouldBeOnTheChatPage() {
+    @Then("I should be on the chat screen")
+    public void iShouldBeOnTheChatScreen() {
         Assert.assertTrue(pdp.verifyTheChatPage(),"Chat page is not displayed properly!");
     }
 
@@ -425,5 +425,35 @@ public class PdpSteps {
     @And("I close the condition popup")
     public void iCloseTheConditionPopup() {
         pdp.closePopup();
+    }
+
+    @And("I open upper right corner menu on PDP")
+    public void iOpenUpperRightCornerMenuOnPDP() {
+    pdp.openUpperRightCornerDropdownMenu();
+    }
+
+    @And("I verify message count on pdp header")
+    public void iVerifyMessageCountOnPdpHeader() {
+      Assert.assertTrue(pdp.shouldDisplayMsgCountOnPdpHeader(),"Message count on PDP page upper Right Corner List Not Appeared!");
+    }
+
+    @And("I verify message count should be visible in dropdown menu on pdp")
+    public void iVerifyMessageCountShouldBeVisibleInDropdownMenuOnPdp() {
+        Assert.assertTrue(pdp.shouldDisplayMsgCountInHeaderMenu(),"Message count on PDP Header Menu should be displayed");
+    }
+
+    @And("I assert message count should not display on pdp header")
+    public void iAssertMessageCountShouldNotDisplayOnPdpHeader() {
+        Assert.assertTrue(pdp.shouldDisplayMsgCountOnPdpHeaderDisappear(),"Message count on PDP header should not be visible!");
+    }
+
+    @And("I verify message count should not be visible in dropdown menu on pdp")
+    public void iVerifyMessageCountShouldNotBeVisibleInDropdownMenuOnPdp() {
+        Assert.assertFalse(pdp.shouldNotDisplayMsgCountInHeaderMenu(),"Message count in Header Menu on PDP should not be displayed");
+    }
+
+    @And("I click on {string} in PDP header Menu")
+    public void iClickOnInPDPHeaderMenu(String arg0) {
+        pdp.clickEleInPdpHeaderDropdown(arg0);
     }
 }

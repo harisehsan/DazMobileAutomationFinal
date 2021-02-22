@@ -28,6 +28,7 @@ public class SignUpObjects extends BuildIDPicker {
     @AndroidFindBy(id="com.shop.android:id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn_MM;
     @AndroidFindBy (id="com.shop.android:id/tv_settings") public WebElement settings_icon_MM;
     @AndroidFindBy(xpath = "//*[@text='Account']") public WebElement account_Homepage_lbl;
+    @AndroidFindBy(className = "android.widget.ImageButton") public WebElement Back_button_on_Cmpaing;
 
 
     public By account_lbl_By = By.xpath("//*[contains(@resource-id,'tab_layout')]");

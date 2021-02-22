@@ -197,7 +197,7 @@ public class CheckOutSteps {
 
     @And("I wait for the order details page")
     public void iWaitForTheOrderDetailsPage() {
-
+     checkout.waitForOrderDetailsPage();
     }
 
     @And("I save the CNIC number")
@@ -228,5 +228,11 @@ public class CheckOutSteps {
     @Then("I verify the existence of Proceed to pay button")
     public void iVerifyTheExistenceOfProceedToPayButton() {
         Assert.assertTrue(checkout.verifyTheExistenceOfProceedToPayButton(), "Proceed To Pay button Should be displayed!!");
+    }
+
+    @And("I click on Chat Now Button on Order detail page")
+    public void iClickOnChatNowButtonOnOrderDetailPage() {
+        checkout.verifyChatNowBtn();
+        checkout.clickChatNowBtnOnOrderDetails();
     }
 }

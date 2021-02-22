@@ -49,7 +49,7 @@ public class PdpPageObject extends BuildIDPicker {
  public List<WebElement> store_Follow_lst_ele_btn_MM;
  @AndroidFindBy (id="com.daraz.android"+dev+":id/seller_recommend_title") public List <WebElement> recommended_By_Seller_lbl;
  @AndroidFindBy (id="com.daraz.android"+dev+":id/dots") public WebElement dots_button;
- @AndroidFindBy(id="com.daraz.android"+dev+":id/menuText") public List <WebElement> menu_List;
+ @AndroidFindBy(id="menuText") public List <WebElement> menu_List;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/btn_login_fresh_welcome_login") public List <WebElement> login_btn;
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/search_input_box") public List <WebElement> searchAfterClick_txtfield;
  @AndroidFindBy(xpath = "//*[@text='Messages']") public List <WebElement> messages_Header_lbl;
@@ -149,7 +149,22 @@ public class PdpPageObject extends BuildIDPicker {
     public WebElement condition_Bar_Title_Ele_MM;
     @AndroidFindBy(xpath = "//*[contains(@resource-id,'btn_condition')]")
     public List<WebElement> condition_popup_Btn_list_Ele;
-
+    @AndroidFindBy(id = "com.daraz.android"+dev+":id/pop_list")
+    public WebElement pdp_upperRight_corner_List_ele;
+    @AndroidFindBy(id = "com.shop.android"+dev+":id/pop_list")
+    public WebElement pdp_upperRight_corner_List_MM_ele;
+ @AndroidFindBy(id = "com.daraz.android"+dev+":id/badge_dots")
+ public WebElement msgcount_on_pdp_menu_ele;
+ @AndroidFindBy(id = "com.shop.android"+dev+":id/badge_dots")
+ public List <WebElement> msgcount_on_pdp_menu_ele_LISTTEST;
+ @AndroidFindBy(id = "badge_dots")
+ public WebElement msgcount_on_pdp_menu_ele_MM;
+ @AndroidFindBy(id = "com.shop.android"+dev+":id/red_number_dot")
+ public WebElement msgcount_In_pdp_menu_ele_MM;
+ @AndroidFindBy(id = "com.daraz.android"+dev+":id/red_number_dot")
+ public WebElement msgcount_In_pdp_menu_ele;
+ @AndroidFindBy(id = "red_number_dot")
+ public List <WebElement> msgcount_In_pdp_menu_ele_LISTTest;
 
     public By conditions_Pdp_Label_By = By.xpath("//*[@resource-id='com.daraz.android" + dev + ":id/label_left_title' and @text='Condition']");
     public By conditions_Pdp_Label_MM_By = By.xpath("//*[@resource-id='com.shop.android" + dev + ":id/label_left_title' and @text='Condition']");

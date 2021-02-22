@@ -36,6 +36,16 @@ public class Cart extends Base {
         PageFactory.initElements(new AppiumFieldDecorator(driver), searchPageObj);
     }
 
+    public void clearCart() {
+       if(!verifyEmptyCart()){
+           skipTheCartPopup();
+            if(!verifyEmptyCart()){
+                removeAllItemsFromCart();
+           }
+           verifyEmptyCart();
+       }
+    }
+
     public void addToCart() {
         cartPageObjects.add_To_Cart_btn.get(0).click();
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
@@ -641,17 +651,17 @@ public class Cart extends Base {
     public boolean verifyTheGetVocuherPopupComponents() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.get_Voucher_Validity_lbl_By);
-            return ((cartPageObjects.get_Voucher_Title_lbl.getText().contains("Vouchers From") || cartPageObjects.get_Voucher_Title_lbl.getText().contains("Voucher From"))
+            return ((cartPageObjects.get_Voucher_Title_lbl.getText().toLowerCase().contains("voucher from"))
                     && ((Integer.parseInt(cartPageObjects.get_Voucher_Profit_lbl.getText().replaceAll("[^\\d.]", ""))) > 0)
-                    && (cartPageObjects.get_Voucher_Condition_lbl.getText().contains("Spend") ||cartPageObjects.get_Voucher_Condition_lbl.getText().contains("spend"))
-                    && cartPageObjects.get_Voucher_Validity_lbl.getText().contains("Validity"));
+                    && (cartPageObjects.get_Voucher_Condition_lbl.getText().toLowerCase().contains("spend"))
+                    && cartPageObjects.get_Voucher_Validity_lbl.getText().toLowerCase().contains("validity"));
 
         } else {
             waitUntilPresentOfElementBy(cartPageObjects.get_Voucher_Validity_lbl_By_MM);
-           return  ((cartPageObjects.get_Voucher_Title_lbl_MM.getText().contains("Vouchers From") || cartPageObjects.get_Voucher_Title_lbl_MM.getText().contains("Voucher From"))
+           return  ((cartPageObjects.get_Voucher_Title_lbl_MM.getText().toLowerCase().contains("voucher from"))
                     && ((Integer.parseInt(cartPageObjects.get_Voucher_Profit_lbl_MM.getText().replaceAll("[^\\d.]", ""))) > 0)
-                    && (cartPageObjects.get_Voucher_Condition_lbl_MM.getText().contains("Spend") ||cartPageObjects.get_Voucher_Condition_lbl_MM.getText().contains("spend"))
-                    && cartPageObjects.get_Voucher_Validity_lbl_MM.getText().contains("Validity"));
+                    && (cartPageObjects.get_Voucher_Condition_lbl_MM.getText().toLowerCase().contains("spend"))
+                    && cartPageObjects.get_Voucher_Validity_lbl_MM.getText().toLowerCase().contains("validity"));
         }
     }
 

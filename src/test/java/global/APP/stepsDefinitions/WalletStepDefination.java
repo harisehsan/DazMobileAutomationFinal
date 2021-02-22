@@ -27,8 +27,8 @@ public class WalletStepDefination {
         Assert.assertTrue(wallet.verifyTheWalletButton(),"The wallet activate button is not properly displayed!");
     }
 
-    @And("I enter the email {string} and password {string} for the activated wallet account")
-    public void iEnterTheEmailAndPasswordForTheActivatedWalletAccount(String email, String password) {
+    @And("I enter the email {string} and password {string}")
+    public void iEnterTheEmailAndPassword(String email, String password) {
         wallet.enterCredentailsForActivatedWalletAccount(email, password);
     }
 

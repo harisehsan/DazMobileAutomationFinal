@@ -1,5 +1,6 @@
 package global.APP.pages;
 
+import cucumber.api.java.sl.In;
 import global.APP.getProperty.PdpGetProperty;
 import global.APP.getProperty.ProductInfoGetProperty;
 import global.APP.getProperty.ProductInfoSetProperty;
@@ -16,6 +17,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Developed By: Muhammad Haris Ehsan
@@ -638,6 +641,12 @@ public class Pdp extends Base {
         }
     }
 
+    public void clickEleInPdpHeaderDropdown(String arg) {
+    List<WebElement> ele = pdpPageObject.menu_List.stream().filter(i -> i.getText().contains(arg)).collect(Collectors.toList());
+        ele.get(0).click();
+    }
+
+
     public boolean navigateToLoginFromPDP() {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
@@ -1246,5 +1255,51 @@ public class Pdp extends Base {
     public void closePopup() {
         pdpPageObject.popup_close_btn_Ele.click();
         Assert.assertTrue(pdpPageObject.add_to_Cart_btn_Ele.isDisplayed(), "Condition PopUp is not closed Yet!!!");
+    }
+
+    public void openUpperRightCornerDropdownMenu() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
+            pdpPageObject.dots_button.click();
+            Assert.assertTrue(pdpPageObject.pdp_upperRight_corner_List_ele.isDisplayed(),"PDP page Right Corner List Not Opened!");
+    }else {
+            waitUntilPresentOfElementBy(pdpPageObject.dots_button_By_MM);
+            pdpPageObject.dots_button_MM.click();
+            waitUntilPresentOfElementBy(pdpPageObject.menu_List_By_MM);
+            Assert.assertTrue(pdpPageObject.pdp_upperRight_corner_List_MM_ele.isDisplayed(),"PDP page Right Corner List Not Opened!");
+        }
+
+    }
+
+    public boolean shouldDisplayMsgCountOnPdpHeader() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn);
+            return pdpPageObject.msgcount_on_pdp_menu_ele.isDisplayed();
+        }else {
+            waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn_MM);
+            return pdpPageObject.msgcount_on_pdp_menu_ele_MM.isDisplayed();
+        }
+    }
+
+    public boolean shouldDisplayMsgCountOnPdpHeaderDisappear() {
+        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn);
+            return pdpPageObject.msgcount_on_pdp_menu_ele_LISTTEST.size() == 0;
+        }else {
+            waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn_MM);
+            return pdpPageObject.msgcount_on_pdp_menu_ele_MM.isDisplayed();
+        }
+    }
+
+    public boolean shouldDisplayMsgCountInHeaderMenu() {
+        return !System.getProperty("env").equalsIgnoreCase("mm.live") ? pdpPageObject.msgcount_In_pdp_menu_ele.isDisplayed() : pdpPageObject.msgcount_In_pdp_menu_ele_MM.isDisplayed();
+    }
+
+    public boolean shouldNotDisplayMsgCountInHeaderMenu() {
+        if(!System.getProperty("env").equalsIgnoreCase("mm.live")){
+           return pdpPageObject.msgcount_In_pdp_menu_ele_LISTTest.size() == 0;
+        } else{
+           return !pdpPageObject.msgcount_In_pdp_menu_ele_MM.isDisplayed();
+        }
     }
 }
