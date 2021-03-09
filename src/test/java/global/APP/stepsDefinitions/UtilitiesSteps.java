@@ -16,7 +16,7 @@ public class UtilitiesSteps {
 
     @When("I select dbill channnel")
     public void iSelectDbillChannnel() {
-       utilities.selectDBills();
+        utilities.selectDBills();
     }
 
     @Then("I should be on the utility checkout screen")
@@ -26,7 +26,7 @@ public class UtilitiesSteps {
 
     @When("I select the pay bill button")
     public void iSelectThePayBillButton() {
-      utilities.selectPayNowButton();
+        utilities.selectPayNowButton();
     }
 
     @Then("I verify the banner of the utility checkout")
@@ -36,7 +36,7 @@ public class UtilitiesSteps {
 
     @Then("I verify the components of utility")
     public void iVerifyTheComponentsOfUtility() {
-      Assert.assertTrue(utilities.verifyTheComponentsOfTheExistingBill(),"The components of bills are displayed properly!");
+        Assert.assertTrue(utilities.verifyTheComponentsOfTheExistingBill(),"The components of bills are displayed properly!");
     }
 
     @Then("I should see bill type\\(s)")
@@ -103,7 +103,7 @@ public class UtilitiesSteps {
 
     @Then("I verify the form details for {string}")
     public void iVerifyTheFormDetailsFor(String type) {
-      Assert.assertTrue(utilities.verifyTheComponentsOfTheNewBillForm(type),"The elements of bill are not displayed properly!");
+        Assert.assertTrue(utilities.verifyTheComponentsOfTheNewBillForm(type),"The elements of bill are not displayed properly!");
     }
 
     @When("I select the Reload & pay bills")
@@ -119,7 +119,7 @@ public class UtilitiesSteps {
 
     @When("I select reloads")
     public void iSelectReloads() {
-      utilities.selectTheReload();
+        utilities.selectTheReload();
     }
 
     @Then("I should be on the reload screen")
@@ -127,13 +127,28 @@ public class UtilitiesSteps {
         Assert.assertTrue(utilities.quickTopUp(),"Not successfully navigated to the topup Page!");
     }
 
-    @Then("I verify for the bill options")
-    public void iVerifyForTheBillOptions() {
-        Assert.assertTrue(utilities.verifyTheDetailsOfTheBillPage(),"One or more bill type is not properly displayed!");
-    }
-
     @Then("I verify some extra information")
     public void iVerifySomeExtraInformation() {
         Assert.assertTrue(utilities.verifyTheExtraDeatilsOfTheBillPage(),"Extra information related to bill are not properly displayed!");
+    }
+
+    @And("I goto dbills from Homepage")
+    public void iGotoDbillsFromHomepage() {
+        utilities.selectDBill();
+    }
+
+    @And("I select CEB")
+    public void iSelectCEB() {
+        utilities.gotoTheCEB();
+    }
+
+    @And("I enter the bill details for {string}")
+    public void iEnterTheBillDetailsForCEB(String billType) throws InterruptedException, IOException{
+        utilities.enterTheBillData(billType);
+    }
+
+    @And("I select checkout on dbill")
+    public void iSelectCheckoutOnDbill() {
+        utilities.selectTheCheckoutButton();
     }
 }

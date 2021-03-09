@@ -16,8 +16,9 @@ public class UtilitiesPageObject extends BuildIDPicker {
     @FindBy(xpath = "//*[@class='android.widget.EditText']") public WebElement account_Number_txtbox;
     @AndroidFindBy(xpath = "//*[@text='Check the bill']") public List <WebElement> checkTheBillBtn;
     @AndroidFindBy(xpath = "//*[@text='TB1GrJo11H2gK0jSZJnwu1T1FXa.png#width=168&height=150_170x170q75.jpg_']") public WebElement reload_lk;
-    @AndroidFindBy(xpath = "//*[@text='TB1YDte14z1gK0jSZSgwu1vwpXa.png#width=168&height=150_170x170q75.jpg_']") public List <WebElement> CEB_lk;
-    @AndroidFindBy (xpath = "//*[@text='TB1loJq1.Y1gK0jSZFMwu1WcVXa.png#width=168&height=150_170x170q75.jpg_']") public List <WebElement> Leco_lk;
-    @AndroidFindBy (xpath = "//*[@text='TB1jlFw14v1gK0jSZFFwu20sXXa.png#width=168&height=150_170x170q75.jpg_']") public List <WebElement> water_board_lk;
-    @AndroidFindBy (xpath = "//*[@text='TB1.qjVRKL2gK0jSZFmwu37iXXa.png#width=718&height=100_720x720q75.jpg_']") public List <WebElement> terms_and_Conditions_lk;
+    @AndroidFindBy(xpath = "//*[@text='TB1YDte14z1gK0jSZSgwu1vwpXa.png#width=168&height=150_170x170q75.jpg_']") public WebElement CEB_lk;
+    @AndroidFindBy (xpath = "//*[@text='TB1loJq1.Y1gK0jSZFMwu1WcVXa.png#width=168&height=150_170x170q75.jpg_']") public WebElement Leco_lk;
+    @AndroidFindBy (xpath = "//*[@text='TB1jlFw14v1gK0jSZFFwu20sXXa.png#width=168&height=150_170x170q75.jpg_']") public WebElement water_board_lk;
+    @AndroidFindBy (xpath = "(//*[@id='root_57947']/*[./*[@class='android.widget.EditText']])[1]") public WebElement account_Number_lk;
+    @AndroidFindBy (xpath = "(//*[@id='root_57947']/*/*[@class='android.widget.EditText'])[2]") public WebElement amount_lk;
 }
