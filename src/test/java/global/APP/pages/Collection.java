@@ -125,7 +125,7 @@ public class Collection extends Base {
 
     public void changeLanguage() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            if (isExist(collectionPageObject.change_Language_lbl)) {
+            if (waitForElementsLessTime(collectionPageObject.change_Language_lbl)) {
                 collectionPageObject.change_Language_lbl.get(0).click();
                 waitUntilPresentOfElementBy(collectionPageObject.language_Options_chkbox_By);
                 collectionPageObject.language_Options_chkbox.get(0).click();

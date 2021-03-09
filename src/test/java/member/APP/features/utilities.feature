@@ -7,7 +7,7 @@ Feature: Daraz Utilities Management
     And I close the first order voucher popup
     And I navigate to the signin screen
     And I select first login button
-    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
+    And I enter the email "daraz_qa200@test.com" and password "Test123"
     And I select login button
     And I navigate back to the main screen
     When I select dbill channnel
@@ -61,19 +61,15 @@ Feature: Daraz Utilities Management
     And I select check the bill "Telephone & Internet"
     Then I verify the data of the bill for "Telephone & Internet" bill
 
-  @32135879 @verify_the_components_of_dbills_lk
-  Scenario: verify The components of dbills lk
-    Given I select the venture
-    And I close the first order voucher popup
-    And I navigate to the signin screen
-    And I select first login button
-    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
-    And I select login button
-    And I navigate back to the main screen
-    When I select the Reload & pay bills
-    Then I should be on the reload & pay bill page
-    When I select reloads
-    Then I should be on the reload screen
-    And I navigate back
-    Then I verify for the bill options
-    Then I verify some extra information
+#  @32135879 @verify_the_components_of_dbills_lk
+#  Scenario: verify The components of dbills lk
+#    Given I select the venture
+#    And I close the first order voucher popup
+#    And I navigate to the signin screen
+#    And I login with old buyer account
+#    And I navigate back to the main screen
+#    And I goto dbills from Homepage
+#    And I select CEB
+#    And I enter the bill details for "CEB"
+#    And I select checkout on dbill
+#    Then I should be on the select payment screen

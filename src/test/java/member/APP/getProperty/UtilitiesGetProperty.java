@@ -47,5 +47,14 @@ public class UtilitiesGetProperty {
         return waterBill;
     }
 
+    public List<String> lkBills() throws IOException {
+        fileInputStream();
+        List<String> lkBill= new ArrayList<>();
+        for (int i=0;i<3;i++)
+            lkBill.add(prop.getProperty("BILL_LK_"+(i+1)));
+        return lkBill;
+    }
+
+
 
 }

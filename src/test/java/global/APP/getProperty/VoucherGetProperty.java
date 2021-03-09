@@ -3,6 +3,8 @@ package global.APP.getProperty;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class VoucherGetProperty {
@@ -45,7 +47,7 @@ public class VoucherGetProperty {
 
     public String getPKVoucher() throws IOException {
         fileInputStream();
-       return prop.getProperty("VOUCHER_PK");
+        return prop.getProperty("VOUCHER_PK");
     }
 
     public String getBDVoucher() throws IOException {
@@ -78,7 +80,86 @@ public class VoucherGetProperty {
     public String getTotalPriceCheckout() throws IOException
     {
         fileInputStream();
-       return prop.getProperty("CHECK_OUT_TOTAL_PRICE");
+        return prop.getProperty("CHECK_OUT_TOTAL_PRICE");
     }
 
+    public String getExpiredVoucherPK() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_EXPIRED_PK");
+    }
+
+    public String getExpiredVoucherBD() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_EXPIRED_BD");
+    }
+
+    public String getExpiredVoucherLK() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_EXPIRED_LK");
+    }
+
+    public String getExpiredVoucherNP() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_EXPIRED_NP");
+    }
+
+    public String getExpiredVoucherMM() throws IOException {
+        fileInputStream();
+        return prop.getProperty("VOUCHER_EXPIRED_MM");
+    }
+
+    public List<String> getStoreCreditVoucherPK() throws IOException {
+
+        fileInputStream();
+        List<String> storeCreditPklst = new ArrayList<>();
+        for (int i=1; i<=2; i++) {
+            storeCreditPklst.add(prop.getProperty("STORE_CREDIT_PK_"+i));
+        }
+        return storeCreditPklst;
+    }
+
+    public List<String> getStoreCreditVoucherBD() throws IOException {
+
+        fileInputStream();
+        List<String> storeCreditBDlst = new ArrayList<>();
+        for (int i=1; i<=2; i++) {
+            storeCreditBDlst.add(prop.getProperty("STORE_CREDIT_BD_"+i));
+        }
+        return storeCreditBDlst;
+    }
+
+    public List<String> getStoreCreditVoucherLK() throws IOException {
+
+        fileInputStream();
+        List<String> storeCreditLKlst = new ArrayList<>();
+        for (int i=1; i<=2; i++) {
+            storeCreditLKlst.add(prop.getProperty("STORE_CREDIT_LK_"+i));
+        }
+        return storeCreditLKlst;
+    }
+
+    public List<String> getStoreCreditVoucherNP() throws IOException {
+
+        fileInputStream();
+        List<String> storeCreditNPlst = new ArrayList<>();
+        for (int i=1; i<=2; i++) {
+            storeCreditNPlst.add(prop.getProperty("STORE_CREDIT_NP_"+i));
+        }
+        return storeCreditNPlst;
+    }
+
+    public List<String> getStoreCreditVoucherMM() throws IOException {
+
+        fileInputStream();
+        List<String> storeCreditMMlst = new ArrayList<>();
+        for (int i=1; i<=2; i++) {
+            storeCreditMMlst.add(prop.getProperty("STORE_CREDIT_MM_"+i));
+        }
+        return storeCreditMMlst;
+    }
+
+    public String getPercentageVoucher() throws IOException {
+        fileInputStream();
+        return prop.getProperty("PERCENTAGE_VOUCHER");
+    }
 }

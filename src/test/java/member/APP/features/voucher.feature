@@ -37,6 +37,7 @@ Feature: Daraz Voucher Management
     Then I should be on the store page
     And I select the store credit tab
     Then I should be on store credit
+    Then I verify the content of the store credit voucher
     When I select get more vouchers button
     Then I should be on the collectable voucher screen
 
@@ -54,12 +55,28 @@ Feature: Daraz Voucher Management
     Then I should see the voucher applied message
     Then I should see the impact of voucher on total price
 
+  @21001814 @apply_expired_code_voucher_on_checkout
+  Scenario: Apply expired code voucher on checkout
+    Given I select the venture
+    And I search a Product using SKU for "Checkout"
+    And I select the product for checkout
+    And I select Buy Now button
+    And I login with old buyer account
+    And I scroll down to the voucher
+    And I enter the expired voucher code on checkout
+    When I select voucher apply button
+    Then I should see error message
+
   @21001814 @verify_the_language_change_for_voucher
   Scenario: Verify the language change for voucher
     Given I select the venture
-    And I navigate to the account menu
+    And I navigate to the signin screen
+    And I login with old buyer account
+    And I navigate back to the main screen
+    Then I navigate to the account settings menu
     And I change the language other then english
-    And I navigate to the account menu
+    Then I navigate to the account settings menu in local language
+    And I navigate back
     And I select the voucher in the local language
     Then I should see voucher in local language
 
@@ -67,10 +84,7 @@ Feature: Daraz Voucher Management
   Scenario: verify the non usable voucher section
     Given I select the venture
     And I navigate to the signin screen
-    And I select first login button
-    And I enter the email "daraz_qa200@test.com" and password "Test123" for the activated wallet account
-    And I select login button
-    And I navigate to the account menu
+    And I login with old buyer account
     And I select voucher in my accounts
     And I select non usable voucher
     And I wait for non usable voucher screen
@@ -79,3 +93,17 @@ Feature: Daraz Voucher Management
     Then I should be on the expired page
     When I select the deactivated
     Then I should be on deactivated screen
+
+  @21001814 @apply_seller_percentage_code_voucher_on_checkout
+  Scenario: Apply seller percentage code voucher on checkout
+    Given I select the venture
+    And I search a Product using SKU for "Checkout"
+    And I select the product for checkout
+    And I select Buy Now button
+    And I login with old buyer account
+    And I scroll down to the voucher
+    And I save the total price on checkout screen for voucher
+    And I enter the percentage code voucher on checkout
+    When I select voucher apply button
+    Then I should see the voucher applied message
+    Then I should see the impact of voucher on total price

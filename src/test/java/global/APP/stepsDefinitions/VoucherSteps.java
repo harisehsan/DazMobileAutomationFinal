@@ -36,7 +36,7 @@ public class VoucherSteps {
 
     @And("I scroll down to the voucher")
     public void iScrollDownToTheVoucher() {
-      voucher.scrollToVoucherCode();
+        voucher.scrollToVoucherCode();
     }
 
     @And("I save the total price on checkout screen for voucher")
@@ -51,7 +51,7 @@ public class VoucherSteps {
 
     @Then("I should see the voucher applied message")
     public void iShouldSeeTheVoucherAppliedMessage() throws IOException {
-      Assert.assertTrue(voucher.iShouldSeeTheVoucherSuccessMessage(), "Voucher is not successfully applied!");
+        Assert.assertTrue(voucher.iShouldSeeTheVoucherSuccessMessage(), "Voucher is not successfully applied!");
     }
 
     @Then("I should see the impact of voucher on total price")
@@ -71,27 +71,27 @@ public class VoucherSteps {
 
     @Then("I should see voucher in local language")
     public void iShouldVoucherInLocalLanguage() {
-     Assert.assertTrue(voucher.verifyTheLanguageChangeforVoucher(),"Voucher language change is not displayed!");
+        Assert.assertTrue(voucher.verifyTheLanguageChangeforVoucher(),"Voucher language change is not displayed!");
     }
 
     @And("I select non usable voucher")
     public void iSelectNonUsableVoucher() {
-      voucher.gotoNonUsableVoucher();
+        voucher.gotoNonUsableVoucher();
     }
 
     @And("I wait for non usable voucher screen")
     public void iWaitForNonUsableVoucherScreen() {
-      voucher.waitforTheNonUsableVoucherUsed();
+        voucher.waitforTheNonUsableVoucherUsed();
     }
 
     @Then("I should verify the used section of non-usable voucher")
     public void iShouldVerifyTheUsedSectionOfNonUsableVoucher() {
-     Assert.assertTrue(voucher.iShouldbeOnTheUsedPageOfMyVoucher(), "Not successfully navigated voucher page!");
+        Assert.assertTrue(voucher.iShouldbeOnTheUsedPageOfMyVoucher(), "Not successfully navigated voucher page!");
     }
 
     @And("I select the expired voucher")
     public void iSelectTheExpiredVoucher() {
-      voucher.selectExpiredVoucher();
+        voucher.selectExpiredVoucher();
     }
 
     @Then("I should be on the expired page")
@@ -111,7 +111,7 @@ public class VoucherSteps {
 
     @When("I select terms and conditions")
     public void iSelectTermsAndConditions() {
-       voucher.selectTermsAndConditions();
+        voucher.selectTermsAndConditions();
     }
 
     @Then("I should see the terms and conditions")
@@ -121,7 +121,7 @@ public class VoucherSteps {
 
     @And("I select Store tab in my voucher")
     public void iSelectStoreTabInMyVoucher() {
-     voucher.selectStoreTab();
+        voucher.selectStoreTab();
     }
 
     @Then("I should be on the store page")
@@ -151,7 +151,7 @@ public class VoucherSteps {
 
     @When("I click on the collect more button")
     public void iClickOnTheCollectMoreButton() {
-       voucher.clickOnTheCollectMoreButton();
+        voucher.clickOnTheCollectMoreButton();
     }
 
     @Then("I should be on the collectable voucher screen")
@@ -162,6 +162,26 @@ public class VoucherSteps {
     @When("I select get more vouchers button")
     public void iSelectGetMoreVouchersButton() {
         voucher.getMoreVouchers();
+    }
+
+    @Then("I should see error message")
+    public void iShouldSeeErrorMessage() {
+        Assert.assertTrue(voucher.verifyTheVoucherErrorMessage(),"Voucher Error message is not displayed!");
+    }
+
+    @And("I enter the expired voucher code on checkout")
+    public void iEnterTheExpiredVoucherCodeOnCheckout() throws IOException {
+        voucher.enterExpiredVoucherCode();
+    }
+
+    @Then("I verify the content of the store credit voucher")
+    public void iVerifyTheContentOfTheStoreCreditVoucher() throws IOException {
+        Assert.assertTrue(voucher.verifyTheContentOfTheStoreCredit(),"The store credit voucher is not properly displayed!");
+    }
+
+    @And("I enter the percentage code voucher on checkout")
+    public void iEnterThePercentageCodeVoucherOnCheckout() throws IOException {
+        voucher.enterTheCodeForPercentageVoucher();
     }
 
 //

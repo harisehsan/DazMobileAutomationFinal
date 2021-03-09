@@ -19,7 +19,7 @@ public class Utilities extends Base {
     String Gas = "Gas";
     String telephone_And_Internet = "Telephone & Internet";
     String pay_Bills = "Pay Bill";
-    String bill_Banner = "O1CN01NzTfsB1jrIxIuxpYh_!!6000000004601-2-tps-750-350";
+    String bill_Banner = "O1CN01BKRuZO1rexCnbJ17V_!!6000000005657-2-tps-750-350";
     String payable_Amount = "Payable amount";
     String due_Date = "Due Date";
     String account_Number = "Account Number";
@@ -42,6 +42,10 @@ public class Utilities extends Base {
     String quick_Top_Up = "Quick Top Up";
     String limited_Time_offer = "Limited Time Offers";
     String how_To_bill = "HOW TO PAY YOUR BILL";
+    String bill_LK_Price="50";
+    String checkout_button = "Check Out";
+    String spinner = "Spinner";
+    String decimal_popup = "Do not enter decimal values";
 
 
     UtilitiesPageObject utilitiesPageObject = new UtilitiesPageObject();
@@ -60,12 +64,12 @@ public class Utilities extends Base {
 
     public boolean iShouldBeOnTheUtilityCheckoutPage()
     {
-       return waitWithoutExceptionByTextContains(utilityCheckOut);
+        return waitWithoutExceptionByTextContains(utilityCheckOut);
     }
 
     public boolean iLookForTheSavedConsumerBills()
     {
-       return (containsTextIsExist(Electricity) || containsTextIsExist(Water) || containsTextIsExist(Gas) || containsTextIsExist(telephone_And_Internet));
+        return (containsTextIsExist(Electricity) || containsTextIsExist(Water) || containsTextIsExist(Gas) || containsTextIsExist(telephone_And_Internet));
     }
 
     public void selectPayNowButton()
@@ -155,15 +159,15 @@ public class Utilities extends Base {
             utilitiesPageObject.account_Number_txtbox.sendKeys(utilitiesGetProperty.gasBill().get(0));
         else
             utilitiesPageObject.account_Number_txtbox.sendKeys(utilitiesGetProperty.internetBill().get(0));
-         hideKeyboard();
-            utilitiesPageObject.account_Number_txtbox.click();
+        hideKeyboard();
+        utilitiesPageObject.account_Number_txtbox.click();
     }
 
     public void checkTheBill(String type)
     {
         waitWithoutExceptionByTextContains(type);
-      hideKeyboard();
-      scrollDownMultipleTries(12);
+        hideKeyboard();
+        scrollDownMultipleTries(6);
         clickMultipleTries(utilitiesPageObject.checkTheBillBtn,5);
     }
 
@@ -200,7 +204,7 @@ public class Utilities extends Base {
 
     public void returnToTheUtilityCheckoutScreen()
     {
-       int tries =0;
+        int tries =0;
         do {
             driver.navigate().back();
             tries++;
@@ -215,7 +219,7 @@ public class Utilities extends Base {
 
     public boolean iShouldBeOnTheReloadAndPayBills()
     {
-       return (waitWithoutExceptionByTextContains(reloads_Paybills_Title_Lk));
+        return (waitWithoutExceptionByTextContains(reloads_Paybills_Title_Lk));
     }
 
     public void selectTheReload()
@@ -228,13 +232,6 @@ public class Utilities extends Base {
         return containsTextIsExist(quick_Top_Up);
     }
 
-    public boolean verifyTheDetailsOfTheBillPage()
-    {
-        return (isExist(utilitiesPageObject.CEB_lk)
-                && isExist(utilitiesPageObject.Leco_lk)
-                && isExist(utilitiesPageObject.water_board_lk)
-                && isExist(utilitiesPageObject.terms_and_Conditions_lk));
-    }
 
     public boolean verifyTheExtraDeatilsOfTheBillPage()
     {
@@ -242,6 +239,51 @@ public class Utilities extends Base {
                 && containsTextIsExist(how_To_bill));
     }
 
+    public void selectDBill()
+    {
+        waitWithoutExceptionByTextContains(reloads_Paybills_Lk);
+        findElementByTextUsingContainsString(reloads_Paybills_Lk).click();
+    }
+
+    public void gotoTheCEB()
+    {
+        waitForElementToClickable(utilitiesPageObject.CEB_lk);
+        utilitiesPageObject.CEB_lk.click();
+    }
+
+    public void enterTheBillData(String billType) throws InterruptedException, IOException {
+        waitForElementToClickable(utilitiesPageObject.account_Number_lk);
+        if (billType.equalsIgnoreCase("CEB"))
+        {
+            utilitiesPageObject.account_Number_txtbox.sendKeys(utilitiesGetProperty.lkBills().get(0));
+            utilitiesPageObject.account_Number_txtbox.click();
+            hideKeyboard();
+        }
+        else if(billType.equalsIgnoreCase("LECO"))
+        {
+            utilitiesPageObject.account_Number_txtbox.sendKeys(utilitiesGetProperty.lkBills().get(1));
+        }
+        else
+        {
+            utilitiesPageObject.account_Number_txtbox.sendKeys(utilitiesGetProperty.lkBills().get(2));
+        }
+        utilitiesPageObject.amount_lk.sendKeys(bill_LK_Price);
+    }
+
+    public void selectTheCheckoutButton()
+    {
+        int tries = 0;
+        do {
+
+            if (utilitiesPageObject.amount_lk.getText().equalsIgnoreCase(""))
+                utilitiesPageObject.amount_lk.sendKeys(bill_LK_Price);
+            if (containsTextIsExist(checkout_button))
+                findElementByTextUsingContainsString(checkout_button).click();
+            tries++;
+            waitWithoutExceptionUntilAbsenceOfTheElement(spinner);
+            waitWithoutExceptionUntilAbsenceOfTheElement(decimal_popup);
+        }while(tries < 5 && containsTextIsExist(checkout_button));
+    }
 
 
 

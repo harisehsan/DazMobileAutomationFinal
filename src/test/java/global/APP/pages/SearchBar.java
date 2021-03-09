@@ -62,14 +62,14 @@ public class SearchBar extends Base {
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
-          if (isExist(searchBarPageObject.wallet_icon))
+            if (waitForElementsLessTime(searchBarPageObject.wallet_icon))
            searchBarPageObject.wallet_icon.get(0).click();
           else
              throw new RuntimeException("Either a Daraz Wallet is not existed on homepage or not showing properly!");
         }
         else
         {
-            if (isExist(searchBarPageObject.wallet_icon_MM))
+            if (waitForElementsLessTime(searchBarPageObject.wallet_icon_MM))
               searchBarPageObject.wallet_icon_MM.get(0).click();
             else
                 throw new RuntimeException("Either a Daraz Wallet is not existed on homepage or not showing properly!");
