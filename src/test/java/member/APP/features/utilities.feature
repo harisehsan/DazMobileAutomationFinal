@@ -19,8 +19,8 @@ Feature: Daraz Utilities Management
     When I select the pay bill button
     Then I verify the components of utility
     Then I should see bill type(s)
-    And I scroll to view the banner
-    Then I verify the banner of the utility checkout
+#    And I scroll to view the banner
+#    Then I verify the banner of the utility checkout
     When I select proceed to pay button
     Then I should be on the select payment screen
 
