@@ -21,8 +21,8 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next") public WebElement proceed_To_Pay_btn;
     @AndroidFindBy (id = "com.shop.android:id/btn_laz_trade_order_total_proceed_next") public WebElement proceed_To_Pay_btn_MM;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Cash on Delivery']"),@AndroidBy(xpath = "//*[@content-desc='Cash on Delivery']")}) public WebElement cod_lbl;
-    @AndroidFindAll({@AndroidBy(xpath = "//android.view.View[@content-desc='Cash On Delivery']"), @AndroidBy(accessibility = "Cash on Delivery")})
-    public WebElement cod_lbl_MM;
+    @AndroidFindBy(xpath = "//*[@content-desc='Cash On Delivery']")
+    public List<WebElement> cod_lbl_MM;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='Confirm Order']"),@AndroidBy(xpath = "//*[@content-desc='Confirm Order']")}) public WebElement confirm_Order_btn;
     @AndroidFindAll({@AndroidBy(xpath = "//*[@contentDescription='TRACK ORDER']"),@AndroidBy(xpath = "//*[@content-desc='TRACK ORDER']")}) public WebElement track_Order_btn;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next") public WebElement checkout_btn;

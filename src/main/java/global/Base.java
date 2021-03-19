@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
@@ -26,9 +27,14 @@ import static java.time.Duration.ofSeconds;
 public class Base {
 
     public AppiumDriver driver;
+    public WebDriver webDriver;
 
     public Base(AppiumDriver<WebElement> driver) {
         this.driver = driver;
+    }
+
+    public Base(WebDriver webDriver) {
+        this.webDriver = webDriver;
     }
 
     public boolean isAndroid() {
@@ -55,9 +61,9 @@ public class Base {
         wait.until(ExpectedConditions.elementToBeClickable(id));
     }
 
-    public void waitForElementToClickable(WebElement id) {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.elementToBeClickable(id));
+    public void waitForElementToClickable(WebElement id, int sec) {
+        WebDriverWait wait = new WebDriverWait(driver, sec);
+        wait.until(ExpectedConditions.elementToBeClickable(id)).isEnabled();
     }
 
     public void waitForElementToDisAppear(By id, int time) {
@@ -66,8 +72,13 @@ public class Base {
     }
 
     public void waitForElementsToAppear(List<WebElement> id) {
-        WebDriverWait wait = new WebDriverWait(driver, 11);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfAllElements(id));
+    }
+
+    public void waitForElementToAppear(By id, int sec) {
+        WebDriverWait wait = new WebDriverWait(driver, sec);
+        wait.until(ExpectedConditions.presenceOfElementLocated(id));
     }
 
     public WebElement waitForElement(WebElement arg) {
@@ -121,7 +132,7 @@ public class Base {
 //            int x = width / 2;
 //            int top_y = (int) (height * 0.80);
 //            int bottom_y = (int) (height * 0.787);
-//            System.out.println("These are the coordinates :" + x + "  " + top_y + " " + bottom_y);
+//            System.out.println("These are the coordinates =======>>>>>>> :" + x + "  " + top_y + " " + bottom_y);
 //            TouchAction ts = new TouchAction(driver);
 //            ts.press(pointOption.withCoordinates(x, (top_y))).moveTo(pointOption.withCoordinates(x, (bottom_y))).release().perform();
 //            TouchActions action = new TouchActions(driver);
@@ -250,13 +261,13 @@ public class Base {
     protected boolean waitForElementByWithoutExceptionUntillTimeReach(By element, int time) {
         try {
             new WebDriverWait(driver, time)
-                    .until(ExpectedConditions.presenceOfElementLocated(element));
+                    .until(ExpectedConditions.presenceOfElementLocated(element)).isDisplayed();
             return true;
         } catch (Exception e) {
+            System.err.println(e.getMessage());
             return false;
         }
     }
-
 
     public boolean isExist(List<WebElement> id) {
         return id.size() > 0;
@@ -406,7 +417,8 @@ public class Base {
     }
 
     protected boolean isExistByText(String Name) {
-        return (driver.findElements(By.xpath("//*[@text= '" + Name + "']")).size() > 0);
+//        return (driver.findElements(By.xpath("//*[contains(@text, '')]")).size() > 0);
+        return (driver.findElements(By.xpath("//*[contains(@content-desc, '" + Name + "') or contains(@text, '" + Name + "')]")).size() > 0);
     }
 
     protected boolean findElementsSizeByString(String Name) {

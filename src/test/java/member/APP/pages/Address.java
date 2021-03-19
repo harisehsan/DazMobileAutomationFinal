@@ -1,5 +1,6 @@
 package member.APP.pages;
 
+import com.sun.javafx.scene.traversal.Direction;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -7,6 +8,8 @@ import member.APP.pageObjects.AddressPageObject;
 import member.APP.pageObjects.SignUpObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.LocalTime;
 
 /**
  * Developed By: Muhammad Haris Ehsan
@@ -17,10 +20,6 @@ public class Address extends Base {
 
     AddressPageObject addressPageObject = new AddressPageObject();
     SignUpObjects signUpObjects = new SignUpObjects();
-
-//    String addressHomebtnID = "com.daraz.android:id/home";
-//    String addressOfficebtnID = "com.daraz.android:id/work";
-
 
     public Address(AppiumDriver<WebElement> driver) {
         super(driver);
@@ -256,13 +255,18 @@ public class Address extends Base {
         }
     }
 
-    public void selectEditAddressByOrder(String order) {
+    public void selectEditAddressByOrder(String order) throws InterruptedException {
         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
-            if (order.equalsIgnoreCase("first"))
+            if (order.equalsIgnoreCase("first")) {
+                Thread.sleep(5000);
+                swipeScreenSmall(Direction.DOWN);
                 addressPageObject.edit_Address_btn.get(0).click();
-            else
+            } else {
+                Thread.sleep(5000);
+                swipeScreenSmall(Direction.DOWN);
                 addressPageObject.edit_Address_btn.get(1).click();
+            }
         } else {
             waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By_MM);
             if (order.equalsIgnoreCase("first"))

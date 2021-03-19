@@ -15,3 +15,6 @@ src/test/java/member/APP/features/address.feature:5:17:28:52:70
 src/test/java/member/APP/features/signup.feature:28:35:42:51:59
 src/test/java/member/APP/features/wishlist.feature:5:15:23:34:48:59:68:87:99:109:119
 src/test/java/member/APP/features/wallet.feature:5:27:44
+src/test/java/member/APP/features/topUp.feature:5
+src/test/java/member/APP/features/messagecenter.feature:6:35:55
+src/test/java/member/APP/features/chatscreen.feature:5:37:53:66

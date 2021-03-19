@@ -73,7 +73,7 @@ public class ChatScreen extends Base {
     }
 
     public void verifyExistenceOfMoreOptions() {
-        waitForElementToClickable(chatScreenObjects.moreIcon_ele);
+        waitForElementToClickable(chatScreenObjects.moreIcon_ele, 20);
         chatScreenObjects.moreIcon_ele.click();
     }
 
@@ -107,7 +107,7 @@ public class ChatScreen extends Base {
         itemnumber = random.nextInt(chatScreenObjects.getMsgItemTitle_lst.size());
         productName = chatScreenObjects.getMsgItemTitle_lst.get(itemnumber).getText().replaceAll("[^0-9a-zA-Z:,]","");
         chatScreenObjects.checkBox_lst.get(itemnumber).click();
-        waitForElementToClickable(chatScreenObjects.msgCommitToSend_btn);
+        waitForElementToClickable(chatScreenObjects.msgCommitToSend_btn, 20);
         chatScreenObjects.msgCommitToSend_btn.click();
         indexvalue = chatScreenObjects.productTitle_ele.size();
         swipeScreenSmall(Direction.UP);

@@ -108,8 +108,9 @@ public class AccountPageObject extends BuildIDPicker {
     public By track_Package_lbl_By = By.id("com.daraz.android:id/txt_logistic");
     public By track_Package_lbl_By_MM = By.id("com.shop.android:id/txt_logistic");
     public By account_Information = By.id("com.daraz.android:id/setting_account_information_container");
-    public By account_Information_title = By.xpath("//*[contains(@class,'android.widget.TextView') and contains(@text,'Account Information')]");
-    public By help_Page_Text_By = By.xpath(("//*[contains(@class,'android.view.View') and contains(@text,'Hi, how can we help')]"));
+    public By account_Information_title = By.xpath("//*[contains(@text,'Account Information')]");
+    public By account_Change_Pwd_By = By.xpath("//*[contains(@content-desc,'Change Password')]");
+    public By help_Page_Text_By = By.xpath(("//*[contains(@text,'Search for question')]"));
     public By hamburger_Menu_Home_by = By.xpath("//*[@resource-id='com.daraz.android:id/title' and @text='Home']");
     public By account_Cart_lbl_By = By.xpath("//*[@text='Cart']");
     public By account_Information_lbl_By = By.xpath("//*[@text='Account Information']");

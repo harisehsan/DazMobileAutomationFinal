@@ -21,7 +21,7 @@ Feature: Verification of IM-Chat feature on all ventures
     And I should be on the chat screen
     And I should see text input box
     And I verify the existence of emoticon
-    And I verify the existence of quick reply button on chat screen
+#    And I verify the existence of quick reply button on chat screen
     And I verify the existence and click More Options on chat screen
     And I verify the existence Camera,Photos,Products,Orders channel icon under more option screen
     And I click on "Products" icon under more option screen

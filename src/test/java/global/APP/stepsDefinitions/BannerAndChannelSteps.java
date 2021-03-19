@@ -27,4 +27,9 @@ public class BannerAndChannelSteps {
     public void iNavigateToChannelAndICheckForTheTitleOfChannel() {
        Assert.assertTrue(bannerAndChannel.checkTheChannelPageTitle(),"Chanel Page(s) are not working properly!");
     }
+
+    @And("I select {string} channel on Home screen")
+    public void iSelectChannelOnHomeScreen(String arg0) {
+        bannerAndChannel.iClickChannelIconOnHome(arg0);
+    }
 }

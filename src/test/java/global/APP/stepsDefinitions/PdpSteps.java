@@ -132,9 +132,7 @@ public class PdpSteps {
 
     @And("I check the existence Question & Answer section")
     public void iCheckTheExistenceQuestionAnswerSection() {
-//     Assert.assertTrue(pdp.checkTheExistenceofQaSection(),"Question & Answer section is not existed on PDP!");
      Assert.assertTrue(pdp.checkTheExistanceOfQASection(),"Question & Answer section is not existed on PDP!");
-
     }
 
     @And("I click on view all button for Q&A")

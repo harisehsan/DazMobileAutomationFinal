@@ -7,7 +7,7 @@ Feature: Daraz Cart Management
     And I search a Product using SKU for "Cart"
     And I select the product for cart
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I remove all items from cart
@@ -24,7 +24,7 @@ Feature: Daraz Cart Management
 #    And I search a Product using SKU for "Cart"
 #    And I select the product for cart
 #    And I add a product to cart
-#    And I signin with google account
+#    And I login with old buyer account
 #    Then I verify item has been added to cart by success message
 
 #  @21001814 @remove_single_item_from_cart
@@ -33,7 +33,7 @@ Feature: Daraz Cart Management
 #    And I search a Product using SKU for "Cart"
 #    And I select the product for cart
 #    And I add a product to cart
-#    And I signin with google account
+#    And I login with old buyer account
 #    And I goto cart menu from PDP screen
 #    And I skip the cart popup
 #    And I scroll down to view product in cart
@@ -46,7 +46,7 @@ Feature: Daraz Cart Management
     And I search a Product using SKU for "Cart"
     And I select the product for cart
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart
@@ -65,7 +65,7 @@ Feature: Daraz Cart Management
     And I search a Product using SKU for "Cart"
     And I select the product for cart
     And I add a product to wishlist
-    And I signin with google account
+    And I login with old buyer account
     And I goto the wishlist to select the added product
     And I add a product to cart
     And I goto cart menu from PDP screen
@@ -78,7 +78,7 @@ Feature: Daraz Cart Management
 #  Scenario: Remove all products from cart without add product
 #    Given I select the venture
 #    And I select cart
-#    And I signin with google account
+#    And I login with old buyer account
 #    And I remove all items from cart
 #    Then I verify that all items in cart are successfully removed
 
@@ -88,7 +88,7 @@ Feature: Daraz Cart Management
     And I search a Product using SKU for "Cart"
     And I select the product for cart
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I click on checkout button in cart menu
@@ -106,7 +106,7 @@ Feature: Daraz Cart Management
     And I goto the PDP page
     And I get the product Name
     And I add a combo product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product name and promotion "Combo" in cart
@@ -124,7 +124,7 @@ Feature: Daraz Cart Management
     And I goto the PDP page
     And I get the product Name
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product name and promotion "Free Gift" in cart
@@ -144,7 +144,7 @@ Feature: Daraz Cart Management
     And I goto the PDP page
     And I get the product Name
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product name and promotion "Buy 1 Get 1 Free" in cart
@@ -165,7 +165,7 @@ Feature: Daraz Cart Management
     And I goto the PDP page
     And I get the product Name
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product name and promotion "Buy More & Save Up" in cart
@@ -186,7 +186,7 @@ Feature: Daraz Cart Management
     And I goto the PDP page
     And I get the product Name
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart
@@ -207,7 +207,7 @@ Feature: Daraz Cart Management
     And I goto the PDP page
     And I get the product Name
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
 #    And I scroll down to view product in cart
@@ -231,7 +231,7 @@ Feature: Daraz Cart Management
     Then The voucher code should be copied
     And I close the get voucher popup on PDP
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart

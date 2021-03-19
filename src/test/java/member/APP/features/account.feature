@@ -106,10 +106,14 @@ Feature: Daraz Account Management
   @21001814 @view_cancelled_orders_in_my_cancellation_menu @28810383 @30526026
   Scenario: I view the cancelled products in my cancellation menu
     Given I select the venture
-    And I search a Product using SKU for "Checkout"
+    And I search a Product using SKU for "Cart"
     And I select the product for checkout
-    And I select Buy Now button
+    And I add a product to cart
     And I login with old buyer account
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I select that product from cart for checkout
+    And I click on checkout button in cart menu
     And I click on proceed to pay button
     And I select Cash on Delivery payment method
     And I should reach to order successful page

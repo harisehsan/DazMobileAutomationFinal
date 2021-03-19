@@ -11,11 +11,13 @@ public class MessageCenterObjects extends BuildIDPicker {
     @AndroidFindBy(xpath = "//*[@resource-id='com.daraz.android:id/shop_name']")
     public List<WebElement> shop_Name_lbl;
 
-    @AndroidFindBy (id= "com.daraz.android"+dev+":id/quantity") public List <WebElement> footer_Quantity_list;
+    @AndroidFindBy(id = "quantity")
+    public List<WebElement> footer_Quantity_list;
     @AndroidFindBy (id= "com.shop.android"+dev+":id/quantity") public List <WebElement> footer_Quantity_list_MM;
     @AndroidFindBy (id= "tv_msg_unread_num") public List <WebElement> msgCenter_count_lst;
     @AndroidFindBy (id= "tv_msg_unread_num") public List <WebElement> msgCenter_count_lst_MM;
-    @AndroidFindBy (id= "com.daraz.android"+dev+":id/tv_clear_unread") public WebElement markAllRead_btn;
+    @AndroidFindBy(id = "tv_clear_unread")
+    public WebElement markAllRead_btn;
     @AndroidFindBy (id= "com.shop.android"+dev+":id/tv_clear_unread") public WebElement markAllRead_btn_MM;
     @AndroidFindBy (id= "tv_msg_title") public List <WebElement> msgCenterNotificationTitle;
     @AndroidFindBy (id= "tv_msg_time") public List <WebElement> msgCenterNotificationTime;
@@ -32,6 +34,7 @@ public class MessageCenterObjects extends BuildIDPicker {
     public By store_Name_lbl_by = By.xpath("//*[@resource-id='com.daraz.android:id/shop_name']");
     public By footer_Quantity_list_By = By.id ("com.daraz.android"+dev+":id/quantity") ;
     public By msgCenterNotificationTitle_By = By.id ("tv_msg_title") ;
+    public By msgCenterNotificationTime_By = By.id("tv_msg_title");
 
 
 }

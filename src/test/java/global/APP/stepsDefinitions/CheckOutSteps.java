@@ -197,7 +197,7 @@ public class CheckOutSteps {
 
     @And("I wait for the order details page")
     public void iWaitForTheOrderDetailsPage() {
-     checkout.waitForOrderDetailsPage();
+        checkout.waitForOrderDetailsPage();
     }
 
     @And("I save the CNIC number")

@@ -15,7 +15,8 @@ import java.util.List;
 public class AddressPageObject extends BuildIDPicker {
 
     @AndroidFindBy (xpath = "//*[@text='Address Book']") public WebElement address_Book_lbl;
-    @AndroidFindBy (id = "com.daraz.android"+dev+":id/btn_edit") public List<WebElement> edit_Address_btn;
+    @AndroidFindBy(id = "btn_edit")
+    public List<WebElement> edit_Address_btn;
     @AndroidFindBy (id = "com.shop.android:id/btn_edit") public List <WebElement> edit_Address_btn_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/text_input_layout") public List <WebElement> address_Text_Input_layout;
     @AndroidFindBy (id = "com.shop.android:id/text_input_layout") public List <WebElement> address_Text_Input_layout_MM;
