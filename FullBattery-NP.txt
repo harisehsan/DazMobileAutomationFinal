@@ -12,4 +12,5 @@ src/test/java/member/APP/features/search.feature:5:11:17:27:34:50
 src/test/java/member/APP/features/voucher.feature:18:45:59:71:84:98
 src/test/java/member/APP/features/address.feature:5:17:28:52:70
 src/test/java/member/APP/features/signup.feature:28:42:51:59
+src/test/java/member/APP/features/freeshipping.feature:5:28:51
 src/test/java/member/APP/features/wishlist.feature:5:15:23:34:48:59:68:87:99:109:119

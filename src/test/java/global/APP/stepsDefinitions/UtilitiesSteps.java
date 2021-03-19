@@ -22,6 +22,7 @@ public class UtilitiesSteps {
     @Then("I should be on the utility checkout screen")
     public void iShouldBeOnTheUtilityCheckoutScreen() {
         Assert.assertTrue(utilities.iShouldBeOnTheUtilityCheckoutPage(),"Not successfully naviagted to dbills Screen!");
+        utilities.waitforBillPageToLoad();
     }
 
     @When("I select the pay bill button")

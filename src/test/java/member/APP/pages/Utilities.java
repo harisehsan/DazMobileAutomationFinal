@@ -19,7 +19,7 @@ public class Utilities extends Base {
     String Gas = "Gas";
     String telephone_And_Internet = "Telephone & Internet";
     String pay_Bills = "Pay Bill";
-    String bill_Banner = "O1CN01BKRuZO1rexCnbJ17V_!!6000000005657-2-tps-750-350";
+    String bill_Banner = "O1CN01wuSgHr1zH9YMpKHNO_!!6000000006688-2-tps-750-350";
     String payable_Amount = "Payable amount";
     String due_Date = "Due Date";
     String account_Number = "Account Number";
@@ -46,6 +46,7 @@ public class Utilities extends Base {
     String checkout_button = "Check Out";
     String spinner = "Spinner";
     String decimal_popup = "Do not enter decimal values";
+    String savedConsumerNumbers = "Saved Consumer Numbers";
 
 
     UtilitiesPageObject utilitiesPageObject = new UtilitiesPageObject();
@@ -66,6 +67,11 @@ public class Utilities extends Base {
     {
         return waitWithoutExceptionByTextContains(utilityCheckOut);
     }
+
+   public void waitforBillPageToLoad()
+   {
+       waitWithoutExceptionByText(savedConsumerNumbers);
+   }
 
     public boolean iLookForTheSavedConsumerBills()
     {
@@ -140,9 +146,8 @@ public class Utilities extends Base {
 
     public boolean verifyTheComponentsOfTheNewBillForm(String type)
     {
-        if(waitWithoutExceptionByTextContains(type)) {
-            return  (containsTextIsExist(select_Company)
-                    && containsTextIsExist(account_Number)
+        if(waitWithoutExceptionByTextContains(select_Company)) {
+            return  (containsTextIsExist(account_Number)
                     && containsTextIsExist(viewSampleBill));
         }
         return false;
@@ -284,8 +289,4 @@ public class Utilities extends Base {
             waitWithoutExceptionUntilAbsenceOfTheElement(decimal_popup);
         }while(tries < 5 && containsTextIsExist(checkout_button));
     }
-
-
-
-
 }
