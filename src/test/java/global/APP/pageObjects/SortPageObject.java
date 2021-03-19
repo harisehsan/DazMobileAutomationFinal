@@ -15,7 +15,8 @@ import java.util.List;
 public class SortPageObject extends BuildIDPicker {
 
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/sort_text") public WebElement sort_drpDown;
-    @AndroidFindBy (id = "com.daraz.android"+dev+":id/sortbar_item_text") public List <WebElement> filter_lstItem;
+    @AndroidFindBy(id = "sortbar_item_text")
+    public List<WebElement> filter_lstItem;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/price_text_view") public List <WebElement> product_Price_lbl;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/product_name_text_view") public List <WebElement> product_Name_lbl;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/product_image_view") public List <WebElement> product_img;

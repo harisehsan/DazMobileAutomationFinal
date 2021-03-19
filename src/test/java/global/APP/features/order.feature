@@ -6,7 +6,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     Given I select the venture
     And I skip first order voucher popup
     And I select cart
-    And I signin with google account
+    And I login with old buyer account
     And I remove all items from cart
     Then I verify that all items in cart are successfully removed
 
@@ -34,7 +34,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I select the product for checkout
     And I select the product for cart
     And I add a product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I select that product from cart for checkout
@@ -65,7 +65,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I search a Product using SKU for "Checkout"
     And I select the product for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     And I save the shipping address
     Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
     And I check for the total price on checkout screen
@@ -97,7 +97,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I goto the PDP page
     And I select the product for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     And I click on proceed to pay button
     And I wait for the select payment screen
     And I select Cash on Delivery payment method
@@ -120,7 +120,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I goto the PDP page
     And I select the product for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     And I click on proceed to pay button
     And I wait for the select payment screen
     And I select Cash on Delivery payment method
@@ -143,7 +143,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I goto the PDP page
     And I select the product for checkout
     And I select Buy Now button
-    And I signin with google account
+    And I login with old buyer account
     And I click on proceed to pay button
     And I wait for the select payment screen
     And I select Cash on Delivery payment method
@@ -167,7 +167,7 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I get the product Name
     And I get the product Name for checkout
     And I add a combo product to cart
-    And I signin with google account
+    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart

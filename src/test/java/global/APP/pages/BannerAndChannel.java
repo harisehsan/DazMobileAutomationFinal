@@ -9,6 +9,9 @@ import member.APP.pageObjects.StartScreenPageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Developed By: Muhammad Haris Ehsan
  * Date: 03-October-2019
@@ -127,4 +130,10 @@ public class BannerAndChannel extends Base {
             }
             return true;
         }
+
+    public void iClickChannelIconOnHome(String arg0) {
+        waitForElementToClickable(bannerAndChannelPageObject.channel_name_lbl.get(1), 20);
+        List<WebElement> ele = bannerAndChannelPageObject.channel_name_lbl.stream().filter(i -> i.getText().contains(arg0)).collect(Collectors.toList());
+        ele.get(0).click();
     }
+}

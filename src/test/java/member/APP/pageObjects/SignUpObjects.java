@@ -15,7 +15,7 @@ public class SignUpObjects extends BuildIDPicker {
     @AndroidFindBy(xpath = "//*[@resource-id='com.shop.android:id/title' and contains(@text,'Account')]")
     public WebElement account_lbl_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/txt_login_signup") public List <WebElement> signup_And_Login_btn;
-    @AndroidFindBy(xpath = "//*[contains(@resource-id,'txt_login_signup')]")
+    @AndroidFindBy(id = "txt_login_signup")
     public WebElement signup_And_Login_btn_ele;
     @AndroidFindBy(id="com.daraz.android"+dev+":id/btn_login_fresh_welcome_sign_up") public WebElement signup_btn;
     @AndroidFindBy (id="com.daraz.android"+dev+":id/tv_settings") public WebElement settings_icon;

@@ -198,7 +198,7 @@ public class Account extends Base {
     }
 
     public boolean iShouldBeOnTheHelpMenu() {
-        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.help_Page_Text_By, 20);
+        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.help_Page_Text_By, 30);
     }
 
     public boolean verifySettingsHeaderInLocalLanguage() {
@@ -442,7 +442,8 @@ public class Account extends Base {
 
     public boolean verifyTheExistenceOfAccountInfoTitle() {
 
-        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.account_Information_title, 5);
+        waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.account_Information_title, 5);
+        return waitForElementByWithoutExceptionUntillTimeReach(accountPageObect.account_Change_Pwd_By, 10);
     }
 
     public void clickMoreOptionsMenu() {
