@@ -252,12 +252,12 @@ public class Utilities extends Base {
 
     public void gotoTheCEB()
     {
-        waitForElementToClickable(utilitiesPageObject.CEB_lk);
+        waitForElementToClickable(utilitiesPageObject.CEB_lk, 20);
         utilitiesPageObject.CEB_lk.click();
     }
 
     public void enterTheBillData(String billType) throws InterruptedException, IOException {
-        waitForElementToClickable(utilitiesPageObject.account_Number_lk);
+        waitForElementToClickable(utilitiesPageObject.account_Number_lk, 20);
         if (billType.equalsIgnoreCase("CEB"))
         {
             utilitiesPageObject.account_Number_txtbox.sendKeys(utilitiesGetProperty.lkBills().get(0));

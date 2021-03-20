@@ -24,7 +24,7 @@ public class FreeShipping extends Base {
 
     public boolean verifyTheFreeShippingText()
     {
-       waitForElementToClickable(freeShippingPageObject.free_Shipping_Message.get(0));
+        waitForElementToClickable(freeShippingPageObject.free_Shipping_Message.get(0), 10);
        return (freeShippingPageObject.free_Shipping_Message.get(0).getText().contains(enjoyFreeShipping));
     }
 
@@ -54,16 +54,16 @@ public class FreeShipping extends Base {
     public void addTheProductsTillFreeShippingIsDisplayed()
     {
        int index = 0;
-        waitForElementToClickable(freeShippingPageObject.buy_More_btn.get(0));
+        waitForElementToClickable(freeShippingPageObject.buy_More_btn.get(0), 10);
         while(!freeShippingPageObject.free_Shipping_Message.get(0).getText().contains(enjoyFreeShipping))
         {
             freeShippingPageObject.buy_More_btn.get(0).click();
-            waitForElementToClickable(freeShippingPageObject.mini_Promotion_title);
+            waitForElementToClickable(freeShippingPageObject.mini_Promotion_title, 10);
             freeShippingPageObject.add_To_Cart_Free_Shipping_btn.get(index).click();
             freeShippingPageObject.shipping_Product_Popup_close_btn.click();
             cartPageObjects.select_All_chkbox.click();
             index++;
-            waitForElementToClickable(freeShippingPageObject.free_Shipping_Message.get(0));
+            waitForElementToClickable(freeShippingPageObject.free_Shipping_Message.get(0), 10);
         }
     }
 }
