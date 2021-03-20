@@ -24,47 +24,30 @@ public class MessageCenter extends Base {
 
     //This method will get count of messages in the footer of application
     public boolean getMessageCountInFooter() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        waitForElementsToAppear(messageCenterObjects.footer_Quantity_list);
             Assert.assertTrue(messageCenterObjects.footer_Quantity_list.size() > 0, "NO Messages in Message Center");
             return Integer.parseInt(messageCenterObjects.footer_Quantity_list.get(0).getText().replaceAll("\\D+", "")) > 0;
-        } else {
-            Assert.assertTrue(messageCenterObjects.footer_Quantity_list_MM.size() > 0, "NO Messages in Message Center");
-            return Integer.parseInt(messageCenterObjects.footer_Quantity_list_MM.get(0).getText().replaceAll("\\D+", "")) > 0;
-        }
     }
 
     //This method will find unRead message count in message center, if msg found in any of the tabs will consider True.
     public boolean getMsgCountInMsgCenter() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            return messageCenterObjects.msgCenter_count_lst.size() > 0;
-        } else {
-            return messageCenterObjects.msgCenter_count_lst_MM.size() > 0;
-        }
+        return messageCenterObjects.msgCenter_count_lst_MM.size() > 0;
     }
 
     public boolean getMsgCountInMsgCenterDisappear() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            return messageCenterObjects.msgCenter_count_lst.size()==0;
-        } else {
-            return messageCenterObjects.msgCenter_count_lst_MM.size() ==  0;
-        }
+        return messageCenterObjects.msgCenter_count_lst.size() == 0;
     }
 
     public void clickMarkAllAsRead() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
-            Assert.assertTrue(messageCenterObjects.markAllRead_btn.isDisplayed(), "Mark All Read button not Displayed!!");
-            messageCenterObjects.markAllRead_btn.click();
-        } else {
-            Assert.assertTrue(messageCenterObjects.markAllRead_btn_MM.isDisplayed(), "Mark All Read button not Displayed!!");
-            messageCenterObjects.markAllRead_btn_MM.click();
-        }
+        Assert.assertTrue(messageCenterObjects.markAllRead_btn.isDisplayed(), "Mark All Read button not Displayed!!");
+        messageCenterObjects.markAllRead_btn.click();
     }
 
     public void readFirstNotification() {
-        waitForElementsToAppear(messageCenterObjects.msgCenterNotificationTitle);
-        waitForElementsToAppear(messageCenterObjects.msgCenterNotificationTime);
+        waitForElementToAppear(messageCenterObjects.msgCenterNotificationTitle_By, 10);
+        waitForElementToAppear(messageCenterObjects.msgCenterNotificationTime_By, 10);
         messageCenterObjects.msgCenterNotificationTitle.get(0).click();
-        waitForElementToDisAppear(messageCenterObjects.msgCenterNotificationTitle_By, 5);
+        waitForElementToDisAppear(messageCenterObjects.msgCenterNotificationTitle_By, 10);
     }
 
     public void deleteNotification() {

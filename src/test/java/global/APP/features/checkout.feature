@@ -181,7 +181,7 @@ Feature: Daraz Checkout Management
     And I click on Track Order button
     And I wait for the order details page
     And I navigate back to the main screen
-    And I search product using sku for "CNIC1"
+    And I search product using sku for "CNIC2"
     And I goto the PDP page
     And I select Buy Now button
     And I wait for checkout screen

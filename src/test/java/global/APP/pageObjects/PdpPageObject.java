@@ -48,7 +48,8 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(id = "com.shop.android" + dev + ":id/laz_shop_follow_btn")
  public List<WebElement> store_Follow_lst_ele_btn_MM;
  @AndroidFindBy (id="com.daraz.android"+dev+":id/seller_recommend_title") public List <WebElement> recommended_By_Seller_lbl;
- @AndroidFindBy (id="com.daraz.android"+dev+":id/dots") public WebElement dots_button;
+ @AndroidFindBy(id = "dots")
+ public WebElement dots_button;
  @AndroidFindBy(id="menuText") public List <WebElement> menu_List;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/btn_login_fresh_welcome_login") public List <WebElement> login_btn;
  @AndroidFindBy(id = "com.daraz.android"+dev+":id/search_input_box") public List <WebElement> searchAfterClick_txtfield;
@@ -56,7 +57,8 @@ public class PdpPageObject extends BuildIDPicker {
  @AndroidFindBy(xpath = "//*[@text='Help']") public List <WebElement> help_Header_lbl;
  @AndroidFindBy(id= "com.daraz.android"+dev+":id/tabText") public List <WebElement> elevator_tab;
  @AndroidFindBy(xpath="//*[@text='100% Authentic']") public List <WebElement> authentic_lbl;
- @AndroidFindBy(xpath = "//*[@text='14 days easy return']") public List <WebElement> easy_Return_lbl;
+ @AndroidFindBy(xpath = "//*[contains(@text,'return') or contains(@text,'returns') or contains(@text,'Return')]")
+ public List<WebElement> easy_Return_lbl;
  @AndroidFindBy(xpath = "//*[@text='Variations']") public List <WebElement> variation_lbl;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/text") public List <WebElement> sku_Selector_btn;
  @AndroidFindBy(id="com.daraz.android"+dev+":id/remove") public WebElement quantity_Decrement_btn;
@@ -187,7 +189,7 @@ public class PdpPageObject extends BuildIDPicker {
  public By popup_header_lbl_By_MM = By.id("com.shop.android:id/popup_header_title");
  public By menu_List_By = By.id("com.daraz.android"+dev+":id/menuText");
  public By menu_List_By_MM = By.id("com.shop.android:id/menuText");
- public By dots_button_By = By.id("com.daraz.android"+dev+":id/dots");
+ public By dots_button_By = By.id("dots");
  public By dots_button_By_MM = By.id("com.shop.android:id/dots");
  public By product_Title_lbl_By = By.id("com.daraz.android"+dev+":id/title");
  public By product_Title_lbl_By_MM = By.id("com.shop.android:id/title");

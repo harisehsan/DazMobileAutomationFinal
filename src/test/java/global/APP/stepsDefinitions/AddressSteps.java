@@ -35,7 +35,7 @@ public class AddressSteps {
     }
 
     @And("I save the changes")
-    public void iSaveTheChanges() {
+    public void iSaveTheChanges() throws InterruptedException {
         address.saveChanges();
     }
 
@@ -84,7 +84,7 @@ public class AddressSteps {
     }
 
     @And("I select the edit button of the {string} address")
-    public void iSelectTheEditButtonOfTheAddress(String order) {
+    public void iSelectTheEditButtonOfTheAddress(String order) throws InterruptedException {
         address.selectEditAddressByOrder(order);
     }
 

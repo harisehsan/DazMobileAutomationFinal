@@ -66,13 +66,13 @@ public class CheckOut extends Base {
         try {
             if (System.getProperty("env").equalsIgnoreCase("pk.live"))
             {
-                while (!checkOutPageObjects.cod_lbl_MM.isDisplayed()) {
+                while (checkOutPageObjects.cod_lbl_MM.size() == 0) {
                     swiptToBottom();
                 }
             }
             //   scrollDownMultipleTries(10);
             waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
-            checkOutPageObjects.cod_lbl_MM.click();
+            checkOutPageObjects.cod_lbl_MM.get(0).click();
         } catch (Exception e) {
             e.printStackTrace();
             findElementByTextUsingExactString("Cash on Delivery");
@@ -152,7 +152,7 @@ public class CheckOut extends Base {
             if (currentItemQuantity < quantity) {
                 if (isExist(checkOutPageObjects.quantity_increase_btn)) {
                     for (int i = currentItemQuantity; i < quantity; i++) {
-                        waitForElementToClickable(checkOutPageObjects.quantity_increase_btn.get(0));
+                        waitForElementToClickable(checkOutPageObjects.quantity_increase_btn.get(0), 20);
                         checkOutPageObjects.quantity_increase_btn.get(0).click();
                     }
                 } else {
@@ -165,7 +165,7 @@ public class CheckOut extends Base {
             } else if (currentItemQuantity > quantity) {
                 if (isExist(checkOutPageObjects.quantity_decrese_btn)) {
                     for (int i = currentItemQuantity; i > quantity; i--) {
-                        waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn.get(0));
+                        waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn.get(0), 20);
                         checkOutPageObjects.quantity_decrese_btn.get(0).click();
                     }
                 } else {
@@ -191,7 +191,7 @@ public class CheckOut extends Base {
             if (currentItemQuantity < quantity) {
                 if (isExist(checkOutPageObjects.quantity_increase_btn_MM)) {
                     for (int i = currentItemQuantity; i < quantity; i++) {
-                        waitForElementToClickable(checkOutPageObjects.quantity_increase_btn_MM.get(0));
+                        waitForElementToClickable(checkOutPageObjects.quantity_increase_btn_MM.get(0), 20);
                         checkOutPageObjects.quantity_increase_btn_MM.get(0).click();
                     }
                 } else {
@@ -204,7 +204,7 @@ public class CheckOut extends Base {
             } else if (currentItemQuantity > quantity) {
                 if (isExist(checkOutPageObjects.quantity_decrese_btn_MM)) {
                     for (int i = currentItemQuantity; i > quantity; i--) {
-                        waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn_MM.get(0));
+                        waitForElementToClickable(checkOutPageObjects.quantity_decrese_btn_MM.get(0), 20);
                         checkOutPageObjects.quantity_decrese_btn_MM.get(0).click();
                     }
                 } else {
@@ -607,6 +607,11 @@ public class CheckOut extends Base {
     {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
         {
+            saveCNIC();
+            if (!checkOutPageObjects.cnictxtbox.get(0).getText().contains("Enter your CNIC Number")) {
+                clearCNICField();
+                saveCNIC();
+            }
             return (checkOutPageObjects.cnictxtbox.get(0).getText().contains("Enter your CNIC Number"));
         }
         else
