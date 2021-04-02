@@ -53,7 +53,7 @@ public class FreeShipping extends Base {
 
     public void addTheProductsTillFreeShippingIsDisplayed()
     {
-       int index = 0;
+       int index = 1;
         waitForElementToClickable(freeShippingPageObject.buy_More_btn.get(0), 10);
         while(!freeShippingPageObject.free_Shipping_Message.get(0).getText().contains(enjoyFreeShipping))
         {

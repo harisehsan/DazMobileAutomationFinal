@@ -79,3 +79,20 @@ Feature: Daraz Address Management
     And I select the "OFFICE" button
     Then I should see the address set as "OFFICE"
 
+  @21298974 @verify_the_collection_point_on_address
+  Scenario: verify the collection point on address
+    Given I select the venture
+    And I search for "samsung"
+    And I goto the PDP page
+    And I select the product for checkout
+    And I select Buy Now button
+    And I login with old buyer account
+    And I click on edit address button on checkout
+    And I click on edit address button
+    And I edit the address details
+    And I change the address details for collection point
+    And I save the changes
+    And I navigate back
+    And I select the pick-up point from the collection point
+    Then I should see the collection point on checkout page in address
+
