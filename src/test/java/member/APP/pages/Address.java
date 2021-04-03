@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.time.LocalTime;
+import java.util.List;
 
 /**
  * Developed By: Muhammad Haris Ehsan
@@ -351,6 +352,136 @@ public class Address extends Base {
         else
         {
             return addressPageObject.addressLocationlblMM.getText().contains(addressType);
+        }
+    }
+
+    public void selectPickUpPointsFromCollectionPoints()
+    {
+       waitForElementToClickable(addressPageObject.pickupPoint_lbl,60);
+        addressPageObject.pickupPoint_lbl.click();
+        waitForElementToClickable(addressPageObject.pickUp_Point_chkbox,60);
+        addressPageObject.pickUp_Point_chkbox.click();
+        addressPageObject.pickup_Confirm_btn.click();
+
+    }
+
+    public boolean verifyTheCollectionPoint()
+    {
+        return addressPageObject.checkout_Address_lbl.getText().contains("COLLECTION POINT");
+    }
+
+    public void addCollectionPointAddresses(List<String> pklst, List<String> bdlst, List<String> nplst, List<String> lklst)
+    {
+        int tries = 0;
+        addressPageObject.address_Text_Input_txtbox.get(2).click();
+        switch (System.getProperty("env"))
+        {
+            case "pk.live":
+            {
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(pklst.get(0)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(pklst.get(0)).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(pklst.get(1)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(pklst.get(1)).click();
+
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(pklst.get(2)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(pklst.get(2)).click();
+            }
+            break;
+            case "bd.live":
+            {
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(bdlst.get(0)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(bdlst.get(0)).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(bdlst.get(1)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(bdlst.get(1)).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(bdlst.get(2)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(bdlst.get(2)).click();
+            }
+            break;
+            case "np.live":
+            {
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(nplst.get(0)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(nplst.get(0)).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(nplst.get(1)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(nplst.get(1)).click();
+
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(nplst.get(2)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(nplst.get(2)).click();
+            }
+            break;
+            case "lk.live":
+            {
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(lklst.get(0)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(lklst.get(0)).click();
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(lklst.get(1)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(lklst.get(1)).click();
+
+                waitUntilPresentOfElementBy(addressPageObject.address_Location_Tree_lbl_By);
+                while(!containsTextIsExist(lklst.get(2)) && tries <30)
+                {
+                    swiptToBottom();
+                    tries++;
+                }
+                findElementByTextUsingExactString(lklst.get(2)).click();
+            }
+            break;
+
+            default:
+                throw new RuntimeException("Collection point is not applicable on this venture");
         }
     }
 

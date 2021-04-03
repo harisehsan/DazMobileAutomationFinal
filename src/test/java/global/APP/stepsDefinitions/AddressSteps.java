@@ -115,6 +115,22 @@ public class AddressSteps {
 
     @Then("I should see the address set as {string}")
     public void iShouldSeeTheAddressSetAs(String addressType) {
-        address.verifyTheExistenceOfAddressLocation(addressType);
+      Assert.assertTrue(address.verifyTheExistenceOfAddressLocation(addressType),"The address location is not displayed!");
+    }
+
+    @And("I select the pick-up point from the collection point")
+    public void iSelectThePickUpPointFromTheCollectionPoint() {
+      address.selectPickUpPointsFromCollectionPoints();
+    }
+
+
+    @And("I change the address details for collection point")
+    public void iChangeTheAddressDetailsForCollectionPoint() throws IOException {
+      address.addCollectionPointAddresses(addressGetProperty.collectionPK(), addressGetProperty.collectionBD(), addressGetProperty.collectionNP(), addressGetProperty.collectionLK());
+    }
+
+    @Then("I should see the collection point on checkout page in address")
+    public void iShouldSeeTheCollectionPointOnCheckoutPageInAddress() {
+        Assert.assertTrue(address.verifyTheCollectionPoint(),"The Collection point is not displayed!");
     }
 }

@@ -20,7 +20,7 @@ public class AddressPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.shop.android:id/btn_edit") public List <WebElement> edit_Address_btn_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/text_input_layout") public List <WebElement> address_Text_Input_layout;
     @AndroidFindBy (id = "com.shop.android:id/text_input_layout") public List <WebElement> address_Text_Input_layout_MM;
-    @AndroidFindBy (id = "com.daraz.android"+dev+":id/text_input_edit_text") public List <WebElement> address_Text_Input_txtbox;
+    @AndroidFindBy (id = "text_input_edit_text") public List <WebElement> address_Text_Input_txtbox;
     @AndroidFindBy (id = "com.shop.android:id/text_input_edit_text") public List <WebElement> address_Text_Input_txtbox_MM;
     @AndroidFindBy (id = "com.daraz.android"+dev+":id/tv_address_location_tree_name") public List <WebElement> address_Location_Tree_lbl;
     @AndroidFindBy (id = "com.shop.android:id/tv_address_location_tree_name") public List <WebElement> address_Location_Tree_lbl_MM;
@@ -44,6 +44,10 @@ public class AddressPageObject extends BuildIDPicker {
     @AndroidFindBy (id = "com.daraz.android:id/work") public List <WebElement> address_Office_btn;
     @AndroidFindBy (id = "com.shop.android:id/home") public List <WebElement> address_Home_btn_MM;
     @AndroidFindBy (id = "com.shop.android:id/work") public List <WebElement> address_Office_btn_MM;
+    @AndroidFindBy (id = "tv_laz_trade_collection_point_tip_title") public WebElement pickupPoint_lbl;
+    @AndroidFindBy (id = "ckb_select") public WebElement pickUp_Point_chkbox;
+    @AndroidFindBy (id ="btn_action") public WebElement pickup_Confirm_btn;
+    @AndroidFindBy (id = "tv_laz_trade_address_detail") public WebElement checkout_Address_lbl;
 
     public By address_Book_lbl_By = By.xpath("//*[@text='Address Book']");
     public By edit_Address_btn_By = By.id("com.daraz.android"+dev+":id/btn_edit");

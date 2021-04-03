@@ -15,7 +15,7 @@ Feature: Verification of TOP-UP feature on all ventures
     And I should be redirected to M-site checkout
     Then I should be on the select payment screen
 
-  @searchForTopUpbd
+  @searchForTopUp @bd
   Scenario: Search for Topup
     Given I select the venture
     And I navigate to the signin screen

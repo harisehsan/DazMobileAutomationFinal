@@ -3,6 +3,8 @@ package member.APP.getProperty;
 import java.io.FileInputStream;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -51,5 +53,45 @@ public class AddressGetProperty {
     public String buyerPhoneMM() throws IOException {
         fileInputStream();
         return prop.getProperty("BUYER_PHONE_MM");
+    }
+
+    public List<String> collectionPK() throws IOException {
+        fileInputStream();
+        List <String> collectlst = new ArrayList<>();
+          for (int i=1; i<=3; i++)
+          {
+              collectlst.add(prop.getProperty("COLLECTION_PK_"+i));
+           }
+         return collectlst;
+    }
+
+    public List<String> collectionBD() throws IOException {
+        fileInputStream();
+        List <String> collectlst = new ArrayList<>();
+        for (int i=1; i<=3; i++)
+        {
+            collectlst.add(prop.getProperty("COLLECTION_BD_"+i));
+        }
+        return collectlst;
+    }
+
+    public List<String> collectionNP() throws IOException {
+        fileInputStream();
+        List <String> collectlst = new ArrayList<>();
+        for (int i=1; i<=3; i++)
+        {
+            collectlst.add(prop.getProperty("COLLECTION_NP_"+i));
+        }
+        return collectlst;
+    }
+
+    public List<String> collectionLK() throws IOException {
+        fileInputStream();
+        List <String> collectlst = new ArrayList<>();
+        for (int i=1; i<=3; i++)
+        {
+            collectlst.add(prop.getProperty("COLLECTION_LK_"+i));
+        }
+        return collectlst;
     }
 }
