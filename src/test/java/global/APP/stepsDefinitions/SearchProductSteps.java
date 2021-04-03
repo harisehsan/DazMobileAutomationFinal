@@ -95,4 +95,9 @@ public class SearchProductSteps {
     public void iShouldNotSeeTheSearchHistory() {
         Assert.assertTrue(searchProduct.verifyForDeletedSearchHistory(),"Search History is not deleted properly!");
     }
+
+    @And("I click on Free Shipping Icon on search results")
+    public void iClickOnFreeShippingIconOnSearchResults() {
+        searchProduct.iClickFreeShipping();
+    }
 }

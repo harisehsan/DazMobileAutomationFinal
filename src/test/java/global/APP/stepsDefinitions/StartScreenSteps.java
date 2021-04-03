@@ -17,5 +17,18 @@ public class StartScreenSteps {
     public void iSkipTheShakeShakePopup() {
         envPicker.skipShakeShake(System.getProperty("env"));
     }
+
+    @Given("I select the {string} venture")
+    public void iSelectTheVenture(String arg0) {
+        System.setProperty("env", arg0);
+        envPicker.envPicker(System.getProperty("env"));
+    }
+
+    @Given("^I select the \"([^\"]*)\"$")
+    public void iSelectTheVentures(String arg0) {
+        System.setProperty("env", arg0);
+        envPicker.envPicker(System.getProperty("env"));
+    }
 }
+
 

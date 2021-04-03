@@ -30,6 +30,7 @@ public class Drivers extends BuildIDPicker{
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
         else
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android"+dev);
+        cap.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
         cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.19.1");
         cap.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
