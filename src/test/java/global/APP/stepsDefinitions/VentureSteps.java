@@ -1,9 +1,12 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.Venture;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import java.io.IOException;
 
@@ -11,8 +14,8 @@ public class VentureSteps {
 
     int country_Index;
 
-    Drivers drivers = new Drivers();
-    Venture venture = new Venture(drivers.getDriver());
+    //Drivers drivers = new Drivers();
+    Venture venture = new Venture((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I navigate to the country menu")
         public void iNavigateToCountryMenu() throws IOException {

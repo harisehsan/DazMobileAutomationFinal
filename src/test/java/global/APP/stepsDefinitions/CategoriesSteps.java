@@ -1,16 +1,18 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.Categories;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
 
 public class CategoriesSteps {
-    Drivers driver = new Drivers();
-    Categories categories = new Categories(driver.getDriver());
+    Categories categories = new Categories((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I scroll down to categories section on homepage")
     public void iScrollDownToCategoriesSectionOnHomepage() {

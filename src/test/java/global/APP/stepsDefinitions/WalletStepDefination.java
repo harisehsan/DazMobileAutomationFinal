@@ -1,16 +1,19 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.Wallet;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class WalletStepDefination {
 
     Drivers driver = new Drivers();
-    Wallet wallet = new Wallet(driver.getDriver());
+    Wallet wallet = new Wallet((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @Then("I verify the components of wallet screen before login")
     public void iVerifyTheComponentsOfWalletScreenBeforeLogin() {

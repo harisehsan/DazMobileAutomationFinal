@@ -1,15 +1,18 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.MostPopular;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class MostPopularSteps {
 
     Drivers drivers = new Drivers();
-    MostPopular orderGetProperty = new MostPopular(drivers.getDriver());
+    MostPopular orderGetProperty = new MostPopular((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I check the existence of the most popular on Homepage")
     public void iCheckTheExistenceOfTheMostPopularOnHomepage() {

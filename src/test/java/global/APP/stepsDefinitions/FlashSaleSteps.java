@@ -1,15 +1,18 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.FlashSale;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class FlashSaleSteps {
 
     Drivers driver = new Drivers();
-    FlashSale flashSale = new FlashSale(driver.getDriver());
+    FlashSale flashSale = new FlashSale((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I check for the existence of the Flash Sale on Homepage")
     public void iCheckForTheExistenceOfTheFlashSale() {

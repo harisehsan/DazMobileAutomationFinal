@@ -1,14 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.DarazMall;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class DarazMallSteps {
     Drivers driver = new Drivers();
-    DarazMall darazMall = new DarazMall(driver.getDriver());
+    DarazMall darazMall = new DarazMall((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I check the existence of the Daraz Mall on Homepage")
     public void iCheckForTheExistenceOfTheDarazMall() {

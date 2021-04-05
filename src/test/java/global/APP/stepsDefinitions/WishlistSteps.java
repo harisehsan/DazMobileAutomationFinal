@@ -1,15 +1,18 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.Wishlist;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class WishlistSteps {
 
     Drivers driver = new Drivers();
-    Wishlist wishlist = new Wishlist(driver.getDriver());
+    Wishlist wishlist = new Wishlist((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     String productName;
 
     @And("I select the product")

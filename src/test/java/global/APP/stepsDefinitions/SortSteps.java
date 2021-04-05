@@ -1,16 +1,19 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.Sort;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.SearchProduct;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class SortSteps {
     Drivers driver = new Drivers();
-    Sort sort = new Sort(driver.getDriver());
-    SearchProduct searchProduct = new SearchProduct(driver.getDriver());
+    Sort sort = new Sort((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    SearchProduct searchProduct = new SearchProduct((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     String filterKeyword;
 

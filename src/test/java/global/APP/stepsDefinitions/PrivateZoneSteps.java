@@ -1,14 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.PrivateZone;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class PrivateZoneSteps {
     Drivers drivers = new Drivers();
-    PrivateZone privateZone = new PrivateZone(drivers.getDriver());
+    PrivateZone privateZone = new PrivateZone((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I wait for store page to load")
     public void iWaltForStorePageToLoad() {

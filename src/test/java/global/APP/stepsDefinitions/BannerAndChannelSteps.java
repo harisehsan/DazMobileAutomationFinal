@@ -1,15 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.BannerAndChannel;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class BannerAndChannelSteps {
 
-    Drivers driver = new Drivers();
-    BannerAndChannel bannerAndChannel = new BannerAndChannel(driver.getDriver());
+    BannerAndChannel bannerAndChannel = new BannerAndChannel((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @Then("I check the existence of banner on homepage")
     public void iCheckTheExistenceOfTheBannerOnHomepage() {

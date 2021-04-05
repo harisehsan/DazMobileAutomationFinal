@@ -1,14 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.TopUp;
+import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
 public class TopUpSteps {
     Drivers drivers = new Drivers();
-    TopUp topUp = new TopUp(drivers.getDriver());
+    TopUp topUp = new TopUp((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I should be redirected to TopUP screen")
     public void iShouldBeRedirectedToTopUPScreen() throws IOException {

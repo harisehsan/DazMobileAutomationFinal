@@ -1,18 +1,21 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.APP.getProperty.OrderGetProperty;
 import global.APP.pages.ReturnRefund;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
 
 public class ReturnRefundSteps {
     Drivers drivers = new Drivers();
-    ReturnRefund returnRefund = new ReturnRefund(drivers.getDriver());
+    ReturnRefund returnRefund = new ReturnRefund((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     OrderGetProperty orderGetProperty = new OrderGetProperty();
 
     @When("I select all in my order")

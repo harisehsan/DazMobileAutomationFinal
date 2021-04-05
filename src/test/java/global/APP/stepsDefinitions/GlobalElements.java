@@ -6,7 +6,7 @@
 //
 //public class GlobalElements {
 //    Drivers driver = new Drivers();
-//    NavigationBar navBar = new NavigationBar(driver.getDriver());
+//    NavigationBar navBar = new NavigationBar((AppiumDriver<WebElement>)WebDriverRunner.getWebDriver());
 //
 //    @And("^go to Home")
 //    public void openHome() throws InterruptedException{

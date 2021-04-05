@@ -1,15 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.ChatScreen;
+import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
 public class ChatScreenSteps {
-    Drivers drivers = new Drivers();
-    ChatScreen chatScreen = new ChatScreen(drivers.getDriver());
+    ChatScreen chatScreen = new ChatScreen((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I verify product title and price on chat screen")
     public void iVerifyProductTitleAndPriceOnChatScreen() throws IOException {
@@ -91,8 +93,6 @@ public class ChatScreenSteps {
         MessageCenterSteps messageCenterSteps = new MessageCenterSteps();
         AccountSteps accountSteps = new AccountSteps();
         chatScreen.inputRandomTextinInputField();
-        drivers.getDriver().navigate().back();
-        drivers.getDriver().navigate().back();
         accountSteps.iShouldBeOnTheMessagePage();
         messageCenterSteps.iClickOnTabInMessageCenter("Chats");
         chatScreen.verifyDraftMsg();

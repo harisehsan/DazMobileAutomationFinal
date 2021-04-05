@@ -28,15 +28,15 @@ import static java.time.Duration.ofSeconds;
 public class Base {
 
     public AppiumDriver driver;
-    public WebDriver webDriver;
+    //public WebDriver webDriver;
 
     public Base(AppiumDriver<WebElement> driver) {
         this.driver = driver;
     }
 
-    public Base(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
+//    public Base(WebDriver webDriver) {
+//        this.webDriver = webDriver;
+//    }
 
     public boolean isAndroid() {
         return driver instanceof AndroidDriver;
@@ -276,7 +276,7 @@ public class Base {
 
     public boolean waitWithoutException(WebElement id) {
         try {
-            new WebDriverWait(driver, 60)
+            new WebDriverWait(driver, 5)
                     .until(ExpectedConditions.elementToBeClickable(id));
             return true;
         } catch (Exception ex) {

@@ -1,23 +1,25 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pages.Cart;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.Login;
 import member.APP.pages.Wishlist;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import sun.util.resources.ga.LocaleNames_ga;
 
 import java.io.IOException;
 
 public class CartSteps {
-    Drivers driver = new Drivers();
-    Cart cart = new Cart(driver.getDriver());
-    Wishlist wishlist = new Wishlist(driver.getDriver());
-    Login login = new Login(driver.getDriver());
+    Cart cart = new Cart((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    Wishlist wishlist = new Wishlist((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    Login login = new Login((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
 
 

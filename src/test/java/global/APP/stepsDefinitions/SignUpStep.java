@@ -1,21 +1,24 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.*;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
 
 public class SignUpStep {
     Drivers drivers = new Drivers();
-    NavigateToSignUp navigateToSignUp = new NavigateToSignUp(drivers.getDriver());
-    GmailSignUp gmailSignUp = new GmailSignUp(drivers.getDriver());
-    FacebookSignUp facebookSignUp = new FacebookSignUp(drivers.getDriver());
-    Logout logout = new Logout(drivers.getDriver());
-    Login login = new Login(drivers.getDriver());
+    NavigateToSignUp navigateToSignUp = new NavigateToSignUp((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    GmailSignUp gmailSignUp = new GmailSignUp((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    FacebookSignUp facebookSignUp = new FacebookSignUp((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    Logout logout = new Logout((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    Login login = new Login((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     String GMAIL_NAME;
     String FACEBOOK_NAME;
 

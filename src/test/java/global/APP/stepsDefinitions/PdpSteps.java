@@ -1,9 +1,12 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.Pdp;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -11,7 +14,7 @@ import java.io.IOException;
 public class PdpSteps {
 
     Drivers drivers = new Drivers();
-    Pdp pdp = new Pdp(drivers.getDriver());
+    Pdp pdp = new Pdp((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     int cartIndex;
 
     @And("I search product using sku for {string}")

@@ -4,7 +4,7 @@ Feature: Verify Checkout Related Scenarios
   @singleProductCheckout
   Scenario: I verify PDP page price and Checkout page Price should be same for single product Shipping not included
 #      Given I select the "bd.live" venture
-#      Given I select the "<Ventures>"
+#    Given I select the "<Ventures>"
     Given I select the venture
     And I search for "Ac"
     And I should see search products
@@ -18,6 +18,7 @@ Feature: Verify Checkout Related Scenarios
     And I save the total price on checkout screen
     Then I compare the product price of product with the total price
 
-#        Examples:
-#            | Ventures|
-#            | mm.live |
+#    Examples:
+#      | Ventures |
+#      | pk.live  |
+#      | bd.live  |
