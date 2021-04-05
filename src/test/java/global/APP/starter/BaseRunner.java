@@ -1,5 +1,6 @@
 package global.APP.starter;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.io.Files;
 import cucumber.api.testng.TestNGCucumberRunner;
 import global.APP.getProperty.ScreenshotGetProperty;
@@ -8,6 +9,7 @@ import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -31,7 +33,9 @@ public class BaseRunner {
     @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort"})
     public void setUpClass(String platformName, String deviceName, String platformVersion, String udid, String port, String systemPort) throws Exception {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+        System.out.println(Thread.currentThread().getId());
         drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort);
+        WebDriverRunner.setWebDriver(drv.getDriver());
         screenshotGetProperty.setScreenShotCount("0"); //This will set Screenshot Count to Zero before each New invocation of driver.
         createADirectory("Screenshots");
     }

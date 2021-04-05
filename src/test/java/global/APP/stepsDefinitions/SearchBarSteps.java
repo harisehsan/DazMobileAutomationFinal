@@ -1,14 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.SearchBar;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class SearchBarSteps {
     Drivers driver = new Drivers();
-    SearchBar searchBar = new SearchBar(driver.getDriver());
+    SearchBar searchBar = new SearchBar((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @Then("I check the existence of scan icon and text on Homepage")
     public void iCheckTheExistenceOfScanIconAndTextOnHomepage() {

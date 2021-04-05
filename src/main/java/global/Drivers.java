@@ -11,14 +11,17 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class Drivers extends BuildIDPicker{
 
-    public static AppiumDriver<WebElement> driver;
+    public AppiumDriver<WebElement> driver;
     public DesiredCapabilities cap;
 
+//    public static HashMap<String, AppiumDriver<WebElement>> appiumDriverHashMap = new HashMap<>();
+//    public static HashMap<String, DesiredCapabilities> desiredCapabilitiesHashMap = new HashMap<>();
 
     public void darazAndroidLaunchApp(String port, String platform, String platformVersion, String deviceName, String udid, String systemPort) throws Exception {
         cap = new DesiredCapabilities();
@@ -30,21 +33,49 @@ public class Drivers extends BuildIDPicker{
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
         else
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android"+dev);
+        cap.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
         cap.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
         cap.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.19.1");
         cap.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
         cap.setCapability(MobileCapabilityType.NO_RESET,false);
-        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
+//        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"Appium (default)");
         driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.setLogLevel(Level.INFO);
-        WebDriverRunner.setWebDriver(driver);
+//        WebDriverRunner.setWebDriver(driver);
         Assert.assertNotNull(driver);
     //    driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         setDriver(driver);
 //         envPicker.envPicker(System.getProperty("env"));
 
     }
+
+//    public void init(String port, String platform, String platformVersion, String deviceName, String udid, String systemPort) throws Exception {
+//        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, udid);
+//        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+//        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
+//        if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
+//            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
+//        } else {
+//            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android" + dev);
+//        }
+//        desiredCapabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+//        desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.lazada.activities.EnterActivity");
+//        desiredCapabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.19.1");
+//        desiredCapabilities.setCapability(MobileCapabilityType.CLEAR_SYSTEM_FILES,false);
+//        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,false);
+//        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
+//        AndroidDriver<WebElement> webElementAndroidDriver = new AndroidDriver<>(new URL("http://0.0.0.0:" + port + "/wd/hub"), desiredCapabilities);
+//        webElementAndroidDriver.setLogLevel(Level.OFF);
+//        WebDriverRunner.setWebDriver(driver);
+//        Assert.assertNotNull(driver);
+//        //    driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        setDriver(driver);
+////         envPicker.envPicker(System.getProperty("env"));
+//
+//    }
 
         public AppiumDriver<WebElement> getDriver ()
         {

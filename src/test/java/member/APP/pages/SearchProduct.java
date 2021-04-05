@@ -482,6 +482,9 @@ public class SearchProduct extends Base {
     }
 
 
-
-
+    public void iClickFreeShipping() {
+        waitUntilPresentOfElementBy(searchPageObj.freeShippingIcon_by);
+        isExist(searchPageObj.freeShippingIcon);
+        searchPageObj.freeShippingIcon.get(0).click();
+    }
 }

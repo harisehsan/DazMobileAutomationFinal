@@ -1,9 +1,12 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.JustForYou;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import java.io.IOException;
 
@@ -14,7 +17,7 @@ import java.io.IOException;
 
 public class JustForYouSteps {
     Drivers drivers = new Drivers();
-    JustForYou justForYou = new JustForYou(drivers.getDriver());
+    JustForYou justForYou = new JustForYou((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I scroll down to Just For You Section on Homepage and check its existence")
     public void iScrollDownToJustForYouSectionOnHomepageAndCheckItsExistence() {

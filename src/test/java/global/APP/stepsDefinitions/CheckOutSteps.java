@@ -1,5 +1,6 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.getProperty.OrderSetProperty;
@@ -7,14 +8,16 @@ import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pages.Cart;
 import global.APP.pages.CheckOut;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
 
 public class CheckOutSteps {
     Drivers driver = new Drivers();
-    CheckOut checkout = new CheckOut(driver.getDriver());
-    Cart cart = new Cart(driver.getDriver());
+    CheckOut checkout = new CheckOut((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    Cart cart = new Cart((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     OrderSetProperty orderSetProperty = new OrderSetProperty();
     VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
 

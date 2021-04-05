@@ -1,10 +1,13 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.Utilities;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -12,7 +15,7 @@ import java.io.IOException;
 public class UtilitiesSteps {
 
     Drivers driver = new Drivers();
-    Utilities utilities = new Utilities(driver.getDriver());
+    Utilities utilities = new Utilities((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @When("I select dbill channnel")
     public void iSelectDbillChannnel() {

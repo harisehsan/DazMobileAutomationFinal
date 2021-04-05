@@ -1,15 +1,18 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.FreeShipping;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class FreeShippingSteps {
 
     Drivers driver = new Drivers();
-    FreeShipping freeShipping = new FreeShipping(driver.getDriver());
+    FreeShipping freeShipping = new FreeShipping((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @Then("I verify the enjoy free shipping text")
     public void iVerifyTheEnjoyFreeShippingText() {

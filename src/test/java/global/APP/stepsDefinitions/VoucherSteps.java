@@ -1,10 +1,13 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.Voucher;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -12,7 +15,7 @@ import java.io.IOException;
 public class VoucherSteps {
 
     Drivers drivers = new Drivers();
-    Voucher voucher = new Voucher(drivers.getDriver());
+    Voucher voucher = new Voucher((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I goto vouchers screen from wallet screen")
     public void iGotoVouchersScreenFromWalletScreen() {

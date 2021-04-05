@@ -1,10 +1,13 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.getProperty.UserGrowthGetProperty;
 import member.APP.pages.UserGrowth;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -12,7 +15,7 @@ import java.io.IOException;
 public class UserGrowthSteps {
 
     Drivers driver = new Drivers();
-    UserGrowth userGrowth = new UserGrowth(driver.getDriver());
+    UserGrowth userGrowth = new UserGrowth((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     UserGrowthGetProperty userGrowthGetProperty = new UserGrowthGetProperty();
 
     @Then("I verify the existence of user growth popup on Home Screen")

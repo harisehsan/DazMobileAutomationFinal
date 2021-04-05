@@ -1,16 +1,19 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.pages.MessageCenter;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 
 public class MessageCenterSteps {
     Drivers drivers = new Drivers();
-    MessageCenter messageCenter = new MessageCenter(drivers.getDriver());
+    MessageCenter messageCenter = new MessageCenter((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @And("I find unread message count in footer")
     public void iFindUnreadMessageCountInFooter() {

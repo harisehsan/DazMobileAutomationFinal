@@ -1,5 +1,6 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.bs.A;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -7,6 +8,8 @@ import cucumber.api.java.en.When;
 import global.APP.getProperty.OrderGetProperty;
 import global.APP.pages.Order;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -14,7 +17,7 @@ import java.io.IOException;
 public class OrderSteps  {
     Drivers drivers = new Drivers();
     OrderGetProperty orderGetProperty = new OrderGetProperty();
-    Order order = new Order(drivers.getDriver());
+    Order order = new Order((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
 
     @And("I click on cancel order button")

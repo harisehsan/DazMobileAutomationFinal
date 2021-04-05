@@ -44,6 +44,8 @@ public class SearchPageObject extends BuildIDPicker {
     @AndroidFindBy(id="com.daraz.android"+dev+":id/srp_search_input_box") public List <WebElement> searchBar_Third_txtBox;
     @AndroidFindBy(id="com.shop.android:id/srp_search_input_box") public List <WebElement> searchBar_Third_txtBox_MM;
 
+    @AndroidFindBy(id = "config_text")
+    public List<WebElement> freeShippingIcon;
 
     public By searchResult_lbl_By = By.id("com.daraz.android"+dev+":id/product_name_text_view");
     public By searchResult_lbl_By_MM = By.id("com.shop.android:id/product_name_text_view");
@@ -57,5 +59,5 @@ public class SearchPageObject extends BuildIDPicker {
     public By delete_Search_History_icon_By_MM = By.id("com.shop.android:id/clean_image_view");
 
 
-
+    public By freeShippingIcon_by = By.id("config_text");
 }

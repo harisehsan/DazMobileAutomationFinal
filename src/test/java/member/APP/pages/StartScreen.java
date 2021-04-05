@@ -1,6 +1,7 @@
 package member.APP.pages;
 
 import global.Base;
+import global.Drivers;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.StartScreenPageObjects;
@@ -42,7 +43,7 @@ public class StartScreen extends Base {
                 }
                 break;
                 case "pk.live": {
-                    waitForElementToClickable(startScreenPageObjects.pk_Env_lbl, 20);
+                    waitForElementToClickable(startScreenPageObjects.pk_Env_lbl, 3);
                     startScreenPageObjects.pk_Env_lbl.click();
                 }
                 break;

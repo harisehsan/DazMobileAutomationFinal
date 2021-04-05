@@ -118,6 +118,8 @@ public class ChatScreen extends Base {
     public void inputRandomTextinInputField() {
         uuid = uuid.substring(0, Math.min(uuid.length(), 10)).replaceAll("[^0-9a-zA-Z:,]", "");
         chatScreenObjects.chatInputBox_ele.sendKeys(uuid);
+        clickBackButton();
+        clickBackButton();
     }
 
     public void verifyDraftMsg() {

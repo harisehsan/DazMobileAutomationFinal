@@ -1,5 +1,6 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,21 +9,22 @@ import global.APP.pages.Collection;
 import global.APP.pages.Order;
 import global.APP.pages.SearchBar;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.getProperty.AccountGetProperty;
 import member.APP.pages.Account;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
 public class AccountSteps {
-    Drivers drivers = new Drivers();
-    Account account = new Account(drivers.getDriver());
+    Account account = new Account((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     AccountGetProperty accountGetProperty = new AccountGetProperty();
     OrderGetProperty orderGetProperty = new OrderGetProperty();
-    Order order = new Order(drivers.getDriver());
+    Order order = new Order((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     SoftAssert softAssert = new SoftAssert();
-    SearchBar searchBar = new SearchBar(drivers.getDriver());
+    SearchBar searchBar = new SearchBar((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     boolean walletExistence = false;
 
     @Then("I verify that I have been logged in using google Account")

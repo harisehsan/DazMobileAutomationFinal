@@ -1,14 +1,17 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.Collection;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class CollectionSteps {
     Drivers driver = new Drivers();
-    Collection collection = new Collection(driver.getDriver());
+    Collection collection = new Collection((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
 
     @Then("I check the existence of the Collections on Homepage")
     public void iCheckTheExistenceOfTheCollectionOnHomepage() {

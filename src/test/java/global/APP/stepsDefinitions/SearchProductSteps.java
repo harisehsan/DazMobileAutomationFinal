@@ -1,16 +1,20 @@
 package global.APP.stepsDefinitions;
+
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.getProperty.ProductsGetProperty;
 import member.APP.pages.SearchProduct;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import java.io.IOException;
 
 
 public class SearchProductSteps {
     Drivers driver = new Drivers();
-    SearchProduct searchProduct = new SearchProduct(driver.getDriver());
+    SearchProduct searchProduct = new SearchProduct((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     ProductsGetProperty productsGetProperty = new ProductsGetProperty();
     String searchKeyword;
     String searchSuggestionKeyword;
@@ -94,5 +98,10 @@ public class SearchProductSteps {
     @Then("I should not see the search history")
     public void iShouldNotSeeTheSearchHistory() {
         Assert.assertTrue(searchProduct.verifyForDeletedSearchHistory(),"Search History is not deleted properly!");
+    }
+
+    @And("I click on Free Shipping Icon on search results")
+    public void iClickOnFreeShippingIconOnSearchResults() {
+        searchProduct.iClickFreeShipping();
     }
 }

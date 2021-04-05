@@ -1,12 +1,15 @@
 package global.APP.stepsDefinitions;
 
+import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.Drivers;
+import io.appium.java_client.AppiumDriver;
 import member.APP.getProperty.AddressGetProperty;
 import member.APP.pages.Address;
 import member.APP.pages.NavigateToSignUp;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -14,9 +17,8 @@ import java.io.IOException;
 
 public class AddressSteps {
 
-    Drivers drivers = new Drivers();
-    NavigateToSignUp navigateToSignUp = new NavigateToSignUp(drivers.getDriver());
-    Address address = new Address(drivers.getDriver());
+    NavigateToSignUp navigateToSignUp = new NavigateToSignUp((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
+    Address address = new Address((AppiumDriver<WebElement>) WebDriverRunner.getWebDriver());
     AddressGetProperty addressGetProperty = new AddressGetProperty();
 
     @And("I navigate to the signin screen")
