@@ -26,7 +26,7 @@ public class Cart extends Base {
     WishlistPageObjects wishlistPageObjects = new WishlistPageObjects();
     SearchPageObject searchPageObj = new SearchPageObject();
     VoucherGetProperty voucherGetProperty = new VoucherGetProperty();
-
+    boolean flag = true;
     String productName;
 
     public Cart(AppiumDriver<WebElement> driver) {
@@ -47,13 +47,18 @@ public class Cart extends Base {
     }
 
     public void addToCart() {
+        waitUntilPresentOfElementBy(cartPageObjects.add_To_Cart_btn_By);
         cartPageObjects.add_To_Cart_btn.get(0).click();
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-            if (isExist(cartPageObjects.quantity_Pdp_lbl))
+            if (isExist(cartPageObjects.quantity_Pdp_lbl)) {
+                waitForElementToClickable(cartPageObjects.add_To_Cart_Second_btn.get(0),20);
                 cartPageObjects.add_To_Cart_Second_btn.get(0).click();
+            }
         } else {
-            if (isExist(cartPageObjects.quantity_Pdp_lbl_MM))
+            if (isExist(cartPageObjects.quantity_Pdp_lbl_MM)) {
+                waitForElementToClickable(cartPageObjects.add_To_Cart_Second_btn_MM.get(0),20);
                 cartPageObjects.add_To_Cart_Second_btn_MM.get(0).click();
+            }
         }
     }
 
@@ -106,10 +111,15 @@ public class Cart extends Base {
     }
 
     private void cartPopupSkip(List<WebElement> ok_got_it_btn) {
-        while (isExist(ok_got_it_btn))
-            ok_got_it_btn.get(0).click();
+        if (flag) {
+            waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
+            {
+                while (isExist(ok_got_it_btn))
+                    ok_got_it_btn.get(0).click();
+            }
+            flag = false;
+        }
     }
-
 
     public void selectCart() {
         if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
@@ -192,8 +202,10 @@ public class Cart extends Base {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             if ((verifyEmptyCart()))
                 return;
+            waitUntilPresentOfElementBy(cartPageObjects.select_All_chkbox_By);
             if (cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
                 cartPageObjects.select_All_chkbox.click();
+            waitUntilPresentOfElementBy(cartPageObjects.delete_first_btn_By);
             cartPageObjects.delete_first_btn.click();
             cartPageObjects.delete_second_btn.click();
             cartPageObjects.delete_third_btn.click();
@@ -207,6 +219,7 @@ public class Cart extends Base {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
             if ((verifyEmptyCart()))
                 return;
+            waitForElementToClickable(cartPageObjects.select_All_chkbox_MM,60);
             if (cartPageObjects.select_All_chkbox_MM.getAttribute("checked").equalsIgnoreCase("false"))
                 cartPageObjects.select_All_chkbox_MM.click();
             cartPageObjects.delete_first_btn_MM.click();

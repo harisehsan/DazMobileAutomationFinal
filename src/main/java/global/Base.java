@@ -436,6 +436,12 @@ public class Base {
         }
     }
 
+    protected boolean textIsExist(String Name) {
+        if (Name.length() > 30)
+            Name = Name.substring(0, 30);
+        return (driver.findElements(By.xpath("//*[@text='" + Name + "']")).size() > 0);
+    }
+
     //
     protected boolean containsTextIsExist(String Name) {
         if (Name.length() > 30)
@@ -450,7 +456,7 @@ public class Base {
 
     public boolean waitWithoutExceptionForElements(List<WebElement> id) {
         try {
-            new WebDriverWait(driver, 100)
+            new WebDriverWait(driver, 160)
                     .until(ExpectedConditions.elementToBeClickable(id.get(0)));
             return true;
         } catch (Exception ex) {
@@ -555,7 +561,7 @@ public class Base {
 
     protected int convertToIntFromString(String text)
     {
-        return (Integer.parseInt(text.replaceAll("\\D+","")));
+        return (Integer.parseInt(text.replaceAll("\\D+","").replaceAll(",","")));
     }
 
     public void waitWithoutExceptionUntilAbsenceOfTheElement(String Name)

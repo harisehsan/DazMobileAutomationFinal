@@ -130,21 +130,21 @@ Feature: Daraz Checkout Management
     And I select Buy Now button
     Then I verify the "different" shipping and billing addresses
 
-  @21298974 @edit_addresses_to_verify_same_ship_and_bill_address_on_checkout @28810291 @28810294 @28810285
-  Scenario: Edit addresses to verify same ship and bill address on checkout
-    Given I select the venture
-    And I navigate to the signin screen
-    And I login with old buyer account
-    And I navigate to address menu
-    And I click on edit address button
-    And I make the address default billing and shipping address
-    And I save the changes
-    And I navigate back to the Home Page from "Address"
-    And I search a Product using SKU for "Checkout"
-    And I select the product for checkout
-    And I select Buy Now button
-    Then I verify the "same" shipping and billing addresses
-    Then I verify the bottom line divider on checkout page
+#  @21298974 @edit_addresses_to_verify_same_ship_and_bill_address_on_checkout @28810291 @28810294 @28810285
+#  Scenario: Edit addresses to verify same ship and bill address on checkout
+#    Given I select the venture
+#    And I navigate to the signin screen
+#    And I login with old buyer account
+#    And I navigate to address menu
+#    And I click on edit address button
+#    And I make the address default billing and shipping address
+#    And I save the changes
+#    And I navigate back to the Home Page from "Address"
+#    And I search a Product using SKU for "Checkout"
+#    And I select the product for checkout
+#    And I select Buy Now button
+#    Then I verify the "same" shipping and billing addresses
+#    Then I verify the bottom line divider on checkout page
 
   @21001151 @verify_the_attributes_of_digital_goods @28810296 @28810306
   Scenario: Add digital item into cart

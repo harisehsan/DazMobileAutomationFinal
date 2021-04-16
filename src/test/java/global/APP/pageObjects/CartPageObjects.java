@@ -28,13 +28,13 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/cart") public WebElement go_To_Cart_btn_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_trade_item_title") public List <WebElement> product_Title_In_Cart_lbl;
     @AndroidFindBy(id = "com.shop.android"+dev+":id/tv_laz_trade_item_title") public List <WebElement> product_Title_In_Cart_lbl_MM;
-    @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn;
+    @AndroidFindBy(id = "tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_cart_slide_gesture_got_it") public List <WebElement> ok_Got_It_btn_MM;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/tab_layout") public List <WebElement> cart_icon;
     @AndroidFindBy(id = "com.shop.android:id/tab_layout") public List <WebElement> cart_icon_MM;
     @AndroidFindBy (id= "com.daraz.android"+dev+":id/ckb_laz_trade_item_checkbox") public List <WebElement> product_chkbox;
     @AndroidFindBy (id= "com.shop.android:id/ckb_laz_trade_item_checkbox") public List <WebElement> product_chkbox_MM;
-    @AndroidFindBy(id = "com.daraz.android"+dev+":id/tv_laz_laz_cart_toolbar_management") public WebElement delete_first_btn;
+    @AndroidFindBy(id = "tv_laz_laz_cart_toolbar_management") public WebElement delete_first_btn;
     @AndroidFindBy(id = "com.daraz.android"+dev+":id/btn_laz_trade_management_delete") public WebElement delete_second_btn;
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_laz_cart_toolbar_management") public WebElement delete_first_btn_MM;
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_management_delete") public WebElement delete_second_btn_MM;
@@ -123,8 +123,8 @@ public class CartPageObjects extends BuildIDPicker {
     public By product_Title_lbl_By_MM = By.id("com.shop.android:id/title");
     public By product_Title_In_Cart_lbl_By = By.id("com.daraz.android"+dev+":id/tv_laz_trade_item_title");
     public By product_Title_In_Cart_lbl_By_MM = By.id("com.shop.android:id/tv_laz_trade_item_title");
-    public By ok_Got_It_btn_By = By.id("com.daraz.android"+dev+":id/tv_laz_cart_slide_gesture_got_it");
-    public By ok_Got_It_btn_By_MM = By.id("com.shop.android:id/tv_laz_cart_slide_gesture_got_it");
+    public By ok_Got_It_btn_By = By.id("tv_laz_cart_slide_gesture_got_it");
+    public By ok_Got_It_btn_By_MM = By.id("tv_laz_cart_slide_gesture_got_it");
     public By cart_icon_By = By.id("com.daraz.android"+dev+":id/tab_layout");
     public By cart_icon_By_MM = By.id("com.shop.android:id/tab_layout");
     public By product_rdobtn_By = By.id("com.daraz.android"+dev+":id/ckb_laz_trade_item_checkbox");
@@ -158,5 +158,7 @@ public class CartPageObjects extends BuildIDPicker {
     public By cart_product_descripition_By_MM = By.id("com.shop.android:id/tv_laz_trade_item_sku");
     public By voucher_Clear_btn_By = By.id("com.daraz.android:id/icf_laz_trade_voucher_input_clear");
     public By voucher_Clear_btn_By_MM = By.id("com.shop.android:id/icf_laz_trade_voucher_input_clear");
-
+    public By select_All_chkbox_By = By.id("ckb_laz_trade_total_checkbox");
+    public By add_To_Cart_btn_By = By.xpath("//*[@text='Add to Cart']");
+    public By delete_first_btn_By = By.id("tv_laz_laz_cart_toolbar_management");
 }
