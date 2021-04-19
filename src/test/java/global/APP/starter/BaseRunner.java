@@ -33,7 +33,18 @@ public class BaseRunner {
     @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort"})
     public void setUpClass(String platformName, String deviceName, String platformVersion, String udid, String port, String systemPort) throws Exception {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-        System.out.println(Thread.currentThread().getId());
+//        System.out.println(Thread.currentThread().getId());
+        try {
+            if (!System.getProperty("udid").equalsIgnoreCase(""))
+                udid = System.getProperty("udid");
+            if (!System.getProperty("os").equalsIgnoreCase(""))
+                platformVersion = System.getProperty("os");
+            if (!System.getProperty("port").equalsIgnoreCase(""))
+                port = System.getProperty("port");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("One or more system parameter is missing!");
+        }
         drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort);
         WebDriverRunner.setWebDriver(drv.getDriver());
         screenshotGetProperty.setScreenShotCount("0"); //This will set Screenshot Count to Zero before each New invocation of driver.
@@ -68,6 +79,12 @@ public class BaseRunner {
         return directoryPath = theDir.getCanonicalPath();
     }
 
+    private String createADirectoryJenkins(String dirName) throws IOException {
+        File theDir = new File("./" + dirName + "/" + System.getProperty("env").replaceFirst("\\.", "-"));
+        if (!theDir.exists()) theDir.mkdirs();
+        return directoryPath = theDir.getCanonicalPath();
+    }
+
     public byte[] saveFailScreenShot(AppiumDriver adriver){
         return ((TakesScreenshot)adriver).getScreenshotAs(OutputType.BYTES);
 
@@ -89,6 +106,20 @@ public class BaseRunner {
         createADirectory("FailedScenarios");
         File source = new File("target/cucumber-reports/rerun-reports/rerun.txt");
         File dest = new File(directoryPath + "/" + "Rerun-" + System.getProperty("env").substring(0, 2) + ".txt");
+        try {
+            Files.copy(source, dest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void getRerunFileJenkins() throws IOException {
+        directoryPath = "/JenkinsFailedScenarios";
+        System.out.println(">>>>>>>>>>> Hello Naize"+directoryPath);
+        createADirectoryJenkins("JenkinsFailedScenarios");
+        File source = new File("target/cucumber-reports/rerun-reports/rerun.txt");
+        File dest = new File( directoryPath + "/" + "Rerun.txt");
         try {
             Files.copy(source, dest);
         } catch (IOException e) {
