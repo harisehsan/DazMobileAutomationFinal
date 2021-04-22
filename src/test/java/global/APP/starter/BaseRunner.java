@@ -116,7 +116,6 @@ public class BaseRunner {
     @AfterTest(alwaysRun = true)
     public void getRerunFileJenkins() throws IOException {
         directoryPath = "/JenkinsFailedScenarios";
-        System.out.println(">>>>>>>>>>> Hello Naize"+directoryPath);
         createADirectoryJenkins("JenkinsFailedScenarios");
         File source = new File("target/cucumber-reports/rerun-reports/rerun.txt");
         File dest = new File( directoryPath + "/" + "Rerun.txt");
