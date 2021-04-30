@@ -9,13 +9,13 @@ import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -28,6 +28,13 @@ public class BaseRunner {
     File targetFile = null;
     private ScreenshotGetProperty screenshotGetProperty = new ScreenshotGetProperty();
     private String directoryPath = "";
+
+    public String getUdid_Device() throws IOException {
+        udid_Device = screenshotGetProperty.getUdid();
+        return udid_Device;
+    }
+
+    public String udid_Device;
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort"})
@@ -45,6 +52,7 @@ public class BaseRunner {
             e.printStackTrace();
             System.out.println("One or more system parameter is missing!");
         }
+        screenshotGetProperty.setUdid(udid);
         drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort);
         WebDriverRunner.setWebDriver(drv.getDriver());
         screenshotGetProperty.setScreenShotCount("0"); //This will set Screenshot Count to Zero before each New invocation of driver.
@@ -125,4 +133,17 @@ public class BaseRunner {
             e.printStackTrace();
         }
     }
+
+    protected String getOutputFromCommand(Process process) throws IOException {
+        String output2 = "";
+        BufferedReader reader =
+                new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            output2 = output2.concat(line);
+        }
+        return output2;
+    }
+
+
 }

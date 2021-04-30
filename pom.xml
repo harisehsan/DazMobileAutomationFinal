@@ -165,6 +165,7 @@
                     <argLine>
                          -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                          -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm --plugin pretty"
+                         -Dcucumber.options="--plugin ru.yandex.qatools.allure.cucumberjvm.AllureReporterExt"
                         <!-- -javaagent:"C:\Users\Haris Ehsann\Documents\aspectjweaver-1.9.1.jar"-->
                     </argLine>
                     <systemPropertyVariables>

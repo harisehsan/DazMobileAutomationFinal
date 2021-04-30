@@ -28,4 +28,16 @@ public class ScreenshotGetProperty {
     }
 
 
+    public String getUdid() throws IOException {
+        fileInputStream();
+        return prop.getProperty("UDID");
+    }
+
+    public void setUdid(String udid) throws IOException {
+        fileInputStream();
+        prop.setProperty("UDID", udid);
+        fileOutputStream();
+    }
+
+
 }
