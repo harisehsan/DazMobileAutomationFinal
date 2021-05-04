@@ -17,7 +17,7 @@ import java.util.logging.Level;
 
 public class Drivers extends BuildIDPicker{
 
-    public AppiumDriver<WebElement> driver;
+    public static AppiumDriver<WebElement> driver; // Making this driver static to prevent it become null on the Hooks class. This is temporary solution
     public DesiredCapabilities cap;
 
 //    public static HashMap<String, AppiumDriver<WebElement>> appiumDriverHashMap = new HashMap<>();
