@@ -1,5 +1,6 @@
 package global.APP.pages;
 
+import cucumber.api.java.en.Then;
 import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
@@ -86,8 +87,9 @@ public class CheckOut extends Base {
 
     public void clickTrackOrder() {
             if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
-                if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
-                    checkOutPageObjects.rating_Later_btn.click();
+//                if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
+//                    checkOutPageObjects.rating_Later_btn.click();
+                waitWithoutExceptionByTextContains("Order Received");
                 if (findElementsSizeByString("View Order"))
                     findElementByString("View Order").click();
                 else
@@ -657,4 +659,17 @@ public class CheckOut extends Base {
     public void clickChatNowBtnOnOrderDetails() {
         cartPageObjects.chatNow_btn.click();
     }
+
+    public boolean verifyTheUncheckedItemInCart()
+    {
+       return (cartPageObjects.product_rdobtn.get(0).getAttribute("checked").equalsIgnoreCase("false"));
+    }
+
+//    public boolean verifyTheCheckedDefaultDeliveryOption()
+//    {
+//       waitUntilPresentOfElementBy(checkOutPageObjects.delivery_Option_chkbox_By);
+//     return  (checkOutPageObjects.delivery_Option_chkbox.getAttribute( )
+//    }
+
+
 }

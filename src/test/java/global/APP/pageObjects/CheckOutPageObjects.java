@@ -88,6 +88,7 @@ public class CheckOutPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/btn_laz_trade_voucher_input_apply") public WebElement voucher_Apply_btn_MM;
     @AndroidFindBy(xpath = "//android.widget.Toast[@text='Please enter a valid CNIC Number.']") public WebElement CNIC_validate;
     //android.widget.Toast[@text='toast text']
+    @AndroidFindBy(id = "cbx_laz_trade_delivery_option_select") public WebElement delivery_Option_chkbox;
 
     public By proceed_To_Pay_btn_By = By.id("com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next");
     public By proceed_To_Pay_btn_By_MM = By.id("com.shop.android:id/btn_laz_trade_order_total_proceed_next");
@@ -111,4 +112,5 @@ public class CheckOutPageObjects extends BuildIDPicker {
     public By quantity_Option_By = By.id("com.daraz.android:id/laz_wheelview_item_content");
     public By quantity_Option_By_MM = By.id("com.shop.android:id/laz_wheelview_item_content");
     public By cnictxtbox_By = By.xpath("//*[@text='Enter your CNIC Number']");
+    public By delivery_Option_chkbox_By = By.id("cbx_laz_trade_delivery_option_select");
 }

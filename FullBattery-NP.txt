@@ -15,3 +15,4 @@ src/test/java/member/APP/features/signup.feature:28:42:51:59
 src/test/java/member/APP/features/freeshipping.feature:5:28:51
 src/test/java/member/APP/features/wishlist.feature:5:15:23:34:48:59:68:87:99:109:119
 src/test/java/member/APP/features/topUp.feature:64
+src/test/java/global/APP/features/checkOutScenarios.feature:5:23:54:83:108:137:172:202:227:257:292
