@@ -1,6 +1,7 @@
 package member.APP.pages;
 
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SignUpObjects;
@@ -21,7 +22,7 @@ public class NavigateToSignUp extends Base {
     }
 
     public void navigateToSignUpScreen() { //This method is used to navigate the control to the sigup screen to make it able to choose Facebook or gmail signup option
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By, 3);
             signUpObjects.account_lbl_ele.click();
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_And_Login_btn_By, 3);
@@ -40,7 +41,7 @@ public class NavigateToSignUp extends Base {
     }
 
     public void navigateToSigninScreen() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By, 3);
             signUpObjects.account_lbl_ele.click();
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.signup_And_Login_btn_By, 3);

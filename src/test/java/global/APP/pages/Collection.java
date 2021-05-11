@@ -3,6 +3,7 @@ package global.APP.pages;
 import global.APP.pageObjects.CollectionPageObject;
 import global.APP.pageObjects.FlashSalePageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SignUpObjects;
@@ -29,7 +30,7 @@ public class Collection extends Base {
 
     public boolean verifyTheExistenceOfCollectionOnHomePage() {
         int tries = 10;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl))
@@ -52,11 +53,11 @@ public class Collection extends Base {
 
     public boolean selectShopMoreForCollections() {
         int tries = 25;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl)) {
-                    switch (System.getProperty("env")) {
+                    switch (ThreadStorage.get("env")) {
                         case "pk.live":
                         case "bd.live":
                         case "lk.live":
@@ -97,7 +98,7 @@ public class Collection extends Base {
     }
 
     public boolean checkTheExistenceOfCollectionOnHomePage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return (isExist(collectionPageObject.collection_lbl));
         else
             return (isExist(collectionPageObject.collection_lbl_MM));
@@ -105,7 +106,7 @@ public class Collection extends Base {
     }
 
     public void naviagteToSettings() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.account_lbl_By, 3);
             signUpObjects.account_lbl_ele.click();
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.settings_icon_By, 3);
@@ -124,7 +125,7 @@ public class Collection extends Base {
     }
 
     public void changeLanguage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (waitForElementsLessTime(collectionPageObject.change_Language_lbl)) {
                 collectionPageObject.change_Language_lbl.get(0).click();
                 waitUntilPresentOfElementBy(collectionPageObject.language_Options_chkbox_By);
@@ -142,11 +143,11 @@ public class Collection extends Base {
 
     public boolean checkForCollectionOnHomePageInLocalLanguage() {
         int tries = 25;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {
                 if (isExist(collectionPageObject.collection_lbl)) {
-                    switch (System.getProperty("env")) {
+                    switch (ThreadStorage.get("env")) {
                         case "bd.live": {
                             if (collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().contains("সংগ্রহগুলি"))
                                 return (!collectionPageObject.collection_lbl.get(collectionPageObject.collection_lbl.size() - 1).getText().matches(".*[a-zA-Z].*"));

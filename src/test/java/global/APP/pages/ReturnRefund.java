@@ -2,8 +2,8 @@ package global.APP.pages;
 
 import global.APP.getProperty.DeliveredOrderGetProperty;
 import global.APP.pageObjects.OrderPageObject;
-import global.APP.stepsDefinitions.OrderSteps;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
@@ -34,7 +34,7 @@ public class ReturnRefund extends Base {
     }
 
     public boolean lookForTheOrderID(String productType) throws IOException {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live": {
              if (productType.equalsIgnoreCase("Normal")) {
                  scrollToOrderID(deliveredOrderGetProperty.pkNormal());

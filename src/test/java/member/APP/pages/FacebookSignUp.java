@@ -1,6 +1,7 @@
 package member.APP.pages;
 
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.getProperty.FacebookGetProperty;
@@ -26,7 +27,7 @@ public class FacebookSignUp extends Base {
 
     public void signUpUsingFacebook() // This Method is used to open the facebook signup option and fill the email and password
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(facebookSignUpObjects.facebook_btn_By);
            clickMultipleTries(facebookSignUpObjects.facebook_btn,1);
         }
@@ -57,14 +58,14 @@ public class FacebookSignUp extends Base {
                  clickMultipleTries(facebookSignUpObjects.continue_Facebook_Accout,1);
        }
 
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             return facebookGetProperty.nameGetProperty();
         else
             return facebookGetProperty.nameMMGetProperty();
     }
     public String facebookSignupVerififcation() // This Method is used to verify either you have been signed up successfully with the name as provided above or not
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(facebookSignUpObjects.account_Holder_Name_lbl_By);
             return facebookSignUpObjects.account_Holder_Name_lbl.getText();
         }

@@ -2,6 +2,7 @@ package global.APP.pages;
 
 import global.APP.pageObjects.SortPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
@@ -36,7 +37,7 @@ public class Sort extends Base {
 
     public boolean verifyTheSortedCatalog(String sortType) {
         if (sortType.equalsIgnoreCase("Price low to high")) {
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                 case "lk.live":
                 case "np.live":
@@ -49,7 +50,7 @@ public class Sort extends Base {
             }
         }
         if (sortType.equalsIgnoreCase("Price high to low")) {
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                 case "lk.live":
                 case "np.live":
@@ -65,7 +66,7 @@ public class Sort extends Base {
 
     public void goToDarazMall()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
            waitUntilPresentOfElementBy(sortPageObject.search_tab_By);
             sortPageObject.search_tab.get(1).click();
         }
@@ -78,7 +79,7 @@ public class Sort extends Base {
 
     public void selectFilter()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(sortPageObject.filter_btn_By);
             sortPageObject.filter_btn.click();
         }
@@ -94,7 +95,7 @@ public class Sort extends Base {
        if (!(isExistByText(filterKeyword)))
            findElementByTextUsingExactString("Brand").click();
        findElementByTextUsingExactString(filterKeyword).click();
-       if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+       if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
            waitUntilPresentOfElementBy(sortPageObject.done_btn_By);
            sortPageObject.done_btn.click();
        }
@@ -107,7 +108,7 @@ public class Sort extends Base {
     }
 
     private void priceLowToHighSort() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(sortPageObject.sort_drpDown_By);
             sortPageObject.sort_drpDown.click();
             sortPageObject.filter_lstItem.get(1).click();
@@ -120,7 +121,7 @@ public class Sort extends Base {
     }
 
     private void priceHighToLowSort() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(sortPageObject.sort_drpDown_By);
             sortPageObject.sort_drpDown.click();
             sortPageObject.filter_lstItem.get(2).click();
@@ -254,7 +255,7 @@ public class Sort extends Base {
 
     public void selectAllProductInSearchHint()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (isExist(searchPageObject.got_It_Store_btn))
                 searchPageObject.got_It_Store_btn.get(0).click();
             if (isExistByText("All Products")) {
@@ -282,7 +283,7 @@ public class Sort extends Base {
 
     public void applyListViewOnCatalog(String sortMode)
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
          waitUntilPresentOfElementBy(searchPageObject.searchResult_lbl_By);
           sortPageObject.catalog_View_icon.click();
         }
@@ -296,7 +297,7 @@ public class Sort extends Base {
     public boolean verifyTheSortedCatalogOnStore(String sortType)
     {
         if (sortType.equalsIgnoreCase("Price low to high")) {
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                 case "lk.live":
                 case "np.live":
@@ -308,7 +309,7 @@ public class Sort extends Base {
             }
         }
         if (sortType.equalsIgnoreCase("Price high to low")) {
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                 case "lk.live":
                 case "np.live":

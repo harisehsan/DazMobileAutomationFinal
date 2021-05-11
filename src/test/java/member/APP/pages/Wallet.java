@@ -1,6 +1,7 @@
 package member.APP.pages;
 
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.LoginPageObject;
@@ -167,7 +168,7 @@ public class Wallet extends Base {
 
     public void selectSwitchAccount()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(walletPageObject.switch_Account_lnk_By);
             walletPageObject.switch_Account_lnk.click();
         }

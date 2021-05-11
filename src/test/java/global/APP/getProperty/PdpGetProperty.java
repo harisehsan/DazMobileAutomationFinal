@@ -1,8 +1,9 @@
 package global.APP.getProperty;
 
+import global.ThreadStorage;
+
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -22,7 +23,7 @@ public class PdpGetProperty {
 
     public String getProductSKU(String key) throws IOException {
         fileInputStream();
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live": {
                 return  prop.getProperty("PRODUCT_PK_"+key.replaceAll("\\s",""));
             }

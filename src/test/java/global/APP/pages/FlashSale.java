@@ -4,6 +4,7 @@ import global.APP.pageObjects.BannerAndChannelPageObject;
 import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.FlashSalePageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
@@ -31,7 +32,7 @@ public class FlashSale extends Base {
     }
 
     public boolean checkForFlashSaleExistence() {
-     if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+     if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
          waitWithoutExceptionForElements(flashSalePageObject.flash_Sale_lbl);
          return (flashSalePageObject.flash_Sale_lbl.size() > 0);
      }
@@ -43,7 +44,7 @@ public class FlashSale extends Base {
 
     public boolean verifyTheSaleTime() {
 
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
            return (flashSalePageObject.flash_Sale_Hour_lbl.size() > 0 && flashSalePageObject.flash_Sale_minutes_lbl.size() > 0 && flashSalePageObject.flash_Sale_seconds_lbl.size() > 0);
         }
@@ -55,7 +56,7 @@ public class FlashSale extends Base {
 
     public void gotoFlashsale()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             flashSalePageObject.flash_Shop_More_link.click();
@@ -70,9 +71,9 @@ public class FlashSale extends Base {
     public void goToPdpPage ()
     {
 
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
-          if (System.getProperty("env").equalsIgnoreCase("lk.live"))
+          if (ThreadStorage.get("env").equalsIgnoreCase("lk.live"))
         {
             waitWithoutExceptionByText("BUY NOW");
             flashSalePageObject.buy_Now_btn_MM.click();
@@ -101,7 +102,7 @@ public class FlashSale extends Base {
 
     public boolean verifyTheSalesAndPrice()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return ((!flashSalePageObject.items_Sold_lbl.getText().equalsIgnoreCase("") && (!flashSalePageObject.discount_Percentage_lbl.getText().equalsIgnoreCase("") && ((!flashSalePageObject.discount_Price_lbl.getText().equalsIgnoreCase(""))))));
         }
         else

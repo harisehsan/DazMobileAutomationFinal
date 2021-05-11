@@ -1,6 +1,5 @@
 package global;
 
-import bsh.commands.dir;
 import com.sun.javafx.scene.traversal.Direction;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
@@ -8,7 +7,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,7 +16,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;

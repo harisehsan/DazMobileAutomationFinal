@@ -2,6 +2,7 @@ package global.APP.pages;
 
 import global.APP.pageObjects.VenturePageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SignUpObjects;
@@ -28,7 +29,7 @@ public class Venture extends Base {
     }
 
     public void navigateToVenture() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
                 signUpObjects.account_lbl_ele.click();
@@ -47,7 +48,7 @@ public class Venture extends Base {
     }
 
     public boolean verifyTheSelectedCountry() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live": {
                 return venturePageObject.current_country_rdoBtn.get(3).getAttribute("checked").equalsIgnoreCase("true");
             }

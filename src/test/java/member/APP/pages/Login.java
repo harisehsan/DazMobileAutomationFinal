@@ -2,6 +2,7 @@ package member.APP.pages;
 
 import global.APP.pageObjects.SearchBarPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.getProperty.LoginGetProperty;
@@ -9,7 +10,6 @@ import member.APP.pageObjects.LoginPageObject;
 import member.APP.pageObjects.WishlistPageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import sun.security.util.Password;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class Login extends Base {
     }
 
     public void selectFooterOption(String arg) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.tray_icon_By);
             findElementByIdAndText("title",arg).click();
         } else {
@@ -40,7 +40,7 @@ public class Login extends Base {
 
     public void selectLogin(String screen) {
         if (screen.equalsIgnoreCase("message")) {
-            if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
                 do {
                     waitUntilPresentOfElementBy(loginPageObject.message_Login_btn_By);
                     loginPageObject.message_Login_btn.get(0).click();
@@ -52,7 +52,7 @@ public class Login extends Base {
                 } while (!isExist(loginPageObject.first_login_btn_MM));
             }
         } else if (screen.equalsIgnoreCase("facebook")) {
-            if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
                waitUntilPresentOfElementBy(loginPageObject.facebook_Login_btn_By);
                 loginPageObject.facebook_Login_btn.click();
                 waitUntilPresentOfElementBy(loginPageObject.facebook_Agree_btn_By);
@@ -73,7 +73,7 @@ public class Login extends Base {
     }
 
     public boolean verifyTheLoginPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return isExist(wishlistPageObjects.email_Login_btn);
         } else {
             return isExist(wishlistPageObjects.email_Login_btn_MM);
@@ -81,7 +81,7 @@ public class Login extends Base {
     }
 
     public boolean verifyTheLogin() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.loginID_lbl_By);
             return (!loginPageObject.loginID_lbl.getText().equalsIgnoreCase(""));
         } else {
@@ -91,7 +91,7 @@ public class Login extends Base {
     }
 
     public void selectForgetPasswordLink() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.login_Email_btn_By);
             loginPageObject.login_Email_btn.click();
             waitUntilPresentOfElementBy(loginPageObject.forget_password_New_lbl_By);
@@ -110,9 +110,9 @@ public class Login extends Base {
     }
 
     public void enterLoginEmail() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.final_Email_Login_btn_By);
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                     loginPageObject.login_Email_Final_txt.get(0).sendKeys(loginGetProperty.loginEmail().get(0));
                     break;
@@ -133,7 +133,7 @@ public class Login extends Base {
     }
 
     public void enterLoginPassword() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             loginPageObject.login_Email_Final_txt.get(1).sendKeys(loginGetProperty.loginPassword());
         } else {
             loginPageObject.login_Email_Final_txt_MM.get(1).sendKeys(loginGetProperty.loginPassword());
@@ -141,7 +141,7 @@ public class Login extends Base {
     }
 
     public void clickLoginButton() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             loginPageObject.final_Email_Login_btn.click();
         } else {
             loginPageObject.final_Email_Login_btn_MM.click();
@@ -149,7 +149,7 @@ public class Login extends Base {
     }
 
     public void selectCreateAccountPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.login_btn_By);
             loginPageObject.create_Account_lbl.click();
         } else {
@@ -160,7 +160,7 @@ public class Login extends Base {
 
     public boolean verifyTheCreateAccountPage()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(loginPageObject.register_page_txt_By);
             return (isExist(loginPageObject.register_page_txt));
         }
@@ -173,7 +173,7 @@ public class Login extends Base {
 
     public void selectFacebookAgreeButton()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (waitWithoutExceptionForElements(wishlistPageObjects.login_Policy_Agree_btn))
                 wishlistPageObjects.login_Policy_Agree_btn.get(0).click();
         } else {
@@ -184,7 +184,7 @@ public class Login extends Base {
 
     public void selectFirstLoginButton()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitForElementByWithoutExceptionUntillTimeReach(loginPageObject.login_Email_btn_By, 3);
             loginPageObject.login_Email_btn.click();
         }

@@ -3,10 +3,10 @@ package member.APP.pages;
 import com.sun.javafx.scene.traversal.Direction;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.UserGrowthPageObject;
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -24,7 +24,7 @@ public class UserGrowth extends Base {
 
    public boolean verifyTheExistenceOfUserGrowthPopupOnHomeScreen()
    {
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")){
            return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_Popup_HomeScreen));
        } else {
            return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_Popup_HomeScreen_MM));
@@ -33,7 +33,7 @@ public class UserGrowth extends Base {
 
    public boolean verifyTheExistenceOfUserGrowthModuleOnHomeScreen()
    {
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")){
            swipeScreenSmall(Direction.DOWN);
            waitForElementToDisAppear(userGrowthPageObject.first_Order_voucher_container_HomeScreen_By, 5);
            return (waitWithoutExceptionForElementsResult(userGrowthPageObject.first_Order_voucher_container_HomeScreen));
@@ -46,7 +46,7 @@ public class UserGrowth extends Base {
 
    public void closeTheFirstVoucherPopup()
    {
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")){
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")){
            if (waitForElementsLessTime(userGrowthPageObject.first_Order_Popup_HomeScreen)) {
                userGrowthPageObject.first_Order_Popup_HomeScreen.get(0).click();
            }
@@ -60,7 +60,7 @@ public class UserGrowth extends Base {
    public boolean verifyUserGrowthInlocalLanguage()
    {
      int tries = 0;
-       switch (System.getProperty("env")) {
+       switch (ThreadStorage.get("env")) {
            case "bd.live":
            {
                while (!containsTextIsExist("আপনার প্রথম ক্রয়ে") && tries < 5)
@@ -111,7 +111,7 @@ public class UserGrowth extends Base {
    public void selectTheAvailNowbutton()
    {
        int tries = 0;
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            while (!isExist(userGrowthPageObject.avail_Now_Home_Screen_btn) && tries <5)
            {
                swiptToBottom();
@@ -131,7 +131,7 @@ public class UserGrowth extends Base {
    public boolean verifyTheNewUserZoneScreen()
    {
        waitWithoutExceptionByTextContains("First Order Voucher");
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            return (containsTextIsExist("First Order Voucher") && containsTextIsExist("New User Zone"));
        } else {
            return (containsTextIsExist("First Order Voucher") && containsTextIsExist("New User Gifts"));
@@ -140,11 +140,11 @@ public class UserGrowth extends Base {
 
    public void signInWithNewAccount(List<String> emailPK, List<String> passwordPK, List<String> emailBD, List<String> passwordBD, List<String> emailLK, List<String> passwordLK, List<String> emailNP, List<String> passwordNP, List<String> emailMM, List<String> passwordMM, String accountCount)
    {
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            waitUntilPresentOfElementBy(userGrowthPageObject.login_With_Email_link_By);
            userGrowthPageObject.login_With_Email_link.click();
            waitUntilPresentOfElementBy(userGrowthPageObject.email_txt_By);
-           switch(System.getProperty("env"))
+           switch(ThreadStorage.get("env"))
            {
                case "pk.live":
                {
@@ -310,7 +310,7 @@ public class UserGrowth extends Base {
 
    public void addNewAddressOnCheckout()
    {
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            userGrowthPageObject.new_Address_On_Checkout_btn.click();
        }
        else
@@ -322,7 +322,7 @@ public class UserGrowth extends Base {
    public boolean verifyTheImpactOfVoucher()
    {
 
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            return  Integer.parseInt(checkOutPageObjects.current_Price_lbl.getText().replaceAll("\\D+", "")) >
                    Integer.parseInt(checkOutPageObjects.total_Price_On_Checkout.getText().replaceAll("\\D+", ""));
        } else {
@@ -338,7 +338,7 @@ public class UserGrowth extends Base {
 
    public void iSelectTheGoButtonforUserGrowthPopup()
    {
-       if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+       if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            userGrowthPageObject.user_Growth_Go_btn.click();
        }
        else

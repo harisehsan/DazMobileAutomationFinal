@@ -5,14 +5,12 @@ import global.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.MessageCenterObjects;
-import member.APP.pageObjects.SearchPageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MessageCenter extends Base {
     MessageCenterObjects messageCenterObjects = new MessageCenterObjects();

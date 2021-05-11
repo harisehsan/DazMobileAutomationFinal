@@ -1,6 +1,7 @@
 package member.APP.pages;
 
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.getProperty.GmailSignUpGetProperty;
@@ -28,7 +29,7 @@ public class GmailSignUp extends Base {
     }
 
     public void signupUsingGmail() throws IOException {  // This Method is used to open the google signup option and fill the general authentication if needed by gmail
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(gmailsignUpObjects.gmail_btn_By);
            clickMultipleTries(gmailsignUpObjects.gmail_btn,1);
         } else {
@@ -75,7 +76,7 @@ public class GmailSignUp extends Base {
     }
 
     public String gmailName() throws IOException { // This Method is used Fill the First and Last Name for gmail signup
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) { // code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(gmailsignUpObjects.name_txt_By);
             hideKeyboard();
             gmailsignUpObjects.first_name_txt.sendKeys(gmailSignUpGetProperty.getFirstName());
@@ -117,10 +118,10 @@ public class GmailSignUp extends Base {
         hideKeyboard();
         scrollDownMultipleTries(1);
         waitUntilPresentOfElementBy(gmailsignUpObjects.gmail_Address_txt_By);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             email = (gmailSignUpGetProperty.getFirstName() + gmailSignUpGetProperty.getLastName() + "." + RandomStringUtils.randomNumeric(5));
             gmailsignUpObjects.gmail_Address_txt.sendKeys(email);
-         switch(System.getProperty("env"))
+         switch(ThreadStorage.get("env"))
          {
              case "pk.live":
              {
@@ -165,7 +166,7 @@ public class GmailSignUp extends Base {
 
     public void gmailPassword() throws IOException { // This Method is used to set the strong password for gmail signup
         waitUntilPresentOfElementBy(gmailsignUpObjects.create_Password_txt_By);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             gmailsignUpObjects.create_Password_txt.get(0).click();
 //           scrollDownMultipleTries(1);
            hideKeyboard();
@@ -209,7 +210,7 @@ public class GmailSignUp extends Base {
 
      public String gmailSignupVerification() // This Method is used to verify either you have been signed up successfully with the name as provided above or not
      {
-         if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+         if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
              if (isExist(gmailsignUpObjects.gmail_btn))
                  clickMultipleTries(gmailsignUpObjects.gmail_btn,1);
              waitUntilPresentOfElementBy(gmailsignUpObjects.account_Holder_Name_lbl_By);
@@ -226,7 +227,7 @@ public class GmailSignUp extends Base {
 
      public void selectMessgae()
      {
-         if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+         if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
          {
              waitUntilPresentOfElementBy(gmailsignUpObjects.homepage_Tray_icon_By);
              gmailsignUpObjects.homepage_Tray_icon.get(1).click();

@@ -3,6 +3,7 @@ package global.APP.pages;
 import global.APP.getProperty.CategoriesGetProperty;
 import global.APP.pageObjects.CategoriesPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,7 @@ public class Categories extends Base {
 
     public void scrollDownToCategoriesSection() {
         int tries = 25;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(categoriesPageObject.categories_lbl)) {
                     if (categoriesPageObject.categories_lbl.get(categoriesPageObject.categories_lbl.size()-1).getText().equalsIgnoreCase("Categories")) {
@@ -86,7 +87,7 @@ public class Categories extends Base {
         List<String> goodsTabList = categoriesGetProperty.goodsTab();
         waitWithoutException(findElementByString(goodsTabList.get(0)));
         int tries = 30;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < categoriesGetProperty.goodsTab().size(); i++) {
                 findElementByString(goodsTabList.get(i)).click();
                 waitUntilPresentOfElementBy(categoriesPageObject.product_Name_By);

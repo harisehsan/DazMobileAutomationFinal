@@ -3,12 +3,11 @@ package global.APP.pages;
 import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pageObjects.CartPageObjects;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.clipboard.ClipboardContentType;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.WishlistPageObjects;
-import member.APP.pages.Wishlist;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -49,7 +48,7 @@ public class Cart extends Base {
     public void addToCart() {
         waitUntilPresentOfElementBy(cartPageObjects.add_To_Cart_btn_By);
         cartPageObjects.add_To_Cart_btn.get(0).click();
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (isExist(cartPageObjects.quantity_Pdp_lbl)) {
                 waitForElementToClickable(cartPageObjects.add_To_Cart_Second_btn.get(0),20);
                 cartPageObjects.add_To_Cart_Second_btn.get(0).click();
@@ -63,21 +62,21 @@ public class Cart extends Base {
     }
 
     public String selectProductForCart() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return cartPageObjects.product_Title_lbl.getText();
         else
             return cartPageObjects.product_Title_lbl_MM.getText();
     }
 
     public String verifyTheAddedProductBySuccessMessage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return cartPageObjects.success_Message_lbl.getText();
         else
             return cartPageObjects.success_Message_lbl_MM.getText();
     }
 
     public void goToCartFromPDP() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.go_To_Cart_btn_By);
             cartPageObjects.go_To_Cart_btn.click();
         } else {
@@ -88,7 +87,7 @@ public class Cart extends Base {
 
     public boolean verifyAddedProductInCart(String productName) {
         int tries = 1;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             for (int i = 0; i < tries; i++) {
                 for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl.size(); j++) {
@@ -122,7 +121,7 @@ public class Cart extends Base {
     }
 
     public void selectCart() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By);
 //            cartPageObjects.cart_icon.get(2).click();
             try {
@@ -147,7 +146,7 @@ public class Cart extends Base {
 
     public String removeSingleItemFromCart() {
         int tries = 0;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to remove!");
@@ -181,7 +180,7 @@ public class Cart extends Base {
 
     public String verifyForRemovedItemInCart() {
 
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (cartPageObjects.product_Title_In_Cart_lbl.size() > 0) {
                 waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
                 return cartPageObjects.product_Title_In_Cart_lbl.get(0).getText();
@@ -198,7 +197,7 @@ public class Cart extends Base {
 
     public void removeAllItemsFromCart() {
         int tries = 0;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             if ((verifyEmptyCart()))
                 return;
@@ -235,7 +234,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyEmptyCart() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return (isExist(cartPageObjects.continue_Shopping_Cart_btn));
         } else {
             return (isExist(cartPageObjects.continue_Shopping_Cart_btn_MM));
@@ -243,7 +242,7 @@ public class Cart extends Base {
     }
 
     public void addProductFromCartToWishlist() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             if ((verifyEmptyCart()))
                 throw new RuntimeException("There is no item available in cart to add to wishlist");
@@ -265,7 +264,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyaddedItemInWishList() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
 //            if (getTextWithoutException(cartPageObjects.success_Message_lbl).equalsIgnoreCase("Successfully added to the wishlist."))
             return true;
 //            else return (verifyEmptyCart());
@@ -285,7 +284,7 @@ public class Cart extends Base {
     }
 
     public boolean checkTheShopBox() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
             if (cartPageObjects.shop_check_box.get(0).getAttribute("checked").equalsIgnoreCase("false") && cartPageObjects.product_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false")) {
                 cartPageObjects.shop_check_box.get(0).click();
@@ -303,7 +302,7 @@ public class Cart extends Base {
     }
 
     public boolean checkForTheShopName() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitWithoutExceptionForElements(cartPageObjects.shopName_For_Product);
             return isExist(cartPageObjects.shopName_For_Product) && (!cartPageObjects.shopName_For_Product.get(0).getText().equalsIgnoreCase(""));
         } else {
@@ -313,7 +312,7 @@ public class Cart extends Base {
     }
 
     public boolean checkForCurrentPriceAndOriginalPrice() {
-        if ((System.getProperty("env").equalsIgnoreCase("pk.live")) || (System.getProperty("env").equalsIgnoreCase("lk.live")) || (System.getProperty("env").equalsIgnoreCase("np.live"))) {
+        if ((ThreadStorage.get("env").equalsIgnoreCase("pk.live")) || (ThreadStorage.get("env").equalsIgnoreCase("lk.live")) || (ThreadStorage.get("env").equalsIgnoreCase("np.live"))) {
 //            return (isExist(cartPageObjects.displayed_Amount_txt) || isExist(cartPageObjects.original_Amount_txt));
             int currentPriceRupee = Integer.parseInt(cartPageObjects.cart_Item_Container.get(0).findElement(cartPageObjects.cart_Item_Current_Price_By).getText().replace("Rs. ", "").replaceAll(",", ""));
             if (currentPriceRupee > 0) {
@@ -324,7 +323,7 @@ public class Cart extends Base {
                 } else return true;
             } else
                 return false;
-        } else if (System.getProperty("env").equalsIgnoreCase("bd.live")) {
+        } else if (ThreadStorage.get("env").equalsIgnoreCase("bd.live")) {
 //            return (isExist(cartPageObjects.displayed_Amount_txt_MM) || isExist(cartPageObjects.original_Amount_txt_MM));
             int currentPriceTaka = Integer.parseInt(cartPageObjects.cart_Item_Container.get(0).findElement(cartPageObjects.cart_Item_Current_Price_By).getText().replace("৳ ", "").replaceAll(",", ""));
             if (currentPriceTaka > 0) {
@@ -351,7 +350,7 @@ public class Cart extends Base {
     }
 
     public void cartDeliveryInfoCheck() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
             cartPageObjects.ok_Got_It_btn.get(0).click();
             waitUntilPresentOfElementBy(cartPageObjects.cart_icon_By);
@@ -369,7 +368,7 @@ public class Cart extends Base {
     }
 
     public void skipTheCartPopup() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
         } else {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn_MM);
@@ -377,7 +376,7 @@ public class Cart extends Base {
     }
 
     public String getProductName() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
             return cartPageObjects.product_Title_lbl.getText();
         } else {
@@ -389,7 +388,7 @@ public class Cart extends Base {
     public void slideTheItemInCartToViewOptions(String productName) {
         int tries = 0;
         int i = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(cartPageObjects.product_Title_In_Cart_lbl_By);
             while (lookForTargetProductInCart(productName) && tries < 15) {
                 for (i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
@@ -413,7 +412,7 @@ public class Cart extends Base {
     }
 
     private void deleteElementFromCart() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(cartPageObjects.delete_Slide_Element_btn))
                 cartPageObjects.delete_Slide_Element_btn.get(0).click();
         } else {
@@ -425,7 +424,7 @@ public class Cart extends Base {
 
     public void scrollToProduct(String productName) {
         int tries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             do {
                 if (isExistByText(productName)) {
                     return;
@@ -448,7 +447,7 @@ public class Cart extends Base {
 
     public void addToCartforCombo() {
         int tries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (!isExist(cartPageObjects.combo_Add_To_Cart_btn) && tries < 20) {
                 swiptToBottom();
                 tries++;
@@ -474,7 +473,7 @@ public class Cart extends Base {
     }
 
     public void selectTheAddedProduct(String productName) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size() - 1; i++) {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
                     cartPageObjects.product_chkbox.get(i).click();
@@ -492,7 +491,7 @@ public class Cart extends Base {
     }
 
     private boolean lookForTargetProductInCart(String productName) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); i++) {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName))
                     return true;
@@ -508,7 +507,7 @@ public class Cart extends Base {
 
 
     public void selectAllItemsInCart() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (cartPageObjects.select_All_chkbox.getAttribute("checked").equalsIgnoreCase("false"))
                 cartPageObjects.select_All_chkbox.click();
         } else {
@@ -518,7 +517,7 @@ public class Cart extends Base {
     }
 
     public void clickOnProduct(String productName) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             findElementByTextUsingExactString(productName).click();
             if (isExist(cartPageObjects.overseas_Confirm_btn))
                 cartPageObjects.overseas_Confirm_btn.get(0).click();
@@ -534,7 +533,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheProductNameOnPDP(String productName) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
             return cartPageObjects.product_Title_lbl.getText().contains(productName);
         } else {
@@ -545,7 +544,7 @@ public class Cart extends Base {
 
     public void scrollToProductAndPromotion(String productName, String promotionName) {
         int tries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             do {
                 if (isExistByText(productName) && containsTextIsExist(promotionName)) {
                     return;
@@ -568,7 +567,7 @@ public class Cart extends Base {
 
     public boolean verifyAddedProductInCartWithPromotion(String productName, String promotionName) {
         int tries = 5;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             for (int i = 0; i < tries; i++) {
                 for (int j = 0; j < cartPageObjects.product_Title_In_Cart_lbl.size(); j++) {
@@ -595,7 +594,7 @@ public class Cart extends Base {
     }
 
     public void selectContinueShopping() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPageObjects.continue_Shopping_Cart_btn.get(0).click();
         } else {
             cartPageObjects.continue_Shopping_Cart_btn_MM.get(0).click();
@@ -603,7 +602,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheHiddenDeleteButton() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return isExist(cartPageObjects.delete_Slide_Element_btn);
         } else {
             return isExist(cartPageObjects.delete_Slide_Element_btn_MM);
@@ -611,7 +610,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheQuantityOfItem() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return (Integer.parseInt(cartPageObjects.cart_Item_Container.get(0).findElement(cartPageObjects.cart_Item_Quantity_txt_By).getText()) > 0);
         } else {
             return (Integer.parseInt(cartPageObjects.cart_Item_Container_MM.get(0).findElement(cartPageObjects.cart_Item_Quantity_txt_By_MM).getText()) > 0);
@@ -620,7 +619,7 @@ public class Cart extends Base {
 
     public boolean iCheckForShippingFeeAndTotalPrice() {
 
-        if ((System.getProperty("env").equalsIgnoreCase("pk.live")) || (System.getProperty("env").equalsIgnoreCase("lk.live")) || (System.getProperty("env").equalsIgnoreCase("np.live"))) {
+        if ((ThreadStorage.get("env").equalsIgnoreCase("pk.live")) || (ThreadStorage.get("env").equalsIgnoreCase("lk.live")) || (ThreadStorage.get("env").equalsIgnoreCase("np.live"))) {
             int TotalPriceRupee = Integer.parseInt(cartPageObjects.cart_Total_Price_lbl.getText().replace("Rs. ", "").replaceAll(",", ""));
             if (!(cartPageObjects.cart_Shipping_lbl.getText().equalsIgnoreCase("Shipping:") && !(cartPageObjects.cart_Total_lbl.getText().equalsIgnoreCase("Total:")))) {
                 if (!cartPageObjects.cart_Shipping_Price_lbl.getText().contains("Free")) {
@@ -631,7 +630,7 @@ public class Cart extends Base {
                 return (TotalPriceRupee > 0);
             } else
                 return false;
-        } else if (System.getProperty("env").equalsIgnoreCase("bd.live")) {
+        } else if (ThreadStorage.get("env").equalsIgnoreCase("bd.live")) {
             int TotalPriceTaka = Integer.parseInt(cartPageObjects.cart_Total_Price_lbl.getText().replace("৳ ", "").replaceAll(",", ""));
             if (!(cartPageObjects.cart_Shipping_lbl.getText().equalsIgnoreCase("Shipping:") && !(cartPageObjects.cart_Total_lbl.getText().equalsIgnoreCase("Total:")))) {
                 if (!cartPageObjects.cart_Shipping_Price_lbl.getText().contains("Free")) {
@@ -662,7 +661,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheGetVocuherPopupComponents() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.get_Voucher_Validity_lbl_By);
             return ((cartPageObjects.get_Voucher_Title_lbl.getText().toLowerCase().contains("voucher from"))
                     && ((Integer.parseInt(cartPageObjects.get_Voucher_Profit_lbl.getText().replaceAll("[^\\d.]", ""))) > 0)
@@ -679,7 +678,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheVoucherCollection(String occurance) {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (occurance.equalsIgnoreCase("first")) {
                 findElementByTextUsingExactString("Collect").click();
                 return cartPageObjects.get_Voucher_Toast_Message_lbl.getText().contains("Collected successfully");
@@ -708,7 +707,7 @@ public class Cart extends Base {
     }
 
     public void clickOnCloseButton() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPageObjects.get_Voucher_Close_btn.click();
         } else {
             cartPageObjects.get_Voucher_Close_btn_MM.click();
@@ -716,7 +715,7 @@ public class Cart extends Base {
     }
 
     public void clickOnPopupCloseButton() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPageObjects.popup_Close_Button.get(0).click();
         } else {
             cartPageObjects.popup_Close_Button_MM.get(0).click();
@@ -725,7 +724,7 @@ public class Cart extends Base {
 
     public void iScrollDownToTheVocuherCodeSection() {
         int tries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (!isExist(cartPageObjects.code_Voucher_txtBox) && tries < 15) {
                 swiptToBottom();
                 tries++;
@@ -739,21 +738,21 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheComponentsOfVoucherCodeSection() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             return (isExist(cartPageObjects.code_Voucher_txtBox) && (cartPageObjects.code_Voucher_Apply_btn.getText().equalsIgnoreCase("APPLY")));
         else
             return (isExist(cartPageObjects.code_Voucher_txtBox_MM) && (cartPageObjects.code_Voucher_Apply_btn_MM.getText().equalsIgnoreCase("APPLY")));
     }
 
     public boolean verifyTheApplyButton() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             return cartPageObjects.code_Voucher_Apply_btn.getAttribute("clickable").equalsIgnoreCase("false");
         else
             return cartPageObjects.code_Voucher_Apply_btn_MM.getAttribute("clickable").equalsIgnoreCase("false");
     }
 
     public void clickOnApplyButton() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             cartPageObjects.code_Voucher_Apply_btn.click();
             hideKeyboard();
         } else {
@@ -764,7 +763,7 @@ public class Cart extends Base {
 
     public void enterVoucherCode(String voucherCodeCondition, String wrongVoucherCode, String correctVoucherCode) {
 //        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (voucherCodeCondition.equalsIgnoreCase("wrong")) {
                 cartPageObjects.code_Voucher_txtBox.get(0).sendKeys(wrongVoucherCode);
 
@@ -782,7 +781,7 @@ public class Cart extends Base {
 
     public boolean verifyTheValidationError() {
         int tries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (!isExist(cartPageObjects.cart_Voucher_Error_lbl) && tries < 5) {
                 swiptToBottom();
                 tries++;
@@ -798,7 +797,7 @@ public class Cart extends Base {
     }
 
     public void selectVoucherClearButton() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            waitUntilPresentOfElementBy(cartPageObjects.voucher_Clear_btn_By);
             cartPageObjects.voucher_Clear_btn.click();
             voucherGetProperty.setCartTotalPrice(cartPageObjects.cart_Total_Price_lbl.getText().replaceAll("[^\\d]", ""));
@@ -811,7 +810,7 @@ public class Cart extends Base {
 
     public boolean verifyTheEmptyVoucherTextfield()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            return cartPageObjects.code_Voucher_txtBox.get(0).getText().equalsIgnoreCase("Enter Voucher Code");
         }
         else
@@ -821,7 +820,7 @@ public class Cart extends Base {
     }
 
     public boolean verifyTheImapctOfCorrectVoucherCode() throws IOException {   int tries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (!isExist(cartPageObjects.voucher_Success_Message_lbl) && tries < 5) {
                 swiptToBottom();
                 tries++;
@@ -847,7 +846,7 @@ public class Cart extends Base {
 
     public void selectTheCheckBoxForProduct(String productName)
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
             {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productName)) {

@@ -3,7 +3,6 @@ package global.APP.stepsDefinitions;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import global.Drivers;
 import io.appium.java_client.AppiumDriver;
 import member.APP.pages.ChatScreen;
 import org.openqa.selenium.WebElement;
