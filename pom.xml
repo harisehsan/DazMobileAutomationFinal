@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <suiteXmlFile>testng.xml</suiteXmlFile>
+        <suiteXmlFile>testing.xml</suiteXmlFile>
         <cucumber.version>4.2.0</cucumber.version>
         <surefire.version>3.0.0-M1</surefire.version>
         <aspectj.version>1.9.1</aspectj.version>

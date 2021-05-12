@@ -8,6 +8,7 @@ import global.Drivers;
 import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Attachment;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
@@ -41,8 +42,9 @@ public class BaseRunner {
     @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort", "env"})
     public void setUpClass(String platformName, String deviceName, String platformVersion, String udid, String port, String systemPort, String env) throws Exception {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+
         System.out.println(env + "\n\n\n");
-//        System.out.println(Thread.currentThread().getId());
+        System.out.println(Thread.currentThread().getId());
 //        try {
 //            if (!System.getProperty("udid").equalsIgnoreCase(""))
 //                udid = System.getProperty("udid");
@@ -54,7 +56,7 @@ public class BaseRunner {
 //            e.printStackTrace();
 //            System.out.println("One or more system parameter is missing!");
 //        }
-        screenshotGetProperty.setUdid(udid);
+        //screenshotGetProperty.setUdid(udid);
         drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort, env);
         ThreadStorage.put("env", env);
         WebDriverRunner.setWebDriver(drv.getDriver());
