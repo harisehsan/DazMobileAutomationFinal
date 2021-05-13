@@ -302,7 +302,7 @@ Feature: Verify Checkout Related Scenarios
     And I select the default address on pdp
     And I add a product to cart
     And I navigate back to the main screen
-    And I search for "B1G1"
+    And I search product using sku for "B1G1"
     And I goto the PDP page
     And I select the default address on pdp
     And I add a product to cart

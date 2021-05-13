@@ -327,3 +327,25 @@ Feature: Daraz Checkout Management
     And I click on proceed to pay button
 #    Then I should see the CNIC validation error
     Then I verify the existence of Proceed to pay button
+
+  @31107015 @verify_for_single_item_not_checked_in_cart_and_delivery_option_is_selected
+  Scenario: verify for single item not checked in cart and delivery option is selected
+    Given I select the venture
+    And I select cart
+    And I login with old buyer account
+    And I skip the cart popup
+    And I remove all items from cart
+    Then I verify that all items in cart are successfully removed
+    And I navigate back to the main screen
+    And I search a Product using SKU for "Cart"
+    And I goto the PDP page
+    And I get the product Name
+    And I add a product to cart
+    And I login with old buyer account
+    And I goto cart menu from PDP screen
+    And I skip the cart popup
+    And I scroll down to view product in cart
+    Then I verify that the item is not checked by default
+    And I select all items in cart
+    And I click on checkout button in cart menu
+    Then I should see the checked delivery options by defaults

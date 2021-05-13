@@ -19,3 +19,4 @@ src/test/java/member/APP/features/wallet.feature:5:27:44
 src/test/java/member/APP/features/topUp.feature:5
 src/test/java/member/APP/features/messagecenter.feature:6:35:55
 src/test/java/member/APP/features/chatscreen.feature:5:37:53:66
+src/test/java/global/APP/features/checkOutScenarios.feature:5:23:54:83:108:137:172:202:227:257:292

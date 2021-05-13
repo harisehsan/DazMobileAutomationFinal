@@ -238,4 +238,15 @@ public class CheckOutSteps {
         checkout.verifyChatNowBtn();
         checkout.clickChatNowBtnOnOrderDetails();
     }
+
+    @Then("I verify that the item is not checked by default")
+    public void iVerifyThatTheItemIsNotCheckedByDefault() {
+        Assert.assertTrue(checkout.verifyTheUncheckedItemInCart(),"The cart item is checked by default for single item!");
+
+    }
+
+    @Then("I should see the checked delivery options by defaults")
+    public void iShouldSeeTheCheckedDeliveryOptionsByDefaults() {
+
+    }
 }
