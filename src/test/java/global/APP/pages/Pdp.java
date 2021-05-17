@@ -1,6 +1,5 @@
 package global.APP.pages;
 
-import cucumber.api.java.sl.In;
 import global.APP.getProperty.PdpGetProperty;
 import global.APP.getProperty.ProductInfoGetProperty;
 import global.APP.getProperty.ProductInfoSetProperty;
@@ -9,6 +8,7 @@ import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.APP.pageObjects.PdpPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
@@ -76,11 +76,11 @@ public class Pdp extends Base {
            searchProduct=12;
         else if (searchType.contains("Size Chart"))
            searchProduct=13;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live": {
                     searchPageObj.searchAfterClick_txtfield.sendKeys(pdpGetProperty.productPK().get(searchProduct));
                 }
@@ -109,7 +109,7 @@ public class Pdp extends Base {
     }
 
     public void getProductFromPropertyFile(String searchType) throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
@@ -126,7 +126,7 @@ public class Pdp extends Base {
     }
 
     public void gotoPdpPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             searchPageObj.searchResult_lbl.get(0).click();
             if (isExist(cartPageObjects.overseas_Confirm_btn))
@@ -160,7 +160,7 @@ public class Pdp extends Base {
     }
 
     public void pdpVideo() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(pdpPageObject.video_icon)) {
                 pdpPageObject.video_icon.get(0).click();
                 waitUntilPresentOfElementBy(pdpPageObject.video_Close_btn_By);
@@ -178,7 +178,7 @@ public class Pdp extends Base {
 
     public boolean viewImagesOnPDP() {
         int[] imageQuantity = new int[2];
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(pdpPageObject.picture_Number_lbl)) {
                 String Quantity[] = pdpPageObject.picture_Number_lbl.get(0).getText().split("/");
                 for (int j = 0; j < (Integer.parseInt(Quantity[1])); j++) {
@@ -218,7 +218,7 @@ public class Pdp extends Base {
     }
 
     public void bigPictureMode() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             pdpPageObject.pdp_image.click();
         } else {
             pdpPageObject.pdp_image_MM.click();
@@ -226,7 +226,7 @@ public class Pdp extends Base {
     }
 
     public boolean checkforAllImages() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.product_images_By);
             for (int i = (pdpPageObject.product_images.size() - 1); i >= 0; i--) {
                 pdpPageObject.product_images.get(i).click();
@@ -242,7 +242,7 @@ public class Pdp extends Base {
     }
 
     public boolean backToPDPFromBigPicture() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             pdpPageObject.picture_Close_btn.click();
             return (isExist(pdpPageObject.product_Title_lbl));
         } else {
@@ -252,7 +252,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTitleAndPrice() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return (!pdpPageObject.product_Title_lbl.get(0).getText().equalsIgnoreCase("")
                     && !pdpPageObject.displayed_Price_lbl.get(0).getText().equalsIgnoreCase("")
                     || !pdpPageObject.original_Price_lbl.get(0).getText().equalsIgnoreCase("")
@@ -267,7 +267,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyRatingWishlistAndShareIcon() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return (isExist(pdpPageObject.rating_bar)
                     && isExist(pdpPageObject.wishlist_icon)
                     && isExist(pdpPageObject.share_icon));
@@ -279,7 +279,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheShareDetails() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            swiptToBottom();
             pdpPageObject.share_icon.get(0).click();
             return (isExist(pdpPageObject.share_Title_lbl));
@@ -301,7 +301,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheContentsOfSpecifications() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.specifications_Contents_lbl_By);
             return (pdpPageObject.specifications_Contents_lbl.size() >= 1);
         } else {
@@ -311,7 +311,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheSpecificationInformationOnPDP() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return (!pdpPageObject.specification_Information_On_Pdp.getText().equalsIgnoreCase(""));
         } else {
             return (!pdpPageObject.specification_Information_On_Pdp_MM.getText().equalsIgnoreCase(""));
@@ -319,7 +319,7 @@ public class Pdp extends Base {
     }
 
     public void clickToEnterSpecificationPopPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             pdpPageObject.specifications_lbl.get(0).click();
         } else {
             pdpPageObject.specifications_lbl.get(0).click();
@@ -339,7 +339,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheExistenceOfDeliveryOptionsContentOnPdp() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return (!pdpPageObject.item_content_lbl.get(0).getText().equalsIgnoreCase("") && isExist(pdpPageObject.map_icon));
         } else {
             return (!pdpPageObject.item_content_lbl_MM.get(0).getText().equalsIgnoreCase("") && isExist(pdpPageObject.map_icon_MM));
@@ -351,7 +351,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheContentOfDeliverOptionsOnPopPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.popup_header_lbl_By);
             return (isExist(pdpPageObject.popup_header_lbl) && isExist(pdpPageObject.product_Title_lbl));
         } else {
@@ -375,7 +375,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheExistenceOfRatingAndReview() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(pdpPageObject.rating_Review_title)) {
                     return true;
@@ -396,7 +396,7 @@ public class Pdp extends Base {
 
     public boolean verifyTheExistenceAndClickOnViewAll() {
       boolean result =false;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if(isExist(pdpPageObject.view_all_rating_and_review_btn)) {
                 result = true;
                 pdpPageObject.view_all_rating_and_review_btn.get(0).click();
@@ -417,7 +417,7 @@ public class Pdp extends Base {
     }
 
     public boolean checkTheExistanceOfQASection(){
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (!isExist(pdpPageObject.qa_Title_lbl)){
             swiptToBottom();
             if(isExist(pdpPageObject.qa_Title_lbl)){
@@ -438,7 +438,7 @@ public class Pdp extends Base {
     }
 
     public boolean checkTheExistenceofQaSection() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(pdpPageObject.qa_Title_lbl)) {
                     return true;
@@ -458,7 +458,7 @@ public class Pdp extends Base {
     }
 
     public void clickOnViewAllButton() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(pdpPageObject.qa_View_All_btn)) {
                 pdpPageObject.qa_View_All_btn.get(0).click();
                 waitUntilPresentOfElementBy(pdpPageObject.qa_page_title_lbl_By);
@@ -475,7 +475,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheExistenceAndClickOnAskQuestion() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(pdpPageObject.ask_Question_btn)) {
                     pdpPageObject.ask_Question_btn.get(0).click();
@@ -502,7 +502,7 @@ public class Pdp extends Base {
     }
 
     public void iclickOnStore() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             pdpPageObject.store_btn.click();
         } else {
             pdpPageObject.store_btn_MM.click();
@@ -510,7 +510,7 @@ public class Pdp extends Base {
     }
 
     public void clickOnFollowStoreButton() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(searchPageObj.got_It_Store_btn))
                 searchPageObj.got_It_Store_btn.get(0).click();
             pdpPageObject.store_Follow_lst_ele_btn.get(0).click();
@@ -522,7 +522,7 @@ public class Pdp extends Base {
     }
 
     public boolean iShouldFollowedThatStore() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (!isExist(pdpPageObject.store_Follow_lst_ele_btn)) {
                 driver.navigate().back();
                 iclickOnStore();
@@ -539,14 +539,14 @@ public class Pdp extends Base {
     }
 
     public boolean iShouldBeOnThePDPPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             return (isExist(pdpPageObject.product_Title_lbl));
         else
             return (isExist(pdpPageObject.product_Title_lbl_MM));
     }
 
     public boolean verifyTheExistanceOFRecomendedBySellerSection(){
-            if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+            if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
               int tries = 0;
                 while (!isExist(pdpPageObject.recommended_By_Seller_lbl) && tries < 30 ){
                     swiptToBottom();
@@ -571,7 +571,7 @@ public class Pdp extends Base {
         }
 
     public boolean verifyTheExistenceOfRecommendedBySellerSection() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(pdpPageObject.recommended_By_Seller_lbl)) {
                     swiptToBottom();
@@ -593,7 +593,7 @@ public class Pdp extends Base {
     }
 
     public boolean iClickOnTheRecommendedProduct() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < 6; i++) {
                 if (isExist(pdpPageObject.recommended_By_Seller_Products)) {
                     pdpPageObject.recommended_By_Seller_Products.get(0).click();
@@ -624,7 +624,7 @@ public class Pdp extends Base {
     }
 
     public boolean navigateToHomePageFromPDP() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
@@ -648,7 +648,7 @@ public class Pdp extends Base {
 
 
     public boolean navigateToLoginFromPDP() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
@@ -668,7 +668,7 @@ public class Pdp extends Base {
     }
 
     public boolean navigateToSearchFromPDP() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
@@ -686,7 +686,7 @@ public class Pdp extends Base {
     }
 
     public void searchTheAvailableProduct() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
             searchPageObj.search_btn.click();
         } else {
@@ -696,7 +696,7 @@ public class Pdp extends Base {
     }
 
     public boolean navigateToMessagesFromPDP() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
@@ -714,7 +714,7 @@ public class Pdp extends Base {
     }
 
     public boolean navigateToNeedHelpFromPDP() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             waitUntilPresentOfElementBy(pdpPageObject.menu_List_By);
@@ -732,7 +732,7 @@ public class Pdp extends Base {
     }
 
     public boolean scrollToElevatorMenu() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(pdpPageObject.elevator_tab))
                     return true;
@@ -751,7 +751,7 @@ public class Pdp extends Base {
     }
 
     public void navigateToEachElevatorMenu() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = pdpPageObject.elevator_tab.size() - 1; i >= 0; i--)
                 pdpPageObject.elevator_tab.get(i).click();
         } else {
@@ -761,7 +761,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheExistenceOfDarazMall() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.product_Title_lbl_By);
             return (pdpPageObject.product_Title_lbl.get(0).getText().startsWith("0"));
         } else {
@@ -792,7 +792,7 @@ public class Pdp extends Base {
     }
 
     public void switchBetweenDifferentSKUs() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.sku_Selector_btn_By);
             for (int i = 0; i < pdpPageObject.sku_Selector_btn.size(); i++) {
                 {
@@ -817,7 +817,7 @@ public class Pdp extends Base {
         {
             scrollDownMultipleTries(2);
         } while(!isExistByText("Quantity"));
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (Integer.parseInt(pdpPageObject.quantity_txtBox.getText()) < 2 && j<2 ) {
                 pdpPageObject.quantity_Increase_btn.click();
                 j++;
@@ -837,7 +837,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheChatPage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(pdpPageObject.chat_ok_btn))
                 pdpPageObject.chat_ok_btn.get(0).click();
             return (isExist(pdpPageObject.msg_Center_txtBox));
@@ -850,7 +850,7 @@ public class Pdp extends Base {
 
     public boolean clickOnChat()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            if (isExist(pdpPageObject.chat_icon)) {
                pdpPageObject.chat_icon.get(0).click();
                return true;
@@ -887,7 +887,7 @@ public class Pdp extends Base {
     }
 
     public boolean checkForVoucherSuccessMessage() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             if (isExist(pdpPageObject.voucher_Success_Message_snackbar))
                 return true;
             else
@@ -943,7 +943,7 @@ public class Pdp extends Base {
 
     public void clickOnVoucherCodeCopyButton() throws IOException {
         waitUntilPresentOfElementBy(pdpPageObject.voucher_Copy_btn_By);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             voucherGetProperty.setCorrectVoucherCode(pdpPageObject.voucher_Code_lbl.getText());
         else
             voucherGetProperty.setCorrectVoucherCode(pdpPageObject.voucher_Code_lbl_MM.getText());
@@ -971,7 +971,7 @@ public class Pdp extends Base {
            return true;
        else
        {
-           if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+           if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
                waitUntilPresentOfElementBy(pdpPageObject.cart_Item_container_By);
                pdpPageObject.cart_Item_container.get(cartIndex).findElement(pdpPageObject.item_Count_drpDown_By).click();
                waitUntilPresentOfElementBy(pdpPageObject.item_Count_lbl_By);
@@ -993,7 +993,7 @@ public class Pdp extends Base {
     }
 
     public int selectProductInCart() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.ok_Got_It_btn_By);
             cartPageObjects.ok_Got_It_btn.get(0).click();
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
@@ -1018,7 +1018,7 @@ public class Pdp extends Base {
         }
     }
     public boolean verifyB1G1QuantityInCart(String quantity, int cartIndex) {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(pdpPageObject.product_Count_In_Cart_By);
            return (Integer.parseInt(pdpPageObject.cart_Item_container.get(cartIndex).findElement(pdpPageObject.product_Count_In_Cart_By).getText()) >= Integer.parseInt(quantity));
         }
@@ -1031,7 +1031,7 @@ public class Pdp extends Base {
 
     public boolean verifyB1G1QuantityOnCheckOut()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i=0;i<tries;i++) {
                 if (isExist(pdpPageObject.product_Count_In_Chekout_lbl))
                     return (Integer.parseInt(pdpPageObject.product_Count_In_Chekout_lbl.get(0).getText()) == 2);
@@ -1053,7 +1053,7 @@ public class Pdp extends Base {
 
     public boolean verifyBuyMoreAndSaveMoreInCart()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitWithoutExceptionForElements(pdpPageObject.product_Cart_Title_lbl);
             return (isExist(pdpPageObject.product_Cart_Title_lbl));
         }
@@ -1065,7 +1065,7 @@ public class Pdp extends Base {
     }
 
     public void saveProductTitleAndPrice() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             productInfoSetProperty.setProductName(pdpPageObject.product_Title_lbl.get(0).getText());
             productInfoSetProperty.setProductPrice(pdpPageObject.displayed_Price_lbl.get(0).getText());
         }
@@ -1076,7 +1076,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheProductNameAndPriceInCart() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
             {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productInfoGetProperty.getProductTitle())) {
@@ -1113,7 +1113,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheProductNameAndPriceAndQuantityAndSizeInCart() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i=0; i<cartPageObjects.product_Title_In_Cart_lbl.size(); i++)
             {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().equalsIgnoreCase(productInfoGetProperty.getProductTitle())) {
@@ -1142,7 +1142,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheImpactOfChangedSKU() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
           return (pdpPageObject.product_Size_PDP_lbl.getText().contains(productInfoGetProperty.getProductSize()));
         }
         else
@@ -1159,7 +1159,7 @@ public class Pdp extends Base {
     }
 
     public boolean verifyTheProductNameAndPriceAndQuantityAndSizeOnCheckout() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return  (checkOutPageObjects.item_On_Checkout_lbl.get(0).getText().contains(productInfoGetProperty.getProductTitle())
                     && checkOutPageObjects.current_Price_lbl.getText().contains(productInfoGetProperty.getProductPrice())
                     && checkOutPageObjects.item_Count_lbl.getText().contains(productInfoGetProperty.getProductQuantity())
@@ -1180,7 +1180,7 @@ public class Pdp extends Base {
 
     public void goToCartFromPDPVariationScreen()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
           if (isExist(pdpPageObject.add_To_Cart_Variation_btn))
            pdpPageObject.add_To_Cart_Variation_btn.get(0).click();
         }
@@ -1192,7 +1192,7 @@ public class Pdp extends Base {
     }
 
     public void clickOnSizeChart() {
-        if(!System.getProperty("env").equalsIgnoreCase("mm.live")){
+        if(!ThreadStorage.get("env").equalsIgnoreCase("mm.live")){
             waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.size_Chart_lbl_By,3);
             pdpPageObject.size_Chart_lbl.click();
         }
@@ -1207,25 +1207,25 @@ public class Pdp extends Base {
     }
 
     public boolean verifyConditionAttributeOnPDP() {
-        return (!System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+        return (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) ?
                 waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.conditions_Pdp_Label_By, 6) :
                 waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.conditions_Pdp_Label_MM_By, 6);
     }
 
     public boolean verifyConditionBar() {
-        return (!System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+        return (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) ?
                 waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_image_By, 6) :
                 waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_image_MM_By, 6);
     }
 
     public boolean verifyConditionText() {
-        return (!System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+        return (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) ?
                 waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_text_By, 6) :
                 waitForElementByWithoutExceptionUntillTimeReach(pdpPageObject.condition_bar_text_MM_By, 6);
     }
 
     public void clickOnConditionBar() {
-        if ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if ((!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             pdpPageObject.condition_Bar_Image_Ele.click();
         } else {
             pdpPageObject.condition_Bar_Image_Ele_MM.click();
@@ -1233,13 +1233,13 @@ public class Pdp extends Base {
     }
 
     public boolean conditionPopupVerification() {
-        return ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) ?
+        return ((!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) ?
                 pdpPageObject.condition_Bar_Title_Ele.isDisplayed() :
                 pdpPageObject.condition_Bar_Title_Ele_MM.isDisplayed();
     }
 
     public boolean conditionPopupTextVerification() {
-        return ((!System.getProperty("env").equalsIgnoreCase("mm.live"))) ?
+        return ((!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) ?
                 pdpPageObject.condition_Bar_Title_Ele.isDisplayed() :
                 pdpPageObject.condition_Bar_Title_Ele_MM.isDisplayed();
     }
@@ -1258,7 +1258,7 @@ public class Pdp extends Base {
     }
 
     public void openUpperRightCornerDropdownMenu() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(pdpPageObject.dots_button_By);
             pdpPageObject.dots_button.click();
             Assert.assertTrue(pdpPageObject.pdp_upperRight_corner_List_ele.isDisplayed(),"PDP page Right Corner List Not Opened!");
@@ -1272,7 +1272,7 @@ public class Pdp extends Base {
     }
 
     public boolean shouldDisplayMsgCountOnPdpHeader() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn);
             return pdpPageObject.msgcount_on_pdp_menu_ele.isDisplayed();
         }else {
@@ -1282,7 +1282,7 @@ public class Pdp extends Base {
     }
 
     public boolean shouldDisplayMsgCountOnPdpHeaderDisappear() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn);
             return pdpPageObject.msgcount_on_pdp_menu_ele_LISTTEST.size() == 0;
         }else {
@@ -1292,11 +1292,11 @@ public class Pdp extends Base {
     }
 
     public boolean shouldDisplayMsgCountInHeaderMenu() {
-        return !System.getProperty("env").equalsIgnoreCase("mm.live") ? pdpPageObject.msgcount_In_pdp_menu_ele.isDisplayed() : pdpPageObject.msgcount_In_pdp_menu_ele_MM.isDisplayed();
+        return !ThreadStorage.get("env").equalsIgnoreCase("mm.live") ? pdpPageObject.msgcount_In_pdp_menu_ele.isDisplayed() : pdpPageObject.msgcount_In_pdp_menu_ele_MM.isDisplayed();
     }
 
     public boolean shouldNotDisplayMsgCountInHeaderMenu() {
-        if(!System.getProperty("env").equalsIgnoreCase("mm.live")){
+        if(!ThreadStorage.get("env").equalsIgnoreCase("mm.live")){
            return pdpPageObject.msgcount_In_pdp_menu_ele_LISTTest.size() == 0;
         } else{
            return !pdpPageObject.msgcount_In_pdp_menu_ele_MM.isDisplayed();

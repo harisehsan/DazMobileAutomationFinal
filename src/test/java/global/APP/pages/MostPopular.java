@@ -2,6 +2,7 @@ package global.APP.pages;
 
 import global.APP.pageObjects.MostPopularPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
@@ -38,7 +39,7 @@ public class MostPopular extends Base {
 
     public boolean verifyTheExistenceOfMonth()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
              return (!(mostPopularPageObject.most_Popular_Month_lbl.get(0).getText().equalsIgnoreCase("")));
         else
             return (!(mostPopularPageObject.most_Popular_Month_lbl_MM.get(0).getText().equalsIgnoreCase("")));
@@ -49,7 +50,7 @@ public class MostPopular extends Base {
         int tries = 15;
         for (int i=0; i < tries; i++)
         {
-           switch (System.getProperty("env"))
+           switch (ThreadStorage.get("env"))
            {
                case "bd.live":
                {
@@ -93,7 +94,7 @@ public class MostPopular extends Base {
 
     public void selectMostPopularClassification()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             mostPopularPageObject.most_popluar_classification.get(0).click();
         else
             mostPopularPageObject.most_popluar_classification_MM.get(0).click();
@@ -101,7 +102,7 @@ public class MostPopular extends Base {
 
     public boolean verifyTheMostPopularPage()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             waitWithoutExceptionForElements(mostPopularPageObject.search_Most_Popular_icon);
             return isExist(mostPopularPageObject.search_Most_Popular_icon);

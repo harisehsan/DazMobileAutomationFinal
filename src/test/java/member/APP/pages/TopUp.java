@@ -1,13 +1,13 @@
 package member.APP.pages;
 
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.getProperty.AddressGetProperty;
-import member.APP.pageObjects.AddressPageObject;
 import member.APP.pageObjects.SearchPageObject;
 import member.APP.pageObjects.TopUpObjects;
 import org.openqa.selenium.WebElement;
@@ -33,7 +33,7 @@ public class TopUp extends Base {
     }
 
     public void getValidation() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 waitForElementToClickable(topUpObjects.inputFiledTopUp, 5);
                 topUpObjects.inputFiledTopUp.sendKeys("00000");
@@ -54,7 +54,7 @@ public class TopUp extends Base {
     }
 
     public void countryCodeShouldBeRemoved() throws IOException {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 topUpObjects.inputFiledTopUp.click();
                 topUpObjects.inputFiledTopUp.sendKeys("+92" + addressGetProperty.buyerPhonePK());
@@ -91,7 +91,7 @@ public class TopUp extends Base {
     }
 
     public void selectOperator() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 topUpObjects.topUpBtn.click();
                 break;
@@ -121,7 +121,7 @@ public class TopUp extends Base {
     }
 
     public void packageValueAssert() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "mm.live":
                 waitForElementByWithoutExceptionUntillTimeReach(topUpObjects.findBalanceTxt_by, 10);
                 Assert.assertEquals(topUpObjects.mmTelenorBalance_ele.size(), 3, "Check ");

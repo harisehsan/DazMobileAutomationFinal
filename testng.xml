@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="1">
+<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="2">
 
     <test name="Device1">
-    <parameter name="platformName" value="Android"/>
-    <parameter name="deviceName" value="SM-G955F"/>
-    <parameter name="platformVersion" value="9"/>
-    <parameter name="udid" value="ce11171b640a1e3404"/>
-    <parameter name="port" value="4723"/>
-    <parameter name="systemPort" value="8210"/>
-    <classes>
-        <class name="global.APP.starter.Runner"/>
-    </classes>
-</test>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="SM-G955F"/>
+        <parameter name="platformVersion" value="8"/>
+        <parameter name="udid" value="988673503850495234"/>
+        <parameter name="port" value="4723"/>
+        <parameter name="systemPort" value="8210"/>
+        <parameter name="env" value="lk.live" />
+        <classes>
+            <class name="global.APP.starter.Runner"/>
+        </classes>
+    </test>
 
-    <!--<test name="Device2">-->
-        <!--<parameter name="platformName" value="Android"/>-->
-        <!--<parameter name="deviceName" value="Huwai ALE-W21"/>-->
-        <!--<parameter name="platformVersion" value="5.0.1"/>-->
-        <!--<parameter name="udid" value="W3D7N17512011487"/>-->
-        <!--<parameter name="port" value="4722"/>-->
-        <!--<parameter name="systemPort" value="8200"/>-->
-        <!--<classes>-->
-            <!--<class name="global.APP.starter.Runner2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Device2">
+        <parameter name="platformName" value="Android"/>
+        <parameter name="deviceName" value="Redmi Note 9S"/>
+        <parameter name="platformVersion" value="10"/>
+        <parameter name="udid" value="b4142f4c"/>
+        <parameter name="port" value="4724"/>
+        <parameter name="systemPort" value="8220"/>
+        <parameter name="env" value="np.live" />
+        <classes>
+            <class name="global.APP.starter.Runner"/>
+        </classes>
+    </test>
 
 
 </suite>

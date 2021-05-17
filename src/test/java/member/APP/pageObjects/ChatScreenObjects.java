@@ -1,13 +1,10 @@
 package member.APP.pageObjects;
 
-import global.Base;
 import global.BuildIDPicker;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import member.APP.pages.Wallet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.awt.peer.TextComponentPeer;
 import java.util.List;
 
 public class ChatScreenObjects extends BuildIDPicker {

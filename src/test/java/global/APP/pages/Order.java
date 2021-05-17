@@ -5,6 +5,7 @@ import global.APP.getProperty.OrderSetProperty;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.APP.pageObjects.OrderPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
@@ -104,7 +105,7 @@ public class Order extends Base {
 
     public void skipFirstOrderVoucherPopup()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(orderPageObject.first_Voucher_Close_btn))
                 orderPageObject.first_Voucher_Close_btn.get(0).click();
         }
@@ -125,7 +126,7 @@ public class Order extends Base {
 
     public boolean iShouldBeOnTheSellerShop()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (isExist(searchPageObj.got_It_Store_btn))
                 searchPageObj.got_It_Store_btn.get(0).click();
         }
@@ -180,7 +181,7 @@ public class Order extends Base {
     }
 
     public void iSaveTheShippingAddress() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(orderPageObject.shipping_Address_Checkout_lbl_By);
           orderSetProperty.shippingAddress(orderPageObject.shipping_Address_Checkout_lbl.getText());
         }
@@ -196,7 +197,7 @@ public class Order extends Base {
     }
 
     public void saveTheTotalPriceOnCheckout() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             orderSetProperty.totalPrice(checkOutPageObjects.total_Price_On_Checkout.getText());
         }
         else

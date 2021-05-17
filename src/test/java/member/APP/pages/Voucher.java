@@ -3,6 +3,7 @@ package member.APP.pages;
 
 import global.APP.getProperty.VoucherGetProperty;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.VoucherPageObject;
@@ -10,8 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Voucher extends Base {
 
@@ -90,7 +89,7 @@ public class Voucher extends Base {
     public void scrollToVoucherCode() {
         int tires = 0;
 
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             do {
                 swiptToBottom();
                 tires++;
@@ -106,7 +105,7 @@ public class Voucher extends Base {
     }
 
     public void storeTheTotalPrice() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             voucherGetProperty.setTotalPriceCheckout(voucherPageObject.total_Price_Checkout_lbl.getText().replaceAll("\\D+", ""));
         } else {
             voucherGetProperty.setTotalPriceCheckout(voucherPageObject.total_Price_Checkout_lbl_MM.getText().replaceAll("\\D+", ""));
@@ -114,7 +113,7 @@ public class Voucher extends Base {
     }
 
     public void enterVoucherCode() throws IOException {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 voucherPageObject.voucher_Input_txtBox.get(0).sendKeys(voucherGetProperty.getPKVoucher());
                 break;
@@ -137,7 +136,7 @@ public class Voucher extends Base {
     }
 
     public void voucherApplybtn() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             voucherPageObject.voucher_Apply_btn.click();
         } else {
             voucherPageObject.voucher_Apply_btn_MM.click();
@@ -145,7 +144,7 @@ public class Voucher extends Base {
     }
 
     public boolean iShouldSeeTheVoucherSuccessMessage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return isExist(voucherPageObject.voucher_Success_lbl);
         } else {
             return isExist(voucherPageObject.voucher_Success_lbl_MM);
@@ -154,7 +153,7 @@ public class Voucher extends Base {
     }
 
     public boolean iShouldSeeTheImapctOfVoucherOnTotalPrice() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return ((convertToIntFromString(voucherPageObject.total_Price_Checkout_lbl.getText())) < convertToIntFromString(voucherGetProperty.getTotalPriceCheckout()));
         } else {
             return ((convertToIntFromString(voucherPageObject.total_Price_Checkout_lbl_MM.getText())) < convertToIntFromString(voucherGetProperty.getTotalPriceCheckout()));
@@ -162,7 +161,7 @@ public class Voucher extends Base {
     }
 
     public void gotToVoucherInLocalLanguage() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 throw new RuntimeException("Not applicable on PK!");
             case "bd.live":
@@ -187,7 +186,7 @@ public class Voucher extends Base {
     }
 
     public boolean verifyTheLanguageChangeforVoucher() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 throw new RuntimeException("Not applicable on PK!");
             case "bd.live":
@@ -251,7 +250,7 @@ public class Voucher extends Base {
     }
 
     public void selectDaraztab() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             findElementByContentDescrpitionUsingContainString(daraz).click();
         } else {
             findElementByContentDescrpitionUsingContainString(shop).click();
@@ -275,7 +274,7 @@ public class Voucher extends Base {
     }
 
     public void enterExpiredVoucherCode() throws IOException {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
                 voucherPageObject.voucher_Input_txtBox.get(0).sendKeys(voucherGetProperty.getExpiredVoucherPK());
                 break;
@@ -302,7 +301,7 @@ public class Voucher extends Base {
     }
 
     public boolean verifyTheContentOfTheStoreCredit() throws IOException {
-        switch (System.getProperty("env"))
+        switch (ThreadStorage.get("env"))
         {
             case "pk.live":
             {
@@ -360,7 +359,7 @@ public class Voucher extends Base {
     }
 
     public void enterTheCodeForPercentageVoucher() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             voucherPageObject.voucher_Input_txtBox.get(0).sendKeys(voucherGetProperty.getPercentageVoucher());
         } else {
             voucherPageObject.voucher_Input_txtBox_MM.get(0).sendKeys(voucherGetProperty.getPercentageVoucher());

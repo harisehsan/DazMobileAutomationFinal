@@ -6,7 +6,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import global.APP.getProperty.VoucherGetProperty;
 import global.APP.pages.Cart;
-import global.Drivers;
 import io.appium.java_client.AppiumDriver;
 import member.APP.pages.Login;
 import member.APP.pages.Wishlist;

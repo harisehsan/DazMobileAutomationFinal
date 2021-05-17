@@ -5,6 +5,7 @@ import global.APP.pageObjects.DarazMallPageObject;
 import global.APP.pageObjects.FlashSalePageObject;
 import global.APP.pageObjects.SearchBarPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
@@ -37,7 +38,7 @@ public class DarazMall extends Base {
     }
 
     public boolean checkExistenceofDarazMall() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             return (darazMallPageObject.daraz_Mall_lbl.size() > 0);
         } else {
@@ -47,7 +48,7 @@ public class DarazMall extends Base {
     }
 
     public void clickOnDarazMallChannel() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
             case "bd.live":
             case "lk.live": {
@@ -87,11 +88,11 @@ public class DarazMall extends Base {
     }
 
     public boolean verifyTheDarazMall() {
-        if ((!(System.getProperty("env").equalsIgnoreCase("mm.live"))) && (!(System.getProperty("env").equalsIgnoreCase("np.live"))) && (!(System.getProperty("env").equalsIgnoreCase("pk.live")))) {
+        if ((!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) && (!(ThreadStorage.get("env").equalsIgnoreCase("np.live"))) && (!(ThreadStorage.get("env").equalsIgnoreCase("pk.live")))) {
             waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl);
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl));
         }
-        if ((System.getProperty("env").equalsIgnoreCase("np.live"))|| ((System.getProperty("env").equalsIgnoreCase("pk.live"))))
+        if ((ThreadStorage.get("env").equalsIgnoreCase("np.live"))|| ((ThreadStorage.get("env").equalsIgnoreCase("pk.live"))))
         {
             waitWithoutExceptionForElements(darazMallPageObject.daraz_Mall_Title_lbl_NP);
             return (isExist(darazMallPageObject.daraz_Mall_Title_lbl_NP) || isExist(darazMallPageObject.daraz_Mall_Title_lbl));
@@ -111,7 +112,7 @@ public class DarazMall extends Base {
             hideKeyboard();
             driver.navigate().back();
         } else if (page.equalsIgnoreCase("My Account")) {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
                 waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
                 driver.navigate().back();
             } else {
@@ -119,7 +120,7 @@ public class DarazMall extends Base {
                 driver.navigate().back();
             }
         } else if (page.equalsIgnoreCase("PDP") || page.equalsIgnoreCase("Address")) {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
                 do {
                     driver.navigate().back();
                     hideKeyboard();
@@ -140,7 +141,7 @@ public class DarazMall extends Base {
 
     public boolean clickOnShopMoreButtonForDarazMall() {
         int tries = 25;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(flashSalePageObject.flash_Sale_lbl_By);
             for (int i = 0; i < tries; i++) {
                 if (isExist(darazMallPageObject.daraz_Mall_container_lbl)) {

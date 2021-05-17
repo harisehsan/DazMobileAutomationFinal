@@ -1,5 +1,6 @@
 package member.APP.pages;
 
+import global.ThreadStorage;
 import member.APP.pageObjects.*;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
@@ -44,7 +45,7 @@ public class Account extends Base {
     }
 
     public boolean verifySignin() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(gmailSignUpObjects.account_Holder_Name_lbl_By);
             return (!(gmailSignUpObjects.account_Holder_Name_lbl.getText().equalsIgnoreCase("")));
         } else {
@@ -54,7 +55,7 @@ public class Account extends Base {
     }
 
     public void navigateToAccountFromPaymentScreen() {
-        if (System.getProperty("env").equalsIgnoreCase("np.live")) {
+        if (ThreadStorage.get("env").equalsIgnoreCase("np.live")) {
 //            try {
 //                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
 //            } catch (Exception e) {
@@ -66,7 +67,7 @@ public class Account extends Base {
             wishlistPageObjects.dots_btn.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
-        } else if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        } else if (ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
 //            try {
 //                waitUntilPresentOfElementBy(checkOutPageObjects.cod_lbl_MM_By);
 //            } catch (Exception e) {
@@ -100,7 +101,7 @@ public class Account extends Base {
     }
 
     public void selectPayNowWidigt() {
-//        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+//        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
 //            waitUntilPresentOfElementBy(accountPageObect.my_Account_widget_By);
 //            accountPageObect.my_Account_widget.get(0).click();
 //        } else {
@@ -120,14 +121,14 @@ public class Account extends Base {
 
     public void navigateToMyAccountFromCancellation() {
 
-        if (System.getProperty("env").equalsIgnoreCase("np.live")) {
+        if (ThreadStorage.get("env").equalsIgnoreCase("np.live")) {
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn)));
             wishlistPageObjects.dots_btn.get(0).click();
             waitUntilPresentOfElementBy(wishlistPageObjects.my_Account_menuItem_By);
             wishlistPageObjects.my_Account_menuItem.click();
-        } else if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        } else if (ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             do {
                 driver.navigate().back();
             } while (!(isExist(wishlistPageObjects.dots_btn_MM)));
@@ -145,7 +146,7 @@ public class Account extends Base {
     }
 
     public void navigateToAccounts() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
                 signUpObjects.account_lbl_ele.click();
@@ -202,7 +203,7 @@ public class Account extends Base {
     }
 
     public boolean verifySettingsHeaderInLocalLanguage() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "bd.live": {
                 return waitWithoutExceptionByTextContains("সেটিং");
             }
@@ -244,7 +245,7 @@ public class Account extends Base {
 
     public void navigateToDarazWalletORVoucherFromAccounts(boolean walletExistence) {
         if (walletExistence) {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+            if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
 //                accountPageObect.wallet_Activate_Now_lbl.click();
                 accountPageObect.wallet_New_Activate_Now_lbl.click();
             else
@@ -264,7 +265,7 @@ public class Account extends Base {
     }
 
     public boolean verifyTheExistenceOfRedDotOnMessage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (isExist(accountPageObect.my_Account_widget.get(4).findElements(accountPageObect.red_Dot_lbl_By))) {
 //                 return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0 &&(Integer.parseInt(accountPageObect.red_Dot_lbl.get(0).getText().replaceAll("[^\\d.]", ""))== Integer.parseInt(accountPageObect.red_Dot_lbl.get(1).getText().replaceAll("[^\\d.]", "")))));
                 return ((Integer.parseInt(accountPageObect.my_Account_widget.get(4).findElement(accountPageObect.red_Dot_lbl_By).getText().replaceAll("[^\\d.]", "")) > 0));
@@ -279,17 +280,17 @@ public class Account extends Base {
     }
 
     public void navigateToAccountSettingsInLocalLanguage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(signUpObjects.account_lbl_By);
             try {
                 signUpObjects.account_lbl_ele.click();
             } catch (Exception e) {
                 e.printStackTrace();
-                if ((System.getProperty("env").equalsIgnoreCase("bd.live")))
+                if ((ThreadStorage.get("env").equalsIgnoreCase("bd.live")))
                     findElementByTextUsingExactString("অ্যাকাউন্ট").click();
-                else if ((System.getProperty("env").equalsIgnoreCase("lk.live")))
+                else if ((ThreadStorage.get("env").equalsIgnoreCase("lk.live")))
                     findElementByTextUsingExactString("ගිණුම").click();
-                else if ((System.getProperty("env").equalsIgnoreCase("np.live")))
+                else if ((ThreadStorage.get("env").equalsIgnoreCase("np.live")))
                     findElementByTextUsingExactString("खाता").click();
             }
             waitForElementByWithoutExceptionUntillTimeReach(signUpObjects.settings_icon_By, 3);
@@ -316,7 +317,7 @@ public class Account extends Base {
     }
 
     public void selectAvatar() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             accountPageObect.avatar_img.click();
         else
             accountPageObect.avatar_img_MM.click();
@@ -332,7 +333,7 @@ public class Account extends Base {
     }
 
     public boolean verifyTheSameOrderStatusOnConsolidatedDeliveryScreen() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < accountPageObect.track_Package_Slider.size() - 2; i++) {
                 int j = 0;
                 waitUntilPresentOfElementBy(accountPageObect.track_Package_lbl_By);
@@ -382,7 +383,7 @@ public class Account extends Base {
     }
 
     public boolean verifyTheOrderStatusOnAccountPage(List<String> orderStatuslst, List<String> orderStatuslst2, List<String> orderID) {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < 3; i++) {
                 if (waitWithoutExceptionByTextContains(orderStatuslst.get(i))) {
                     findElementByTextUsingContainsString(orderStatuslst.get(i)).click();
@@ -429,11 +430,11 @@ public class Account extends Base {
     }
 
     public boolean verifyTheExistenceofAccountInformation() {
-        return (!System.getProperty("env").equalsIgnoreCase("mm.live") ? isExist(accountPageObect.account_Information_tab) : isExist(accountPageObect.account_Information_tab_MM));
+        return (!ThreadStorage.get("env").equalsIgnoreCase("mm.live") ? isExist(accountPageObect.account_Information_tab) : isExist(accountPageObect.account_Information_tab_MM));
     }
 
     public void iNavigateToAccountInformation() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             accountPageObect.account_Information_tab.get(0).click();
         } else {
             accountPageObect.account_Information_tab_MM.get(0).click();
@@ -455,7 +456,7 @@ public class Account extends Base {
     }
 
     public boolean iShouldBeOnMyAccount() {
-        return !(System.getProperty("env").equalsIgnoreCase("mm.live")) ?
+        return !(ThreadStorage.get("env").equalsIgnoreCase("mm.live")) ?
                 accountPageObect.account_Order_Title.isDisplayed() :
                 accountPageObect.account_Order_Title_MM.isDisplayed();
     }
@@ -476,7 +477,7 @@ public class Account extends Base {
 
     public void gotoCartfromAccountInformationPage() {
         waitUntilPresentOfElementByString(myNamelbl);
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             accountPageObect.cart_icon.click();
         } else {
             accountPageObect.cart_icon_MM.click();
@@ -485,7 +486,7 @@ public class Account extends Base {
 
     public void selectSearchbuttonOnAccountInformationPage() {
         waitUntilPresentOfElementByString(myNamelbl);
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             accountPageObect.serach_icon.click();
         } else {
             accountPageObect.serach_icon_MM.click();
@@ -493,7 +494,7 @@ public class Account extends Base {
     }
 
     public boolean verifyTheSearchField() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             return isExist(accountPageObect.search_Bar_txtbox);
         } else {
             return isExist(accountPageObect.search_Bar_txtbox_MM);
@@ -501,7 +502,7 @@ public class Account extends Base {
     }
 
     public void checkAllMessageSettings() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++) {
                 if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("false")) {
                     accountPageObect.message_Settings_chkBox.get(i).click();
@@ -521,7 +522,7 @@ public class Account extends Base {
     }
 
     public void unCheckAllMessageSettings() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i=0; i <accountPageObect.message_Settings_chkBox.size(); i++) {
                 if (accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("true")) {
                     accountPageObect.message_Settings_chkBox.get(i).click();
@@ -577,7 +578,7 @@ public class Account extends Base {
     }
 
     public void allCheckBoxesMustBeChecked() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < accountPageObect.message_Settings_chkBox.size(); i++) {
                 Assert.assertTrue(accountPageObect.message_Settings_chkBox.get(i).getAttribute("checked").equalsIgnoreCase("true"));
             }

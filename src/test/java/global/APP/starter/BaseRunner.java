@@ -5,8 +5,10 @@ import com.google.common.io.Files;
 import cucumber.api.testng.TestNGCucumberRunner;
 import global.APP.getProperty.ScreenshotGetProperty;
 import global.Drivers;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Attachment;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
@@ -37,26 +39,30 @@ public class BaseRunner {
     public String udid_Device;
 
     @BeforeClass(alwaysRun = true)
-    @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort"})
-    public void setUpClass(String platformName, String deviceName, String platformVersion, String udid, String port, String systemPort) throws Exception {
+    @Parameters({"platformName", "deviceName", "platformVersion", "udid", "port", "systemPort", "env"})
+    public void setUpClass(String platformName, String deviceName, String platformVersion, String udid, String port, String systemPort, String env) throws Exception {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-//        System.out.println(Thread.currentThread().getId());
-        try {
-            if (!System.getProperty("udid").equalsIgnoreCase(""))
-                udid = System.getProperty("udid");
-            if (!System.getProperty("os").equalsIgnoreCase(""))
-                platformVersion = System.getProperty("os");
-            if (!System.getProperty("port").equalsIgnoreCase(""))
-                port = System.getProperty("port");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("One or more system parameter is missing!");
-        }
-        screenshotGetProperty.setUdid(udid);
-        drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort);
+
+        System.out.println(env + "\n\n\n");
+        System.out.println(Thread.currentThread().getId());
+//        try {
+//            if (!System.getProperty("udid").equalsIgnoreCase(""))
+//                udid = System.getProperty("udid");
+//            if (!System.getProperty("os").equalsIgnoreCase(""))
+//                platformVersion = System.getProperty("os");
+//            if (!System.getProperty("port").equalsIgnoreCase(""))
+//                port = System.getProperty("port");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("One or more system parameter is missing!");
+//        }
+        //screenshotGetProperty.setUdid(udid);
+        drv.darazAndroidLaunchApp(port, platformName, platformVersion, deviceName, udid, systemPort, env);
+        ThreadStorage.put("env", env);
         WebDriverRunner.setWebDriver(drv.getDriver());
         screenshotGetProperty.setScreenShotCount("0"); //This will set Screenshot Count to Zero before each New invocation of driver.
         createADirectory("Screenshots");
+        System.out.println(ThreadStorage.get("env") + "\n\n\n\n");
     }
 
     @Attachment
@@ -82,13 +88,13 @@ public class BaseRunner {
     // This method will create a directory Named "ScreenShots",
     // on each execution inside screenshots will create a directory named "current date and time" and will add new screenshots.
     public String createADirectory(String dirName) throws IOException {
-        File theDir = new File("./" + dirName + "/" + System.getProperty("env").replaceFirst("\\.", "-") + "-" + Time);
+        File theDir = new File("./" + dirName + "/" + ThreadStorage.get("env").replaceFirst("\\.", "-") + "-" + Time);
         if (!theDir.exists()) theDir.mkdirs();
         return directoryPath = theDir.getCanonicalPath();
     }
 
     private String createADirectoryJenkins(String dirName) throws IOException {
-        File theDir = new File("./" + dirName + "/" + System.getProperty("env").replaceFirst("\\.", "-"));
+        File theDir = new File("./" + dirName + "/" + ThreadStorage.get("env").replaceFirst("\\.", "-"));
         if (!theDir.exists()) theDir.mkdirs();
         return directoryPath = theDir.getCanonicalPath();
     }
@@ -113,7 +119,7 @@ public class BaseRunner {
     public void getRerunFile() throws IOException {
         createADirectory("FailedScenarios");
         File source = new File("target/cucumber-reports/rerun-reports/rerun.txt");
-        File dest = new File(directoryPath + "/" + "Rerun-" + System.getProperty("env").substring(0, 2) + ".txt");
+        File dest = new File(directoryPath + "/" + "Rerun-" + ThreadStorage.get("env").substring(0, 2) + ".txt");
         try {
             Files.copy(source, dest);
         } catch (IOException e) {

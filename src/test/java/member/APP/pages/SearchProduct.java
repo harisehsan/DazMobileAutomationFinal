@@ -3,6 +3,7 @@ package member.APP.pages;
 import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.getProperty.SearchGetProperty;
@@ -34,11 +35,11 @@ public class SearchProduct extends Base {
     }
 
     public void searchProduct(String searchType, List<String> pkProducts, List<String> bdProducts, List<String> lkProducts, List<String> npProducts, List<String> mmProducts) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live": {
                     for (String pkProduct : pkProducts) {
                         searchPageObj.searchAfterClick_txtfield.sendKeys(pkProduct);
@@ -212,7 +213,7 @@ public class SearchProduct extends Base {
     }
 
     public boolean verifySearchResult() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             return (searchPageObj.searchResult_lbl.size() >= 1);
         } else {
@@ -222,7 +223,7 @@ public class SearchProduct extends Base {
     }
 
     public String searchProductByName(String searchKeyword) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
@@ -240,7 +241,7 @@ public class SearchProduct extends Base {
 
     public boolean verifyTheSearchProduct(String searchKeyword) {
 
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             return (searchPageObj.searchResult_lbl.size() >= 1);
         } else {
@@ -250,7 +251,7 @@ public class SearchProduct extends Base {
     }
 
     public void navigateBackToTheHomeScreen() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
        //     waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             do {
                 driver.navigate().back();
@@ -270,7 +271,7 @@ public class SearchProduct extends Base {
 
     public void searchUsingHistory(String searchKeyword) {
        this.searchKeyword = searchKeyword;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             findElementByTextUsingExactString(searchKeyword).click();
         } else {
@@ -282,7 +283,7 @@ public class SearchProduct extends Base {
     public boolean searchForSuggestionKeyword(String suggestionKeyword) {
         String[] suggestionKeywordArray = suggestionKeyword.split("");
         StringBuilder suggestionLetter = new StringBuilder();
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchBeforeClick_txtfield_By);
             searchPageObj.searchBeforeClick_txtfield.get(0).click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
@@ -317,7 +318,7 @@ public class SearchProduct extends Base {
 
     public void selectSuggestionResult()
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             searchPageObj.search_Suggestion_lstItem.get(0).click();
         else
             searchPageObj.search_Suggestion_lstItem_MM.get(0).click();
@@ -325,7 +326,7 @@ public class SearchProduct extends Base {
 
     public boolean checkForSuggestionKeywordInProduct(String suggestionKeyword)
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
         {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             return (searchPageObj.searchResult_lbl.get(0).getText().contains(suggestionKeyword));
@@ -338,7 +339,7 @@ public class SearchProduct extends Base {
     }
 
     public boolean clickOnDidYouMeanOption()  {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             return (waitWithoutExceptionForElements(searchPageObj.did_You_Mean_lbl));
         else
             return (waitWithoutExceptionForElements((searchPageObj.did_You_Mean_lbl_MM)));
@@ -346,7 +347,7 @@ public class SearchProduct extends Base {
 
     public void searchInCategoriesSection(String searchKeyword)
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
         {
             searchPageObj.search_In_Categories_btn.click();
             waitUntilPresentOfElementBy(searchPageObj.searchAfterClick_txtfield_By);
@@ -363,7 +364,7 @@ public class SearchProduct extends Base {
     }
 
     public void gotoStorePage() throws IOException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
         {
             for (int i=0;i<searchGetProperty.storeSearchKeyword().size();i++) {
                 searchPageObj.searchBeforeClick_txtfield.get(0).click();
@@ -407,7 +408,7 @@ public class SearchProduct extends Base {
     public void searchProductInStore()
     {
 
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if(isExist(searchPageObj.got_It_Store_btn))
                 searchPageObj.got_It_Store_btn.get(0).click();
             searchPageObj.all_Product_tab.click();
@@ -434,7 +435,7 @@ public class SearchProduct extends Base {
     {
         if (productName.length() >= 10)
             productName = productName.substring(0,10);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(searchPageObj.searchResult_lbl_By);
             searchPageObj.searchResult_lbl.get(0).click();
             if (isExist(cartPageObjects.overseas_Confirm_btn))
@@ -456,7 +457,7 @@ public class SearchProduct extends Base {
     }
 
     public void deleteSearchHistory() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             do {
                 driver.navigate().back();
                 hideKeyboard();

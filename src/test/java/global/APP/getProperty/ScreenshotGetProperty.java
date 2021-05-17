@@ -7,13 +7,14 @@ import java.util.Properties;
 
 public class ScreenshotGetProperty {
     private Properties prop = new Properties();
+    private final String filePath = "src\\test\\java\\global\\APP\\properties\\Screenshot.property";
 
     private void fileInputStream() throws IOException {
-        prop.load(new FileInputStream("src\\test\\java\\global\\APP\\properties\\Screenshot.property"));
+        prop.load(new FileInputStream(filePath));
     }
 
     private void fileOutputStream() throws IOException {
-        prop.store(new FileOutputStream("src\\test\\java\\global\\APP\\properties\\Screenshot.property"),null);
+        prop.store(new FileOutputStream(filePath),null);
     }
 
     public int getScreenshotCount() throws IOException {

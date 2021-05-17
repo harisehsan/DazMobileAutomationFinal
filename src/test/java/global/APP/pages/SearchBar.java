@@ -2,6 +2,7 @@ package global.APP.pages;
 
 import global.APP.pageObjects.SearchBarPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
@@ -23,14 +24,14 @@ public class SearchBar extends Base {
     }
 
     public boolean verifyTheScanIconAndText() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return (isExist(searchBarPageObject.scan_icon) && (searchBarPageObject.scan_Text_lbl.get(0).getText().equalsIgnoreCase("Scan")));
         else
             return (isExist(searchBarPageObject.scan_icon_MM) && searchBarPageObject.scan_Text_lbl_MM.get(0).getText().equalsIgnoreCase("Scan"));
     }
 
     public void clickOnScanIcon() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             searchBarPageObject.scan_icon.get(0).click();
         else
             searchBarPageObject.scan_icon_MM.get(0).click();
@@ -44,7 +45,7 @@ public class SearchBar extends Base {
     }
 
     public boolean verifyTheExistenceofSearchBar() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return (isExist(searchBarPageObject.searchbar_txt));
         else
             return (isExist(searchBarPageObject.searchbar_txt_MM));
@@ -52,7 +53,7 @@ public class SearchBar extends Base {
 
     public boolean verifyTheExistenceOfDarazWalletIconAndText()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return (isExist(searchBarPageObject.wallet_icon) && searchBarPageObject.wallet_Name_lbl.get(0).getText().equalsIgnoreCase("Wallet"));
         else
             return (isExist(searchBarPageObject.wallet_icon_MM) && searchBarPageObject.wallet_Name_lbl_MM.get(0).getText().equalsIgnoreCase("Wallet"));
@@ -60,7 +61,7 @@ public class SearchBar extends Base {
 
     public void clickOnWallet()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             if (waitForElementsLessTime(searchBarPageObject.wallet_icon))
            searchBarPageObject.wallet_icon.get(0).click();

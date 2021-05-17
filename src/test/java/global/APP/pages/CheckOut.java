@@ -1,12 +1,11 @@
 package global.APP.pages;
 
-import cucumber.api.java.en.Then;
 import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.CheckOutPageObjects;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -33,7 +32,7 @@ public class CheckOut extends Base {
     }
 
     public String selectProductForCheckout() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(cartPageObjects.product_Title_lbl_By);
             return cartPageObjects.product_Title_lbl.getText();
         } else {
@@ -43,7 +42,7 @@ public class CheckOut extends Base {
     }
 
     public void selectBuyNow() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitWithoutExceptionForElementsResult(cartPageObjects.buy_Now_btn);
             clickMultipleTries(cartPageObjects.buy_Now_btn, 5);
         } else {
@@ -53,7 +52,7 @@ public class CheckOut extends Base {
     }
 
     public void proceedToPay() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(checkOutPageObjects.proceed_To_Pay_btn_By);
             checkOutPageObjects.proceed_To_Pay_btn.click();
         } else {
@@ -63,9 +62,9 @@ public class CheckOut extends Base {
     }
 
     public void checkoutUsingCODPaymentMethod() {
-//        if ((System.getProperty("env").equalsIgnoreCase("pk.live"))|| (System.getProperty("env").equalsIgnoreCase("np.live")) || (System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+//        if ((ThreadStorage.get("env").equalsIgnoreCase("pk.live"))|| (ThreadStorage.get("env").equalsIgnoreCase("np.live")) || (ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
         try {
-            if (System.getProperty("env").equalsIgnoreCase("pk.live"))
+            if (ThreadStorage.get("env").equalsIgnoreCase("pk.live"))
             {
                 while (checkOutPageObjects.cod_lbl_MM.size() == 0) {
                     swiptToBottom();
@@ -86,7 +85,7 @@ public class CheckOut extends Base {
     }
 
     public void clickTrackOrder() {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
 //                if (waitUntilPresentOfElementByWithoutException(checkOutPageObjects.rating_Later_btn_By))
 //                    checkOutPageObjects.rating_Later_btn.click();
                 waitWithoutExceptionByTextContains("Order Received");
@@ -114,7 +113,7 @@ public class CheckOut extends Base {
     }
 
     public int selectProductFromCart(String productName) {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             cartPopupSkip(cartPageObjects.ok_Got_It_btn);
             for (int i = 0; i < cartPageObjects.product_Title_In_Cart_lbl.size(); ++i) {
                 if (cartPageObjects.product_Title_In_Cart_lbl.get(i).getText().contains(productName)) {
@@ -142,7 +141,7 @@ public class CheckOut extends Base {
             throw new RuntimeException("Specified quantity is not applicable!");
         int currentItemQuantity;
         int availableQuantity;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             if (isExist(checkOutPageObjects.cart_item_container.get(index).findElements(checkOutPageObjects.available_quantity_By))) {
                 availableQuantity = Integer.parseInt(checkOutPageObjects.cart_item_container.get(index).findElements(checkOutPageObjects.available_quantity_By).get(0).getText().replaceAll("\\D+", ""));
                 if (availableQuantity < quantity) {
@@ -225,7 +224,7 @@ public class CheckOut extends Base {
     }
 
     public void selectCheckoutFromCart() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             checkOutPageObjects.checkout_btn.click();
         else
             checkOutPageObjects.checkout_btn_MM.click();
@@ -238,7 +237,7 @@ public class CheckOut extends Base {
     public void slideToViewDeleteButtonForPromotionProducts(String productName, String promotionName) {
         if (productName.length() > 25)
             productName = productName.substring(0, 25);
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             while (tries < 15) {
                 tries++;
                 if (isExist(checkOutPageObjects.item_On_Checkout_lbl)) {
@@ -282,7 +281,7 @@ public class CheckOut extends Base {
     }
 
     public void slideToViewDeleteButton(String productName) {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             while (tries < 20) {
                 tries++;
                 if (isExist(checkOutPageObjects.item_On_Checkout_lbl)) {
@@ -316,7 +315,7 @@ public class CheckOut extends Base {
     }
 
     public void clickOnDeleteButton() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(checkOutPageObjects.checkout_Delete_btn_By);
             checkOutPageObjects.checkout_Delete_btn.get(0).click();
         } else {
@@ -326,7 +325,7 @@ public class CheckOut extends Base {
     }
 
     public boolean checkForDeletedProduct(String promotionType) {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitWithoutExceptionForElements(checkOutPageObjects.item_On_Checkout_lbl);
         } else {
             waitWithoutExceptionForElements(checkOutPageObjects.item_On_Checkout_lbl_MM);
@@ -347,7 +346,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheNumberOfItems(String numberOfItems) {
         tries = 0;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             while (tries < 10) {
                 if (isExist(checkOutPageObjects.items_On_check_out) && !(checkOutPageObjects.items_On_check_out.get(0).getText().contains(numberOfItems)))
                     return true;
@@ -369,7 +368,7 @@ public class CheckOut extends Base {
     }
 
     public void clickOnEditAddressButton() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             waitUntilPresentOfElementBy(checkOutPageObjects.edit_Address_btn_By);
             checkOutPageObjects.edit_Address_btn.get(0).click();
         } else {
@@ -380,13 +379,13 @@ public class CheckOut extends Base {
 
     public boolean verifyTheDifferentBillingAndShippingAddress(String addressType) {
         if (addressType.equalsIgnoreCase("different")) {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
                 return (checkOutPageObjects.address_Checkout_lbl.size() > 1 && !checkOutPageObjects.address_Checkout_lbl.get(1).getText().contains("same"));
             } else {
                 return (checkOutPageObjects.address_Checkout_lbl_MM.size() > 1 && !checkOutPageObjects.address_Checkout_lbl_MM.get(1).getText().contains("same"));
             }
         } else {
-            if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+            if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
                 return (checkOutPageObjects.address_Checkout_lbl.size() > 1 && checkOutPageObjects.address_Checkout_lbl.get(1).getText().contains("same"));
             } else {
                 return (checkOutPageObjects.address_Checkout_lbl_MM.size() > 1 && checkOutPageObjects.address_Checkout_lbl_MM.get(1).getText().contains("same"));
@@ -396,7 +395,7 @@ public class CheckOut extends Base {
     }
 
     public boolean verifyTheBottomLineDivider() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return isExist(checkOutPageObjects.line_Divider_img);
         else
             return isExist(checkOutPageObjects.line_Divider_img_MM);
@@ -404,7 +403,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheSnackbarErrorMessage()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return isExist(checkOutPageObjects.snackbar_txt);
         else
              return isExist(checkOutPageObjects.snackbar_txt_MM);
@@ -412,7 +411,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheEmailAndDeliveryTimeForDigitalGoods()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             waitUntilPresentOfElementBy(checkOutPageObjects.proceed_To_Pay_btn_By);
         else
             waitUntilPresentOfElementBy(checkOutPageObjects.proceed_To_Pay_btn_By_MM);
@@ -421,7 +420,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheAttributesOfItem()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             while (tries < 15) {
                 if (isExist(checkOutPageObjects.order_Summary_lbl)) {
@@ -454,7 +453,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheExistenceOfTotalPriceOnCheckout()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
             return (!checkOutPageObjects.total_Price_On_Checkout.getText().equalsIgnoreCase(""));
         else
             return (!checkOutPageObjects.total_Price_On_Checkout_MM.getText().equalsIgnoreCase(""));
@@ -462,7 +461,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheLogisticsTypeAndDeliveryDateAndPostage()
     {
-//        if (!(System.getProperty("env").equalsIgnoreCase("np.live") && !(System.getProperty("env").equalsIgnoreCase("lk.live")))) {
+//        if (!(ThreadStorage.get("env").equalsIgnoreCase("np.live") && !(ThreadStorage.get("env").equalsIgnoreCase("lk.live")))) {
 //            waitUntilPresentOfElementBy(checkOutPageObjects.cancel_btn_By);
 ////            return (findElementsSizeByString("Package") && findElementsSizeByString("Sold by") && findElementsSizeByString("Get by"));
 //        } else {
@@ -481,7 +480,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheExistenceOfCNICField()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             return waitWithoutExceptionForElementsResult(checkOutPageObjects.cnictxtbox);
         }
@@ -493,7 +492,7 @@ public class CheckOut extends Base {
 
     public void enterTheGarbageDatainCNIC()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             checkOutPageObjects.cnictxtbox.get(0).sendKeys("!@#$%^&*()-~`]!@#$%^&*()+-=");
         }
@@ -515,7 +514,7 @@ public class CheckOut extends Base {
 
     public void clearCNICField()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             checkOutPageObjects.cnictxtbox.get(0).click();
            if (waitWithoutException(checkOutPageObjects.cnic_Clear_btn))
@@ -538,7 +537,7 @@ public class CheckOut extends Base {
 
     public void enterTheValidCNIC()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             checkOutPageObjects.cnictxtboxID.get(2).sendKeys("42101-2146723-9");
         }
@@ -550,7 +549,7 @@ public class CheckOut extends Base {
 
     public void saveCNIC()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             checkOutPageObjects.cnictxtboxID.get(2).click();
             checkOutPageObjects.save_CNIC_btn.click();
@@ -565,7 +564,7 @@ public class CheckOut extends Base {
     public void enterTheCodeVoucherOnCheckout(String correctVoucherCode)
     {
         scrollToCodeVoucherField();
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             checkOutPageObjects.checkout_Voucher_Field.get(0).sendKeys(correctVoucherCode);
         }
         else
@@ -577,7 +576,7 @@ public class CheckOut extends Base {
     private void scrollToCodeVoucherField()
     {
       int tries = 0;
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             while(!isExist(checkOutPageObjects.checkout_Voucher_Field)  && tries < 10)
             {
                 swiptToBottom();
@@ -596,7 +595,7 @@ public class CheckOut extends Base {
 
     public void selectTheApplyButton()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             checkOutPageObjects.voucher_Apply_btn.click();
         }
         else
@@ -607,7 +606,7 @@ public class CheckOut extends Base {
 
     public boolean verifyTheEmptyCNICField()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             saveCNIC();
             if (!checkOutPageObjects.cnictxtbox.get(0).getText().contains("Enter your CNIC Number")) {
@@ -623,7 +622,7 @@ public class CheckOut extends Base {
     }
 
     public boolean verifyTheDisabledProceedToPayButton(){
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             return (checkOutPageObjects.proceed_To_Pay_btn.getAttribute("enabled").equalsIgnoreCase("false"));
         }
@@ -634,7 +633,7 @@ public class CheckOut extends Base {
     }
 
     public boolean verifyTheExistenceOfProceedToPayButton() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             return (checkOutPageObjects.proceed_To_Pay_btn.getAttribute("enabled").equalsIgnoreCase("true"));
         }

@@ -1,6 +1,7 @@
 package member.APP.pages;
 
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SignUpObjects;
@@ -21,7 +22,7 @@ public class Logout extends Base {
 
     public void logout() //This Method is used to logout the current user from Daraz or Shop application after signup/siginin operation
     {
-     if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
+     if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
          waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
          signUpObjects.settings_icon.click();
         }

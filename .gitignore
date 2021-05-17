@@ -10,3 +10,4 @@ Screenshots/
 *.apk
 tessdata/
 FailedScenarios/
+/JenkinsFailedScenarios/

@@ -1,7 +1,6 @@
 package member.APP.pages;
 
 import com.sun.javafx.scene.traversal.Direction;
-import cucumber.api.java.bs.A;
 import global.APP.getProperty.ProductInfoGetProperty;
 import global.Base;
 import io.appium.java_client.AppiumDriver;
@@ -12,10 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.security.PublicKey;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class ChatScreen extends Base {

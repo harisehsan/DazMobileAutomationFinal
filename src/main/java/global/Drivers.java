@@ -1,6 +1,5 @@
 package global;
 
-import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
@@ -11,25 +10,24 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class Drivers extends BuildIDPicker{
 
-    public static AppiumDriver<WebElement> driver; // Making this driver static to prevent it become null on the Hooks class. This is temporary solution
+    public AppiumDriver<WebElement> driver; // Making this driver static to prevent it become null on the Hooks class. This is temporary solution
     public DesiredCapabilities cap;
 
 //    public static HashMap<String, AppiumDriver<WebElement>> appiumDriverHashMap = new HashMap<>();
 //    public static HashMap<String, DesiredCapabilities> desiredCapabilitiesHashMap = new HashMap<>();
 
-    public void darazAndroidLaunchApp(String port, String platform, String platformVersion, String deviceName, String udid, String systemPort) throws Exception {
+    public void darazAndroidLaunchApp(String port, String platform, String platformVersion, String deviceName, String udid, String systemPort, String env) throws Exception {
         cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, udid);
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
         cap.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
 //        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator");
-        if(System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if(env.equalsIgnoreCase("mm.live"))
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
         else
             cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android"+dev);
@@ -45,8 +43,9 @@ public class Drivers extends BuildIDPicker{
         Assert.assertNotNull(driver);
     //    driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        setDriver(driver);
-//         envPicker.envPicker(System.getProperty("env"));
+        //WebDriverRunner.setWebDriver(driver);
+        //setDriver(driver);
+//         envPicker.envPicker(ThreadStorage.get("env"));
 
     }
 
@@ -55,7 +54,7 @@ public class Drivers extends BuildIDPicker{
 //        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, udid);
 //        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
 //        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
-//        if (System.getProperty("env").equalsIgnoreCase("mm.live")) {
+//        if (ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
 //            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.shop.android");
 //        } else {
 //            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.daraz.android" + dev);
@@ -73,7 +72,7 @@ public class Drivers extends BuildIDPicker{
 //        //    driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:" + port + "/wd/hub"), cap);
 //        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //        setDriver(driver);
-////         envPicker.envPicker(System.getProperty("env"));
+////         envPicker.envPicker(ThreadStorage.get("env"));
 //
 //    }
 

@@ -1,11 +1,11 @@
 package global.APP.pages;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import global.APP.getProperty.JustForYouGetProperty;
 import global.APP.getProperty.JustForYouSetProperty;
 import global.APP.pageObjects.CartPageObjects;
 import global.APP.pageObjects.JustForYouPageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.SearchPageObject;
@@ -39,7 +39,7 @@ public class JustForYou extends Base {
         int tries = 20;
         int j = 0;
         scrollDownMultipleTries(4);
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(justForYouPageObject.just_For_You_title_lbl)) {
                     while ((!isExist(justForYouPageObject.discount_lbl))) {
@@ -66,7 +66,7 @@ public class JustForYou extends Base {
     }
 
     public void collectProductInformation() throws IOException {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
             justForYouSetProperty.setProductInformation(justForYouPageObject.product_Title_pdp.getText(), justForYouPageObject.display_Price_On_Pdp_lbl.getText());
             justForYouSetProperty.setProductDiscountInformation(justForYouPageObject.discount_Pdp_lbl.get(0).getText(), justForYouPageObject.original_Price_On_Pdp_lbl.getText());
             if (isExist(justForYouPageObject.rating_Pdp_bar))
@@ -157,7 +157,7 @@ public class JustForYou extends Base {
     }
 
     public void navigateToPDPPage() {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live"))) {
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live"))) {
            justForYouPageObject.discount_lbl.get(0).click();
             if (isExist(cartPageObjects.overseas_Confirm_btn))
                 cartPageObjects.overseas_Confirm_btn.get(0).click();
@@ -176,7 +176,7 @@ public class JustForYou extends Base {
         int tries = 20;
         scrollDownMultipleTries(4);
         for (int i = 0; i < tries; i++) {
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "bd.live": {
                     if (isExistByText("শুধু আপনার জন্য"))
                         return true;

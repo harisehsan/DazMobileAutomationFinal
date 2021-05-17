@@ -4,7 +4,6 @@ import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import global.APP.pages.Venture;
-import global.Drivers;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

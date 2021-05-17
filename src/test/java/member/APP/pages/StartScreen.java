@@ -1,7 +1,6 @@
 package member.APP.pages;
 
 import global.Base;
-import global.Drivers;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.StartScreenPageObjects;

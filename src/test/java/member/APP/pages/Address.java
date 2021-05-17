@@ -2,6 +2,7 @@ package member.APP.pages;
 
 import com.sun.javafx.scene.traversal.Direction;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import member.APP.pageObjects.AddressPageObject;
@@ -9,7 +10,6 @@ import member.APP.pageObjects.SignUpObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -29,7 +29,7 @@ public class Address extends Base {
     }
 
     public void navigateToAddressMenu() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(signUpObjects.settings_icon_By);
             signUpObjects.settings_icon.click();
             waitUntilPresentOfElementBy(addressPageObject.address_Book_lbl_By);
@@ -44,10 +44,10 @@ public class Address extends Base {
     }
 
     public void changeAddress(String name, String address, String phonePK, String phoneBD, String phoneLK, String phoneNP, String phoneMM) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(addressPageObject.address_Text_Input_layout_By);
             addressPageObject.address_Text_Input_txtbox.get(0).sendKeys(name);
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                     addressPageObject.address_Text_Input_txtbox.get(1).sendKeys(phonePK);
                     break;
@@ -88,14 +88,14 @@ public class Address extends Base {
     }
 
     public void saveChanges() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             addressPageObject.save_btn.click();
         else
             addressPageObject.save_btn_MM.click();
     }
 
     public boolean verifyAddressDetails(String name, String address) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(addressPageObject.buyer_Name_lbl_By);
             for (int i = 0; i < addressPageObject.buyer_Name_lbl.size(); i++) {
                 if (addressPageObject.buyer_Name_lbl.get(i).getText().equalsIgnoreCase(name) && addressPageObject.buyer_address_lbl.get(i).getText().equalsIgnoreCase(address))
@@ -115,7 +115,7 @@ public class Address extends Base {
     }
 
     public void newAddress() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
            waitWithoutExceptionForElementsLessTime(addressPageObject.edit_Address_btn);
             waitUntilPresentOfElementBy(addressPageObject.new_Address_btn_By);
             addressPageObject.new_Address_btn.click();
@@ -129,7 +129,7 @@ public class Address extends Base {
     public void makeDefault() {
         int tries = 5;
         scrollDownMultipleTries(4);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(addressPageObject.make_Default_chkbox)) {
                     if (isExist(addressPageObject.make_Default_chkbox) && addressPageObject.make_Default_chkbox.get(0).getAttribute("checked").equalsIgnoreCase("false"))
@@ -155,7 +155,7 @@ public class Address extends Base {
     }
 
     public void editAddress() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) { // Code for all Daraz ventures except MM
             waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
             addressPageObject.edit_Address_btn.get(0).click();
         } else // Code for Shop (MM) app only
@@ -168,7 +168,7 @@ public class Address extends Base {
     public void deleteAddress() {
         int tries = 0;
         int deleteTries = 0;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (isExist(addressPageObject.edit_Address_btn) && deleteTries < 15) {
                 waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
                 scrollDownMultipleTries(10);
@@ -211,7 +211,7 @@ public class Address extends Base {
     }
 
     public boolean verifyTheRemovedAddress() {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live"))
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live"))
             return (addressPageObject.edit_Address_btn.size() > 0 && addressPageObject.edit_Address_btn.size() < 3);
         else
             return (addressPageObject.edit_Address_btn_MM.size() > 0 && addressPageObject.edit_Address_btn_MM.size() < 3);
@@ -221,7 +221,7 @@ public class Address extends Base {
     public void makeDefaultShippingAddressOnly(String addressType) {
         int tries = 5;
         scrollDownMultipleTries(4);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             for (int i = 0; i < tries; i++) {
                 if (isExist(addressPageObject.make_Default_chkbox)) {
                     if (addressType.equalsIgnoreCase("shipping")) {
@@ -257,7 +257,7 @@ public class Address extends Base {
     }
 
     public void selectEditAddressByOrder(String order) throws InterruptedException {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             waitUntilPresentOfElementBy(addressPageObject.edit_Address_btn_By);
             if (order.equalsIgnoreCase("first")) {
                 Thread.sleep(5000);
@@ -280,7 +280,7 @@ public class Address extends Base {
 
     public void selectDeletebutton() {
         scrollDownMultipleTries(6);
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             while (!isExist(addressPageObject.delete_Address_btn))
                 swiptToBottom();
             addressPageObject.delete_Address_btn.get(0).click();
@@ -298,7 +298,7 @@ public class Address extends Base {
 
     public void scrollTotheAddressbuttonLocation(String addressType) {
         int tries = 10;
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (addressType.contains("HOME")) {
                 while (!isExist(addressPageObject.address_Home_btn) && tries < 15) {
                     swiptToBottom();
@@ -330,7 +330,7 @@ public class Address extends Base {
     }
 
     public void selectTheAddressLocation(String addressType) {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             if (addressType.contains("HOME")) {
                 addressPageObject.address_Home_btn.get(0).click();
             } else {
@@ -346,7 +346,7 @@ public class Address extends Base {
     }
     public boolean verifyTheExistenceOfAddressLocation(String addressType)
     {
-        if (!System.getProperty("env").equalsIgnoreCase("mm.live")) {
+        if (!ThreadStorage.get("env").equalsIgnoreCase("mm.live")) {
             return addressPageObject.addressLocationlbl.getText().contains(addressType);
         }
         else
@@ -374,7 +374,7 @@ public class Address extends Base {
     {
         int tries = 0;
         addressPageObject.address_Text_Input_txtbox.get(2).click();
-        switch (System.getProperty("env"))
+        switch (ThreadStorage.get("env"))
         {
             case "pk.live":
             {

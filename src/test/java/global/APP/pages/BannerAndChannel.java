@@ -3,9 +3,9 @@ package global.APP.pages;
 import global.APP.pageObjects.BannerAndChannelPageObject;
 import global.APP.pageObjects.FlashSalePageObject;
 import global.Base;
+import global.ThreadStorage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import member.APP.pageObjects.StartScreenPageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -30,7 +30,7 @@ public class BannerAndChannel extends Base {
 
     public boolean checkTheExistenceofBanner()
     {
-        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
         {
             waitWithoutExceptionForElements(bannerAndChannelPageObject.banner_slider);
             return (isExist(bannerAndChannelPageObject.banner_slider));
@@ -44,14 +44,14 @@ public class BannerAndChannel extends Base {
 //    public void displayTheTotalNumberofBanners() This functions displays the total number of banner available on Homepage
 //    {
 //        int totalBanners;
-//        if (!(System.getProperty("env").equalsIgnoreCase("mm.live")))
+//        if (!(ThreadStorage.get("env").equalsIgnoreCase("mm.live")))
 //          totalBanners =  bannerAndChannelPageObject.banner_slider.get(0).findElements(bannerAndChannelPageObject.banner_picker_by).size();
 //        else
 //            totalBanners =  bannerAndChannelPageObject.banner_slider_MM.get(0).findElements(bannerAndChannelPageObject.banner_picker_by).size();
 //    }
 
     public boolean checkTheExistenceOfChannel() {
-        switch (System.getProperty("env")) {
+        switch (ThreadStorage.get("env")) {
             case "pk.live":
             case "bd.live":
             case "lk.live": {
@@ -71,7 +71,7 @@ public class BannerAndChannel extends Base {
         public boolean checkTheChannelPageTitle  ()
         {
             String channelName;
-            switch (System.getProperty("env")) {
+            switch (ThreadStorage.get("env")) {
                 case "pk.live":
                 case "bd.live":
                 case "lk.live": {
