@@ -142,7 +142,7 @@
                 <version>2.9</version>
                 <configuration>
                     <reportDirectory>${allure.report.dir}${file.separator}${timestamp}</reportDirectory>
-                    <reportVersion>2.7.0</reportVersion>
+                    <reportVersion>2.13.9</reportVersion>
                 </configuration>
             </plugin>
             <plugin>

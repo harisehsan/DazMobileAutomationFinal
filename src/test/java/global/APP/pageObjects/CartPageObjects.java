@@ -112,6 +112,7 @@ public class CartPageObjects extends BuildIDPicker {
     @AndroidFindBy(id = "com.shop.android:id/tv_laz_trade_voucher_applied_tip") public List <WebElement> voucher_Success_Message_lbl_MM;
     @AndroidFindBy(className = "android.widget.TextView") public List<WebElement> headerTitle;
     @AndroidFindBy(xpath = "//*[@content-desc='Chat Now']") public WebElement chatNow_btn;
+    @AndroidFindBy (id = "ckb_laz_trade_item_checkbox") public List <WebElement> product_rdobtn;
 
 
     public By searchProduct_lbl_By = By.id("com.daraz.android"+dev+":id/product_name_text_view");
@@ -124,8 +125,8 @@ public class CartPageObjects extends BuildIDPicker {
     public By ok_Got_It_btn_By_MM = By.id("tv_laz_cart_slide_gesture_got_it");
     public By cart_icon_By = By.id("com.daraz.android"+dev+":id/tab_layout");
     public By cart_icon_By_MM = By.id("com.shop.android:id/tab_layout");
-    public By product_rdobtn_By = By.id("com.daraz.android"+dev+":id/ckb_laz_trade_item_checkbox");
-    public By product_rdobtn_By_MM = By.id("com.shop.android:id/ckb_laz_trade_item_checkbox");
+    public By product_rdobtn_By = By.id("ckb_laz_trade_item_checkbox");
+    public By product_rdobtn_By_MM = By.id("ckb_laz_trade_item_checkbox");
     public By wishlist_In_Cart_btn_By = By.id("com.daraz.android"+dev+":id/iv_laz_trade_item_action_wishlist");
     public By wishlist_In_Cart_btn_By_MM = By.id("com.shop.android:id/iv_laz_trade_item_action_wishlist");
     public By proceed_To_Pay_btn_by = By.id("com.daraz.android"+dev+":id/btn_laz_trade_order_total_proceed_next");
