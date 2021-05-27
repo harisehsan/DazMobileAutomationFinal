@@ -7,7 +7,6 @@ src/test/java/member/APP/features/wallet.feature:5:27:44
 src/test/java/member/APP/features/privatezone.feature:5:16:30
 src/test/java/member/APP/features/search.feature:5:11:17:27:34:50
 src/test/java/member/APP/features/voucher.feature:5:18:45:59:71:84:98
-src/test/java/global/APP/features/sort.feature:5:12:19:27:35:43:52:63
 src/test/java/member/APP/features/signup.feature:28:36:43:52:60
 src/test/java/member/APP/features/chatscreen.feature:5:37:53:66
 src/test/java/member/APP/features/wishlist.feature:5:15:23:34:48:59:68:87:99:109:119
