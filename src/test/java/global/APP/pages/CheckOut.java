@@ -664,11 +664,11 @@ public class CheckOut extends Base {
        return (cartPageObjects.product_rdobtn.get(0).getAttribute("checked").equalsIgnoreCase("false"));
     }
 
-//    public boolean verifyTheCheckedDefaultDeliveryOption()
-//    {
-//       waitUntilPresentOfElementBy(checkOutPageObjects.delivery_Option_chkbox_By);
-//     return  (checkOutPageObjects.delivery_Option_chkbox.getAttribute( )
-//    }
+    public boolean verifyTheCheckedDefaultDeliveryOption()
+    {
+        waitUntilPresentOfElementBy(checkOutPageObjects.delivery_Option_chkbox_By);
+        return  (checkOutPageObjects.delivery_Option_chkbox.getAttribute( "checked").equalsIgnoreCase("false"));
+    }
 
 
 }
