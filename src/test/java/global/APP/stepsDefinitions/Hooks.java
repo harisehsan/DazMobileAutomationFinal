@@ -30,7 +30,7 @@ public class Hooks extends BaseRunner {
 
         Allure.addAttachment("Executed on: ","Device Name: "+deviceName() +
                 "\n"+"Device version: "+deviceVersion()+
-                "\n"+"Device UDID: "+getUdid_Device()+
+                "\n"+"Device UDID: "+deviceUdid()+
                 "\n"+"Venture: "+ ThreadStorage.get("env"));
     }
 
@@ -59,30 +59,5 @@ public class Hooks extends BaseRunner {
         }
         }
 
-    private String deviceName() throws IOException, InterruptedException {
-        try {
-            String commandString1;
-            commandString1 = String.format("%s", "adb.exe -s " + getUdid_Device() + " shell getprop ro.product.model");
-            Process process = Runtime.getRuntime().exec(commandString1);
-            process.waitFor(3, TimeUnit.SECONDS);
-            return getOutputFromCommand(process);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-      return null;
-    }
-
-    private String deviceVersion() throws IOException, InterruptedException {
-        try {
-            String commandString1;
-            commandString1 = String.format("%s", "adb.exe -s " + getUdid_Device() + " shell getprop ro.build.version.release");
-            Process process = Runtime.getRuntime().exec(commandString1);
-            process.waitFor(3, TimeUnit.SECONDS);
-            return getOutputFromCommand(process);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     }
 

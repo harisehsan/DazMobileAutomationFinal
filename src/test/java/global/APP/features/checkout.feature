@@ -338,10 +338,8 @@ Feature: Daraz Checkout Management
     Then I verify that all items in cart are successfully removed
     And I navigate back to the main screen
     And I search a Product using SKU for "Cart"
-    And I goto the PDP page
     And I get the product Name
     And I add a product to cart
-    And I login with old buyer account
     And I goto cart menu from PDP screen
     And I skip the cart popup
     And I scroll down to view product in cart
@@ -349,3 +347,24 @@ Feature: Daraz Checkout Management
     And I select all items in cart
     And I click on checkout button in cart menu
     Then I should see the checked delivery options by defaults
+
+#  @31107015 @verify_the_cnic_field_for_tobacco_product
+#  Scenario: verify the cnic field on checkout for tobacco products
+#    Given I select the venture
+#    And I select cart
+#    And I login with old buyer account
+#    And I skip the cart popup
+#    And I remove all items from cart
+#    Then I verify that all items in cart are successfully removed
+#    And I navigate back to the main screen
+#    And I search a Product using SKU for "Cart"
+#    And I add a product to cart
+#    And I navigate back to the main screen
+#    And I search for "tobacco"
+#    And I goto the PDP page
+#    And I add a product to cart
+#    And I goto cart menu from PDP screen
+#    And I skip the cart popup
+#    And I select all items in cart
+#    And I click on checkout button in cart menu
+#    Then I verify the existence of CNIC field on checkout

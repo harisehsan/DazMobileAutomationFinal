@@ -187,3 +187,21 @@ Feature: Daraz Order Details & Order Cancellation Management
     And I click on submit button
     Then I verify that order has been cancelled
     Then I verify for the "Combo" promotion label
+
+    @21001814 @verify_current_selected_logistics_including_package_serial_number_shipper_shipper
+    Scenario: verify current selected logistics including package serial number shipper shipper
+      Given I select the venture
+      And I search a Product using SKU for "Checkout"
+      And I select the product for checkout
+      And I select Buy Now button
+      And I login with old buyer account
+      And I save the shipping address
+      Then I verify the main product map, product title, product attributes, product price, line price, quantity of goods
+      And I check for the total price on checkout screen
+      And I click on proceed to pay button
+      And I wait for the select payment screen
+      And I select Cash on Delivery payment method
+      And I should reach to order successful page
+      And I click on Track Order button
+      Then I verify that order has been placed
+      Then I verify current selected logistics including package serial number shipper address logistics type expected delivery time logistics cost

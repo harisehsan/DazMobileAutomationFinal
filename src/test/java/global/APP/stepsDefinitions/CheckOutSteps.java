@@ -247,6 +247,11 @@ public class CheckOutSteps {
 
     @Then("I should see the checked delivery options by defaults")
     public void iShouldSeeTheCheckedDeliveryOptionsByDefaults() {
+        Assert.assertTrue(checkout.verifyTheCheckedDefaultDeliveryOption(),"The default delivery option is not checked by default!");
+    }
 
+    @Then("I verify current selected logistics including package serial number shipper address logistics type expected delivery time logistics cost")
+   public void iVerifyCurrentSelectedLogisticsIncludingPackageSerialNumberShipperAddressLogisticsTypeExpectedDeliveryTimeLogisticsCost() {
+        Assert.assertTrue(checkout.verifyTheLogisticsTypeAndDeliveryDateAndPostage(), "The Logistics information are not properly displayed on Order Details Page!");
     }
 }
