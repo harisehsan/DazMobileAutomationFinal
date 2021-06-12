@@ -1,0 +1,20 @@
+mvn clean test -Denv="mm.live" -Dcucumber.options="src/test/java/catalog/desktop/features --tags @20128963 --glue catalog.desktop.step_definitions" 
+
+
+mvn clean test -Denv=.live -Dcucumber.options="src\test\java\global\APP\features --tags @add_and_remove_buy_more_save_more_item_into_cart --glue global.APP.stepsDefinitions" allure:serve
+
+
+mvn clean test -Denv=pk.live -Dcucumber.options="src\test\java\ --tags @verify_the_cnic_on_checkout_for_single_product --glue global.APP.stepsDefinitions" allure:serve
+
+mvn clean test -Denv=lk.live -Dcucumber.options="src\test\java\member\APP\features --tags @TopupNavigationBanner --glue global.APP.stepsDefinitions" allure:serve
+
+mvn clean test -Denv=pk.live -Dcucumber.options="src\test\java\member\APP\features --tags @apply_expired_code_voucher_on_checkout --glue global.APP.stepsDefinitions" allure:serve
+
+mvn clean test -Denv=np.live -Dcucumber.options="@FullBattery-NP.txt --glue global.APP.stepsDefinitions"  allure:serve
+
+mvn clean test -Denv=np.live -Dcucumber.options="@FailedScenarios\np-live-2021-03-26T14-59-00-285\Rerun-np.txt --glue global.APP.stepsDefinitions"  allure:serve
+
+mvn clean test -Dcucumber.options="src\test\java --tags @verify_language_change --glue global.APP.stepsDefinitions" -DsuiteXmlFile=d:\Mi11-26.xml
+
+
+30.216.2.75
